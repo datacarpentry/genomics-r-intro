@@ -3,34 +3,40 @@ title: "Introducing R and RStudio IDE"
 teaching: 30
 exercises: 15
 questions:
-- "What is RStudio and why should I use it?"
-- "What is the difference between R and RStudio?"
-- "How do I get help using R?"
+- "Why use R?"
+- "Why use RStudio and how does it differ from R?"
+- "How do I get help using R and RStudio?"
 objectives:
-- "Discuss advantages of analyzing data in R"
-- "Discuss advantages of using RStudio"
-- "Create an RStudio project, and discuss the benefits of working within a
+- "Know advantages of analyzing data in R"
+- "Know advantages of using RStudio"
+- "Create an RStudio project, and know the benefits of working within a
    project"
 - "Customize RStudio layout"
-- "Able to locate and change the current working directory with `getwd()` and
+- "Be able to locate and change the current working directory with `getwd()` and
   `setwd()`"
 - "Compose an R script file with comments and saved commands"
 - "Be able to define what an R function is"
 - "Locate help for an R function using `?`, `??`, and `args()`"
 - "Check the version of R"
-- "Able to enter a command in the R console (at the terminal)"
-- "Ask effective questions when searching for help on forums or using web
+- "Be able to ask effective questions when searching for help on forums or using web
   searches"
-- "Research an issue you are experiencing with a package installation on
-  Stackoverflow"
 
 keypoints:
-- "First key point."
+- "R is a powerful, popular open-source scripting language"
+- "RStudio allows you to run R in an easy-to-use interface and makes
+  it easy to find help"
+- "You can customize the layout of RStudio, and use the project feature to manage
+  the files and packages used in your analysis"
+- "R provides thousands of functions for analyzing data, and provides several
+   way to get help"
+- "Using R will mean searching for online help, and there are tips and
+   resources on how to search effectively"
+
 ---
 
 ## Getting ready to use R for the first time
 In this lesson we will take you through the very first things you need to get
-R working, and conclude by showing you the most effective ways to get get help
+R working, and conclude by showing you the most effective ways to get help
 when you are working with R on your own.
 
 >## Tip: This lesson works best on the cloud
@@ -85,11 +91,11 @@ analyzing data in R:
 ## Introducing RStudio Server
 In these lessons, we will be making use of a software called [RStudio](https://www.rstudio.com/products/RStudio/),
 an [Integrated Development Environment (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment).
-RStudio, like any most IDEs provides a graphical interface to R, making it more
+RStudio, like most IDEs, provides a graphical interface to R, making it more
 user-friendly, and providing dozens of useful features. We will introduce
 additional benefits of using RStudio as you cover the lessons. In this case,
-we are specifically using [RStudio Server](https://www.rstudio.com/products/RStudio/#Server)
-, a version of RStudio that can be accessed in your web browser. RStudio Server
+we are specifically using [RStudio Server](https://www.rstudio.com/products/RStudio/#Server),
+a version of RStudio that can be accessed in your web browser. RStudio Server
 has the same features of the Desktop version of RStudio you could download as
 standalone software.
 
@@ -97,12 +103,13 @@ standalone software.
 
 Open a web browser and enter the IP address of your instance, followed by
 `:8787`. For example, if your IP address was 123.456.789 your URL would be
- > ~~~
- > http://123.456.789:8787
- >
- > # Tip: Make sure there are no spaces before or after your URL or your web browser may interpret it as a search query
- > ~~~
- > {: .source}
+> ~~~
+> http://123.456.789:8787
+>
+> # Tip: Make sure there are no spaces before or after your URL or your web browser may interpret it as a search query
+> ~~~
+>
+{: .source}
 
 Enter your user credentials and click <kbd>Sign In</kbd>. The credentials for
 the genomics Data Carpentry instances are:
@@ -134,20 +141,20 @@ To create a project, go to the <kbd>File</kbd> menu, and click <kbd>New Project.
 In the window that opens select **New Directory**, then **Empty Project**. For
 "Directory name:" enter **dc_genomics_r**. For "Create project as subdirectory of",
 you may leave the default, which is your home directory "~". Finally click
-<kbd>Create Project</kbd>. In your "Files" tab of your output pane (more about
+<kbd>Create Project</kbd>. In the "Files" tab of your output pane (more about
 the RStudio layout in a moment), you should see an RStudio project file,
-**dc_genomics_r.Rroj**. All RStudio projects end with the ".Rproj" file
+**dc_genomics_r.Rroj**. All RStudio projects end with the "**.Rproj**" file
 extension.
 
 >## Tip: Make your project more reproducible with Packrat
 > One of the most wonderful and also frustrating aspects of working with R is
 > managing packages. We will talk more about them, but packages (e.g. ggplot2)
-> are add-ons that extend what you can do with R. Unfoturnately it is very
+> are add-ons that extend what you can do with R. Unfortunately it is very
 > common that you may run into versions of R and/or R packages that are not
-> compatible. This may make it difficut to for somone to run your R script using
+> compatible. This may make it difficult for someone to run your R script using
 > their version of R or a given R package, and/or make it more difficult to run
 > their scripts on your machine. [Packrat](https://rstudio.github.io/packrat/)
-> Is an RStudio add-on that will associate your packages and project so that
+> is an RStudio add-on that will associate your packages and project so that
 > your work is more portable and reproducible. To turn on Packrat click on
 > the <KBD>Tools</KBD> menu and select <KBD>Project Options</KBD>. Under
 > **Packrat** check off "**Use packrat with this project**" and follow any
@@ -167,14 +174,14 @@ save/disk icon that is in the bar above the first line in the script editor, or
 click the <kbd>File</kbd> menu and select <kbd>save</kbd>. In the "Save File"
 window that opens, name your file **"genomics_r_basics"**. The new script
 **genomics_r_basics.R** should appear under "files" in the output pane. By
-convention, R scripts end with the file extention **.R**.
+convention, R scripts end with the file extension **.R**.
 
 ---
 
 ## Overview and customization of the RStudio layout
 
 Now that we have covered the basics, lets address some ways to configure the
-layout of RStudio. First, here are the major windows or panes of the RStuio
+layout of RStudio. First, here are the major windows or panes of the RStudio
 environment:
 
 <img src="../assets/img/rstudio_session_4pane_layout.png" alt="rstudio default session" style="width: 1000px;"/>
@@ -186,13 +193,13 @@ environment:
    You can work interactively (i.e. enter R commands here), but for the most
    part, we will run a script, or lines in a script and watch their execution
    and output here.
-- **Enviornment**: Here, RStudio will show you what datasets and variables you
+- **Environment**: Here, RStudio will show you what datasets and variables you
   have created, and which are actively defined/in memory. You can also see some
   characteristics of variables/datasets such as their type and dimensions.
   A history tab also contains a history of executed R commands.
 - **Files/plots/help**: This multipurpose pane will show you the contents of
   directories on your computer. You can also use the "Files" tab to navigate and
-  set the working directory. The "Plots" tab will show the ouput of any plots
+  set the working directory. The "Plots" tab will show the output of any plots
   generated. In "Packages" you will see what packages are actively loaded, or
   you can attach installed packages. "Help" will display help files for R
   functions/packages.
@@ -202,39 +209,50 @@ environment:
 > instance to your local computer. Uploads are also possible.
 {: .callout}
 
-All of the panes in RStudio have configuration options. For example you can
-minimize/maximize a pane, or by moving your mouse in the space between between
+All of the panes in RStudio have configuration options. For example, you can
+minimize/maximize a pane, or by moving your mouse in the space between
 panes you can resize as needed. The most important customization options for
-pane layout are in the <KBD>View</KBD> menu. Other option such as font sizes,
+pane layout are in the <KBD>View</KBD> menu. Other options such as font sizes,
 colors/themes, and more are in the <KBD>Tools</KBD> menu under
 <KBD>Global Options</KBD>.
+
+>## Don't be fooled - you are working with R
+> Although we won't be working with R at the terminal, there are lots of reasons
+> to. For example, once you have written an RScript, you can run it at any Linux
+> or Windows terminal without the need to start up RStudio. We just don't want
+> you to get confused - RStudio runs R, but R is not RStudio. For more on
+> running an R Script at the terminal see this [Carpentry lesson](https://swcarpentry.github.io/r-novice-inflammation/05-cmdline/).
+{: .callout}
+
 
 ---
 
 ## Getting to work with R: navigating directories
-Now that we have covered the more aesthetic aspects of R, we can get to work by
-learning some commands. We will write, execute, and save the commands we learn
-in our **genomics_r_basics.R** script that is loaded in the Source pane. First,
-lets see what directory we are in. To do so, type the following command into
-the script:
+Now that we have covered the more aesthetic aspects of RStudio, we can get to
+work learning some commands. We will write, execute, and save the commands we
+learn in our **genomics_r_basics.R** script that is loaded in the Source pane.
+First, lets see what directory we are in. To do so, type the following command
+into the script:
 
 > ~~~
 > getwd()
 > ~~~
 {: .language-r}
 
-To execute this command, make sure your cusor is on the same line the command
+To execute this command, make sure your cursor is on the same line the command
 is written. Then click the <KBD>Run</KBD> button that is just above the first
 line of your script in the header of the Source pane.
 
 
-In the console, we expect to see the following output:
+In the console, we expect to see the following output*:
 
 > ~~~
-> getwd()
 > [1] "/home/dcuser/dc_genomics_r"
 > ~~~
 {: .output}
+
+\* Notice, at the Console, you will also see the instruction you executed
+above the output in blue.
 
 Since we will be learning several commands, we may already want to keep some
 short notes in our script to explain the purpose of the command. Entering a `#`
@@ -274,7 +292,7 @@ command. Enter this command in your script, but *don't run* this yet.
 You may have guessed, you need to tell the `setwd()` command
 what directory you want to set as your working directory. To do so, inside of
 the parentheses, open a set of quotes. Inside the quotes enter a `/` which is
-the root directory of our linux. Next, use the <KBD>Tab</KBD> key, to take
+the root directory for Linux. Next, use the <KBD>Tab</KBD> key, to take
 advantage of RStudio's Tab-autocompletion method, to select `home`, `dcuser`,
 and `dc_genomics_r` directory. The path in your script should look like this:
 
@@ -285,20 +303,20 @@ and `dc_genomics_r` directory. The path in your script should look like this:
 {: .language-r}
 
 
-When you run this command, the console repeates the command, but gives you no
-output. Instead, you see the blank R prompt: `>`. Congradulations! Although it
+When you run this command, the console repeats the command, but gives you no
+output. Instead, you see the blank R prompt: `>`. Congratulations! Although it
 seems small, knowing what your working directory is, and being able to set your
-working directory is the first step to analzying your data.
+working directory is the first step to analyzing your data.
 
 >## Tip: Never use `setwd()`
 > Wait, what was the last 2 minutes about? Well, setting your working directory
 > is something you need to do, you need to be very careful about using this as
 > a step in your script. For example, the top-level path in a Unix file system
 > is root `/`, but on Windows it is likely `C:\`. This is one of several ways
-> you might cause a script to break because a filepath is configured differently
+> you might cause a script to break because a file path is configured differently
 > than your script anticipates. R packages like [`here`](https://cran.r-project.org/web/packages/here/index.html)
 > and [`file.path`](https://www.rdocumentation.org/packages/base/versions/3.4.3/topics/file.path)
-> allow you to specifiy file paths is a way that is more operating system
+> allow you to specify file paths is a way that is more operating system
 > independent. See Jenny Bryan's [blog post](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/) for this
 > and other R tips.
 {: .callout}
@@ -312,7 +330,7 @@ works in R, the next sections will help you understand what is happening in
 any R script. A function in R (or any computing language) is basically a short
 program that takes an input and returns and output.
 
-> ## Exercise: What do these functions do
+> ## Exercise: What do these functions do?
 > Try the following functions by writing them in your script. See if you can
 > guess what they do, and make sure to add comments to your script about your
 > assumed purpose.
@@ -332,9 +350,9 @@ program that takes an input and returns and output.
 
 You have hopefully noticed a pattern, some more abstract exceptions aside, in R
 a function has three key properties:
-- functions have a name (e.g. `dir`, `getwd`)
+- functions have a name (e.g. `dir`, `getwd`); note that these are case sensitive!
 - following the name, functions have a pair of `()`
-- Inside the parentheses, a function may take 0 or more arguments ...
+- Inside the parentheses, a function may take 0 or more arguments
 
 An argument may be a specific input for your function and/or may modify the
 function's behavior. For example the function `round()` will round a number
@@ -366,7 +384,7 @@ name:
 {: .language-r}
 
 The "Help" tab will show you information (and often, too much information). You
-Will slowly learn how to read through all of that. Checking the "Usage" or
+will slowly learn how to read through all of that. Checking the "Usage" or
 "Examples" headings is often a good place to look first. If you look under
 "Arguments" we also see what arguments we can "pass" to this function to modify
 its behavior. You can also see a function's argument using the `args()` function:
@@ -384,9 +402,12 @@ Which returns
 > ~~~
 {: .output}
 
-We see that `round()` has a `digits` argument. The `=` sign indicates that a
-default (in this case 0) is already set. We can explicity set the digits
-parameter when we use the function:
+We see that `round()` takes two arguments, `x` which is your number, and a
+`digits` argument. The `=` sign indicates that a default (in this case 0) is
+already set. Since `x` is not set, `round()` requires we provide it, in contrast
+to `digits` where R will use the default value 0 unless you explicitly provide
+a different value. We can explicitly set the digits parameter when we call the
+function:
 
 > ~~~
 > round(3.14159, digits = 2)
@@ -414,7 +435,7 @@ digits is 2.
 {: .output}
 
 Finally, what if you are using `?` to get help for a function in a package not
-installed on your version of R:
+installed on your system?
 
 > ~~~
 > ?geom_point()
@@ -431,7 +452,51 @@ will return an error:
 
 
 Use two question marks (i.e. `?? geom_point()`) and R will return online search
-results in the "Help" tab.
+results in the "Help" tab. Finally, if you think there should be a function,
+for example a statistical test, but you aren't sure what R calls it, or what
+functions may be available, use the `help.search()` function.
+
+> ## Exercise: Searching for R functions
+> Use `help.search()` to find R functions for the following statistical
+> functions. Remember to put what you are using for your search query in
+> quotes inside the function parentheses.
+>
+> - Chi-Squared test
+> - Student-t test
+> - mixed linear model
+>
+>> ## solution
+>>   While your search results may return several tests, we list a few you might
+>>   find:
+>> - Chi-Squared test: `stats::Chisquare`
+>> - Student-t test: `stats::TDist`
+>> - mixed linear model: `stats::lm.glm`
+> {: .solution}
+{: .challenge}
+
+
+We will discuss more on where to look for the libraries and packages that
+contain functions you want to use. For now, be aware that two important ones
+are [CRAN](https://cran.r-project.org/) - the main repository for R, and
+[Bioconductor](http://bioconductor.org/) - a popular repository for
+bioinformatics R.
+
+---
+
+## RStudio contextual help
+
+Here is one last bonus we will mention about RStudio. It's difficult to
+remember all of the arguments and definitions associated with a given function.
+When you start typing the name of a function and hit the <KBD>Tab</KBD> key,
+RStudio will display functions and associated help:
+
+<img src="../assets/img/studio_contexthelp1.png" alt="rstudio default session" style="width: 600px;"/>
+
+Once you type a function, hitting the <KBD>Tab</KBD> inside the parentheses
+will remind you of arguments and provide additional help.
+
+<img src="../assets/img/studio_contexthelp2.png" alt="rstudio default session" style="width: 600px;"/>
+
 
 ---
 
@@ -443,15 +508,15 @@ Finally, no matter how much experience you have with R, you will find yourself
 needing help. There is no shame in researching how to do something in R, and
 most people will find themselves looking up how to do the same things that
 they "should know how to do" over and over again. Here are some tips to make
-this process as helpful and efficent as possible.
+this process as helpful and efficient as possible.
 
 > "Never memorize something that you can look up"
 > - A. Einstein
 
 ## Finding help on Stackoverflow and Biostars
 
-Two of popular websites will be of great help with many R problems. For **general**
-**R questions**, [Stack Overflow](https://stackoverflow.com/), probably the most
+Two popular websites will be of great help with many R problems. For **general**
+**R questions**, [Stack Overflow](https://stackoverflow.com/) is probably the most
 popular online community for developers. If you start your question "How to do X
 in R" results from Stack Overflow are usually near the top of the list. For
 **bioinformatics specific questions**, [Biostars](https://www.biostars.org/) is
@@ -460,28 +525,28 @@ a popular online forum.
 >## Tip: Asking for help using online forums:
 >
 > - When searching for R help, look for answers with the [r](https://stackoverflow.com/questions/tagged/r) tag.
-> - Get an account, not required to view answers, but to required to post
-> - Put in effort to check throughly before you post a question; folks get
->  annoyed if you ask a very common question that has been answered multiple
->  times.
+> - Get an account; not required to view answers but to required to post
+> - Put in effort to check thoroughly before you post a question; folks get
+>   annoyed if you ask a very common question that has been answered multiple
+>   times
 > - Be careful. While forums are very helpful, you can't know for sure if the
->   advice you are getting is correct.
+>   advice you are getting is correct
 > - See the [How to ask for R help](http://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
->   blog post for more useful tips.
+>   blog post for more useful tips
 >
 {: .callout}
 
 ## Help people help you
 
-Often, in order to duplicate the issue you are having, somone may need to see
+Often, in order to duplicate the issue you are having, someone may need to see
 the data you are working with or verify the versions of R or R packages you
 are using. The following R functions will help with this:
 
 You can **check the version of R** you are working with using the `sessionInfo()`
 function. Actually, it is good to save this information as part of your notes
 on any analysis you are doing. When you run the same script that has worked fine
-a dozzen times before, looking back at these notes will remind you that you
-upgraded R and forget to check this script.
+a dozen times before, looking back at these notes will remind you that you
+upgraded R and forget to check your script.
 
 
 > ~~~
@@ -509,8 +574,8 @@ upgraded R and forget to check this script.
 {: .output}
 
 Many times, there may be some issues with your data and the way it is formatted.
-In that case, you may want to share that data with somone else. However, you
-may not need to share the whole datasets; looking at a subset of your 50,000 row,
+In that case, you may want to share that data with someone else. However, you
+may not need to share the whole dataset; looking at a subset of your 50,000 row,
 10,000 column dataframe may be TMI (too much information)! You can take an
 object you have in memory such as dataframe (if you don't know what this means
 yet, we will get to it!) and save it to a file. In our example we will use the
@@ -539,7 +604,7 @@ how the data is formatted and possibly revealing problematic issues.
 > ~~~
 {: .output}
 
-Alternatively, you can also save objects in R memory to a file by specificying
+Alternatively, you can also save objects in R memory to a file by specifying
 the name of the object, in this case the `iris` data frame, and passing a
 filename to the `file=` argument.
 
@@ -553,7 +618,7 @@ filename to the `file=` argument.
 ## Final FAQs on R
 
 Finally, here are a few pieces of introductory R knowledge that are too good to
-pass up. While we won't return to them in this course, we put them here becasue
+pass up. While we won't return to them in this course, we put them here because
 they come up commonly:
 
 **Do I need to click Run every time I want to run a script?**
@@ -563,7 +628,7 @@ they come up commonly:
   - Windows execution shortcut: <KBD>Ctrl</KBD>+<KBD>Enter</KBD>
   - Mac execution shortcut: <KBD>Cmd(⌘)</KBD>+<KBD>Enter</KBD>
 
-  To see a complete list of shortcuts click on the <KBD>Tools</KBD> menu and
+  To see a complete list of shortcuts, click on the <KBD>Tools</KBD> menu and
   select <KBD>Keyboard Shortcuts Help</KBD>
 
 **What's with the brackets in R console output?**
@@ -574,6 +639,9 @@ they come up commonly:
 > 1:101 # generates the sequence of numbers from 1 to 101
 > ~~~
 {: .language-r}
+
+In the output below, `[81]` indicates that the first value on that line is the
+81st item in your result
 
 > ~~~
 >   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
@@ -590,9 +658,10 @@ they come up commonly:
 
 - Yes, remember - RStudio is running R. You get to use lots of the enhancements
   RStudio provides, but R works independent of RStudio. See [these tips](https://support.rstudio.com/hc/en-us/articles/218012917-How-to-run-R-scripts-from-the-command-line)
-  for running your commands at the command line.
+  for running your commands at the command line
 
 
 **Where else can I learn about RStudio?**
-Check out the <KBD>Help</KBD> menu, especially "Cheatsheets" section. 
+- Check out the <KBD>Help</KBD> menu, especially "Cheatsheets" section
+
 ---
