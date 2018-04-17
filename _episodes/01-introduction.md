@@ -188,21 +188,23 @@ environment:
 
 - **Source**: This pane is where you will write/view R scripts. Some outputs
   (such as if you view a dataset using `View()`) will appear as a tab here.
-- **Console**: This is actually where you see the execution of commands, and
-   what R looks like if you were to run it at the command line without RStudio.
-   You can work interactively (i.e. enter R commands here), but for the most
-   part, we will run a script, or lines in a script and watch their execution
-   and output here.
-- **Environment**: Here, RStudio will show you what datasets and variables you
-  have created, and which are actively defined/in memory. You can also see some
-  characteristics of variables/datasets such as their type and dimensions.
-  A history tab also contains a history of executed R commands.
-- **Files/plots/help**: This multipurpose pane will show you the contents of
-  directories on your computer. You can also use the "Files" tab to navigate and
-  set the working directory. The "Plots" tab will show the output of any plots
-  generated. In "Packages" you will see what packages are actively loaded, or
-  you can attach installed packages. "Help" will display help files for R
-  functions/packages.
+- **Console/Terminal**: This is actually where you see the execution of commands
+  , and what R looks like if you were to run it at the command line without
+  RStudio. You can work interactively (i.e. enter R commands here), but for the
+  most part, we will run a script, or lines in a script and watch their
+  execution and output here. The "Terminal" tab give you access to the BASH 
+  terminal.
+- **Environment/History**: Here, RStudio will show you what datasets and
+  variables you have created, and which are actively defined/in memory. You can
+  also see some characteristics of variables/datasets such as their type and
+  dimensions. A "History" tab also contains a history of executed R commands. In
+  the history tab you can see a list of previously executed commands.
+- **Files/plots/Packages/help**: This multipurpose pane will show you the
+  contents of directories on your computer. You can also use the "Files" tab to
+  navigate and set the working directory. The "Plots" tab will show the output
+  of any plots generated. In "Packages" you will see what packages are actively
+  loaded, or you can attach installed packages. "Help" will display help files
+  for R functions/packages.
 
 >## Tip: Downloads from the cloud
 > In the "Files" tab you can select a file and download it from your cloud
