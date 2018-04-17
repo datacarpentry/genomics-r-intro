@@ -138,7 +138,7 @@ To create a project, go to the <kbd>File</kbd> menu, and click <kbd>New Project.
 
 <img src="../assets/img/new_project_window.png" alt="rstudio default session" style="width: 600px;"/>
 
-In the window that opens select **New Directory**, then **Empty Project**. For
+In the window that opens select **New Directory**, then **New Project**. For
 "Directory name:" enter **dc_genomics_r**. For "Create project as subdirectory of",
 you may leave the default, which is your home directory "~". Finally click
 <kbd>Create Project</kbd>. In the "Files" tab of your output pane (more about
