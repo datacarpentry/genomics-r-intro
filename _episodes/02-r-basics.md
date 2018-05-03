@@ -8,46 +8,67 @@ questions:
 - "How do I get started with tabular data (e.g. spreadsheets) in R?"
 objectives:
 - "Know how far you can get with basic R skills"
-- "Be able to explain what a data types are, and know the common R datatypes (modes)"
-- "Be able to create the most common R objects including vectors, factors, lists, and dataframes"
+- "Be able to explain what a data types are, and know the common R datatypes
+  (modes)"
+- "Be able to create the most common R objects including vectors, factors,
+  lists, and dataframes"
 - "Be able to retrieve (index), name, or replace, values from an object"
 - "Be able to do simple arithmetic procedures on R objects"
 - "Be able to load a tabular dataset using base R functions"
 - "Explain the basic principle of tidy datasets"
-- "Be able to determine the structure of a datafram including its dimensions and the datatypes of variables"
+- "Be able to determine the structure of a dataframe including its dimensions
+  and the datatypes of variables"
 - "Be able to retrieve (index) a dataframe"
 - "Be able to apply an arithmetic function to a dataframe"
 - "Be able to coerce the class of an object (including variables in a dataframe)"
 - "Be able to save a dataframe as a delimited file"
-
-
 keypoints:
-- "R is a powerful, popular open-source scripting language"
-- "RStudio allows you to run R in an easy-to-use interface and makes
-  it easy to find help"
-- "You can customize the layout of RStudio, and use the project feature to manage
-  the files and packages used in your analysis"
-- "R provides thousands of functions for analyzing data, and provides several
-   way to get help"
-- "Using R will mean searching for online help, and there are tips and
-   resources on how to search effectively"
-
+- "Effectively using R is a journey of months or years. Still you don't have to
+  be an expert to use R and you can start using and analzying your data with
+  with about a day's worth of training"
+- "It is important to understand how data are organized by R in a given object
+  type (e.g. vector, factor, dataframe, etc.) how the mode of that type
+  (e.g. numeric, character, logical, etc.) will determine how R will operate
+  on that data, and what can happen when datatypes are coerced, misinterpreted,
+  or misapplied"
+- "Data wrangling - loading data, cleaning this data (e.g checking for outliers,
+  handling missing values, sorting, filtering, etc.) is an important first step
+  for working with data"
 ---
 
-## Getting ready to use R for the first time
-In this lesson we will take you through the very first things you need to get
-R working, and conclude by showing you the most effective ways to get help
-when you are working with R on your own.
+## "The fantastic world of R awaits you" OR "Nobody wants to learn how to use R"
+Before we begin this lesson, we want you to be clear on the goal of the workshop
+and these lessons. We believe that every learner can be **achieve competency
+with R**. You have reached competency when you find that you are able to
+**use R to handle common analysis challenges in a reasonable amount of time**
+(which includes  time needed to spend looking at learning materials, searching
+for help online, and asking colleagues for help). As you spend more time using R
+(there is no substitute for regular use and practice) you will find yourself
+gaining competency and even expertise. The more familiar you get, the more
+complex analyses you will be able to carry out, with less frustration, and in
+less time - the "fantastic world of R" awaits you!
+
+## What these lessons will not teach you
+Nobody wants to learn how to use R, people want to learn how to use R to analyze
+their own research questions! Ok, maybe some folks learn R for R's sake, but
+these lessons assume that you want to start analyzing genomic data as soon as
+possible. Given this, there are many valuable pieces of information about R
+that we simply wont have time to cover. Hopefully we will clear the hurdle of
+giving you just enough knowledge to be dangerous (which can be a high hurdle
+in R), but we also suggest you look into additional the learning materials in
+the tip box below.
 
 >## Tip: This lesson works best on the cloud
-> Remember, these lessons assume we are using the pre-configured virtual machine
-> instances provided to you at a genomics workshop. Much of this work could be
-> done on your laptop, but we use instances to simplify workshop setup
-> requirements, and to get you familiar with using the cloud (a common
-> requirement for working with big data).
-> Visit the [Genomics Workshop setup page](http://www.datacarpentry.org/genomics-workshop/setup/)
-> for details on getting this instance running on your own, or for the info you
-> need to do this on your own computer.
+> The following are good resources for learning more about R. Some of them
+> can be quite technically, but if you are a regular R user you may ultimately
+> need some of this technical knowledge.
+> - [The R Manuals](https://cran.r-project.org/manuals.html): Maintained by the R project
+> - [R contributed documentation](https://cran.r-project.org/other-docs.html): Also linked to the R project; importantly there are materials available in several languages
+> - [R for Data Science](http://r4ds.had.co.nz/): A wonderful collection by noted R
+educators and developers Garrett Grolemund and Hadley Wickham
+> - [Practical Data Science for Stats](https://peerj.com/collections/50-practicaldatascistats/):
+Not exclusively about R usage, but a nice collection of pre-prints on data science
+and applications for R
  {: .callout}
 
 
