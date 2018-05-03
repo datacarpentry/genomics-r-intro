@@ -22,15 +22,8 @@ objectives:
 
 
 keypoints:
-- "R is a powerful, popular open-source scripting language"
-- "RStudio allows you to run R in an easy-to-use interface and makes
-  it easy to find help"
-- "You can customize the layout of RStudio, and use the project feature to manage
-  the files and packages used in your analysis"
-- "R provides thousands of functions for analyzing data, and provides several
-   way to get help"
-- "Using R will mean searching for online help, and there are tips and
-   resources on how to search effectively"
+- ""
+
 
 ---
 
