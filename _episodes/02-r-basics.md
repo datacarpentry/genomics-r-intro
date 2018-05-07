@@ -1,7 +1,7 @@
 ---
 title: "R Basics"
 teaching: 60
-exercises: 30
+exercises: 20
 questions:
 - "What will these lessons not cover?"
 - "What are the basic features of the R language?"
@@ -12,8 +12,8 @@ objectives:
 - "Be able to create and appropriately name objects in R"
 - "Be able to explain what a data types are, and know the common R data types
   (modes)"
-- "Be able to do simple arithmetic of functional procedures on R objects"
 - "Be able to reassign object values and delete objects"
+- "Be able to do simple arithmetic of functional procedures on R objects"
 - "Be able to create the most common R objects including vectors, factors,
   lists, and data frames"
 - "Be able to retrieve (index), name, or replace, values from an object"
@@ -106,6 +106,7 @@ below:
 
 > ~~~
 > # this line creates the object 'a' and assigns it the value '1'
+>
 > a <- 1
 > ~~~
 {: .language-r}
@@ -122,6 +123,7 @@ You should notice the following outputs; in the RStudio 'Console' you should see
 
 > ~~~
 > # this line creates the object 'a' and assigns it the value '1'
+>
 > a <- 1
 > ~~~
 {: .output}
@@ -210,6 +212,7 @@ depending on how you look at it.
 
 > ~~~
 > # gene_name has the value 'pten' or whatever value you used in the challenge. We will now assign the new value 'tp53'
+>
 > gene_name <- 'tp53'
 > ~~~
 {: .language-r}
@@ -219,6 +222,7 @@ will delete the object.
 
 > ~~~
 > # delete the object 'gene_name'
+>
 > rm(gene_name)
 > ~~~
 {: .language-r}
@@ -273,7 +277,7 @@ have important analogies when working with R objects.
 >> 2. mode(od_600_value)     # "numeric"
 >> 3. mode(chr_position)     # "character"
 >> 4. mode(spock)       # "logical"
->> 5. pilot     # Error -
+>> 5. pilot     # Error: object 'Earhart' not found
 > {: .solution}
 {: .challenge}
 
@@ -288,11 +292,484 @@ the mode of `Earthrt` was originally.
 ## Mathematical and functional operations on objects
 
 Once an object exsits (which by definition also means it has a mode), R can
-appropriately manipulate that object. For example, objects in the numeric modes
-are numbers which can be added, multiplied, divided, etc:
+appropriately manipulate that object. For example, objects of the numeric modes
+can be added, multiplied, divided, etc. R provides several mathematical
+(arithmetic) operators incuding:
+
+|Operator|Description|
+|--------|-----------|
+|+|addition|
+|-|subtraction|
+|*|multiplication|
+|/|division|
+|^ or **|exponentiation|
+|a%%b|modulus|
+
+These can be used with literal numbers:
+
+> ~~~
+>  (1 + (5 ** 0.5))/2
+> ~~~
+{: .language-r}
+
+> ~~~
+> [1] 1.618034
+> ~~~
+{: .output}
+
+and importantly, can be used on any object that evaluates to (i.e. iterprited
+by R) a numeric object:
 
 
+> ~~~
+> # multiply the object 'human_chr_number' by 2
+>
+> human_chr_number * 2
+> ~~~
+{: .language-r}
+
+returns the result:
+
+> ~~~
+> [1] 46
+> ~~~
+{: .output}
+
+Finally, it is useful to know that several other types of mathematical
+operations have their own associated functions. While there are too many to
+list, you can always search the online documentation in R for a function (
+even if you don't know what it may be called in R). For example:
+
+> ~~~
+> # search for functions associated with chi squared
+>
+> ?? chisquared
+> ~~~
+{: .language-r}
+
+Will open search results in your help tab. Of course, using Google will help
+here too.
+
+> ## Exercise: Compute the golden ratio
+> One appoximation of the golen ratio (φ) can be found by taking the sum of 1
+> and the square root of 5, and dividing by 2 as in the example above. Compute
+> the golden ratio to 3 digits of precision using the `sqrt()` and `round()`
+> functions. Hint: remember the `round()` function can take 2 arguments.
+>
+>> ## solution
+>>
+>> round((1 + sqrt(5))/2, digits=3)
+>>
+>> [1] 1.618
+>>
+>> * Notice that you can place one function inside of another.
+> {: .solution}
+{: .challenge}
 
 
+## Vectors
+
+With a solid understanding of the most basic objects, we come to probably the
+most used objects in R, vectors. A vector can be though of as a collection of
+values (numbers, characters, etc.). Vectors also have a mode (data type), so
+all of the contents of a vctor must be of the same mode. One of the most common
+way to create a vector is to use the `c()` function - the "concatanate" or
+"combine" function. Inside the function you may enter one or more values; for
+multiple values, seperate each value with a comma:
+
+> ~~~
+> # Create the SNP gene name vector
+>
+> snp_genes <- c("OXTR", "ACTN3", "AR", "OPRM1")
+> ~~~
+{: .language-r}
+
+Two important properties of vectors are their **mode** and their **length**.
+You can check these with the `mode()` and `length()` function respectively.
+Another useful function that gives both of these pieces of information is the
+`str()` (structure) function. Importantly, **items within a vector must all
+be of the same mode/ data type**. This is because a vector can have only one
+mode. More on this later.
+
+> ~~~
+> # Check the mode, length, and structure of 'gene_names'
+>
+> mode(gene_names)
+> length(gene_names)
+> str(gene_names)
+> ~~~
+{: .language-r}
+
+returns:
+
+> ~~~
+> [1] "character"
+> [1] 4
+> chr [1:4] "OXTR" "ACTN3" "AR" "OPRM1"
+> ~~~
+{: .output}
+
+Vectors are quite important in R, mostly for us because data frames are
+essentially collections of vectors (more on this later). What we learn about
+manipulating vectors now will pay of even more when we get to data frames.
+
+## More on creating and indexing vectors
+
+Let's create a few more vectors to play around with:
+
+> ~~~
+> # some interesting human SNPs
+> # while accuracy is important, typos in the data won't hurt you here
+>
+> snps <- c('rs53576', 'rs1815739', 'rs6152', 'rs1799971')
+> snp_chromosomes <- c('3', '11', 'X', '6')
+> snp_positions <- c(8762685, 66560624, 67545785, 154039662)
+> ~~~
+{: .language-r}
+
+Once we have vectors, one thing we may want to do is specifically retrieve one
+or more values from our vector. To do so we use **bracket notation**. We type
+the name of the vector followed by square brackets. In those square brackets
+we place the index (e.g. a number) in that bracket as follows:
+
+> ~~~
+> # get the 3rd value in the snp_genes vector
+>
+> snp_genes[3]
+> ~~~
+{: .language-r}
+> ~~~
+> [1] "AR"
+> ~~~
+{: .output}
+
+In R, every item your vector is indexed, starting from the first item (1)
+through to the final number of items in your vector. You can also retrieve a
+range of numbers:
+
+> ~~~
+> # get the 1st through 3rd value in the snp_genes vector
+>
+> snp_genes[1:3]
+> ~~~
+{: .language-r}
+> ~~~
+> [1] "OXTR" "ACTN3" "AR"
+> ~~~
+{: .output}
+
+If you want to to retreive several (but not necessarily sequential) items from
+a vector, you pass a **vector of indicies**; a vector that has the numbered
+positions you wish to retrieve.
+
+> ~~~
+> # get the 1st, 3rd, and 4th value in the snp_genes vector
+>
+> snp_genes[c(1, 3, 4)]
+> ~~~
+{: .language-r}
+> ~~~
+> [1] "OXTR" "AR" "OPRM1"
+> ~~~
+{: .output}
+
+There are additional (and perhaps less commonly used) ways of indexing a vector
+(see [these examples](https://thomasleeper.com/Rcourse/Tutorials/vectorindexing.html)).
+Also, several of these indexing expressions can be combined:
+
+> ~~~
+> # get the 1st through the 3rd value, and 4th value in the snp_genes vector
+> # yes, this is a little silly in a vector of only 4 values.
+>
+> snp_genes[c(1:3,4)]
+> ~~~
+{: .language-r}
+> ~~~
+> [1] "OXTR" "ACTN3" "AR" "OPRM1"
+> ~~~
+
+## Adding to, removing, or replacing values in existing vectors
+
+Once you have an existing vector, you may want to add a new item to it. To do
+so, you can use the `c()` function again to add your new value:
+
+> ~~~
+> # add the gene 'CYP1A1' and 'APOA5' to our list of snp genes
+> # this overwrites our existing vector
+>
+> snp_genes <- c(snp_genes, "CYP1A1", "APOA5")
+> ~~~
+{: .language-r}
+
+We can of course verify that "snp_genes" contains the new gene entry
+
+> ~~~
+> snp_genes
+> ~~~
+{: .language-r}
+> ~~~
+> [1] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" "APOA5"
+> ~~~
+{: .output}
+
+Using a negative index will return a version a vector with that index's
+value removed:
+
+> ~~~
+> snp_genes[-6]
+> ~~~
+{: .language-r}
+> ~~~
+> [1] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" "APOA5"
+> ~~~
+{: .output}
+
+
+We can remove that value from our vector by overwriting it with this expression:
+> ~~~
+> snp_genes <- snp_genes[-6]
+> snp_genes
+> ~~~
+{: .language-r}
+> ~~~
+> [1] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1"
+> ~~~
+{: .output}
+
+We can also explicitly rename or add a value to our index using double bracket
+notation:
+
+> ~~~
+> snp_genes[[7]]<- "APOA5"
+> snp_genes
+> ~~~
+{: .language-r}
+> ~~~
+> [1] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
+> ~~~
+{: .output}
+
+Notice in the operation above that R inserts an `NA` value to extend our vector
+so that the gene "APOA5" is an index 7. This may be a good or not so good thing
+depending on how you use this.
+
+> ## Exercise: Examining and indexing vectors
+> Answer the following questions to test your knowledge vectors
+>
+> Which of the following is true of vectors in R
+>
+> A) All vectors have a mode or a length
+>
+> B) All vector have a mode and a length
+>
+> C) Vectors may have different lengths
+>
+> D) Items within a vector may be of different modes
+>
+> E) You can use the `c()` to one or more items to an existing vector
+>
+> F) You can use the `c()` to add a vector to an exiting vector
+>>
+>> ## solution
+>> A) False - Vectors have both of these properties
+>>
+>> B) True
+>>
+>> C) True
+>>
+>> D) False - Vectors have only one mode (e.g. numeric, character); all items in
+>> a vector must be of this mode.
+>>
+>> E) True
+>>
+>> F) True
+>>
+> {: .solution}
+{: .challenge}
+
+
+## Logical Indexing
+
+There is one last set of cool indexing capabilities we want to introduce. It is
+possible within R to retrieve items in a vector based on a logical evaluation
+or numerical comparison. For example, let's say we wanted get all of the SNPs
+in our vector of SNP positons that were greater than 100,000,000. We could
+index using the '>' (greater than) logical operator:
+
+> ~~~
+> snp_positions[snp_positions > 100000000]
+> ~~~
+{: .language-r}
+> ~~~
+> [1] 154039662
+> ~~~
+{: .output}
+
+As demonstrated above, in the square brackets you place the name of the vector
+followed by the comparison operator and (in this numeric case) a numeric value.
+Some of the most common logical operators you will use in R are:
+
+|Operator|Description|
+|--------|-----------|
+|<|less than|
+|<=|less than or equal to|
+|>|greater than|
+|>=|greater than or equal to|
+|==|exactly equal to|
+|!=|not equal to|
+|!x|not x|
+|a \| b| a or b|
+|a & b| a and b|
+
+> ## The magic of programming
+>
+>The reason why the expression `snp_positions[snp_positions > 100000000]` works
+>can be better understood if you examine what the expression "snp_positions > 100000000"
+>evaluates to:
+>
+>> ~~~
+>> snp_positions > 100000000
+>> ~~~
+>{: .language-r}
+>> ~~~
+>> [1] FALSE FALSE FALSE  TRUE
+>> ~~~
+>{: .output}
+>
+>The output above is a logical vector, the 4th element of which is TRUE. When
+>you pass a logical vector as an index, R will return the true values:
+>
+>> ~~~
+>> snp_positions[c(FALSE, FALSE, FALSE, TRUE)]
+>> ~~~
+>{: .language-r}
+>> ~~~
+>> [1] 154039662
+>> ~~~
+>{: .output}
+>
+>
+>If you have never coded before, this type of situation starts to expose the
+>"magic" of programming. We mentioned before that in the bracket indexing
+>notation you take your named vector followed by brakets which contain an index:
+>**named_vector[index]**. The "magic" is that the index needs to *evaluate to* a
+>number. So, even if it does not appear to be an integer (e.g. 1, 2, 3), as long
+>as R can evaluate it, we will get a result. That our expression
+>`snp_positions[snp_positions > 100000000]` evaluates to a number can be seen
+>in the following situtaion. If you wanted to know which **index** (1, 2, 3, or
+>4) in our vector of SNP positions was the one that was greater than 100,000,000?
+>We can use the `which()` function to return the indicies of any item that
+>evaluates as TRUE in our comparison:
+>> ~~~
+>> which(snp_positions > 100000000)
+>> ~~~
+>{: .language-r}
+>> ~~~
+>> [1] 4
+>> ~~~
+>{: .output}
+> **Why is this important?** Often in programming we will not know what inputs
+> and values will be used when our code is executed. Rather than put in a
+> pre-determined value (e.g 100000000) we can use an object that can take on
+> whatever value we need. So for example:
+>
+>> ~~~
+>> snp_marker_cutoff <- 100000000
+>> snp_positions[snp_positions > snp_marker_cutoff]
+>> ~~~
+>{: .language-r}
+>> ~~~
+>> [1] 154039662
+>> ~~~
+>{: .output}
+> Ultimately, it's putting together flexible, reusable code like this that gets
+> at the "magic" of programming!
+{: .callout}
+
+## A few final vector tricks
+
+Finally, there are a few other common retrieve or replace operations you may
+want to know about. First, you can check to see if any of the values of your
+vector is an NA value. Missing data will get a more detailed treatment later,
+but the `is.NA()` function will return a logical vector, with TRUE for any NA
+value:
+
+> ~~~
+> # current value of 'snp_genes': chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
+>
+> is.na(snp_genes)
+> ~~~
+{: .language-r}
+> ~~~
+> [1] FALSE FALSE FALSE FALSE FALSE TRUE FALSE
+> ~~~
+{: .output}
+
+Sometimes, you may wish to find out if a specific value (or several values) is
+in a vector. You can do this using the comparison operator `%in%`, which will
+return TRUE for any value in your collection of one or more values matches a
+value in the vector you are searching:
+
+> ~~~
+> # current value of 'snp_genes': chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
+> # test to see if "ACTN3" or "APO5A" is in the snp_genes vector
+> # if you are looking for more than one value, you must pass this as a vector
+>
+> c("ACTN3","APOA5") %in% snp_genes
+> ~~~
+{: .language-r}
+> ~~~
+> [1] TRUE TRUE
+> ~~~
+
+
+> ## Review: Creating and indexing vectors
+> Use your knowledge of vectors to accomplish the following tasks:
+>
+> **1) Add the following values to the following vectors**
+>
+>    a. To the `snps` vector add: 'rs662799'
+>
+>    b. To the `snp_chromosomes` vector add: 11
+>
+>    c. To the `snp_positions` vector add: 	116792991
+>
+> **2) Make the following change to the `snp_genes` vector**
+> Hint: Your vector should look like this in the 'Global Enviornment':
+> `chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"`. If not
+> recreate the vector by running this expression:
+> `snp_genes <- c("OXTR", "ACTN3", "AR", "OPRM1", "CYP1A1", NA, "APOA5")`
+>
+>    a. Create a new version of `snp_genes` that does not contain CYP1A1
+>
+>    b. Add 2 NA values to the end of `snp_genes` (hint: final vector should
+>    have a length of 8)
+>
+> **3) Create a new vector that contains**
+>
+>    a. The the 1st value in `snp_genes`
+>
+>    b. The 1st value in `snps`
+>
+>    c. The 1st value in `snp_chromosomes`
+>
+>    d. The 1st value in `snp_positions`
+>>
+>> ## solution
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+> {: .solution}
+{: .challenge}
 
 ---
