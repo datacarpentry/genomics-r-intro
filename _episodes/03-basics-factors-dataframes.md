@@ -1,27 +1,39 @@
 ---
-title: "R Basics"
+title: "R Basics continued - factors and data frames"
 teaching: 60
 exercises: 20
 questions:
-- "What will these lessons not cover?"
-- "What are the basic features of the R language?"
-- "What are the most common objects in R?"
+- "How do I get started with tabular data (e.g. spreadsheets) in R?"
 objectives:
-- "Be able to create the most common R objects including vectors"
-- "Understand that vectors have modes, which correspond to the type of data they contain"
-- "Be able to use arithmetic operators on R objects"
-- "Be able to retrieve (index), name, or replace, values from a vector"
-- "Be able to use logical operators in an indexing operation"
-- "Understand that lists can hold data of more than one mode and can be indexed"
+- "Identify R skills not covered in these lessons and where to learn more"
+- "Be able to create and appropriately name objects in R"
+- "Be able to explain what a data types are, and know the common R data types
+  (modes)"
+- "Be able to reassign object values and delete objects"
+- "Be able to do simple arithmetic of functional procedures on R objects"
+- "Be able to create the most common R objects including vectors, factors,
+  lists, and data frames"
+- "Be able to retrieve (index), name, or replace, values from an object"
+- "Be able to load a tabular dataset using base R functions"
+- "Explain the basic principle of tidy datasets"
+- "Be able to determine the structure of a data frame including its dimensions
+  and the datatypes of variables"
+- "Be able to retrieve (index) a data frame"
+- "Be able to apply an arithmetic function to a dataframe"
+- "Be able to coerce the class of an object (including variables in a dataframe)"
+- "Be able to save a dataframe as a delimited file"
 keypoints:
 - "Effectively using R is a journey of months or years. Still you don't have to
   be an expert to use R and you can start using and analzying your data with
   with about a day's worth of training"
 - "It is important to understand how data are organized by R in a given object
-  type how the mode of that type (e.g. numeric, character, logical, etc.) will
-  determine how R will operate on that data.
-- "Working with vectors effectively prepares you for understanding how data are
-  organized in R."
+  type (e.g. vector, factor, data frame, etc.) how the mode of that type
+  (e.g. numeric, character, logical, etc.) will determine how R will operate
+  on that data, and what can happen when datatypes are coerced, misinterpreted,
+  or misapplied"
+- "Data wrangling - loading data, cleaning this data (e.g checking for outliers,
+  handling missing values, sorting, filtering, etc.) is an important first step
+  for working with data"
 ---
 
 ## "The fantastic world of R awaits you" OR "Nobody wants to learn how to use R"
