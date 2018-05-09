@@ -4,87 +4,64 @@ teaching: 60
 exercises: 20
 questions:
 - "How do I get started with tabular data (e.g. spreadsheets) in R?"
+- "What are some best practices for reading data into R?"
+- "How do I save tabular data generated in R?"
 objectives:
-- "Identify R skills not covered in these lessons and where to learn more"
-- "Be able to create and appropriately name objects in R"
-- "Be able to explain what a data types are, and know the common R data types
-  (modes)"
-- "Be able to reassign object values and delete objects"
-- "Be able to do simple arithmetic of functional procedures on R objects"
-- "Be able to create the most common R objects including vectors, factors,
-  lists, and data frames"
-- "Be able to retrieve (index), name, or replace, values from an object"
 - "Be able to load a tabular dataset using base R functions"
 - "Explain the basic principle of tidy datasets"
 - "Be able to determine the structure of a data frame including its dimensions
   and the datatypes of variables"
 - "Be able to retrieve (index) a data frame"
+- "Understand how how R may converse data into different modes"
+- "Be able to convert the mode of an object"
+- "Understand that R uses factors to store and manipulate catagorical data"
+- "Be able to manipulate a factor, including indexing and reordering"
 - "Be able to apply an arithmetic function to a dataframe"
 - "Be able to coerce the class of an object (including variables in a dataframe)"
 - "Be able to save a dataframe as a delimited file"
 keypoints:
-- "Effectively using R is a journey of months or years. Still you don't have to
-  be an expert to use R and you can start using and analzying your data with
-  with about a day's worth of training"
-- "It is important to understand how data are organized by R in a given object
-  type (e.g. vector, factor, data frame, etc.) how the mode of that type
-  (e.g. numeric, character, logical, etc.) will determine how R will operate
-  on that data, and what can happen when datatypes are coerced, misinterpreted,
-  or misapplied"
-- "Data wrangling - loading data, cleaning this data (e.g checking for outliers,
-  handling missing values, sorting, filtering, etc.) is an important first step
-  for working with data"
+- "It is easy to import data into R from tabular formats including Excel.
+  However, you still need to check that R has imported and interprited your
+  data correctly"
+- "There are best practices for organizing your data (keeping it tidy) and R
+  is great for this"
+- "Base R has many useful functions for manipulating your data, but all of R's
+  capabilities are greatly enhanced by software packages developed by the
+  community"
 ---
 
-## "The fantastic world of R awaits you" OR "Nobody wants to learn how to use R"
-Before we begin this lesson, we want you to be clear on the goal of the workshop
-and these lessons. We believe that every learner can be **achieve competency
-with R**. You have reached competency when you find that you are able to
-**use R to handle common analysis challenges in a reasonable amount of time**
-(which includes time needed to look at learning materials, search for answers
-online, and ask colleagues for help). As you spend more time using R (there is
-no substitute for regular use and practice) you will find yourself gaining
-competency and even expertise. The more familiar you get, the more
-complex the analyses you will be able to carry out, with less frustration, and
-in less time - the "fantastic world of R" awaits you!
+## Working with spreadsheets (tabular data)
+A substantial amount of the data we work with in genomics will be tabular data,
+this is data arranged in rows and columns - also known as spreadsheets. We could
+write a whole lesson on how to work with spreadsheets effectively ([actually we did](http://www.datacarpentry.org/spreadsheet-ecology-lesson/)). For our
+purposes, we want to remind you of a few principles before we work with our
+first set of example data:
 
-## What these lessons will not teach you
-Nobody wants to learn how to use R. People want to learn how to use R to analyze
-their own research questions! Ok, maybe some folks learn R for R's sake, but
-these lessons assume that you want to start analyzing genomic data as soon as
-possible. Given this, there are many valuable pieces of information about R
-that we simply wont have time to cover. Hopefully we will clear the hurdle of
-giving you just enough knowledge to be dangerous, which can be a high hurdle
-in R! We uggest you look into additional the learning materials in the tip box
-below.
+**1) Keep raw data separate from analyzed data**
+This is principle number one because if you can't tell what data is the
+original form, you risk making some serious mistakes.
 
-**Here are some R skills we will *not* cover in these lessons**
+**2) Keep speadsheet data Tidy**
+The simplest principle of **Tidy data** is that we we have one row in our
+spreadsheet for each observation or sample, and one colum for every variable
+that we measure or report on. As simple as this sounds, its very easily
+violated, and most data scintists agree that most of their time is spent
+tidying their data for analysis. Read more about data organization in
+[our lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/) and in [this paper](https://www.jstatsoft.org/article/view/v059i10).
 
-- How to create and work with R matrices and R lists
-- How to create and work with loops and conditional statements
-- How to do basic string manipulations (e.g. finding patterns in text using grep)
-- How to plot using the default R graphic tools (we *will* cover ggplot2)
-- How to use the advanced R statistical functions
+**3) Trust but verify**
+Finally, while you don't need to be paranoid about data, you should have a plan
+for how you will prepare it for analysis. **This is the focus of this lesson.**
+You probably already have a lot of intuition, expectations, assumptions about
+your data - the range of values you expect, how many values should have
+been recorded, etc. Of course, as the data get larger, our human ability to
+keep track will start to fail (and yes, it can fail for small data sets too).
+R will help you to examine your data so that you can have greater confidence
+in your analysis, and its reproducibility.
 
->## Tip: Where to learn more
-> The following are good resources for learning more about R. Some of them
-> can be quite technically, but if you are a regular R user you may ultimately
-> need some of this technical knowledge.
-> - [R for Beginners](https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf):
-    By Emmanuel Paradis, great starting point
-> - [The R Manuals](https://cran.r-project.org/manuals.html): Maintained by the
-    R project
-> - [R contributed documentation](https://cran.r-project.org/other-docs.html):
-    Also linked to the R project; importantly there are materials available in
-    several languages
-> - [R for Data Science](http://r4ds.had.co.nz/): A wonderful collection by
-    noted R educators and developers Garrett Grolemund and Hadley Wickham
-> - [Practical Data Science for Stats](https://peerj.com/collections/50-practicaldatascistats/):
-    Not exclusively about R usage, but a nice collection of pre-prints on data science
-    and applications for R
-> - [Programming in R Software Carpentry lesson](https://software-carpentry.org/lessons/):
-    There are several Software Carpentry lessons in R to choose from
- {: .callout}
+
+
+
 
 ## Creating objects in R
 

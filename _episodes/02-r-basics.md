@@ -19,7 +19,7 @@ keypoints:
   with about a day's worth of training"
 - "It is important to understand how data are organized by R in a given object
   type how the mode of that type (e.g. numeric, character, logical, etc.) will
-  determine how R will operate on that data.
+  determine how R will operate on that data."
 - "Working with vectors effectively prepares you for understanding how data are
   organized in R."
 ---
@@ -288,7 +288,7 @@ can be added, multiplied, divided, etc. R provides several mathematical
 |*|multiplication|
 |/|division|
 |^ or **|exponentiation|
-|a%%b|modulus|
+|a%%b|modulus (returns the remainder after division)|
 
 These can be used with literal numbers:
 
@@ -748,7 +748,7 @@ value in the vector you are searching:
 >
 >    - The 1st value in `snp_positions`
 >
->   **Check the mode of `combined` using `typeof()`
+>   **Check the mode of `combined` using `typeof()`**
 >
 >> ## solution
 >>
