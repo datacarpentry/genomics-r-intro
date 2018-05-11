@@ -7,12 +7,12 @@ questions:
 - "What are some best practices for reading data into R?"
 - "How do I save tabular data generated in R?"
 objectives:
-- "Be able to load a tabular dataset using base R functions"
 - "Explain the basic principle of tidy datasets"
+- "Be able to load a tabular dataset using base R functions"
 - "Be able to determine the structure of a data frame including its dimensions
   and the datatypes of variables"
-- "Be able to retrieve (index) a data frame"
-- "Understand how how R may converse data into different modes"
+- "Be able to retrieve values (index) from a data frame"
+- "Understand how R may converse data into different modes"
 - "Be able to convert the mode of an object"
 - "Understand that R uses factors to store and manipulate catagorical data"
 - "Be able to manipulate a factor, including indexing and reordering"
@@ -38,812 +38,393 @@ purposes, we want to remind you of a few principles before we work with our
 first set of example data:
 
 **1) Keep raw data separate from analyzed data**
-This is principle number one because if you can't tell what data is the
-original form, you risk making some serious mistakes.
+
+This is principle number one because if you can't tell which files are the
+original raw data, you risk making some serious mistakes (e.g. drawing conculsion
+from data which have been manipulated in some unknown way).
 
 **2) Keep speadsheet data Tidy**
-The simplest principle of **Tidy data** is that we we have one row in our
+
+The simplest principle of **Tidy data** is that we have one row in our
 spreadsheet for each observation or sample, and one colum for every variable
-that we measure or report on. As simple as this sounds, its very easily
-violated, and most data scintists agree that most of their time is spent
-tidying their data for analysis. Read more about data organization in
-[our lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/) and in [this paper](https://www.jstatsoft.org/article/view/v059i10).
+that we measure or report on. As simple as this sounds, it's very easily
+violated. Most data scintists agree that significant amounts of their time is
+spent tidying data for analysis. Read more about data organization in
+[our lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/) and
+in [this paper](https://www.jstatsoft.org/article/view/v059i10).
 
 **3) Trust but verify**
+
 Finally, while you don't need to be paranoid about data, you should have a plan
-for how you will prepare it for analysis. **This is the focus of this lesson.**
+for how you will prepare it for analysis. **This a the focus of this lesson.**
 You probably already have a lot of intuition, expectations, assumptions about
 your data - the range of values you expect, how many values should have
-been recorded, etc. Of course, as the data get larger, our human ability to
+been recorded, etc. Of course, as the data get larger our human ability to
 keep track will start to fail (and yes, it can fail for small data sets too).
 R will help you to examine your data so that you can have greater confidence
 in your analysis, and its reproducibility.
 
 
+## Importing tabular data into R
+There are several ways to import data into R. For our purpose here, we will
+focus on using the tools every R installtion comes with (so called "base" R) to
+import a comma-delimited file, a sequencing sample submission sheet. We will
 
+First, we need to load the sheet using a function called `read.csv()`.
 
-
-## Creating objects in R
-
-> ## Reminder
-> At this point you should writing following along in the "**genomics_r_basics.R**"
-> script we created in the last episode. Writing you commands in the script
-> will make it easier to record what you did and why.
+> ## Exercise: Review the arguments of the `read.csv()` function
+> **Before using the `read.csv()` function, use R's help feature to answer the
+> following questions**.
 >
-{: .prereq}
-
-What might be called a variable in many language is properly called an **object**
-in R. To create your object you need a name (e.g. 'a'), and a value (e.g. '1').
-Using the R assignment operator '<-''. In your script, "**genomics_r_basics.R**"
-write a comment (using the '#') sign, and assign '1' to the object 'a' as shown
-below:
-
-> ~~~
-> # this line creates the object 'a' and assigns it the value '1'
+> *Hint*: Entering '?' before the function name and then running that line will
+> bring up the help documentation. Also, when reading this particular help
+> be careful to pay attention to the 'read.csv' expression under the 'Usage'
+> heading. Other answers will be in the 'Arguments' heading.
 >
-> a <- 1
-> ~~~
-{: .language-r}
-
-Be sure to execute this line of code in your script. You can run a line of code
-by hitting the <KBD>Run</KBD> button that is just above the first line of your
-script in the header of the Source pane or you can use the appropriate shortcut:
-  - Windows execution shortcut: <KBD>Ctrl</KBD>+<KBD>Enter</KBD>
-  - Mac execution shortcut: <KBD>Cmd(⌘)</KBD>+<KBD>Enter</KBD>
-to run multiple lines of code, you can highlight all the line you wish to run
-and then hit <KBD>Run</KBD> or use the shortcut key combo.
-
-You should notice the following outputs; in the RStudio 'Console' you should see:
-
-> ~~~
-> # this line creates the object 'a' and assigns it the value '1'
+> A) What is the default parameter for 'header' in the `read.csv()` function?
 >
-> a <- 1
-> ~~~
-{: .output}
-
-The 'Console' will display lines of code run from a script and any outputs or
-status/warning/error messages (usually in red).
-
-You should also notice that in the 'Environment' window you get a table:
-
-|Values||
-|------|-|
-|a|1|
-
-The 'Environment' window allows you to easily keep track of the objects you have
-created in R.
-
-> ## Exercise: Create some objects in R
-> Create the following objects in R, give each object an appropriate name.
+> B) What argument would you have to change to read a file that was delimeted
+> by semicolons (;) rather than commas?
 >
-> 1. Create an object that has the value of number of pairs of human chromosomes
-> 2. Create an object that has a value of your favorite gene name
-> 3. Create an object that value of this URL: "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-39/fasta/bacteria_5_collection/escherichia_coli_b_str_rel606/"
-> 4. Create and object that has the value of the number of chromosomes in a diplod cell
+> C) What argument would you have to change to read file in which numbers
+> used commas for decimal separation (i.e. 1,00)?
 >
->> ## solution
->> Here as some possible answers to the challenge:
->> 1. human_chr_number <- 23
->> 2. gene_name <- 'pten'
->> 3. ensemble_url <- 'ftp://ftp.ensemblgenomes.org/pub/bacteria/release-39/fasta/bacteria_5_collection/escherichia_coli_b_str_rel606/'
->> 4. human_diploid_chr_num <-  2 * human_chr_number
->>
-> {: .solution}
-{: .challenge}
-
-## Naming objects in R
-
-Here are some important details about naming objects in R.
-
-- **Avoid spaces and special characters**: Object cannot contain spaces. Typically
-  you can use '-' or '_' to provide separation. You should avoid using special
-  characters in your object name (e.g. ! @ # . , etc.). Also, names cannot begin with
-  a number.
-- **Use short, easy-to-understand names**: You should avoid naming your objects
-  using single letters (e.g. 'n', 'p', etc.). This is mostly to encourage you
-  to use names that would make sense to anyone reading your code (a colleague,
-  or even yourself a year from now). Also, avoiding really long names will make
-  your code more readable.
-- **Avoid commonly used names**: There are several names that may alread have a
-  definition in the R language (e.g. 'mean', 'min', 'max'). One clue that a name
-  already has meaning is that if you start typing a name in RStudio and either
-  pause your typing or hit the <KBD>Tab</KBD> key and RStudio gives you a
-  suggested autocompletion or help message you have choosen a name that has a
-  prior meaning.
-- **Use the recommended assignment operator**: In R, we use '<- '' as the
-  prefered assignment operator. '=' works too, but is most comonly used in
-  passing arguments to functions (more on functions later). There is a shortcut
-  for the R assignment operator:
-  - Windows execution shortcut: <KBD>Alt</KBD>+<KBD>-</KBD>
-  - Mac execution shortcut: <KBD>Option</KBD>+<KBD>-</KBD>
-
-
-There are a few more suggestions about naming and style you may want to learn
-more about as you write more R code. There are several "style guides" that
-have advice, and one to start with is the [tidyverse R style guide](http://style.tidyverse.org/index.html).
-
->## Tip: Pay attention to warnings in the script console
->
-> If you enter a line of code in your R that contains some error, RStudio
-> may give you hint with an error indication and an underline of this mistake.
-> Sometimes these messages are easy to understand, but often the message may
-> need some figuring out. In any case paying attention to these warnings help
-> you avoid mistakes. In this case, our object name has a space, which is not
-> allowed in R. Notice the error message does not say this directly, but
-> essentially R is "not sure" about to to assign the name to "human_ chr_number"
-> when the object name we want is "human_chr_number".
->
-> <img src="../assets/img/rstudio_script_warning.png" alt="rstudio script warning" style="width: 600px;"/>
->
- {: .callout}
-
-## Reassigning object names or deleting objects
-
-Once an object has a value, you can change that value by overwriting it. R will
-not complain about overwriting objects, which may or may not be a good thing
-depending on how you look at it.
-
-> ~~~
-> # gene_name has the value 'pten' or whatever value you used in the challenge. We will now assign the new value 'tp53'
->
-> gene_name <- 'tp53'
-> ~~~
-{: .language-r}
-
-You can also remove an object from R's memory entirely. The `rm()` function
-will delete the object.
-
-> ~~~
-> # delete the object 'gene_name'
->
-> rm(gene_name)
-> ~~~
-{: .language-r}
-
-If you run a line of code that just has an object name, R will normally display
-the contents of that object. In this case, we are told the object is no
-longer defined.
-
-> ~~~
-> Error: object 'gene_name' not found
-> ~~~
-{: .error}
-
-## Understaning object data types (modes)
-
-One very important thing to know about an object is that every object has two
-properties, "length" and "mode". We will get to the "length" property later in
-the lesson. The **"mode" property corresponds to the type of data an object**
-**represents**. The most common modes you will encounter in R are:
-
-|Mode (abbreviation)|Type of data|
-|----|------------|
-|Numeric (num)| Numbers such integers (e.g. 1, 892, 1.3e+10) and floating pont/decimals (0.5, 3.14)|
-|Character (chr)|A sequence of letters/numbers in single '' or double " " quotes|
-|Logical| Boolean values - TRUE or FALSE|
-
-There are a few other modes (double", "complex", "raw" etc.) but for now, these
-three are the most important. Data types are familiar in many programming
-languages, but also in natural language where we refer to them as the
-parts of speech, e.g. nouns, verbs, adverbs, etc. One you know if a word -
-perhaps an unfamilar one - is a noun, you can probbaly guess you can count it
-and make it plural if there is more than one (e.g. 1 Tuatara, or 2 Tuataras).
-If something is a adjective, you can usually change it into an adverb by
-adding "-ly" (e.g. jejune vs. jejunely). Depending on the context, you may need
-to decide if a word is in one category or another (e.g "cut" may be a noun when
-its on your finger, or a verb when you are preparing vegetables). These examples
-have important analogies when working with R objects.
-
-> ## Exercise: Create objects and check their modes
-> Create the following objects in R, then use the `mode()` function to verify
-> their modes. Try to guess what the mode will be before you look at the solution
->
-> 1. chromosome_name <- 'chr02'
-> 2. od_600_value <- 0.47
-> 3. chr_position <- '1001701'
-> 4. spock <- TRUE
-> 5. pilot <- Earhart
+> D) What argument would you have to change to read in only the first 10,000 rows
+> of a very large file?
 >
 >> ## solution
 >>
->> 1. mode(chromosome_name)    # "character"
->> 2. mode(od_600_value)     # "numeric"
->> 3. mode(chr_position)     # "character"
->> 4. mode(spock)       # "logical"
->> 5. pilot     # Error: object 'Earhart' not found
-> {: .solution}
-{: .challenge}
-
-Notice from the solution that even if a series of numbers are given as a value
-R will consider them to be in the "character" mode if they are enclosed as
-single or double quotes. Also notice that you cannot take a string of alphanumeric
-character (e.g. Earhart) and assign as a value for an object. In this case,
-R looks for the object `Earhart` but since there is no object, no assignment can
-be made. If `Earhart` did exist, then the mode of `pilot` would be whatever
-the mode of `Earthrt` was originally.
-
-## Mathematical and functional operations on objects
-
-Once an object exsits (which by definition also means it has a mode), R can
-appropriately manipulate that object. For example, objects of the numeric modes
-can be added, multiplied, divided, etc. R provides several mathematical
-(arithmetic) operators incuding:
-
-|Operator|Description|
-|--------|-----------|
-|+|addition|
-|-|subtraction|
-|*|multiplication|
-|/|division|
-|^ or **|exponentiation|
-|a%%b|modulus|
-
-These can be used with literal numbers:
-
-> ~~~
->  (1 + (5 ** 0.5))/2
-> ~~~
-{: .language-r}
-
-> ~~~
-> [1] 1.618034
-> ~~~
-{: .output}
-
-and importantly, can be used on any object that evaluates to (i.e. iterprited
-by R) a numeric object:
-
-
-> ~~~
-> # multiply the object 'human_chr_number' by 2
->
-> human_chr_number * 2
-> ~~~
-{: .language-r}
-
-returns the result:
-
-> ~~~
-> [1] 46
-> ~~~
-{: .output}
-
-Finally, it is useful to know that several other types of mathematical
-operations have their own associated functions. While there are too many to
-list, you can always search the online documentation in R for a function (
-even if you don't know what it may be called in R). For example:
-
-> ~~~
-> # search for functions associated with chi squared
->
-> ?? chisquared
-> ~~~
-{: .language-r}
-
-Will open search results in your help tab. Of course, using Google will help
-here too.
-
-> ## Exercise: Compute the golden ratio
-> One appoximation of the golen ratio (φ) can be found by taking the sum of 1
-> and the square root of 5, and dividing by 2 as in the example above. Compute
-> the golden ratio to 3 digits of precision using the `sqrt()` and `round()`
-> functions. Hint: remember the `round()` function can take 2 arguments.
->
->> ## solution
+>> A) The `read.csv()` function has the argument 'header' set to TRUE by deault,
+>> this means the function always assumes the first row is header information,
+>> (i.e. column names)
 >>
->> round((1 + sqrt(5))/2, digits=3)
+>> B) The `read.csv()` function has the argument 'sep' set to ",". This means
+>> the function assumes commas are used as delimiters, as you would expect.
+>> Changing this parameter (e.g. `sep=";"`) would now interprit semicolons as
+>> delimiters.
 >>
->> [1] 1.618
+>> C) Although it is not listed in the `read.csv()` usage, `read.csv()` is
+>> a "version" of the function `read.table()` and accepts all its arguments.
+>> If you set `dec=","` you could change the decimal operator. We'd probably
+>> assume the delimiter is some other character.
 >>
->> * Notice that you can place one function inside of another.
+>> D) You can set `nrow` to a numeric value (e.g. `nrow=10000`) to choose how
+>> many rows of a file you read in. This may be useful for very large files
+>> where not all the data is needed to test some data cleaning steps you are
+>> applying.
+>>
+>> Hopefully, this exercise gets you thinking about using the provided help
+>> documentation in R. There are many arguments that exist, but which we wont
+>> have time to cover. Look here to get familiar with functions you use
+>> frequently, you may be surpized at what you find they can do.
 > {: .solution}
 {: .challenge}
 
 
-## Vectors
-
-With a solid understanding of the most basic objects, we come to probably the
-most used objects in R, vectors. A vector can be though of as a collection of
-values (numbers, characters, etc.). Vectors also have a mode (data type), so
-all of the contents of a vctor must be of the same mode. One of the most common
-way to create a vector is to use the `c()` function - the "concatanate" or
-"combine" function. Inside the function you may enter one or more values; for
-multiple values, seperate each value with a comma:
+Now, let's read in the file `sample_submission.csv` which will be located in
+`/home/dcuser/dc_sample_data/R`. Save the file as `submission_metadata`. The
+first argument to pass to our `read.csv()` function is the file path for our
+data. The file path must be in quotes and now is a good time to remember to
+use tab autocompletion. **If you use tab autocompletion you avoid typos and
+errors in file paths.** Use it!
 
 > ~~~
-> # Create the SNP gene name vector
+>## read in a CSV file and save it as 'submission_metadata'
 >
-> snp_genes <- c("OXTR", "ACTN3", "AR", "OPRM1")
+> submission_metadata <- read.csv("/home/dcuser/dc_sample_data/R/sample_submission.csv")
 > ~~~
 {: .language-r}
 
-Two important properties of vectors are their **mode** and their **length**.
-You can check these with the `mode()` and `length()` function respectively.
-Another useful function that gives both of these pieces of information is the
-`str()` (structure) function. Importantly, **items within a vector must all
-be of the same mode/ data type**. This is because a vector can have only one
-mode. More on this later.
+One of the first things you should notice is that in the Enviornment window,
+you have the `submission_metadata` object, listed as 96 obs. (observations/rows)
+of 10 variables (columns). Double-clicking on the name of the object will open
+a view of the data in a new tab.
+
+<img src="../assets/img/rstudio_dataframeview.png" alt="rstudio data frame view" style="width: 1000px;"/>
+
+## Summarizing and determining the structure of a data frame.
+A **data frame is the standard way in R to store tabular data**. A data fame
+could also be thought of as a collect of vectors, all of which have the same
+length. Using only two functions, we can learn a lot about out data frame
+including some summary statics as well as well as the "structure" of the data
+frame. Let's examine what each of these functions can tell us:
 
 > ~~~
-> # Check the mode, length, and structure of 'gene_names'
+>## get summary statistics on a data frame
 >
-> mode(gene_names)
-> length(gene_names)
-> str(gene_names)
+> summary(submission_metadata)
 > ~~~
 {: .language-r}
-
-returns:
-
 > ~~~
-> [1] "character"
-> [1] 4
-> chr [1:4] "OXTR" "ACTN3" "AR" "OPRM1"
+> well_position  tube_barcode        plate_barcode    client_sample_id replicate  Volume..µL.
+> A1     : 1    Min.   :151017990   LP-10624:96    k255M_1h-2 : 3      a: 1      Min.   :  0.50
+> A10    : 1    1st Qu.:152123658                  k255N_1h-1 : 3      A:31      1st Qu.: 57.35
+> A11    : 1    Median :153386891                  k255N_1h-10: 3      b: 1      Median : 59.60
+> A12    : 1    Mean   :153306679                  k255N_1h-11: 3      B:31      Mean   : 65.15
+> A2     : 1    3rd Qu.:154445370                  k255N_1h-12: 3      c: 1      3rd Qu.: 62.50
+> A3     : 1    Max.   :155537812                  k255N_1h-13: 3      C:31      Max.   :630.10
+> (Other):90                                       (Other)    :78
+> concentration..ng.µL.      RIN           prep_date   ship_date
+> Min.   : 15.82        Min.   :5.600   6-Jul-15:45   20-Jul:96
+> 1st Qu.:183.70        1st Qu.:8.200   7/8/15  :48
+> Median :197.27        Median :8.500   7-Jun-15: 3
+> Mean   :193.06        Mean   :8.474
+> 3rd Qu.:209.97        3rd Qu.:8.900
+> Max.   :237.12        Max.   :9.600
 > ~~~
 {: .output}
 
-Vectors are quite important in R, mostly for us because data frames are
-essentially collections of vectors (more on this later). What we learn about
-manipulating vectors now will pay of even more when we get to data frames.
+Our data frame had 10 variables, so we get 10 feilds that summarize the data.
+The `tube_barcode`, `Volume..ul.`, `concentration..ng.ul`, `RIN`, variables are
+numerical data and so you get summary statistics on the min and max values for
+these columns, as well as mean, median, and interquartile ranges. The other data
+(e.g. `replicate`, etc.) are treated as catagorical data (which have special
+treatment in R - more on this in a bit). The top 6 different catagories and the
+number of times they appear (e.g. the replicate called 'A' appeared 31 times)
+are displayed. There was only one value for `ship_date`, "20-Jul" which appeared
+96 times.
 
-## More on creating and indexing vectors
-
-Let's create a few more vectors to play around with:
+Before we operate on the data, we also need to know a little more about the
+data frame structure to do that we use the `str()` function:
 
 > ~~~
-> # some interesting human SNPs
-> # while accuracy is important, typos in the data won't hurt you here
+>## get the structure of a data frame
 >
-> snps <- c('rs53576', 'rs1815739', 'rs6152', 'rs1799971')
-> snp_chromosomes <- c('3', '11', 'X', '6')
-> snp_positions <- c(8762685, 66560624, 67545785, 154039662)
-> ~~~
-{: .language-r}
-
-Once we have vectors, one thing we may want to do is specifically retrieve one
-or more values from our vector. To do so we use **bracket notation**. We type
-the name of the vector followed by square brackets. In those square brackets
-we place the index (e.g. a number) in that bracket as follows:
-
-> ~~~
-> # get the 3rd value in the snp_genes vector
->
-> snp_genes[3]
+> str(submission_metadata)
 > ~~~
 {: .language-r}
 > ~~~
-> [1] "AR"
+>'data.frame':	96 obs. of  10 variables:
+ >$ well_position        : Factor w/ 96 levels "A1","A10","A11",..: 1 13 25 37 49 61 73 85 5 17 ...
+>$ tube_barcode         : int  151017990 151101577 151142725 151232891 151236606 151323716 151346588 151423653 151462684 151508377 ...
+>$ plate_barcode        : Factor w/ 1 level "LP-10624": 1 1 1 1 1 1 1 1 1 1 ...
+>$ client_sample_id     : Factor w/ 34 levels "k255M_1h-2","k255N_1h-1",..: 18 18 18 26 26 26 27 27 27 28 ...
+>$ replicate            : Factor w/ 6 levels "a","A","b","B",..: 1 3 5 2 4 6 2 4 6 2 ...
+>$ Volume..µL.          : num  64.2 63.7 60.2 55.8 60.8 57.5 64.9 62.5 53.9 62.4 ...
+>$ concentration..ng.µL.: num  211 220 208 181 191 ...
+>$ RIN                  : num  8.1 9.4 8.9 9 8.1 8.6 8.6 8.8 9.5 8.1 ...
+>$ prep_date            : Factor w/ 3 levels "6-Jul-15","7/8/15",..: 1 1 1 1 1 1 1 1 1 1 ...
+>$ ship_date            : Factor w/ 1 level "20-Jul": 1 1 1 1 1 1 1 1 1 1 ...
 > ~~~
 {: .output}
 
-In R, every item your vector is indexed, starting from the first item (1)
-through to the final number of items in your vector. You can also retrieve a
-range of numbers:
+Ok, thats a lot up unpack! Some things to notice.
+
+- the object type `data.frame` is displayed in the first row along with its
+  dimensions, in this case 96 observations (rows) and 10 variables (columns)
+- Each variable (column) has a name (e.g. `well_position`). This is followed
+  by the object mode (e.g. factor, int, num, etc.). Notice that before each
+  variable name there is a `$` - this will be important later.
+
+## Introducing Factors
+
+Factors are the final major data structure we will introduce in our R genomics
+lessons. Factors can be thought of as vectors which are specialized for
+categorical data. Given R's specialization for statistics, this make sense since
+categorial and contiuous variables usually have different treatments. Sometimes
+you may want to have data treated as a fator, but in other cases, this may be
+undersirable.
+
+Since some of the data in our data frame are factors, lets see how factors work
+using the `factor()` function to create a factor:
 
 > ~~~
-> # get the 1st through 3rd value in the snp_genes vector
+>## create a factor 'days of the week' by passing a vector of characters
 >
-> snp_genes[1:3]
+>days_of_the_week <- factor(c('monday',
+>                           'tuesday',
+>                           'wednesday',
+>                           'thursday',
+>                           'friday'))
+> ~~~
+{: .language-r}
+
+Notice what happens when we run a line with just the name of our factor:
+
+> ~~~
+># create a factor 'days of the week' by passing a vector of characters
+>
+>days_of_the_week
 > ~~~
 {: .language-r}
 > ~~~
-> [1] "OXTR" "ACTN3" "AR"
+> [1] monday    tuesday   wednesday thursday  friday
+> Levels: friday monday thursday tuesday wednesday
 > ~~~
 {: .output}
 
-If you want to to retreive several (but not necessarily sequential) items from
-a vector, you pass a **vector of indicies**; a vector that has the numbered
-positions you wish to retrieve.
+What we get back are the items in our factor, and also something called "Levels".
+**Levels are the different categories contained in a factor**. By default, R
+will organize the levels in a factor in alphabetical order.
 
+Lets look at the contents of a factor in a slightly diffrent way using `str()`:
 > ~~~
-> # get the 1st, 3rd, and 4th value in the snp_genes vector
 >
-> snp_genes[c(1, 3, 4)]
+> str(days_of_the_week)
 > ~~~
 {: .language-r}
 > ~~~
-> [1] "OXTR" "AR" "OPRM1"
+> Factor w/ 5 levels "friday","monday",..: 2 4 5 3 1
 > ~~~
 {: .output}
 
-There are additional (and perhaps less commonly used) ways of indexing a vector
-(see [these examples](https://thomasleeper.com/Rcourse/Tutorials/vectorindexing.html)).
-Also, several of these indexing expressions can be combined:
+For the sake of efficency, R stores the content of a factor as a vector of
+integers, which an integer is assigned to each of the possible levels. Recall
+levels are assigned in alphabetical order, so:
+
+|Level|integer|
+|-----|-------|
+|friday|1|
+|monday|2|
+|thursday|3|
+|tuesday|4|
+|wednesday|5|
+
+Notice what happens to the levels if we add some repeated values to our factor:
 
 > ~~~
-> # get the 1st through the 3rd value, and 4th value in the snp_genes vector
-> # yes, this is a little silly in a vector of only 4 values.
+> # create a factor with repeated values
 >
-> snp_genes[c(1:3,4)]
+> more_days_of_the_week <- factor(c('monday',
+>                                  'tuesday',
+>                                  'wednesday',
+>                                  'thursday',
+>                                  'friday',
+>                                  'friday',
+>                                  'friday'))
+> str(more_days_of_the_week)
 > ~~~
 {: .language-r}
 > ~~~
-> [1] "OXTR" "ACTN3" "AR" "OPRM1"
-> ~~~
-
-## Adding to, removing, or replacing values in existing vectors
-
-Once you have an existing vector, you may want to add a new item to it. To do
-so, you can use the `c()` function again to add your new value:
-
-> ~~~
-> # add the gene 'CYP1A1' and 'APOA5' to our list of snp genes
-> # this overwrites our existing vector
->
-> snp_genes <- c(snp_genes, "CYP1A1", "APOA5")
-> ~~~
-{: .language-r}
-
-We can of course verify that "snp_genes" contains the new gene entry
-
-> ~~~
-> snp_genes
-> ~~~
-{: .language-r}
-> ~~~
-> [1] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" "APOA5"
+> Factor w/ 5 levels "friday","monday",..: 2 4 5 3 1 1 1
 > ~~~
 {: .output}
 
-Using a negative index will return a version a vector with that index's
-value removed:
+Going back to our chart above, "friday" is assigned "1" in the factor, and that
+integer is listed three times in our factor. This is slightly obscure, but it
+provides some clarification to why we get this output.
+
+## Plotting and ordering factors
+
+One of the most common uses for factors will be when you plot categorical
+values. For example, suppose we want to know how many samples from our sample
+submision were preped on each date? We could generate a plot:
 
 > ~~~
-> snp_genes[-6]
+> # create a factor with repeated values
+>
+> plot(table(submission_metadata$prep_date))
+> ~~~
+{: .language-r}
+
+<img src="../assets/img/rstudio_unordered_prepdateplot.png" alt="rstudio data frame view" style="width: 600px;"/>
+
+Let's quickly brake down this line of code:
+
+First we are pulling a single column of data from the `submission_metadata` data
+frame using `$` notation:
+
+> ~~~
+> # obtain the values of the 'prep_date' variable from the data frame
+>
+> submission_metadata$prep_date
 > ~~~
 {: .language-r}
 > ~~~
-> [1] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" "APOA5"
+>[1] 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15
+>[11] 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 7-Jun-15 7-Jun-15
+>[21] 7-Jun-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15
+>[31] 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15
+>[41] 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 6-Jul-15 7/8/15   7/8/15
+>[51] 7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15
+>[61] 7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15
+>[71] 7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15
+>[81] 7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15
+>[91] 7/8/15   7/8/15   7/8/15   7/8/15   7/8/15   7/8/15
+>Levels: 6-Jul-15 7/8/15 7-Jun-15
 > ~~~
 {: .output}
 
+Then we use the `table()` function to turn this into a table of counts:
 
-We can remove that value from our vector by overwriting it with this expression:
 > ~~~
-> snp_genes <- snp_genes[-6]
-> snp_genes
+> # generate a table from values of the 'prep_date' variable from the data frame
+>
+> table(submission_metadata$prep_date)
 > ~~~
 {: .language-r}
 > ~~~
-> [1] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1"
+>6-Jul-15   7/8/15 7-Jun-15
+>      45       48        3
 > ~~~
 {: .output}
 
-We can also explicitly rename or add a value to our index using double bracket
-notation:
+Finally, we use R's `plot()` function which attemtps to generate a plot from the
+data:
+> ~~~
+> # generate a plot from values of the 'prep_date' variable from the data frame
+>
+> plot(table(submission_metadata$prep_date))
+> ~~~
+{: .language-r}
+<img src="../assets/img/rstudio_unordered_prepdateplot.png" alt="rstudio unordered prep plot" style="width: 600px;"/>
+
+While this is a toy example, and there are problems with our prep dates that
+need fixing, let's see how you order a factor so that we can fix our plot.
+We can take our existing `more_days_of_the_week` factor, and use the `factor()`
+function again. This time we will pass it two new arguments: `levels` will be
+assigned to a vector that has the days of the week in the order we want them,
+and we will set the `ordered` argument to TRUE.
 
 > ~~~
-> snp_genes[[7]]<- "APOA5"
-> snp_genes
+> # order the 'more_days_of_the_week' factor to our desired set of levels
+>more_days_of_the_week <- factor(more_days_of_the_week, levels = c("monday",
+>                                                                  "tuesday",
+>                                                                  "wednesday",
+>                                                                  "thursday",
+>                                                                  "friday"),
+>                                ordered = TRUE)
+> ~~~
+{: .language-r}
+
+We can now see the new ordering:
+> ~~~
+> str(more_days_of_the_week)
 > ~~~
 {: .language-r}
 > ~~~
-> [1] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
+> Ord.factor w/ 5 levels "monday"<"tuesday"<..: 1 2 3 4 5 5 5
 > ~~~
 {: .output}
 
-Notice in the operation above that R inserts an `NA` value to extend our vector
-so that the gene "APOA5" is an index 7. This may be a good or not so good thing
-depending on how you use this.
+Although not all levels are shown, notice there are `<` signs indicating an
+order.
 
-> ## Exercise: Examining and indexing vectors
-> Answer the following questions to test your knowledge vectors
+> ## Exercise: Order and plot `sample_submission` `prep_date`
 >
-> Which of the following is true of vectors in R
+> **Generate a plot of the `prep_date` variable, properly ordered from the `sample_submission`
+> data frame**
 >
-> A) All vectors have a mode or a length
+> To choose the ordering, assume that the unambiguous dates for this data are:
+> - 7-Jun-15: June 7, 205
+> - 6-Jul-15: July 6, 2015
+> - 7/8/15: July 8, 2015
 >
-> B) All vector have a mode and a length
+> *hint* you can use the `factor()` function inside of your `table()`and `plot()`
+> function calls.
 >
-> C) Vectors may have different lengths
->
-> D) Items within a vector may be of different modes
->
-> E) You can use the `c()` to one or more items to an existing vector
->
-> F) You can use the `c()` to add a vector to an exiting vector
->>
+> *hint* build this single line of code from the inside out!
 >> ## solution
->> A) False - Vectors have both of these properties
+>>plot(table(factor(submission_metadata$prep_date, levels = c("7-Jun-15",
+>>                                                 "6-Jul-15",
+>>                                                 "7/8/15"),
+>>       ordered = TRUE)))
 >>
->> B) True
 >>
->> C) True
->>
->> D) False - Vectors have only one mode (e.g. numeric, character); all items in
->> a vector must be of this mode.
->>
->> E) True
->>
->> F) True
->>
+>> <img src="../assets/img/rstudio_ordered_prepdateplot.png" alt="rstudio ordered prep plot" style="width: 600px;"/>
 > {: .solution}
 {: .challenge}
 
-
-## Logical Indexing
-
-There is one last set of cool indexing capabilities we want to introduce. It is
-possible within R to retrieve items in a vector based on a logical evaluation
-or numerical comparison. For example, let's say we wanted get all of the SNPs
-in our vector of SNP positons that were greater than 100,000,000. We could
-index using the '>' (greater than) logical operator:
-
-> ~~~
-> snp_positions[snp_positions > 100000000]
-> ~~~
-{: .language-r}
-> ~~~
-> [1] 154039662
-> ~~~
-{: .output}
-
-As demonstrated above, in the square brackets you place the name of the vector
-followed by the comparison operator and (in this numeric case) a numeric value.
-Some of the most common logical operators you will use in R are:
-
-|Operator|Description|
-|--------|-----------|
-|<|less than|
-|<=|less than or equal to|
-|>|greater than|
-|>=|greater than or equal to|
-|==|exactly equal to|
-|!=|not equal to|
-|!x|not x|
-|a \| b| a or b|
-|a & b| a and b|
-
-> ## The magic of programming
->
->The reason why the expression `snp_positions[snp_positions > 100000000]` works
->can be better understood if you examine what the expression "snp_positions > 100000000"
->evaluates to:
->
->> ~~~
->> snp_positions > 100000000
->> ~~~
->{: .language-r}
->> ~~~
->> [1] FALSE FALSE FALSE  TRUE
->> ~~~
->{: .output}
->
->The output above is a logical vector, the 4th element of which is TRUE. When
->you pass a logical vector as an index, R will return the true values:
->
->> ~~~
->> snp_positions[c(FALSE, FALSE, FALSE, TRUE)]
->> ~~~
->{: .language-r}
->> ~~~
->> [1] 154039662
->> ~~~
->{: .output}
->
->
->If you have never coded before, this type of situation starts to expose the
->"magic" of programming. We mentioned before that in the bracket indexing
->notation you take your named vector followed by brakets which contain an index:
->**named_vector[index]**. The "magic" is that the index needs to *evaluate to* a
->number. So, even if it does not appear to be an integer (e.g. 1, 2, 3), as long
->as R can evaluate it, we will get a result. That our expression
->`snp_positions[snp_positions > 100000000]` evaluates to a number can be seen
->in the following situtaion. If you wanted to know which **index** (1, 2, 3, or
->4) in our vector of SNP positions was the one that was greater than 100,000,000?
->We can use the `which()` function to return the indicies of any item that
->evaluates as TRUE in our comparison:
->> ~~~
->> which(snp_positions > 100000000)
->> ~~~
->{: .language-r}
->> ~~~
->> [1] 4
->> ~~~
->{: .output}
-> **Why is this important?** Often in programming we will not know what inputs
-> and values will be used when our code is executed. Rather than put in a
-> pre-determined value (e.g 100000000) we can use an object that can take on
-> whatever value we need. So for example:
->
->> ~~~
->> snp_marker_cutoff <- 100000000
->> snp_positions[snp_positions > snp_marker_cutoff]
->> ~~~
->{: .language-r}
->> ~~~
->> [1] 154039662
->> ~~~
->{: .output}
-> Ultimately, it's putting together flexible, reusable code like this that gets
-> at the "magic" of programming!
-{: .callout}
-
-## A few final vector tricks
-
-Finally, there are a few other common retrieve or replace operations you may
-want to know about. First, you can check to see if any of the values of your
-vector is an NA value. Missing data will get a more detailed treatment later,
-but the `is.NA()` function will return a logical vector, with TRUE for any NA
-value:
-
-> ~~~
-> # current value of 'snp_genes': chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
->
-> is.na(snp_genes)
-> ~~~
-{: .language-r}
-> ~~~
-> [1] FALSE FALSE FALSE FALSE FALSE TRUE FALSE
-> ~~~
-{: .output}
-
-Sometimes, you may wish to find out if a specific value (or several values) is
-in a vector. You can do this using the comparison operator `%in%`, which will
-return TRUE for any value in your collection of one or more values matches a
-value in the vector you are searching:
-
-> ~~~
-> # current value of 'snp_genes': chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
-> # test to see if "ACTN3" or "APO5A" is in the snp_genes vector
-> # if you are looking for more than one value, you must pass this as a vector
->
-> c("ACTN3","APOA5") %in% snp_genes
-> ~~~
-{: .language-r}
-> ~~~
-> [1] TRUE TRUE
-> ~~~
-{: .output}
-
-> ## Review: Creating and indexing vectors
-> Use your knowledge of vectors to accomplish the following tasks:
->
-> **1) What mode are the following vectors? Use `typeof()` to check**
->
->    a. `snps`
->
->    b. `snp_chromosomes`
->
->    c. `snp_positions`
->
-> **2) Add the following values to the following vectors**
->
->    a. To the `snps` vector add: 'rs662799'
->
->    b. To the `snp_chromosomes` vector add: 11
->
->    c. To the `snp_positions` vector add: 	116792991
->
-> **3) Make the following change to the `snp_genes` vector**
-> Hint: Your vector should look like this in the 'Global Enviornment':
-> `chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"`. If not
-> recreate the vector by running this expression:
-> `snp_genes <- c("OXTR", "ACTN3", "AR", "OPRM1", "CYP1A1", NA, "APOA5")`
->
->    a. Create a new version of `snp_genes` that does not contain CYP1A1
->
->    b. Add 2 NA values to the end of `snp_genes` (hint: final vector should
->    have a length of 8)
->
-> **4) Create a new vector `combined` that contains:**
->
->    - The the 1st value in `snp_genes`
->
->    - The 1st value in `snps`
->
->    - The 1st value in `snp_chromosomes`
->
->    - The 1st value in `snp_positions`
->
->   **Check the mode of `combined` using `typeof()`
->
->> ## solution
->>
->> **1) What mode are the following vectors? Use `typeof()` to check**
->>
->>    a. `typeof(snps)` # "character"
->>
->>    b. `typeof(snp_chromosomes)` # "character"
->>
->>    c. `typeof(snp_positions)` # "double" - which is also a numeric type
->>
->>
->> **2) Add the following values to the following vectors**
->>
->>    a. `snps <- c(snps, 'rs662799')`
->>
->>    b. `snp_chromosomes <- c(snp_chromosomes, "11")` # did you use quotes?
->>
->>    c. `snp_positions <- c(snp_positions, 116792991)`
->>
->> **3) Make the following change to the `snp_genes` vector**
->>
->>    a. `snp_genes <- snp_genes[-5]` or `snp_genes <- snp_genes[c(1,2,3,4,6,7)]`, etc.
->>
->>    b. `snp_genes <- c(snp_genes, NA, NA)` or `snp_genes[[8]] <- NA`, etc.
->>
->>
->> **4) Create a new vector `combined` that contains:**
->>
->>    - The the 1st value in `snp_genes`
->>
->>    - The 1st value in `snps`
->>
->>    - The 1st value in `snp_chromosomes`
->>
->>    - The 1st value in `snp_positions`
->>
->>
->>    `combined <- c(snp_genes[1], snps[1], snp_chromosomes[1], snp_positions[1])`
->>
->>    `typeof(combined)`  # "character" - Do you know why this is?
->>
-> {: .solution}
-{: .challenge}
-
-## Bonus material: Lists
-
-Lists are quite useful in R, but we won't be using them in the genomics lessons.
-That said, you may come across lists in the way that some bioinformatics
-programs may store and/or return data to you. One of the key attributes of a list
-is that unlike a vector, a list may contain data of more than one mode. Learn
-more about creating and using lists using this [nice tutorial](http://r4ds.had.co.nz/lists.html).
-In this one example, we will create a named list and show you how to retreive
-items from the list.
-
-
-> ~~~
-> # Create a named list using the 'list' function and our SNP examples
-> # Note, for easy reading we have place each item in the list on a separate line
-> # Nothing special about this, you can do this for any multiline commands
-> # To run this command, make sure the entire command (all 4 lines) are highlited
-> # before running
->
->snp_data <- list(genes = snp_genes,
->                 refference_snp = snps,
->                 chromosome = snp_chromosomes,
->                 position = snp_positions)
->
-> # Examine the structure of the list
->str(snp_data)
-> ~~~
-{: .language-r}
-> ~~~
->List of 4
-> $ genes         : chr [1:8] "OXTR" "ACTN3" "AR" "OPRM1" ...
-> $ refference_snp: chr [1:5] "rs53576" "rs1815739" "rs6152" "rs1799971" ...
-> $ chromosome    : chr [1:4] "3" "11" "X" "6"
-> $ position      : num [1:4] 8.76e+06 6.66e+07 6.75e+07 1.54e+08
-> ~~~
-{: .output}
-
-To get all of the values for the `position` object in the list we use the `$` notation:
-
-> ~~~
-> # return all the values of position object
->
-> snp_data$position
-> ~~~
-{: .language-r}
-> ~~~
-> [1]   8762685 66560624 67545785 154039662
-> ~~~
-{: .output}
-
-To get the first value in the `position` object, use `[]` notation to index:
-
-> ~~~
-> # return first value of the position object
->
-> snp_data$position[1]
-> ~~~
-{: .language-r}
-> ~~~
-> [1]   8762685
-> ~~~
-{: .output}
 
 
 
