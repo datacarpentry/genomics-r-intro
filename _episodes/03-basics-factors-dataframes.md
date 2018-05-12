@@ -426,6 +426,96 @@ order.
 {: .challenge}
 
 
+## Indexing and data frames
+
+Next, we are going to talk about how you can get specific values from data frames, and where necessary, change the mode of a column of values.
+
+The first thing to remember is that a data frame is two-dimensional (rows and
+columns). Therefore, to select a specific value we will will once again use
+`[]` notation, but we will specify more than one value (except in some cases
+where we are taking a range).
+
+> ## Exercise: Indexing a data frame
+>
+> **Try the following indices and functions and try to figure out what they return**
+>
+> a. `submission_metadata[1,1]`
+>
+> b. `submission_metadata[2,4]`
+>
+> c. `submission_metadata[96,10]`
+>
+> d. `submission_metadata[2, ]`
+>
+> e. `submission_metadata[-1, ]`
+>
+> f. `submission_metadata[1:4,1]`
+>
+> g. `submission_metadata[1:10,c("client_sample_id","RIN")]`
+>
+> h. `submission_metadata[,c("RIN")]`
+>
+> i. `head(submission_metadata)`
+>
+> j. `tail(submission_metadata)`
+>
+> k. `submission_metadata$prep_date`
+>
+> l. `submission_metadata[submission_metadata$RIN >= 9.0,]`
+>
+>> ## solution
+>>
+>> a. `submission_metadata[1,1]` # 1st row, 1st column
+>>
+>> b. `submission_metadata[2,4]` # 2nd row, 4th column
+>>
+>> c. `submission_metadata[96,10]` # 96th row, 10th column
+>>
+>> d. `submission_metadata[2, ]` # The entire 2nd row
+>>
+>> e. `submission_metadata[-1, ]` # The entire data frame except the 1st row
+>>
+>> f. `submission_metadata[1:4,1]` # rows 1-4, column 1
+>>
+>> g. `submission_metadata[1:10,c("client_sample_id","client_sample_id")]` # rows 1:10, column 'client_sample_id' and 'RIN'
+>>
+>> h. `submission_metadata[,c("RIN")]` # all rows, column 'RIN'
+>>
+>> i. `head(submission_metadata)` # first 6 rows of the data frame
+>>
+>> j. `tail(submission_metadata)` # last 6 rows of the data frame
+>>
+>> k. `submission_metadata$prep_date` # "prep_date" column, all rows
+>>
+>> l. `submission_metadata[submission_metadata$RIN >= 9.0,]` # all rows where the value of "RIN" column is greater-than-or-equal-to 9.0
+> {: .solution}
+{: .challenge}
+
+Essentially, the indexing notation is very similar to what we learned for
+vectors. The key differences include:
+
+- Typically provide two values separated by commas: dataframe[row, column]
+- In cases where you are taking a continuous range of numbers use a colon
+  between the numbers (start:stop, inclusive)
+- For a non continuous set of numbers, pass a vector using `c()`
+- Index using the name of a column(s) by passing them as vectors using `c()`
+
+## Coercing values in data frames
+
+> ## Tip: coercion isn't limited to data frames
+>
+> While we are going to address coercion in the context of data frames
+> most of these methods apply to other data structures, such as vectors
+{: .callout}
+
+Sometimes, it is possible that R will misinterpret the type of data represented
+in a data frame, or store that data in a mode which prevents you from
+operating on the data the way you wish. 
+
+
+
+
+
 
 
 ---
