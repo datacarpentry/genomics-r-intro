@@ -10,8 +10,8 @@ objectives:
 - "Be able to create the most common R objects including vectors"
 - "Understand that vectors have modes, which correspond to the type of data they contain"
 - "Be able to use arithmetic operators on R objects"
-- "Be able to retrieve (index), name, or replace, values from a vector"
-- "Be able to use logical operators in an indexing operation"
+- "Be able to retrieve (subset), name, or replace, values from a vector"
+- "Be able to use logical operators in an subsetting operation"
 - "Understand that lists can hold data of more than one mode and can be indexed"
 keypoints:
 - "Effectively using R is a journey of months or years. Still you don't have to
@@ -398,7 +398,7 @@ Vectors are quite important in R, mostly for us because data frames are
 essentially collections of vectors (more on this later). What we learn about
 manipulating vectors now will pay of even more when we get to data frames.
 
-## More on creating and indexing vectors
+## More on creating and subsetting vectors
 
 Let's create a few more vectors to play around with:
 
@@ -458,9 +458,9 @@ positions you wish to retrieve.
 > ~~~
 {: .output}
 
-There are additional (and perhaps less commonly used) ways of indexing a vector
+There are additional (and perhaps less commonly used) ways of subsetting a vector
 (see [these examples](https://thomasleeper.com/Rcourse/Tutorials/vectorindexing.html)).
-Also, several of these indexing expressions can be combined:
+Also, several of these subsetting expressions can be combined:
 
 > ~~~
 > # get the 1st through the 3rd value, and 4th value in the snp_genes vector
@@ -538,7 +538,7 @@ Notice in the operation above that R inserts an `NA` value to extend our vector
 so that the gene "APOA5" is an index 7. This may be a good or not so good thing
 depending on how you use this.
 
-> ## Exercise: Examining and indexing vectors
+> ## Exercise: Examining and subsetting vectors
 > Answer the following questions to test your knowledge vectors
 >
 > Which of the following is true of vectors in R
@@ -573,12 +573,12 @@ depending on how you use this.
 {: .challenge}
 
 
-## Logical Indexing
+## Logical Subsetting
 
-There is one last set of cool indexing capabilities we want to introduce. It is
+There is one last set of cool subsetting capabilities we want to introduce. It is
 possible within R to retrieve items in a vector based on a logical evaluation
 or numerical comparison. For example, let's say we wanted get all of the SNPs
-in our vector of SNP positons that were greater than 100,000,000. We could
+in our vector of SNP positions that were greater than 100,000,000. We could
 index using the '>' (greater than) logical operator:
 
 > ~~~
@@ -635,8 +635,8 @@ Some of the most common logical operators you will use in R are:
 >
 >
 >If you have never coded before, this type of situation starts to expose the
->"magic" of programming. We mentioned before that in the bracket indexing
->notation you take your named vector followed by brakets which contain an index:
+>"magic" of programming. We mentioned before that in the bracket
+>notation you take your named vector followed by brackets which contain an index:
 >**named_vector[index]**. The "magic" is that the index needs to *evaluate to* a
 >number. So, even if it does not appear to be an integer (e.g. 1, 2, 3), as long
 >as R can evaluate it, we will get a result. That our expression
@@ -708,7 +708,7 @@ value in the vector you are searching:
 > ~~~
 {: .output}
 
-> ## Review: Creating and indexing vectors
+> ## Review: Creating and subsetting vectors
 > Use your knowledge of vectors to accomplish the following tasks:
 >
 > **1) What mode are the following vectors? Use `typeof()` to check**
@@ -801,7 +801,7 @@ That said, you may come across lists in the way that some bioinformatics
 programs may store and/or return data to you. One of the key attributes of a list
 is that unlike a vector, a list may contain data of more than one mode. Learn
 more about creating and using lists using this [nice tutorial](http://r4ds.had.co.nz/lists.html).
-In this one example, we will create a named list and show you how to retreive
+In this one example, we will create a named list and show you how to retrieve
 items from the list.
 
 
@@ -809,7 +809,7 @@ items from the list.
 > # Create a named list using the 'list' function and our SNP examples
 > # Note, for easy reading we have place each item in the list on a separate line
 > # Nothing special about this, you can do this for any multiline commands
-> # To run this command, make sure the entire command (all 4 lines) are highlited
+> # To run this command, make sure the entire command (all 4 lines) are highlighted
 > # before running
 >
 >snp_data <- list(genes = snp_genes,

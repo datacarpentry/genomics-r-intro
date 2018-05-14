@@ -14,14 +14,14 @@ objectives:
 - "Be able to retrieve values (index) from a data frame"
 - "Understand how R may converse data into different modes"
 - "Be able to convert the mode of an object"
-- "Understand that R uses factors to store and manipulate catagorical data"
-- "Be able to manipulate a factor, including indexing and reordering"
-- "Be able to apply an arithmetic function to a dataframe"
-- "Be able to coerce the class of an object (including variables in a dataframe)"
-- "Be able to save a dataframe as a delimited file"
+- "Understand that R uses factors to store and manipulate categorical data"
+- "Be able to manipulate a factor, including subsetting and reordering"
+- "Be able to apply an arithmetic function to a data frame"
+- "Be able to coerce the class of an object (including variables in a data frame)"
+- "Be able to save a data frame as a delimited file"
 keypoints:
 - "It is easy to import data into R from tabular formats including Excel.
-  However, you still need to check that R has imported and interprited your
+  However, you still need to check that R has imported and interpreted your
   data correctly"
 - "There are best practices for organizing your data (keeping it tidy) and R
   is great for this"
@@ -426,7 +426,7 @@ order.
 {: .challenge}
 
 
-## Indexing and data frames
+## Subsetting data frames
 
 Next, we are going to talk about how you can get specific values from data frames, and where necessary, change the mode of a column of values.
 
@@ -435,7 +435,7 @@ columns). Therefore, to select a specific value we will will once again use
 `[]` notation, but we will specify more than one value (except in some cases
 where we are taking a range).
 
-> ## Exercise: Indexing a data frame
+> ## Exercise: Subsetting a data frame
 >
 > **Try the following indices and functions and try to figure out what they return**
 >
@@ -491,14 +491,54 @@ where we are taking a range).
 > {: .solution}
 {: .challenge}
 
-Essentially, the indexing notation is very similar to what we learned for
+Essentially, the subsetting notation is very similar to what we learned for
 vectors. The key differences include:
 
-- Typically provide two values separated by commas: dataframe[row, column]
+- Typically provide two values separated by commas: data.frame[row, column]
 - In cases where you are taking a continuous range of numbers use a colon
   between the numbers (start:stop, inclusive)
 - For a non continuous set of numbers, pass a vector using `c()`
 - Index using the name of a column(s) by passing them as vectors using `c()`
+
+Finally, in all of the subsetting exercises above, we simply printed values to
+the screen. Remember that you can create a new data frame object by assigning
+them to a new object name:
+
+> ~~~
+> #subset submission_metadata to a new data frame with RIN >= 8
+>
+>high_quality_rna <- submission_metadata[submission_metadata$RIN >= 8,]
+>
+> #check the dimension of the data frame
+>
+>dim(high_quality_rna)
+>
+> #get a summary of the data frame
+>
+> summary(high_quality_rna)
+> ~~~
+{: .language-r}
+> ~~~
+> [1] 86 10
+>
+>well_position  tube_barcode        plate_barcode    client_sample_id replicate  Volume..µL.    
+>A1     : 1    Min.   :151017990   LP-10624:86    k255M_1h-2 : 3      a: 1      Min.   :  0.50  
+>A10    : 1    1st Qu.:152080214                  k255N_1h-1 : 3      A:26      1st Qu.: 57.50  
+>A11    : 1    Median :153366715                  k255N_1h-11: 3      b: 1      Median : 59.70  
+>A12    : 1    Mean   :153266703                  k255N_1h-12: 3      B:28      Mean   : 65.94  
+>A2     : 1    3rd Qu.:154489518                  k255N_1h-13: 3      c: 1      3rd Qu.: 62.50  
+>A3     : 1    Max.   :155537812                  k255N_1h-14: 3      C:29      Max.   :630.10  
+>(Other):80                                       (Other)    :68                                
+>concentration..ng.µL.      RIN          prep_date   ship_date
+>Min.   :157.7         Min.   :8.00   6-Jul-15:42   20-Jul:86  
+>1st Qu.:186.2         1st Qu.:8.30   7/8/15  :42              
+>Median :197.5         Median :8.60   7-Jun-15: 2              
+>Mean   :197.9         Mean   :8.61                            
+>3rd Qu.:211.0         3rd Qu.:8.90                            
+>Max.   :237.1         Max.   :9.60  
+> ~~~
+{: .output}
+
 
 ## Coercing values in data frames
 
@@ -510,11 +550,158 @@ vectors. The key differences include:
 
 Sometimes, it is possible that R will misinterpret the type of data represented
 in a data frame, or store that data in a mode which prevents you from
-operating on the data the way you wish. 
+operating on the data the way you wish. For example, a long list of gene names
+isn't usually thought of as a categorical variable, the way that your
+experimental condition (e.g. control, treatment) might be. More importantly,
+some R packages you use to analyze your data may expect characters as input,
+not factors. At other times (such as plotting or some statistical analyses) a
+factor may be more appropriate. Ultimately, you should know how to change the
+mode of an object.
 
+First, its very important to recognize that coercion happens in R all the time.
+This can be a good thing when R gets it right, or a bad thing when the result
+is not what you expect. Consider:
 
+> ~~~
+> snp_chromosomes <- c('3', '11', 'X', '6')
+> typeof(snp_chromosomes)
+> ~~~
+{: .language-r}
+> ~~~
+> [1] "character"
+> ~~~
+{: .output}
 
+Although there are several numbers in our vector, they are all in quotes, so
+we have explicitly told R to consider them characters. Even if we removed the
+quotes from the numbers, R would coerce everything into a character:
 
+> ~~~
+> snp_chromosomes_2 <- c(3, 11, 'X', 6)
+> typeof(snp_chromosomes_2)
+> snp_chromosomes_2[1]
+> ~~~
+{: .language-r}
+> ~~~
+> [1] "character"
+> [1] "3"
+> ~~~
+{: .output}
+
+We can use some of the `as.` functions to explicitly coerce values from one
+form into another. Consider the following vector of characters, which all happen to be valid numbers:
+
+> ~~~
+> snp_positions_2 <- c("8762685", "66560624", "67545785", "154039662")
+> typeof(snp_positions_2)
+> snp_positions_2[1]
+> ~~~
+{: .language-r}
+> ~~~
+> [1] "character"
+> [1] "8762685"
+> ~~~
+{: .output}
+
+Now we can coerce `snp_positions_2` into a numeric type using `as.numeric()`:
+
+> ~~~
+> snp_positions_2 <- as.numeric(snp_positions_2)
+> typeof(snp_positions_2)
+> snp_positions_2[1]
+> ~~~
+{: .language-r}
+> ~~~
+> [1] "double"
+> [1] 8762685
+> ~~~
+{: .output}
+
+Sometimes coercion is straight forward, but what would happen if we tried
+using `as.numeric()` on `snp_chromosomes_2`
+
+> ~~~
+> snp_chromosomes_2 <- as.numeric(snp_chromosomes_2)
+> ~~~
+{: .language-r}
+> ~~~
+> Warning message:
+> NAs introduced by coercion
+> ~~~
+{: .error}
+
+If we check, we will see that an `NA` value (R's default value for missing
+data) has been introduced.
+
+> ~~~
+> snp_chromosomes_2
+> ~~~
+{: .language-r}
+> ~~~
+> [1]  3 11 NA  6
+> ~~~
+{: .output}
+
+Trouble can really start when we try to coerce a factor. For example, when we
+try to coerce the `replicate` column in our data frame into a character mode
+look at the result:
+
+> ~~~
+> as.numeric(submission_metadata$replicate)
+> ~~~
+{: .language-r}
+> ~~~
+> [1] 1 3 5 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6
+> [37] 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6
+> [73] 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6 2 4 6
+> ~~~
+{: .output}
+
+Strangely, it works! Almost. Instead of giving and error message, R returns
+numeric values, which in this case are the integers assigned to the levels in
+this factor. This kind of behavior can lead to hard-to-find bugs, for example
+when we do have numbers in a factor, and we get numbers from a coercion. If
+we don't look carefully, we may not notice a problem.
+
+If you need to coerce an entire column you can overwrite it using an expression
+like this one:
+
+> ~~~
+> # make the 'well_position' column a character type column
+>
+>submission_metadata$well_position <- as.character(submission_metadata$well_position)
+>
+> # check the type of the column
+>
+>typeof(submission_metadata$well_position)
+> ~~~
+{: .language-r}
+> ~~~
+> [1] "character"
+> ~~~
+{: .output}
+
+## StringsAsFactors=FALSE
+
+Lets summarize this section on coercion with a few take home messages.
+
+- When you explicitly coerce one data type into another (this is known as
+  **explicit coercion**), be careful to check the result. Ideally, you should try to see if its possible to avoid steps in your analysis that force you to
+  coerce.  
+- R will sometimes coerce without you asking for it. This is called
+  (appropriately) **implicit coercion**. For example when we tried to create
+  a vector with multiple data types, R chose one type through implicit
+  coercion.
+- Check the structure (`str()`) of your data frames before working with them!
+
+One regarding the first bullet point, one way to avoid needless coercion when
+importing a data frame using any one of the `read.table()` functions such as
+`read.csv()` is to set the argument `StringsAsFactors` to FALSE. By default,
+this argument is TRUE. Setting it to FALSE will treat any non-numeric column to
+a character type. `read.csv()` documentation, you will also see you can
+explicitly type your columns using the `colClasses` argument. Other R packages
+(such as the Tidyverse "readr") don't have this particular conversion issue,
+but many packages will still try to guess a  data type.
 
 
 
