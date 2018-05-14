@@ -703,6 +703,80 @@ explicitly type your columns using the `colClasses` argument. Other R packages
 (such as the Tidyverse "readr") don't have this particular conversion issue,
 but many packages will still try to guess a  data type.
 
+## Data frame bonus material: math, sorting, renaming
 
+Here are a few operations that don't need much explanation, but which are good
+to know. 
+
+There are lots of arithmetic functions you may want to apply to your data
+frame, an covering those would be a course in itself (there is some starting
+material [here](https://swcarpentry.github.io/r-novice-inflammation/15-supp-loops-in-depth/)). Our lessons will cover some additional summary statistical functions in
+a subsequent lesson, but overall we will focus on data cleaning and
+visualization.
+
+As you might expect, you can use functions like `mean()`, `min()`, `max()` on an
+individual column:
+
+> ~~~
+> mean(submission_metadata$RIN)
+> ~~~
+{: .language-r}
+> ~~~
+> [1] 8.473958
+> ~~~
+{: .output}
+
+You can do math and save the result in a new column:
+
+> ~~~
+> submission_metadata$vol_in_L <- submission_metadata$Volume..µL. /10000
+> head(submission_metadata$vol_in_L)
+> ~~~
+{: .language-r}
+> ~~~
+> [1] 0.00642 0.00637 0.00602 0.00558 0.00608 0.00575
+> ~~~
+{: .output}
+
+You can sort a data frame using the `order()` function:
+
+> ~~~
+>sorted_by_replicate <- submission_metadata[order(submission_metadata$replicate), ]
+>head(sorted_by_replicate$replicate)
+> ~~~
+{: .language-r}
+> ~~~
+>[1] a A A A A A
+>Levels: a A b B c C
+> ~~~
+{: .output}
+
+You can selectively replace values in a data frame based on their value:
+
+> ~~~
+> sorted_by_replicate$replicate[sorted_by_replicate$replicate == "a"] <- "A"
+>head(sorted_by_replicate$replicate)
+> ~~~
+{: .language-r}
+> ~~~
+>[1] A A A A A A
+>Levels: a A b B c C
+> ~~~
+{: .output}
+
+You can rename columns:
+
+> ~~~
+> colnames(submission_metadata)[colnames(submission_metadata) == "Volume..µL."] <- "vol_in_µL"
+>
+>#check the column name (hint names are returned as a vector)
+>
+> colnames(submission_metadata)[6]
+> ~~~
+{: .language-r}
+> ~~~
+>[1] "vol_in_µL"
+> ~~~
+{: .output}
 
 ---
