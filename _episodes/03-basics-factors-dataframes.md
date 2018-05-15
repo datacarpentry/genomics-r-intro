@@ -1,7 +1,7 @@
 ---
 title: "R Basics continued - factors and data frames"
 teaching: 60
-exercises: 20
+exercises: 30
 questions:
 - "How do I get started with tabular data (e.g. spreadsheets) in R?"
 - "What are some best practices for reading data into R?"
@@ -11,13 +11,14 @@ objectives:
 - "Be able to load a tabular dataset using base R functions"
 - "Be able to determine the structure of a data frame including its dimensions
   and the datatypes of variables"
-- "Be able to retrieve values (index) from a data frame"
+- "Be able to subset/retrieve values from a data frame"
 - "Understand how R may converse data into different modes"
 - "Be able to convert the mode of an object"
 - "Understand that R uses factors to store and manipulate categorical data"
 - "Be able to manipulate a factor, including subsetting and reordering"
 - "Be able to apply an arithmetic function to a data frame"
 - "Be able to coerce the class of an object (including variables in a data frame)"
+- "Be able to import data from Excel"
 - "Be able to save a data frame as a delimited file"
 keypoints:
 - "It is easy to import data into R from tabular formats including Excel.
@@ -40,13 +41,13 @@ first set of example data:
 **1) Keep raw data separate from analyzed data**
 
 This is principle number one because if you can't tell which files are the
-original raw data, you risk making some serious mistakes (e.g. drawing conculsion
+original raw data, you risk making some serious mistakes (e.g. drawing conclusion
 from data which have been manipulated in some unknown way).
 
-**2) Keep speadsheet data Tidy**
+**2) Keep spreadsheet data Tidy**
 
 The simplest principle of **Tidy data** is that we have one row in our
-spreadsheet for each observation or sample, and one colum for every variable
+spreadsheet for each observation or sample, and one column for every variable
 that we measure or report on. As simple as this sounds, it's very easily
 violated. Most data scintists agree that significant amounts of their time is
 spent tidying data for analysis. Read more about data organization in
@@ -67,7 +68,7 @@ in your analysis, and its reproducibility.
 
 ## Importing tabular data into R
 There are several ways to import data into R. For our purpose here, we will
-focus on using the tools every R installtion comes with (so called "base" R) to
+focus on using the tools every R installation comes with (so called "base" R) to
 import a comma-delimited file, a sequencing sample submission sheet. We will
 
 First, we need to load the sheet using a function called `read.csv()`.
@@ -83,7 +84,7 @@ First, we need to load the sheet using a function called `read.csv()`.
 >
 > A) What is the default parameter for 'header' in the `read.csv()` function?
 >
-> B) What argument would you have to change to read a file that was delimeted
+> B) What argument would you have to change to read a file that was delimited
 > by semicolons (;) rather than commas?
 >
 > C) What argument would you have to change to read file in which numbers
@@ -94,13 +95,13 @@ First, we need to load the sheet using a function called `read.csv()`.
 >
 >> ## solution
 >>
->> A) The `read.csv()` function has the argument 'header' set to TRUE by deault,
+>> A) The `read.csv()` function has the argument 'header' set to TRUE by default,
 >> this means the function always assumes the first row is header information,
 >> (i.e. column names)
 >>
 >> B) The `read.csv()` function has the argument 'sep' set to ",". This means
 >> the function assumes commas are used as delimiters, as you would expect.
->> Changing this parameter (e.g. `sep=";"`) would now interprit semicolons as
+>> Changing this parameter (e.g. `sep=";"`) would now interpret semicolons as
 >> delimiters.
 >>
 >> C) Although it is not listed in the `read.csv()` usage, `read.csv()` is
@@ -706,7 +707,7 @@ but many packages will still try to guess a  data type.
 ## Data frame bonus material: math, sorting, renaming
 
 Here are a few operations that don't need much explanation, but which are good
-to know. 
+to know.
 
 There are lots of arithmetic functions you may want to apply to your data
 frame, an covering those would be a course in itself (there is some starting
@@ -778,5 +779,134 @@ You can rename columns:
 >[1] "vol_in_µL"
 > ~~~
 {: .output}
+
+## Importing data from Excel
+
+Excel is one of the most common formats, so we need to discuss how to make
+these files play nicely with R. The simplest way to import data from Excel is
+to **save your Excel file in .csv format***. You can then import into R right
+away. Sometimes you may not be able to do this (imagine you have data in 300
+Excel files, are you going to open and export all of them?).
+
+One common R package (a set of code with features you can download and add to
+your R installation) is the [readxl package](https://CRAN.R-project.org/package=readxl) which can open and import Excel
+files. Rather than addressing package installation this second, we can take
+advantage of RStudio's import feature which integrates this package.
+
+
+
+First, in the RStudio menu go to **File**, select **Import Dataset**, and
+choose **From Excel...** (notice there are several other options you can
+explore).
+
+<img src="../assets/img/rstudio_import_menu.png " alt="rstudio import menu" style="width: 600px;"/>
+
+Next, under **File/Url:** click the <KBD>Browse</KBD> button and navigate to the **Ecoli_metadata.xlsx** file located at `/home/dcuser/dc_sample_data/R`.
+You should now see a preview of the data to be imported:
+
+<img src="../assets/img/rstudio_import_screen.png " alt="rstudio import screen" style="width: 1200px;"/>
+
+Notice that you have the option to change the data type of each variable by
+clicking arrow (drop-down menu) next to each column title. Under **Import
+Options** you may also rename the data, choose a different sheet to import, and
+choose how you will handle headers and skipped rows. Under **Code Preview** you
+can see the code that will be used to import this file. We could have written
+this code and imported the Excel file without the RStudio import function, but
+now you can choose your preference.
+
+In this exercise, we will leave the title of the data frame as
+**Ecoli_metadata**, and there are no other options we need to adjust. Click the
+<KBD>Import</KBD> button to import the data.
+
+Finally, let's check the fist few lines of the `Ecoli_metadata` metadata data
+frame:
+
+> ~~~
+> head(Ecoli_metadata)
+> ~~~
+{: .language-r}
+> ~~~
+># A tibble: 6 x 7
+>  sample   generation clade   strain cit     run       genome_size
+>  <chr>         <dbl> <chr>   <chr>  <chr>   <chr>           <dbl>
+>1 REL606           0. NA      REL606 unknown NA               4.62
+>2 REL1166A      2000. unknown REL606 unknown SRR098028        4.63
+>3 ZDB409        5000. unknown REL606 unknown SRR098281        4.60
+>4 ZDB429       10000. UC      REL606 unknown SRR098282        4.59
+>5 ZDB446       15000. UC      REL606 unknown SRR098283        4.66
+>6 ZDB458       20000. (C1,C2) REL606 unknown SRR098284        4.63
+> ~~~
+{: .output}
+
+Works as we expect! Notice the type of this object is 'tibble', a type of data
+frame we will talk more about in the 'dplyr' section. Of course, if you needed
+a true R data frame you could coerce with `as.data.frame()`.
+
+## Saving your data frame to a file
+
+Finally, we can conclude this episode with saving our data frame, in this case
+to a .csv file using the `write.csv()` function:
+
+> ~~~
+> write.csv(submission_metadata, file = "submission_metatata_cleaned.csv")
+> ~~~
+{: .language-r}
+> ~~~
+># use the dir() function to see files in our working directory
+>
+>[1] "dc_genomics_r.Rproj"             "genomics_r_basics.R"             "sample_submission.csv"          
+>[4] "submission_metadata_summary.txt" "submission_metatata_cleaned.csv"
+> ~~~
+{: .output}
+
+The `write.csv()` function has some additional argument listed in the help, but
+at a minimum you need to tell it what data frame to write to file, and give a
+path to a file name in quotes (if you only provide a file name, the file will
+be written in the current working directory).
+
+> ## Exercise: Putting it all together - data frames
+>
+> **Using the `Ecoli_metadata` data frame created above, answer the following questions**
+>
+> *Hint*: If you did not create the `Ecoli_metadata` data frame, use the
+> instructions above (Importing data from Excel section) to create this object.
+>
+> A) What are the dimensions (# rows, #columns) of the data frame?
+>
+> B) What are categories are there in the `cit` column? *hint*: treat column as factor
+>
+> C) How many of each of the `cit` categories are there?
+>
+> D) What is the genome size for the 7th observation in this data set?
+>
+> E) What is the median value of the variable `genome_size`
+>
+> F) Rename the column `sample` to `sample_id`
+>
+> G) Create a new column (name genome_size_bp) and set it equal to the genome_size multiplied by 1,000,000
+>
+> H) Save the edited Ecoli_metadata data frame as "exercise_solution.csv" in your current working directory.
+>
+>> ## solution
+>>
+>> A) `dim(Ecoli_metadata)` # (30 rows, 7 columns)
+>>
+>> B) `levels(as.factor(Ecoli_metadata$cit))` # "minus"   "plus"    "unknown"
+>>
+>> C) `table(as.factor(Ecoli_metadata$cit))` # 9 minus, 9 plus, 12 unknown
+>>
+>> D) `Ecoli_metadata[7,7]` # 4.62
+>>
+>> E) `median(Ecoli_metadata$genome_size)` # 4.625
+>>
+>> F) `colnames(Ecoli_metadata)[colnames(Ecoli_metadata) == "sample"]<- "sample_id"`
+>>
+>> G) `Ecoli_metadata$genome_size_bp <- Ecoli_metadata$genome_size * 1000000`
+>>
+>> H) `write.csv(Ecoli_metadata, file= "exercise_solution.csv")`
+> {: .solution}
+{: .challenge}
+
+
 
 ---
