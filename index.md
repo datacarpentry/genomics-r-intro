@@ -10,7 +10,7 @@ difficult and frustrating at times – so if even the best feel that way, why le
 intimidation stop you? Given time and practice* you will soon find it easier
 and easier to accomplish what you want.
 
-Why learn to code? Bioinformatics – like Biology – is messy. Different
+Why learn to code? Bioinformatics – like biology – is messy. Different
 organisms, different systems, different conditions, all behave differently.
 Experiments at the bench require a variety of approaches – from tested protocols
 to trial-and-error. Bioinformatics is also an experimental science, otherwise we
