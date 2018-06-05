@@ -8,14 +8,15 @@ questions:
 - "What are the most common objects in R?"
 objectives:
 - "Be able to create the most common R objects including vectors"
-- "Understand that vectors have modes, which correspond to the type of data they contain"
+- "Understand that vectors have modes, which correspond to the type of data they
+  contain"
 - "Be able to use arithmetic operators on R objects"
 - "Be able to retrieve (subset), name, or replace, values from a vector"
 - "Be able to use logical operators in an subsetting operation"
 - "Understand that lists can hold data of more than one mode and can be indexed"
 keypoints:
 - "Effectively using R is a journey of months or years. Still you don't have to
-  be an expert to use R and you can start using and analzying your data with
+  be an expert to use R and you can start using and analyzing your data with
   with about a day's worth of training"
 - "It is important to understand how data are organized by R in a given object
   type how the mode of that type (e.g. numeric, character, logical, etc.) will
@@ -42,24 +43,25 @@ their own research questions! Ok, maybe some folks learn R for R's sake, but
 these lessons assume that you want to start analyzing genomic data as soon as
 possible. Given this, there are many valuable pieces of information about R
 that we simply wont have time to cover. Hopefully we will clear the hurdle of
-giving you just enough knowledge to be dangerous, which can be a high hurdle
-in R! We uggest you look into additional the learning materials in the tip box
+giving you just enough knowledge to be dangerous, which can be a high bar
+in R! We suggest you look into additional the learning materials in the tip box
 below.
 
 **Here are some R skills we will *not* cover in these lessons**
 
 - How to create and work with R matrices and R lists
-- How to create and work with loops and conditional statements
-- How to do basic string manipulations (e.g. finding patterns in text using grep)
+- How to create and work with loops and conditional statements, and the "apply"
+  family of functions (which are super useful, read more [here](https://www.r-bloggers.com/r-tutorial-on-the-apply-family-of-functions/))
+- How to do basic string manipulations (e.g. finding patterns in text using grep, replacing text)
 - How to plot using the default R graphic tools (we *will* cover ggplot2)
-- How to use the advanced R statistical functions
+- How to use advanced R statistical functions
 
 >## Tip: Where to learn more
 > The following are good resources for learning more about R. Some of them
-> can be quite technically, but if you are a regular R user you may ultimately
-> need some of this technical knowledge.
+> can be quite technical, but if you are a regular R user you may ultimately
+> need this technical knowledge.
 > - [R for Beginners](https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf):
-    By Emmanuel Paradis, great starting point
+    By Emmanuel Paradis and a great starting point
 > - [The R Manuals](https://cran.r-project.org/manuals.html): Maintained by the
     R project
 > - [R contributed documentation](https://cran.r-project.org/other-docs.html):
@@ -72,22 +74,31 @@ below.
     and applications for R
 > - [Programming in R Software Carpentry lesson](https://software-carpentry.org/lessons/):
     There are several Software Carpentry lessons in R to choose from
+> - [Data Camp Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r):
+    This is a fun online learning platform for Data Science, including R.
  {: .callout}
 
 ## Creating objects in R
 
 > ## Reminder
-> At this point you should writing following along in the "**genomics_r_basics.R**"
-> script we created in the last episode. Writing you commands in the script
-> will make it easier to record what you did and why.
+> At this point you should be coding along in the "**genomics_r_basics.R**"
+> script we created in the last episode. Writing your commands in the script
+> (and commenting it) will make it easier to record what you did and why.
 >
 {: .prereq}
 
-What might be called a variable in many language is properly called an **object**
-in R. To create your object you need a name (e.g. 'a'), and a value (e.g. '1').
-Using the R assignment operator '<-''. In your script, "**genomics_r_basics.R**"
-write a comment (using the '#') sign, and assign '1' to the object 'a' as shown
-below:
+What might be called a variable in many languages is properly called an **object**
+in R.
+
+**To create your object you need:**
+
+- a name (e.g. 'a')
+- a value (e.g. '1')
+- the assignment operator ('<-')
+
+In your script, "**genomics_r_basics.R**", using the R assignment operator '<-',
+assign '1' to the object 'a' as shown. Remember to leave a comment in the line
+above (using the '#') to explain what you are doing:
 
 > ~~~
 > # this line creates the object 'a' and assigns it the value '1'
@@ -96,20 +107,21 @@ below:
 > ~~~
 {: .language-r}
 
-Be sure to execute this line of code in your script. You can run a line of code
+
+Next, run this line of code in your script. You can run a line of code
 by hitting the <KBD>Run</KBD> button that is just above the first line of your
 script in the header of the Source pane or you can use the appropriate shortcut:
   - Windows execution shortcut: <KBD>Ctrl</KBD>+<KBD>Enter</KBD>
   - Mac execution shortcut: <KBD>Cmd(⌘)</KBD>+<KBD>Enter</KBD>
-to run multiple lines of code, you can highlight all the line you wish to run
+
+To run multiple lines of code, you can highlight all the line you wish to run
 and then hit <KBD>Run</KBD> or use the shortcut key combo.
 
-You should notice the following outputs; in the RStudio 'Console' you should see:
+In the RStudio 'Console' you should see:
 
 > ~~~
-> # this line creates the object 'a' and assigns it the value '1'
->
 > a <- 1
+> >
 > ~~~
 {: .output}
 
@@ -126,12 +138,14 @@ The 'Environment' window allows you to easily keep track of the objects you have
 created in R.
 
 > ## Exercise: Create some objects in R
-> Create the following objects in R, give each object an appropriate name.
+> Create the following objects; give each object an appropriate name
+> (your best guess at what name to use is fine):
 >
 > 1. Create an object that has the value of number of pairs of human chromosomes
 > 2. Create an object that has a value of your favorite gene name
-> 3. Create an object that value of this URL: "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-39/fasta/bacteria_5_collection/escherichia_coli_b_str_rel606/"
-> 4. Create and object that has the value of the number of chromosomes in a diplod cell
+> 3. Create an object that has this URL as its value: "ftp://ftp.ensemblgenomes.org/pub/bacteria/release-39/fasta/bacteria_5_collection/escherichia_coli_b_str_rel606/"
+> 4. Create an object that has the value of the number of chromosomes in a
+> diploid human cell
 >
 >> ## solution
 >> Here as some possible answers to the challenge:
@@ -147,23 +161,22 @@ created in R.
 
 Here are some important details about naming objects in R.
 
-- **Avoid spaces and special characters**: Object cannot contain spaces. Typically
-  you can use '-' or '_' to provide separation. You should avoid using special
-  characters in your object name (e.g. ! @ # . , etc.). Also, names cannot begin with
-  a number.
+- **Avoid spaces and special characters**: Object names cannot contain spaces.
+  Typically, you can use '-' or '_ ' to make names more readable. You should avoid
+  using special characters in your object name (e.g. ! @ # . , etc.). Also,
+  names cannot begin with a number
 - **Use short, easy-to-understand names**: You should avoid naming your objects
   using single letters (e.g. 'n', 'p', etc.). This is mostly to encourage you
   to use names that would make sense to anyone reading your code (a colleague,
-  or even yourself a year from now). Also, avoiding really long names will make
-  your code more readable.
-- **Avoid commonly used names**: There are several names that may alread have a
+  or even yourself a year from now). Also, avoiding excessively long names will
+  make your code more readable
+- **Avoid commonly used names**: There are several names that may already have a
   definition in the R language (e.g. 'mean', 'min', 'max'). One clue that a name
-  already has meaning is that if you start typing a name in RStudio and either
-  pause your typing or hit the <KBD>Tab</KBD> key and RStudio gives you a
-  suggested autocompletion or help message you have choosen a name that has a
-  prior meaning.
-- **Use the recommended assignment operator**: In R, we use '<- '' as the
-  prefered assignment operator. '=' works too, but is most comonly used in
+  already has meaning is that if you start typing a name in RStudio and it gets
+  a colored highlight, or RStudio gives you a suggested autocompletion you have
+  chosen a name that has a reserved meaning
+- **Use the recommended assignment operator**: In R, we use '<- ' as the
+  preferred assignment operator. '=' works too, but is most commonly used in
   passing arguments to functions (more on functions later). There is a shortcut
   for the R assignment operator:
   - Windows execution shortcut: <KBD>Alt</KBD>+<KBD>-</KBD>
@@ -176,14 +189,14 @@ have advice, and one to start with is the [tidyverse R style guide](http://style
 
 >## Tip: Pay attention to warnings in the script console
 >
-> If you enter a line of code in your R that contains some error, RStudio
-> may give you hint with an error indication and an underline of this mistake.
-> Sometimes these messages are easy to understand, but often the message may
-> need some figuring out. In any case paying attention to these warnings help
-> you avoid mistakes. In this case, our object name has a space, which is not
-> allowed in R. Notice the error message does not say this directly, but
-> essentially R is "not sure" about to to assign the name to "human_ chr_number"
-> when the object name we want is "human_chr_number".
+> If you enter a line of code in your script that contains some error, RStudio
+> may give you an error message and underline this mistake. Sometimes these
+> messages are easy to understand, but often the message may need some figuring
+> out. In any case paying attention to these warnings help you avoid mistakes.
+> In this case, our object name has a space, which is not allowed in R. Notice
+> the error message does not say this directly, but essentially R is "not sure"
+> about to to assign the name to "human_ chr_number" when the object name we
+> want is "human_chr_number".
 >
 > <img src="../assets/img/rstudio_script_warning.png" alt="rstudio script warning" style="width: 600px;"/>
 >
@@ -196,7 +209,8 @@ not complain about overwriting objects, which may or may not be a good thing
 depending on how you look at it.
 
 > ~~~
-> # gene_name has the value 'pten' or whatever value you used in the challenge. We will now assign the new value 'tp53'
+> # gene_name has the value 'pten' or whatever value you used in the challenge.
+> # We will now assign the new value 'tp53'
 >
 > gene_name <- 'tp53'
 > ~~~
@@ -221,30 +235,37 @@ longer defined.
 > ~~~
 {: .error}
 
-## Understaning object data types (modes)
+## Understanding object data types (modes)
 
-One very important thing to know about an object is that every object has two
-properties, "length" and "mode". We will get to the "length" property later in
-the lesson. The **"mode" property corresponds to the type of data an object**
-**represents**. The most common modes you will encounter in R are:
+In R, **every object has two properties**:
+
+- **Length**: How many distinct values are held in that object
+- **Mode**: What is the classification (type) of that object.
+
+We will get to the "length" property later in the lesson. The **"mode" property**
+**corresponds to the type of data an object**represents**. The most common modes
+you will encounter in R are:
 
 |Mode (abbreviation)|Type of data|
 |----|------------|
-|Numeric (num)| Numbers such integers (e.g. 1, 892, 1.3e+10) and floating pont/decimals (0.5, 3.14)|
+|Numeric (num)| Numbers such floating point/decimals (1.0, 0.5, 3.14), there are also more specific numeric types (dbl - Double, int - Integer). These differences are not relevant for most beginners and pertain to how these values are stored in memory |
 |Character (chr)|A sequence of letters/numbers in single '' or double " " quotes|
 |Logical| Boolean values - TRUE or FALSE|
 
-There are a few other modes (double", "complex", "raw" etc.) but for now, these
-three are the most important. Data types are familiar in many programming
-languages, but also in natural language where we refer to them as the
-parts of speech, e.g. nouns, verbs, adverbs, etc. One you know if a word -
-perhaps an unfamilar one - is a noun, you can probbaly guess you can count it
-and make it plural if there is more than one (e.g. 1 Tuatara, or 2 Tuataras).
-If something is a adjective, you can usually change it into an adverb by
-adding "-ly" (e.g. jejune vs. jejunely). Depending on the context, you may need
-to decide if a word is in one category or another (e.g "cut" may be a noun when
-its on your finger, or a verb when you are preparing vegetables). These examples
-have important analogies when working with R objects.
+There are a few other modes (i.e. "complex", "raw" etc.) but for now, these three
+are the most important.
+
+Data types are familiar in many programming languages, but also in natural
+language where we refer to them as the parts of speech, e.g. nouns, verbs,
+adverbs, etc. Once you know if a word - perhaps an unfamiliar one - is a noun,
+you can probably guess you can count it and make it plural if there is more than
+one (e.g. 1 [Tuatara](https://en.wikipedia.org/wiki/Tuatara), or 2 Tuataras).
+If something is a adjective, you can usually change it into an adverb by adding
+"-ly" (e.g. [jejune](https://www.merriam-webster.com/dictionary/jejune) vs.
+jejunely). Depending on the context, you may need to decide if a word is in one
+category or another (e.g "cut" may be a noun when its on your finger, or a verb
+when you are preparing vegetables). These concepts have important analogies when
+working with R objects.
 
 > ## Exercise: Create objects and check their modes
 > Create the following objects in R, then use the `mode()` function to verify
@@ -269,17 +290,17 @@ have important analogies when working with R objects.
 Notice from the solution that even if a series of numbers are given as a value
 R will consider them to be in the "character" mode if they are enclosed as
 single or double quotes. Also notice that you cannot take a string of alphanumeric
-character (e.g. Earhart) and assign as a value for an object. In this case,
+characters (e.g. Earhart) and assign as a value for an object. In this case,
 R looks for the object `Earhart` but since there is no object, no assignment can
 be made. If `Earhart` did exist, then the mode of `pilot` would be whatever
 the mode of `Earthrt` was originally.
 
 ## Mathematical and functional operations on objects
 
-Once an object exsits (which by definition also means it has a mode), R can
+Once an object exists (which by definition also means it has a mode), R can
 appropriately manipulate that object. For example, objects of the numeric modes
 can be added, multiplied, divided, etc. R provides several mathematical
-(arithmetic) operators incuding:
+(arithmetic) operators including:
 
 |Operator|Description|
 |--------|-----------|
@@ -302,7 +323,7 @@ These can be used with literal numbers:
 > ~~~
 {: .output}
 
-and importantly, can be used on any object that evaluates to (i.e. iterprited
+and importantly, can be used on any object that evaluates to (i.e. interpreted
 by R) a numeric object:
 
 
@@ -355,12 +376,12 @@ here too.
 ## Vectors
 
 With a solid understanding of the most basic objects, we come to probably the
-most used objects in R, vectors. A vector can be though of as a collection of
-values (numbers, characters, etc.). Vectors also have a mode (data type), so
-all of the contents of a vctor must be of the same mode. One of the most common
-way to create a vector is to use the `c()` function - the "concatanate" or
+most used objects in R, vectors. **A vector is a collection of values (numbers,**
+**characters, etc.)**. Vectors also have a mode (data type), so all of the
+contents of a vector must be of the same mode. One of the most common
+ways to create a vector is to use the `c()` function - the "concatenate" or
 "combine" function. Inside the function you may enter one or more values; for
-multiple values, seperate each value with a comma:
+multiple values, separate each value with a comma:
 
 > ~~~
 > # Create the SNP gene name vector
@@ -396,7 +417,7 @@ returns:
 
 Vectors are quite important in R, mostly for us because data frames are
 essentially collections of vectors (more on this later). What we learn about
-manipulating vectors now will pay of even more when we get to data frames.
+manipulating vectors now will pay off even more when we get to data frames.
 
 ## More on creating and subsetting vectors
 
@@ -539,9 +560,9 @@ so that the gene "APOA5" is an index 7. This may be a good or not so good thing
 depending on how you use this.
 
 > ## Exercise: Examining and subsetting vectors
-> Answer the following questions to test your knowledge vectors
+> Answer the following questions to test your knowledge of vectors
 >
-> Which of the following is true of vectors in R
+> Which of the following are true of vectors in R?
 >
 > A) All vectors have a mode or a length
 >
@@ -641,9 +662,9 @@ Some of the most common logical operators you will use in R are:
 >number. So, even if it does not appear to be an integer (e.g. 1, 2, 3), as long
 >as R can evaluate it, we will get a result. That our expression
 >`snp_positions[snp_positions > 100000000]` evaluates to a number can be seen
->in the following situtaion. If you wanted to know which **index** (1, 2, 3, or
+>in the following situation. If you wanted to know which **index** (1, 2, 3, or
 >4) in our vector of SNP positions was the one that was greater than 100,000,000?
->We can use the `which()` function to return the indicies of any item that
+>We can use the `which()` function to return the indices of any item that
 >evaluates as TRUE in our comparison:
 >> ~~~
 >> which(snp_positions > 100000000)
@@ -653,7 +674,10 @@ Some of the most common logical operators you will use in R are:
 >> [1] 4
 >> ~~~
 >{: .output}
-> **Why is this important?** Often in programming we will not know what inputs
+>
+> **Why this is important**
+>
+>Often in programming we will not know what inputs
 > and values will be used when our code is executed. Rather than put in a
 > pre-determined value (e.g 100000000) we can use an object that can take on
 > whatever value we need. So for example:
@@ -691,9 +715,9 @@ value:
 {: .output}
 
 Sometimes, you may wish to find out if a specific value (or several values) is
-in a vector. You can do this using the comparison operator `%in%`, which will
-return TRUE for any value in your collection of one or more values matches a
-value in the vector you are searching:
+present a vector. You can do this using the comparison operator `%in%`, which
+will return TRUE for any value in your collection of one or more values matches
+a value in the vector you are searching:
 
 > ~~~
 > # current value of 'snp_genes': chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
@@ -728,7 +752,7 @@ value in the vector you are searching:
 >    c. To the `snp_positions` vector add: 	116792991
 >
 > **3) Make the following change to the `snp_genes` vector**
-> Hint: Your vector should look like this in the 'Global Enviornment':
+> Hint: Your vector should look like this in the 'Global Environment':
 > `chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"`. If not
 > recreate the vector by running this expression:
 > `snp_genes <- c("OXTR", "ACTN3", "AR", "OPRM1", "CYP1A1", NA, "APOA5")`
@@ -738,7 +762,7 @@ value in the vector you are searching:
 >    b. Add 2 NA values to the end of `snp_genes` (hint: final vector should
 >    have a length of 8)
 >
-> **4) Create a new vector `combined` that contains:**
+> **4) Using indexing, create a new vector `combined` that contains:**
 >
 >    - The the 1st value in `snp_genes`
 >
@@ -776,7 +800,7 @@ value in the vector you are searching:
 >>    b. `snp_genes <- c(snp_genes, NA, NA)` or `snp_genes[[8]] <- NA`, etc.
 >>
 >>
->> **4) Create a new vector `combined` that contains:**
+>> **4) Using indexing, create a new vector `combined` that contains:**
 >>
 >>    - The the 1st value in `snp_genes`
 >>
@@ -807,10 +831,12 @@ items from the list.
 
 > ~~~
 > # Create a named list using the 'list' function and our SNP examples
-> # Note, for easy reading we have place each item in the list on a separate line
+> # Note, for easy reading we have placed each item in the list on a separate line
 > # Nothing special about this, you can do this for any multiline commands
 > # To run this command, make sure the entire command (all 4 lines) are highlighted
 > # before running
+> # Note also, as we are doing all this inside the list() function use of the
+> # '=' sign is good style
 >
 >snp_data <- list(genes = snp_genes,
 >                 refference_snp = snps,
@@ -818,6 +844,7 @@ items from the list.
 >                 position = snp_positions)
 >
 > # Examine the structure of the list
+>
 >str(snp_data)
 > ~~~
 {: .language-r}

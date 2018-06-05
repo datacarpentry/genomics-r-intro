@@ -12,8 +12,8 @@ objectives:
 - "Be able to determine the structure of a data frame including its dimensions
   and the datatypes of variables"
 - "Be able to subset/retrieve values from a data frame"
-- "Understand how R may converse data into different modes"
-- "Be able to convert the mode of an object"
+- "Understand how R may coerce data into different modes"
+- "Be able to change the mode of an object"
 - "Understand that R uses factors to store and manipulate categorical data"
 - "Be able to manipulate a factor, including subsetting and reordering"
 - "Be able to apply an arithmetic function to a data frame"
@@ -49,7 +49,7 @@ from data which have been manipulated in some unknown way).
 The simplest principle of **Tidy data** is that we have one row in our
 spreadsheet for each observation or sample, and one column for every variable
 that we measure or report on. As simple as this sounds, it's very easily
-violated. Most data scintists agree that significant amounts of their time is
+violated. Most data scientists agree that significant amounts of their time is
 spent tidying data for analysis. Read more about data organization in
 [our lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/) and
 in [this paper](https://www.jstatsoft.org/article/view/v059i10).
@@ -57,7 +57,7 @@ in [this paper](https://www.jstatsoft.org/article/view/v059i10).
 **3) Trust but verify**
 
 Finally, while you don't need to be paranoid about data, you should have a plan
-for how you will prepare it for analysis. **This a the focus of this lesson.**
+for how you will prepare it for analysis. **This a focus of this lesson.**
 You probably already have a lot of intuition, expectations, assumptions about
 your data - the range of values you expect, how many values should have
 been recorded, etc. Of course, as the data get larger our human ability to
@@ -65,13 +65,22 @@ keep track will start to fail (and yes, it can fail for small data sets too).
 R will help you to examine your data so that you can have greater confidence
 in your analysis, and its reproducibility.
 
+>## Tip: Keeping you raw data separate
+> When you work with data in R, you are not changing the original file you
+> loaded that data from. This is different than (for example) working with
+> a spreadsheet program where changing the value of the cell leaves you one
+> "save"-click away from overwriting the original file. You have to purposely
+> use a writing function (e.g. `write.csv()`) to save data loaded into R. In
+> that case, be sure to save the manipulated data into a new file. More on this
+> later in the lesson.  
+ {: .callout}
+
+
 
 ## Importing tabular data into R
 There are several ways to import data into R. For our purpose here, we will
 focus on using the tools every R installation comes with (so called "base" R) to
-import a comma-delimited file, a sequencing sample submission sheet. We will
-
-First, we need to load the sheet using a function called `read.csv()`.
+import a comma-delimited file, a sequencing sample submission sheet. We will need to load the sheet using a function called `read.csv()`.
 
 > ## Exercise: Review the arguments of the `read.csv()` function
 > **Before using the `read.csv()` function, use R's help feature to answer the
@@ -117,7 +126,7 @@ First, we need to load the sheet using a function called `read.csv()`.
 >> Hopefully, this exercise gets you thinking about using the provided help
 >> documentation in R. There are many arguments that exist, but which we wont
 >> have time to cover. Look here to get familiar with functions you use
->> frequently, you may be surpized at what you find they can do.
+>> frequently, you may be surprised at what you find they can do.
 > {: .solution}
 {: .challenge}
 
@@ -136,7 +145,7 @@ errors in file paths.** Use it!
 > ~~~
 {: .language-r}
 
-One of the first things you should notice is that in the Enviornment window,
+One of the first things you should notice is that in the Environment window,
 you have the `submission_metadata` object, listed as 96 obs. (observations/rows)
 of 10 variables (columns). Double-clicking on the name of the object will open
 a view of the data in a new tab.
@@ -175,12 +184,12 @@ frame. Let's examine what each of these functions can tell us:
 > ~~~
 {: .output}
 
-Our data frame had 10 variables, so we get 10 feilds that summarize the data.
+Our data frame had 10 variables, so we get 10 fields that summarize the data.
 The `tube_barcode`, `Volume..ul.`, `concentration..ng.ul`, `RIN`, variables are
 numerical data and so you get summary statistics on the min and max values for
 these columns, as well as mean, median, and interquartile ranges. The other data
-(e.g. `replicate`, etc.) are treated as catagorical data (which have special
-treatment in R - more on this in a bit). The top 6 different catagories and the
+(e.g. `replicate`, etc.) are treated as categorical data (which have special
+treatment in R - more on this in a bit). The top 6 different categories and the
 number of times they appear (e.g. the replicate called 'A' appeared 31 times)
 are displayed. There was only one value for `ship_date`, "20-Jul" which appeared
 96 times.
@@ -222,9 +231,9 @@ Ok, thats a lot up unpack! Some things to notice.
 Factors are the final major data structure we will introduce in our R genomics
 lessons. Factors can be thought of as vectors which are specialized for
 categorical data. Given R's specialization for statistics, this make sense since
-categorial and contiuous variables usually have different treatments. Sometimes
-you may want to have data treated as a fator, but in other cases, this may be
-undersirable.
+categorial and continuous variables usually have different treatments. Sometimes
+you may want to have data treated as a factor, but in other cases, this may be
+undesirable.
 
 Since some of the data in our data frame are factors, lets see how factors work
 using the `factor()` function to create a factor:
@@ -258,7 +267,7 @@ What we get back are the items in our factor, and also something called "Levels"
 **Levels are the different categories contained in a factor**. By default, R
 will organize the levels in a factor in alphabetical order.
 
-Lets look at the contents of a factor in a slightly diffrent way using `str()`:
+Lets look at the contents of a factor in a slightly different way using `str()`:
 > ~~~
 >
 > str(days_of_the_week)
@@ -269,7 +278,7 @@ Lets look at the contents of a factor in a slightly diffrent way using `str()`:
 > ~~~
 {: .output}
 
-For the sake of efficency, R stores the content of a factor as a vector of
+For the sake of efficiency, R stores the content of a factor as a vector of
 integers, which an integer is assigned to each of the possible levels. Recall
 levels are assigned in alphabetical order, so:
 
@@ -309,7 +318,7 @@ provides some clarification to why we get this output.
 
 One of the most common uses for factors will be when you plot categorical
 values. For example, suppose we want to know how many samples from our sample
-submision were preped on each date? We could generate a plot:
+submission were prepped on each date? We could generate a plot:
 
 > ~~~
 > # create a factor with repeated values
@@ -360,7 +369,7 @@ Then we use the `table()` function to turn this into a table of counts:
 > ~~~
 {: .output}
 
-Finally, we use R's `plot()` function which attemtps to generate a plot from the
+Finally, we use R's `plot()` function which attempts to generate a plot from the
 data:
 > ~~~
 > # generate a plot from values of the 'prep_date' variable from the data frame
@@ -411,10 +420,10 @@ order.
 > - 6-Jul-15: July 6, 2015
 > - 7/8/15: July 8, 2015
 >
-> *hint* you can use the `factor()` function inside of your `table()`and `plot()`
+> *hint*: you can use the `factor()` function inside of your `table()`and `plot()`
 > function calls.
 >
-> *hint* build this single line of code from the inside out!
+> *hint*: build this single line of code from the inside out!
 >> ## solution
 >>plot(table(factor(submission_metadata$prep_date, levels = c("7-Jun-15",
 >>                                                 "6-Jul-15",
@@ -433,7 +442,7 @@ Next, we are going to talk about how you can get specific values from data frame
 
 The first thing to remember is that a data frame is two-dimensional (rows and
 columns). Therefore, to select a specific value we will will once again use
-`[]` notation, but we will specify more than one value (except in some cases
+`[]` (bracket) notation, but we will specify more than one value (except in some cases
 where we are taking a range).
 
 > ## Exercise: Subsetting a data frame
@@ -574,8 +583,8 @@ is not what you expect. Consider:
 {: .output}
 
 Although there are several numbers in our vector, they are all in quotes, so
-we have explicitly told R to consider them characters. Even if we removed the
-quotes from the numbers, R would coerce everything into a character:
+we have explicitly told R to consider them characters. However, even if we removed
+the quotes from the numbers, R would coerce everything into a character:
 
 > ~~~
 > snp_chromosomes_2 <- c(3, 11, 'X', 6)
@@ -589,8 +598,9 @@ quotes from the numbers, R would coerce everything into a character:
 > ~~~
 {: .output}
 
-We can use some of the `as.` functions to explicitly coerce values from one
-form into another. Consider the following vector of characters, which all happen to be valid numbers:
+We can use the `as.` functions to explicitly coerce values from one form into
+another. Consider the following vector of characters, which all happen to be
+valid numbers:
 
 > ~~~
 > snp_positions_2 <- c("8762685", "66560624", "67545785", "154039662")
@@ -695,7 +705,7 @@ Lets summarize this section on coercion with a few take home messages.
   coercion.
 - Check the structure (`str()`) of your data frames before working with them!
 
-One regarding the first bullet point, one way to avoid needless coercion when
+Regarding the first bullet point, one way to avoid needless coercion when
 importing a data frame using any one of the `read.table()` functions such as
 `read.csv()` is to set the argument `StringsAsFactors` to FALSE. By default,
 this argument is TRUE. Setting it to FALSE will treat any non-numeric column to
@@ -710,7 +720,7 @@ Here are a few operations that don't need much explanation, but which are good
 to know.
 
 There are lots of arithmetic functions you may want to apply to your data
-frame, an covering those would be a course in itself (there is some starting
+frame, covering those would be a course in itself (there is some starting
 material [here](https://swcarpentry.github.io/r-novice-inflammation/15-supp-loops-in-depth/)). Our lessons will cover some additional summary statistical functions in
 a subsequent lesson, but overall we will focus on data cleaning and
 visualization.
@@ -791,7 +801,9 @@ Excel files, are you going to open and export all of them?).
 One common R package (a set of code with features you can download and add to
 your R installation) is the [readxl package](https://CRAN.R-project.org/package=readxl) which can open and import Excel
 files. Rather than addressing package installation this second, we can take
-advantage of RStudio's import feature which integrates this package.
+advantage of RStudio's import feature which integrates this package. (Note:
+this feature is available only in the latest versions of RStudio such as is
+installed on our cloud instance).
 
 
 
@@ -818,7 +830,7 @@ In this exercise, we will leave the title of the data frame as
 **Ecoli_metadata**, and there are no other options we need to adjust. Click the
 <KBD>Import</KBD> button to import the data.
 
-Finally, let's check the fist few lines of the `Ecoli_metadata` metadata data
+Finally, let's check the first few lines of the `Ecoli_metadata` metadata data
 frame:
 
 > ~~~
@@ -859,7 +871,7 @@ to a .csv file using the `write.csv()` function:
 > ~~~
 {: .output}
 
-The `write.csv()` function has some additional argument listed in the help, but
+The `write.csv()` function has some additional arguments listed in the help, but
 at a minimum you need to tell it what data frame to write to file, and give a
 path to a file name in quotes (if you only provide a file name, the file will
 be written in the current working directory).
