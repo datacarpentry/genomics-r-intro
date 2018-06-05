@@ -10,26 +10,26 @@ objectives:
 - "Know advantages of using RStudio"
 - "Create an RStudio project, and know the benefits of working within a
    project"
-- "Customize RStudio layout"
+- "Be able to customize the RStudio layout"
 - "Be able to locate and change the current working directory with `getwd()` and
   `setwd()`"
-- "Compose an R script file with comments and saved commands"
-- "Be able to define what an R function is"
+- "Compose an R script file containing comments and commands"
+- "Understand what an R function is"
 - "Locate help for an R function using `?`, `??`, and `args()`"
 
 keypoints:
 - "R is a powerful, popular open-source scripting language"
-- "RStudio allows you to run R in an easy-to-use interface and makes
-  it easy to find help"
 - "You can customize the layout of RStudio, and use the project feature to manage
   the files and packages used in your analysis"
+- "RStudio allows you to run R in an easy-to-use interface and makes
+  it easy to find help"
+
 
 ---
 
 ## Getting ready to use R for the first time
 In this lesson we will take you through the very first things you need to get
-R working, and conclude by showing you the most effective ways to get help
-when you are working with R on your own.
+R working.
 
 >## Tip: This lesson works best on the cloud
 > Remember, these lessons assume we are using the pre-configured virtual machine
@@ -54,22 +54,22 @@ by Ross Ihaka for more info on the subject.
 At more than 20 years old, R is fairly mature and [growing in popularity](https://www.tiobe.com/tiobe-index/r/). However, programming isn’t a popularity contest. Here are key advantages of
 analyzing data in R:
 
- - **R is [open source](https://en.wikipedia.org/wiki/Open-source_software)**. Of
-   course this means R is free - which is an advantage if you end up at a
-   institution where you would have to pay for your own MATLAB or SAS license.
-   Open source, is important to your colleagues in parts of the world where
-   expensive software in inaccessible. It also means that R is actively
-   developed by a community (See [r-project.org](https://www.r-project.org/)),
+ - **R is [open source](https://en.wikipedia.org/wiki/Open-source_software)**.
+   This means R is free - an advantage if you are at an institution where you
+   have to pay for your own MATLAB or SAS license. Open source, is important to
+   your colleagues in parts of the world where expensive software in
+   inaccessible. It also means that R is actively developed by a community (see
+   [r-project.org](https://www.r-project.org/)),
    and there are regular updates.
  - **R is widely used**. Ok, maybe programming is a popularity contest. Because,
    R is used in many areas (not just bioinformatics), you are more likely to
    find help online when you need it. Chances are, almost any error message you
    run into, someone else has already experienced.
 - **R is powerful**. R runs on multiple platforms (Windows/MacOS/Linux). It can
-  work with much larger datasets than popular spreadsheet programs like
-  Microsoft Excel, and because of its scripting capabilities is far more
-  reproducible. Also, there are thousands of available software packages for
-  science, including genomics and other areas of life science.
+   work with much larger datasets than popular spreadsheet programs like
+   Microsoft Excel, and because of its scripting capabilities is far more
+   reproducible. Also, there are thousands of available software packages for
+   science, including genomics and other areas of life science.
 
 >## Discussion: Your experience
 > What has motivated you to learn R? Have you had a research question for which
@@ -103,6 +103,11 @@ Open a web browser and enter the IP address of your instance, followed by
 >
 {: .source}
 
+You should now be looking at a page that will allow you to login to the RStudio
+server:
+
+<img src="../assets/img/rstudio_login_screen.png" alt="rstudio default session" style="width: 1000px;"/>
+
 Enter your user credentials and click <kbd>Sign In</kbd>. The credentials for
 the genomics Data Carpentry instances are:
 
@@ -112,18 +117,19 @@ the genomics Data Carpentry instances are:
 
 You should now see the RStudio interface:
 
-<img src="../assets/img/rstudio_session_default.png" alt="rstudio default session" style="width: 1000px;"/>
+<img src="../assets/img/rstudio_session_default.png" alt="rstudio default session" style="width:1000px;"/>
 
 ---
 
 ## Create an RStudio project
 
 One of the first benefits we will take advantage of in RStudio is something
-called an **RStudio Project**. An RStudio Project allows you easily save data,
-files, variables, packages, etc. related to a specific analysis project you are
-conducting in R. Saving your work into a project makes it easy to restart work
-where you left off, and also makes it easier to collaborate, especially if you
-are using version control such as [git](http://swcarpentry.github.io/git-novice/).
+called an **RStudio Project**. An RStudio project allows you to more easily:
+
+- Save data, files, variables, packages, etc. related to a specific
+  analysis project
+- Restart work where you left off
+- Collaborate, especially if you are using version control such as [git](http://swcarpentry.github.io/git-novice/).
 
 
 To create a project, go to the <kbd>File</kbd> menu, and click <kbd>New Project...</kbd>.
@@ -173,34 +179,36 @@ convention, R scripts end with the file extension **.R**.
 ## Overview and customization of the RStudio layout
 
 Now that we have covered the basics, lets address some ways to configure the
-layout of RStudio. First, here are the major windows or panes of the RStudio
+layout of RStudio. First, here are the major windows (or panes) of the RStudio
 environment:
 
 <img src="../assets/img/rstudio_session_4pane_layout.png" alt="rstudio default session" style="width: 1000px;"/>
 
 - **Source**: This pane is where you will write/view R scripts. Some outputs
-  (such as if you view a dataset using `View()`) will appear as a tab here.
-- **Console/Terminal**: This is actually where you see the execution of commands
-  , and what R looks like if you were to run it at the command line without
-  RStudio. You can work interactively (i.e. enter R commands here), but for the
-  most part, we will run a script, or lines in a script and watch their
-  execution and output here. The "Terminal" tab give you access to the BASH
-  terminal.
+  (such as if you view a dataset using `View()`) will appear as a tab here
+- **Console/Terminal**: This is actually where you see the execution of
+  commands. This is the same display you would see if you were using R at the
+  command line without RStudio. You can work interactively (i.e. enter R
+  commands here), but for the most part we will run a script (or lines in a
+  script) in the source pane and watch their execution and output here. The
+  "Terminal" tab give you access to the BASH terminal (the Linux operating
+  system, unrelated to R)
 - **Environment/History**: Here, RStudio will show you what datasets and
-  variables you have created, and which are actively defined/in memory. You can
-  also see some characteristics of variables/datasets such as their type and
-  dimensions. A "History" tab also contains a history of executed R commands. In
-  the history tab you can see a list of previously executed commands.
+  objects (variables) you have created and which are defined in memory.
+  You can also see some properties of objects/datasets such as their type
+  and dimensions. A "History" tab also contains a history of executed R commands.
+  In the history tab you can see a list of previously executed commands
 - **Files/plots/Packages/help**: This multipurpose pane will show you the
   contents of directories on your computer. You can also use the "Files" tab to
   navigate and set the working directory. The "Plots" tab will show the output
   of any plots generated. In "Packages" you will see what packages are actively
   loaded, or you can attach installed packages. "Help" will display help files
-  for R functions/packages.
+  for R functions/packages
 
->## Tip: Downloads from the cloud
+>## Tip: Uploads and downloads in the cloud
 > In the "Files" tab you can select a file and download it from your cloud
-> instance to your local computer. Uploads are also possible.
+> instance (click the "more" button) to your local computer.
+> Uploads are also possible.
 {: .callout}
 
 All of the panes in RStudio have configuration options. For example, you can
@@ -223,7 +231,7 @@ colors/themes, and more are in the <KBD>Tools</KBD> menu under
 
 ## Getting to work with R: navigating directories
 Now that we have covered the more aesthetic aspects of RStudio, we can get to
-work learning some commands. We will write, execute, and save the commands we
+work using some commands. We will write, execute, and save the commands we
 learn in our **genomics_r_basics.R** script that is loaded in the Source pane.
 First, lets see what directory we are in. To do so, type the following command
 into the script:
@@ -299,17 +307,18 @@ and `dc_genomics_r` directory. The path in your script should look like this:
 
 When you run this command, the console repeats the command, but gives you no
 output. Instead, you see the blank R prompt: `>`. Congratulations! Although it
-seems small, knowing what your working directory is, and being able to set your
+seems small, knowing what your working directory is and being able to set your
 working directory is the first step to analyzing your data.
 
 >## Tip: Never use `setwd()`
 > Wait, what was the last 2 minutes about? Well, setting your working directory
 > is something you need to do, you need to be very careful about using this as
-> a step in your script. For example, the top-level path in a Unix file system
-> is root `/`, but on Windows it is likely `C:\`. This is one of several ways
-> you might cause a script to break because a file path is configured differently
-> than your script anticipates. R packages like [`here`](https://cran.r-project.org/web/packages/here/index.html)
-> and [`file.path`](https://www.rdocumentation.org/packages/base/versions/3.4.3/topics/file.path)
+> a step in your script. For example, what if your script is being on a computer
+> that has a different directory structure? The top-level path in a Unix file
+> system is root `/`, but on Windows it is likely `C:\`. This is one of several
+> ways you might cause a script to break because a file path is configured
+> differently than your script anticipates. R packages like [here](https://cran.r-project.org/web/packages/here/index.html)
+> and [file.path](https://www.rdocumentation.org/packages/base/versions/3.4.3/topics/file.path)
 > allow you to specify file paths is a way that is more operating system
 > independent. See Jenny Bryan's [blog post](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/) for this
 > and other R tips.
@@ -339,12 +348,15 @@ program that takes an input and returns and output.
 >>    on attached packages
 >> - `date()` # Gives the current date
 >> - `Sys.time()` # Gives the current time
+>>
+>> *Notice*: Commands are case sensitive!
 > {: .solution}
 {: .challenge}
 
 You have hopefully noticed a pattern, some more abstract exceptions aside, in R
 a function has three key properties:
-- functions have a name (e.g. `dir`, `getwd`); note that these are case sensitive!
+- functions have a name (e.g. `dir`, `getwd`); note that functions are case
+  sensitive!
 - following the name, functions have a pair of `()`
 - Inside the parentheses, a function may take 0 or more arguments
 
@@ -367,8 +379,8 @@ Which returns
 
 ## Getting help with function arguments
 
-Of course, you may have wanted to round to one significant digit. `round()` can
-do this, but you may fist need to read the help to find out how. To see the help
+What if you wanted to round to one significant digit? `round()` can
+do this, but you may first need to read the help to find out how. To see the help
 (In R sometimes also called a "vignette") enter a `?` in front of the function
 name:
 
@@ -377,11 +389,11 @@ name:
 > ~~~
 {: .language-r}
 
-The "Help" tab will show you information (and often, too much information). You
-will slowly learn how to read through all of that. Checking the "Usage" or
-"Examples" headings is often a good place to look first. If you look under
-"Arguments" we also see what arguments we can "pass" to this function to modify
-its behavior. You can also see a function's argument using the `args()` function:
+The "Help" tab will show you information (often, too much information). You
+will slowly learn how to read through that. Checking the "Usage" or "Examples"
+headings is often a good place to look first. If you look under "Arguments," we
+also see what arguments we can "pass" to this function to modify its behavior.
+You can also see a function's argument using the `args()` function:
 
 > ~~~
 > args(round)
@@ -429,7 +441,8 @@ digits is 2.
 {: .output}
 
 Finally, what if you are using `?` to get help for a function in a package not
-installed on your system?
+installed on your system, such as when you are running a script which has
+dependencies.
 
 > ~~~
 > ?geom_point()
@@ -452,8 +465,8 @@ functions may be available, use the `help.search()` function.
 
 > ## Exercise: Searching for R functions
 > Use `help.search()` to find R functions for the following statistical
-> functions. Remember to put what you are using for your search query in
-> quotes inside the function parentheses.
+> functions. Remember to put your search query in quotes inside the function
+> parentheses.
 >
 > - Chi-Squared test
 > - Student-t test
