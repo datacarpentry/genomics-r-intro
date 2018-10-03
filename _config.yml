@@ -16,7 +16,6 @@ title: "Intro to R and RStudio for Genomics"
 # possible values: "pre-alpha", "alpha", "beta", "stable"
 life_cycle: "pre-alpha"
 
-
 #------------------------------------------------------------
 # Generic settings (should not need to change).
 #------------------------------------------------------------
@@ -89,7 +88,7 @@ defaults:
     values:
       root: ..
       layout: page
-
+      
 # Files and directories that are not to be copied.
 exclude:
   - Makefile
