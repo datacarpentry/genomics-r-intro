@@ -53,5 +53,5 @@ exercises in class, re-do them on your own, and then work on your own problems.
 >    time, or that they will always work in the same way.
 > - **Genomics Data Carpentry Instance**: This lesson assumes you are using a
 >   Genomics Data Carpentry instance as described on the
->   [Genomics Workshop setup page](http://www.datacarpentry.org/genomics-workshop/setup/)
+>   [Genomics Workshop setup page](http://www.datacarpentry.org/genomics-workshop/setup.html)
 {: .prereq}
