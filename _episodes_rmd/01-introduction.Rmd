@@ -23,9 +23,13 @@ keypoints:
   the files and packages used in your analysis"
 - "RStudio allows you to run R in an easy-to-use interface and makes
   it easy to find help"
-
-
+source: Rmd
 ---
+
+```{r, include=FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("01-")
+```
 
 ## Getting ready to use R for the first time
 

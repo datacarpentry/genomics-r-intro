@@ -29,7 +29,14 @@ keypoints:
 - "Base R has many useful functions for manipulating your data, but all of R's
   capabilities are greatly enhanced by software packages developed by the
   community"
+source: Rmd
 ---
+
+```{r, include=FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("03-")
+```
+
 
 ## Working with spreadsheets (tabular data)
 

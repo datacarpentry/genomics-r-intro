@@ -15,8 +15,14 @@ keypoints:
    way to get help"
 - "Using R will mean searching for online help, and there are tips and
    resources on how to search effectively"
-
+source: Rmd
 ---
+
+```{r, include=FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("99-")
+```
+
 
 ## Getting help with R
 

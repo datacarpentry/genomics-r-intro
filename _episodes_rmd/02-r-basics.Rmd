@@ -23,7 +23,14 @@ keypoints:
   determine how R will operate on that data."
 - "Working with vectors effectively prepares you for understanding how data are
   organized in R."
+source: Rmd
 ---
+
+```{r, include=FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("02-")
+```
+
 
 ## "The fantastic world of R awaits you" OR "Nobody wants to learn how to use R"
 
