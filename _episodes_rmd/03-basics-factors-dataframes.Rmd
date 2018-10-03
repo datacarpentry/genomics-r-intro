@@ -148,10 +148,10 @@ data. The file path must be in quotes and now is a good time to remember to
 use tab autocompletion. **If you use tab autocompletion you avoid typos and
 errors in file paths.** Use it!
 
-```{r, eval=FALSE}
+```{r}
 ## read in a CSV file and save it as 'submission_metadata'
 
-submission_metadata <- read.csv("/home/dcuser/dc_sample_data/R/sample_submission.csv")
+submission_metadata <- read.csv("data/sample_submission.csv")
 ```
 
 One of the first things you should notice is that in the Environment window,
@@ -284,8 +284,6 @@ submission were prepped on each date? We could generate a plot:
 plot(table(submission_metadata$prep_date))
 ```
 
-<img src="../fig/rstudio_unordered_prepdateplot.png" alt="rstudio data frame view" style="width: 600px;"/>
-
 Let's quickly brake down this line of code:
 
 First we are pulling a single column of data from the `submission_metadata` data frame using `$` notation:
@@ -312,8 +310,6 @@ data:
 
 plot(table(submission_metadata$prep_date))
 ```
-
-<img src="../fig/rstudio_unordered_prepdateplot.png" alt="rstudio unordered prep plot" style="width: 600px;"/>
 
 While this is a toy example, and there are problems with our prep dates that
 need fixing, let's see how you order a factor so that we can fix our plot.
@@ -366,7 +362,6 @@ order.
 >> ```
 >>
 >>
->> <img src="../fig/rstudio_ordered_prepdateplot.png" alt="rstudio ordered prep plot" style="width: 600px;"/>
 > {: .solution}
 {: .challenge}
 
