@@ -27,7 +27,7 @@ if (Sys.getenv("id_rsa") != "") {
   ## lesson gets deployed on gh-pages, and rendered by GitHub
   if (ci()$get_branch() == "master" || ci()$is_tag()) {
     get_stage("deploy") %>%
-      add_step(step_push_deploy(path = "_site", branch = "gh-pages"))
+      add_step(step_push_deploy(path = "_rendered", branch = "gh-pages"))
   }
 
 }
