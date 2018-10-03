@@ -666,8 +666,9 @@ In this exercise, we will leave the title of the data frame as
 Finally, let's check the first few lines of the `Ecoli_metadata` metadata data
 frame:
 
-```{r, echo=FALSE, eval=FALSE}
-Ecoli_metadata <-  read.csv()
+```{r, echo=FALSE}
+## read the file but don't show the code so the rest of the episode works
+Ecoli_metadata <-  readxl::read_xlsx("data/Ecoli_metadata.xlsx")
 ```
 
 ```{r}
