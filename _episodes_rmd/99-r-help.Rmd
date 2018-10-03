@@ -20,7 +20,7 @@ keypoints:
 
 ## Getting help with R
 
-<img src="../assets/img/oreilly_book_covers.png" alt="rstudio default session" style="width: 600px;"/>
+<img src="../fig/oreilly_book_covers.png" alt="rstudio default session" style="width: 600px;"/>
 
 No matter how much experience you have with R, you will find yourself
 needing help. There is no shame in researching how to do something in R, and
@@ -29,7 +29,7 @@ they "should know how to do" over and over again. Here are some tips to make
 this process as helpful and efficient as possible.
 
 > "Never memorize something that you can look up"
-> - A. Einstein
+> -- A. Einstein
 
 ## Finding help on Stackoverflow and Biostars
 
@@ -40,7 +40,7 @@ in R" results from Stack Overflow are usually near the top of the list. For
 **bioinformatics specific questions**, [Biostars](https://www.biostars.org/) is
 a popular online forum.
 
->## Tip: Asking for help using online forums:
+> ## Tip: Asking for help using online forums:
 >
 > - When searching for R help, look for answers with the [r](https://stackoverflow.com/questions/tagged/r) tag.
 > - Get an account; not required to view answers but to required to post
@@ -126,12 +126,9 @@ Alternatively, you can also save objects in R memory to a file by specifying
 the name of the object, in this case the `iris` data frame, and passing a
 filename to the `file=` argument.
 
-> ~~~
-> saveRDS(iris, file="iris.rds") # By convention, we use the .rds file extension
-> ~~~
-{: .language-r}
-
----
+```{r, eval=FALSE}
+saveRDS(iris, file="iris.rds") # By convention, we use the .rds file extension
+```
 
 ## Final FAQs on R
 
@@ -153,30 +150,19 @@ they come up commonly:
 - R returns an index with your result. When your result contains multiple values,
   the number tells you what ordinal number begins the line, for example:
 
-> ~~~
-> 1:101 # generates the sequence of numbers from 1 to 101
-> ~~~
-{: .language-r}
+```{r}
+1:101 # generates the sequence of numbers from 1 to 101
+```
 
-In the output below, `[81]` indicates that the first value on that line is the
+In the output above, `[81]` indicates that the first value on that line is the
 81st item in your result
 
-> ~~~
->   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
->  [21]  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40
->  [41]  41  42  43  44  45  46  47  48  49  50  51  52  53  54  55  56  57  58  59  60
->  [61]  61  62  63  64  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80
->  [81]  81  82  83  84  85  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100
-> [101] 101
-> ~~~
-{: .output}
 
 
 **Can I run my R script without RStudio?**
 
 - Yes, remember - RStudio is running R. You get to use lots of the enhancements
-  RStudio provides, but R works independent of RStudio. See [these tips](https://support.rstudio.com/hc/en-us/articles/218012917-How-to-run-R-scripts-from-the-command-line)
-  for running your commands at the command line
+  RStudio provides, but R works independent of RStudio. See [these tips](https://support.rstudio.com/hc/en-us/articles/218012917-How-to-run-R-scripts-from-the-command-line) for running your commands at the command line
 
 
 **Where else can I learn about RStudio?**
