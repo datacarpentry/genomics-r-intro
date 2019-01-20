@@ -138,17 +138,18 @@ called an **RStudio Project**. An RStudio project allows you to more easily:
 - Collaborate, especially if you are using version control such as [git](http://swcarpentry.github.io/git-novice/).
 
 
-To create a project, go to the <kbd>File</kbd> menu, and click <kbd>New Project...</kbd>.
+1. To create a project, go to the <kbd>File</kbd> menu, and click <kbd>New Project...</kbd>.
 
 <img src="../fig/new_project_window.png" alt="rstudio default session" style="width: 600px;"/>
 
-In the window that opens select **New Directory**, then **New Project**. For
+2. In the window that opens select **New Directory**, then **New Project**. For
 "Directory name:" enter **dc_genomics_r**. For "Create project as subdirectory of",
-you may leave the default, which is your home directory "~". Finally click
-<kbd>Create Project</kbd>. In the "Files" tab of your output pane (more about
-the RStudio layout in a moment), you should see an RStudio project file,
-**dc_genomics_r.Rroj**. All RStudio projects end with the "**.Rproj**" file
-extension.
+you may leave the default, which is your home directory "~".
+
+3. Finally click <kbd>Create Project</kbd>. In the "Files" tab of your output
+pane (more about the RStudio layout in a moment), you should see an RStudio
+ project file, **dc_genomics_r.Rroj**. All RStudio projects end with the
+ "**.Rproj**" file extension.
 
 >## Tip: Make your project more reproducible with Packrat
 > One of the most wonderful and also frustrating aspects of working with R is
@@ -428,7 +429,7 @@ Finally, what if you are using `?` to get help for a function in a package not i
 
 ```{r, eval=FALSE}
 ?geom_point()
-``` 
+```
 
 will return an error:
 
@@ -477,4 +478,3 @@ Once you type a function, hitting the <KBD>Tab</KBD> inside the parentheses
 will remind you of arguments and provide additional help.
 
 <img src="../fig/studio_contexthelp2.png" alt="rstudio default session" style="width: 600px;"/>
-  
