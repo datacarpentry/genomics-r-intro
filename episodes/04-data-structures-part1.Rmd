@@ -1,0 +1,496 @@
+---
+title: "Data Structures"
+teaching: 40
+exercises: 15
+questions:
+- "How can I read data in R?"
+- "What are the basic data types in R?"
+- "How do I represent categorical information in R?"
+objectives:
+- "To be aware of the different types of data."
+- "To begin exploring data frames, and understand how they are related to vectors, factors and lists."
+- "To be able to ask questions from R about the type, class, and structure of an object."
+keypoints:
+- "Use `read.csv` to read tabular data in R."
+- "The basic data types in R are double, integer, complex, logical, and character."
+- "Use factors to represent categories in R."
+source: Rmd
+---
+
+One of R's most powerful features is its ability to deal with tabular data -
+such as you may already have in a spreadsheet or a CSV file. Let's start by
+making a toy dataset in your `data/` directory, called `feline-data.csv`:
+
+We can load this into R via the following:
+
+```{r}
+ecoli_meta <- read.csv("~/wkspace/r-novice-gapminder/data/Ecoli_metadata.csv")
+head(ecoli_meta)
+```
+
+The `read.table` function is used for reading in tabular data stored in a text
+file where the columns of data are separated by punctuation characters such as
+CSV files (csv = comma-separated values). Tabs and commas are the most common
+punctuation characters used to separate or delimit data points in csv files. 
+For convenience R provides 2 other versions of `read.table`. These are: `read.csv`
+for files where the data are separated with commas and `read.delim` for files
+where the data are separated with tabs. Of these three functions `read.csv` is
+the most commonly used.  If needed it is possible to override the default 
+delimiting punctuation marks for both `read.csv` and `read.delim`.
+
+
+We can begin exploring our dataset right away, pulling out columns by specifying
+them using the `$` operator:
+
+```{r}
+ecoli_meta$sample
+```
+
+We can do other operations on the columns:
+
+```{r}
+## Say we discovered that the scale weighs two Kg light:
+ecoli_meta$genome_size + 2
+paste("My samples", ecoli_meta$sample)
+```
+
+But what about
+
+```{r eval=FALSE}
+ecoli_meta$genome_size + ecoli_meta$sample
+```
+
+Understanding what happened here is key to successfully analyzing data in R.
+
+## Data Types
+
+If you guessed that the last command will return an error because `4.62` plus
+`"REL606"` is nonsense, you're right - and you already have some intuition for an
+important concept in programming called *data types*. We can ask what type of
+data something is:
+
+```{r}
+typeof(ecoli_meta$genome_size)
+```
+
+There are 5 main types: `double`, `integer`, `complex`, `logical` and `character`.
+
+```{r}
+typeof(3.14)
+typeof(1L) # The L suffix forces the number to be an integer, since by default R uses float numbers
+typeof(1+1i)
+typeof(TRUE)
+typeof('banana')
+```
+
+No matter how
+complicated our analyses become, all data in R is interpreted as one of these
+basic data types. This strictness has some really important consequences.
+
+Load the new cats data like before, and check what type of data we find in the
+`weight` column:
+
+```{r}
+ecoli_meta2 <- read.csv("~/wkspace/r-novice-gapminder/data/Ecoli_metadata2.csv")
+typeof(ecoli_meta2$genome_size)
+```
+
+Oh no, our weights aren't the double type anymore! If we try to do the same math
+we did on them before, we run into trouble:
+
+```{r eval=FALSE}
+ecoli_meta2$genome_size + 2
+```
+
+What happened? When R reads a csv file into one of these tables, it insists that
+everything in a column be the same basic type; if it can't understand
+*everything* in the column as a double, then *nobody* in the column gets to be a
+double. The table that R loaded our cats data into is something called a
+*data.frame*, and it is our first example of something called a *data
+structure* - that is, a structure which R knows how to build out of the basic
+data types.
+
+We can see that it is a *data.frame* by calling the `class` function on it:
+
+```{r}
+class(ecoli_meta)
+```
+
+In order to successfully use our data in R, we need to understand what the basic
+data structures are, and how they behave. For now, let's remove that extra line
+from our cats data and reload it, while we investigate this behavior further:
+
+And back in RStudio:
+
+```{r, eval=FALSE}
+ecoli_meta <- read.csv("~/wkspace/r-novice-gapminder/data/Ecoli_metadata.csv")
+```
+
+
+## Vectors and Type Coercion
+
+To better understand this behavior, let's meet another of the data structures:
+the *vector*.
+
+```{r}
+my_vector <- vector(length = 3)
+my_vector
+```
+
+A vector in R is essentially an ordered list of things, with the special
+condition that *everything in the vector must be the same basic data type*. If
+you don't choose the datatype, it'll default to `logical`; or, you can declare
+an empty vector of whatever type you like.
+
+
+```{r}
+another_vector <- vector(mode='character', length=3)
+another_vector
+```
+
+You can check if something is a vector:
+
+```{r}
+str(another_vector)
+```
+
+The somewhat cryptic output from this command indicates the basic data type
+found in this vector - in this case `chr`, character; an indication of the
+number of things in the vector - actually, the indexes of the vector, in this
+case `[1:3]`; and a few examples of what's actually in the vector - in this case
+empty character strings. If we similarly do
+
+```{r}
+str(ecoli_meta$genome_size)
+```
+
+we see that `ecoli_meta$genome_size` is a vector, too - *the columns of data we load into R
+data.frames are all vectors*, and that's the root of why R forces everything in
+a column to be the same basic data type.
+
+> ## Discussion 1
+>
+> Why is R so opinionated about what we put in our columns of data?
+> How does this help us?
+>
+> > ## Discussion 1
+> >
+> > By keeping everything in a column the same, we allow ourselves to make simple
+> > assumptions about our data; if you can interpret one entry in the column as a
+> > number, then you can interpret *all* of them as numbers, so we don't have to
+> > check every time. This consistency is what people mean when they talk about 
+> > *clean data*; in the long run, strict consistency goes a long way to making 
+> > our lives easier in R.
+> {: .solution}
+{: .discussion}
+
+You can also make vectors with explicit contents with the combine function:
+
+```{r}
+combine_vector <- c(2,6,3)
+combine_vector
+```
+
+Given what we've learned so far, what do you think the following will produce?
+
+```{r}
+quiz_vector <- c(2,6,'3')
+```
+
+This is something called *type coercion*, and it is the source of many surprises
+and the reason why we need to be aware of the basic data types and how R will
+interpret them. When R encounters a mix of types (here numeric and character) to
+be combined into a single vector, it will force them all to be the same
+type. Consider:
+
+```{r}
+coercion_vector <- c('a', TRUE)
+coercion_vector
+another_coercion_vector <- c(0, TRUE)
+another_coercion_vector
+```
+
+The coercion rules go: `logical` -> `integer` -> `numeric` -> `complex` ->
+`character`, where -> can be read as *are transformed into*. You can try to
+force coercion against this flow using the `as.` functions:
+
+```{r}
+character_vector_example <- c('0','2','4')
+character_vector_example
+character_coerced_to_numeric <- as.numeric(character_vector_example)
+character_coerced_to_numeric
+numeric_coerced_to_logical <- as.logical(character_coerced_to_numeric)
+numeric_coerced_to_logical
+```
+
+As you can see, some surprising things can happen when R forces one basic data
+type into another! Nitty-gritty of type coercion aside, the point is: if your
+data doesn't look like what you thought it was going to look like, type coercion
+may well be to blame; make sure everything is the same type in your vectors and
+your columns of data.frames, or you will get nasty surprises!
+
+
+The combine function, `c()`, will also append things to an existing vector:
+
+```{r}
+ab_vector <- c('a', 'b')
+ab_vector
+combine_example <- c(ab_vector, 'SWC')
+combine_example
+```
+
+You can also make series of numbers:
+
+```{r}
+mySeries <- 1:10
+mySeries
+seq(10)
+seq(1,10, by=0.1)
+```
+
+We can ask a few questions about vectors:
+
+```{r}
+sequence_example <- seq(10)
+head(sequence_example, n=2)
+tail(sequence_example, n=4)
+length(sequence_example)
+class(sequence_example)
+typeof(sequence_example)
+```
+
+Finally, you can give names to elements in your vector:
+
+```{r}
+my_example <- 5:8
+names(my_example) <- c("a", "b", "c", "d")
+my_example
+names(my_example)
+```
+
+> ## Challenge 1
+>
+> Start by making a vector with the numbers 1 through 26.
+> Multiply the vector by 2, and give the resulting vector
+> names A through Z (hint: there is a built in vector called `LETTERS`)
+>
+> > ## Solution to Challenge 1
+> >
+> > ```{r}
+> > x <- 1:26
+> > x <- x * 2
+> > names(x) <- LETTERS
+> > ```
+> {: .solution}
+{: .challenge}
+
+
+## Data Frames
+
+We said that columns in data.frames were vectors:
+
+```{r}
+str(ecoli_meta$generation)
+```
+
+These make sense. But what about
+
+```{r}
+str(ecoli_meta$sample)
+```
+
+## Factors
+
+Another important data structure is called a *factor*. Factors usually look like
+character data, but are typically used to represent categorical information. Under the hood of 
+factors are numbers
+```{r}
+as.numeric(ecoli_meta$sample)
+as.character(ecoli_meta$sample)
+ecoli_meta <- read.csv("~/wkspace/r-novice-gapminder/data/Ecoli_metadata.csv",stringsAsFactors = FALSE)
+
+## Or globally
+options(stringsAsFactors = FALSE)
+
+```
+
+## Lists
+
+Another data structure you'll want in your bag of tricks is the `list`. A list
+is simpler in some ways than the other types, because you can put anything you
+want in it:
+
+```{r}
+list_example <- list(1, "a", TRUE, 1+4i)
+list_example
+another_list <- list(title = "Numbers", numbers = 1:10, data = TRUE )
+another_list
+```
+
+We can now understand something a bit surprising in our data.frame; what happens if we run:
+
+```{r}
+typeof(ecoli_meta)
+```
+
+We see that data.frames look like lists 'under the hood' - this is because a
+data.frame is really a list of vectors and factors, as they have to be - in
+order to hold those columns that are a mix of vectors and factors, the
+data.frame needs something a bit more flexible than a vector to put all the
+columns together into a familiar table.  In other words, a `data.frame` is a
+special list in which all the vectors must have the same length.
+
+In our `ecoli_meta` example, we have an integer, a double and a factor. As
+we have seen already, each column of data.frame is a vector.
+
+```{r}
+ecoli_meta$sample
+ecoli_meta[,1]
+typeof(ecoli_meta[,1])
+str(ecoli_meta[,1])
+```
+
+Each row is an *observation* of different variables, itself a data.frame, and
+thus can be composed of elements of different types.
+
+```{r}
+ecoli_meta[1,]
+typeof(ecoli_meta[1,])
+str(ecoli_meta[1,])
+```
+
+> ## Challenge 3
+>
+> There are several subtly different ways to call variables, observations and
+> elements from data.frames:
+>
+> - `cats[1]`
+> - `cats[[1]]`
+> - `cats$coat`
+> - `cats["coat"]`
+> - `cats[1, 1]`
+> - `cats[, 1]`
+> - `cats[1, ]`
+
+
+## Matrices
+
+Last but not least is the matrix. We can declare a matrix full of zeros:
+
+```{r}
+matrix_example <- matrix(0, ncol=6, nrow=3)
+matrix_example
+```
+
+And similar to other data structures, we can ask things about our matrix:
+
+```{r}
+class(matrix_example)
+typeof(matrix_example)
+str(matrix_example)
+dim(matrix_example)
+nrow(matrix_example)
+ncol(matrix_example)
+```
+
+> ## Challenge 4
+>
+> What do you think will be the result of
+> `length(matrix_example)`?
+> Try it.
+> Were you right? Why / why not?
+>
+> > ## Solution to Challenge 4
+> >
+> > What do you think will be the result of
+> > `length(matrix_example)`?
+> >
+> > ```{r}
+> > matrix_example <- matrix(0, ncol=6, nrow=3)
+> > length(matrix_example)
+> > ```
+> >
+> > Because a matrix is a vector with added dimension attributes, `length`
+> > gives you the total number of elements in the matrix.
+> {: .solution}
+{: .challenge}
+
+
+> ## Challenge 5
+>
+> Make another matrix, this time containing the numbers 1:50,
+> with 5 columns and 10 rows.
+> Did the `matrix` function fill your matrix by column, or by
+> row, as its default behaviour?
+> See if you can figure out how to change this.
+> (hint: read the documentation for `matrix`!)
+>
+> > ## Solution to Challenge 5
+> >
+> > Make another matrix, this time containing the numbers 1:50,
+> > with 5 columns and 10 rows.
+> > Did the `matrix` function fill your matrix by column, or by
+> > row, as its default behaviour?
+> > See if you can figure out how to change this.
+> > (hint: read the documentation for `matrix`!)
+> >
+> > ```{r, eval=FALSE}
+> > x <- matrix(1:50, ncol=5, nrow=10)
+> > x <- matrix(1:50, ncol=5, nrow=10, byrow = TRUE) # to fill by row
+> > ```
+> {: .solution}
+{: .challenge}
+
+
+> ## Challenge 6
+>  Create a list of length two containing a character vector for each of the sections in this part of the workshop:
+>
+>  - Data types
+>  - Data structures
+>
+>  Populate each character vector with the names of the data types and data
+>  structures we've seen so far.
+>
+> > ## Solution to Challenge 6
+> > ```{r}
+> > dataTypes <- c('double', 'complex', 'integer', 'character', 'logical')
+> > dataStructures <- c('data.frame', 'vector', 'factor', 'list', 'matrix')
+> > answer <- list(dataTypes, dataStructures)
+> > ```
+> > Note: it's nice to make a list in big writing on the board or taped to the wall
+> > listing all of these types and structures - leave it up for the rest of the workshop
+> > to remind people of the importance of these basics.
+> >
+> {: .solution}
+{: .challenge}
+
+
+> ## Challenge 7
+>
+> Consider the R output of the matrix below:
+> ```{r, echo=FALSE}
+> matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)
+> ```
+> What was the correct command used to write this matrix? Examine
+> each command and try to figure out the correct one before typing them.
+> Think about what matrices the other commands will produce.
+>
+> 1. `matrix(c(4, 1, 9, 5, 10, 7), nrow = 3)`
+> 2. `matrix(c(4, 9, 10, 1, 5, 7), ncol = 2, byrow = TRUE)`
+> 3. `matrix(c(4, 9, 10, 1, 5, 7), nrow = 2)`
+> 4. `matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)`
+>
+> > ## Solution to Challenge 7
+> >
+> > Consider the R output of the matrix below:
+> > ```{r, echo=FALSE}
+> > matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)
+> > ```
+> > What was the correct command used to write this matrix? Examine
+> > each command and try to figure out the correct one before typing them.
+> > Think about what matrices the other commands will produce.
+> > ```{r, eval=FALSE}
+> > matrix(c(4, 1, 9, 5, 10, 7), ncol = 2, byrow = TRUE)
+> > ```
+> {: .solution}
+{: .challenge}

@@ -1,0 +1,122 @@
+---
+title: "Exploring Data Frames"
+teaching: 20
+exercises: 10
+questions:
+- "How can I manipulate a data frame?"
+objectives:
+- "Be able to add and remove rows and columns."
+- "Be able to remove rows with `NA` values."
+- "Be able to append two data frames"
+- "Be able to articulate what a `factor` is and how to convert between `factor` and `character`."
+- "Be able to find basic properties of a data frames including size, class or type of the columns, names, and first few rows."
+keypoints:
+- "Use `cbind()` to add a new column to a data frame."
+- "Use `rbind()` to add a new row to a data frame."
+- "Remove rows from a data frame."
+- "Use `na.omit()` to remove rows from a data frame with `NA` values."
+- "Use `levels()` and `as.character()` to explore and manipulate factors"
+- "Use `str()`, `nrow()`, `ncol()`, `dim()`, `colnames()`, `rownames()`, `head()` and `typeof()` to understand structure of the data frame"
+- "Read in a csv file using `read.csv()`"
+- "Understand `length()` of a data frame"
+source: Rmd
+---
+
+```{r, include=FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("05-")
+```
+
+
+At this point, you've see it all - in the last lesson, we toured all the basic
+data types and data structures in R. Everything you do will be a manipulation of
+those tools. But a whole lot of the time, the star of the show is going to be
+the data frame - the table that we created by loading information from a csv file. In this lesson, we'll learn a few more things
+about working with data frames.
+
+## Adding columns and rows in data frame
+
+We learned last time that the columns in a data frame were vectors, so that our
+data are consistent in type throughout the column. As such, if we want to add a
+new column, we need to start by making a new vector:
+
+```{r, echo = FALSE}
+ecoli_meta <- read.csv("~/wkspace/r-novice-gapminder/data/Ecoli_metadata.csv")
+```
+
+```{r}
+samp_n <- rep(1:6,5)
+ecoli_meta <- cbind(ecoli_meta, samp_n)
+
+```
+
+We can then also add this as a column via:
+
+```{r, error=TRUE}
+ecoli_meta$samp_n2 <- samp_n
+```
+
+
+Now how about adding rows - in this case, we saw last time that the rows of a
+data frame are made of lists:
+
+```{r}
+newRow <- ecoli_meta[30,]
+ecoli_meta <- rbind(ecoli_meta, newRow)
+```
+
+
+## Removing rows
+We can also remove rows, so let's drop the offending row.
+
+```{r}
+ecoli_meta[-31,]
+```
+
+
+Notice the comma with nothing after it to indicate we want to drop the entire fourth row.
+
+Note: We could also remove both new rows at once by putting the row numbers
+inside of a vector: `ecoli_meta[c(-4,-5),]`
+
+Alternatively, we can drop all rows with `NA` values:
+
+```{r}
+ecoli_meta <- read.csv("~/wkspace/r-novice-gapminder/data/Ecoli_metadata.csv",na.strings = "N/A")
+
+```
+
+Let's reassign the output to `ecoli_meta`, so that our changes will be permanent:
+
+```{r}
+ecoli_meta <- na.omit(ecoli_meta)
+```
+
+## Appending to a data frame
+
+The key to remember when adding data to a data frame is that *columns are
+vectors or factors, and rows are lists.* We can also glue two data frames
+together with `rbind`:
+
+```{r}
+ecoli_meta <- rbind(ecoli_meta,ecoli_meta)
+ecoli_meta
+```
+There's a variety of functions that can give us some metadata about our dataframes
+```{r}
+rownames(ecoli_meta)
+colnames(ecoli_meta)
+dim(ecoli_meta)
+ncol(ecoli_meta)
+nrow(ecoli_meta)
+```
+
+Lastly we can use these to reassign the values.
+```{r}
+colnames(ecoli_meta) <- c("X1","X2","X3","X4","X5","X6","X7")
+```
+
+
+> ## Challenge 1
+>
+> Rename the columns with your own column names

@@ -1,0 +1,119 @@
+---
+title: "Template"
+author: "Ted"
+date: "6/15/2017"
+output: html_document
+---
+## Data Munging
+
+We will now create a document that contains a full output from our analysis.  The first step is to write the code that munges our data. It will loop over all the VCF files, read them together and combine them into a single dataframe
+
+```{r munge data, echo=FALSE, warning=FALSE, message=FALSE}
+library("vcfR")
+library("dplyr")
+
+# Get list of vcf files in current working directory
+# These are produced by running the script 
+# run_variant_calling.sh 
+# as described here:
+# https://github.com/JasonJWilliamsNY/wrangling-genomics/blob/gh-pages/lessons/02-variant-calling-workflow.md
+
+my_vcf_files <- list.files(path = "../data/", pattern = "\\.vcf")
+my_vcf_files <- paste0("../data/", my_vcf_files)
+
+number_of_strains <- length(my_vcf_files)
+
+# Initialize a 9 column empty matrix
+all_vcf <- matrix(NA, 0, 9)
+
+# Loop over files and append to bottom of matrix
+# Add value for strain ID to first column each time
+for (vcf_file in my_vcf_files) {
+  
+  # read vcf file using function from package "vcfR"
+  my_vcf_in <- read.vcfR(vcf_file, verbose = FALSE)
+  
+  # Pull strain name out of first part fo filename
+  strain_name <- strsplit(vcf_file, "_")[[1]][1]
+  
+  # Bind column of strain name to rest of data for that
+  # strain, pulled out of @fix slot in vcf object
+  all_this_vcf <- cbind(rep(strain_name, 
+                            nrow(my_vcf_in@fix)), 
+                        my_vcf_in@fix)
+  
+  # Add this newly labeled data to bottom of matrix
+  all_vcf <- rbind(all_vcf, 
+                   all_this_vcf)
+}
+
+# Give the strain name column a proper column name
+colnames(all_vcf)[1] <- "STRAIN"
+
+# Convert to df for use by dplyr
+all_vcf <- as.data.frame(all_vcf)
+
+# fix numeric columns stored as factors
+all_vcf$POS <- as.numeric(as.character(all_vcf$POS))
+all_vcf$QUAL <- as.numeric(as.character(all_vcf$QUAL))
+
+```
+
+## Writing data
+
+We can save a copy of this data by writing it out
+
+```{r write data}
+write.csv(all_vcf, "all_vcf.csv", row.names = FALSE)
+
+```
+
+## Making plots
+
+We can also embed plots.  Here we'll use our dplyr skills to arrange the data and create a plot
+
+```{r variant plot}
+variants_each_position <- all_vcf %>%
+  group_by(POS) %>%
+  summarise(count = n()/number_of_strains) %>%
+  mutate(POS = as.numeric(as.character(POS)))
+
+# Plot simple figure showing basic results
+plot(x = variants_each_position$POS, 
+     y = variants_each_position$count,
+     xlab = "Position on chromosome",
+     ylab = "Porportion of strains with variation",
+     main = "E. coli genome variation",
+     ylim = c(0,1))
+```
+
+## Add more features
+
+The info field of the VCF format can be parsed to add some extra columns.  
+
+```{r add features}
+
+## Parse info fields
+all_vcf$INFO <- as.character(all_vcf$INFO)
+### Depth across samples
+all_vcf$DP <- as.numeric(unlist(lapply(strsplit(all_vcf$INFO,";"),FUN=function(x){strsplit(x,"=")[[1]][2]})))
+### AC allele count in genotypes, for each ALT allele, in the same order as listed
+all_vcf$AC <- as.numeric(unlist(lapply(strsplit(all_vcf$INFO,";"),FUN=function(x){strsplit(x,"=")[[4]][2]})))
+## AF allele frequency for each ALT allele in the same order as listed: use this when estimated from primary data, not called genotypes 
+all_vcf$AF <- as.numeric(unlist(lapply(strsplit(all_vcf$INFO,";"),FUN=function(x){strsplit(x,"=")[[3]][2]})))
+
+```
+
+
+## Goals
+
+Building off what we've learned today, create your own analysis as a stand alone reproducible markdown document. You should use any element of what we've done so far. It should have the following elements.
+
+*Goals* 
+
+1. Should be completely reproducible (able to run start to finish from a folder of imput data and the Rmd file)
+2. Code chunks should be properly labeled
+3. The document should at least one boxplot and at least one scatterplot
+4. Each figure should support an accompanying piece of quantitative analysis, and some descriptive markdown text 
+
+
