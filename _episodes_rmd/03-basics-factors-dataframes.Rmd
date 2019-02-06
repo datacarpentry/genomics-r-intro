@@ -668,7 +668,7 @@ frame:
 
 ```{r, echo=FALSE}
 ## read the file but don't show the code so the rest of the episode works
-Ecoli_metadata <-  readxl::read_xlsx("data/Ecoli_metadata.xlsx")
+Ecoli_metadata <-  readxl::read_xlsx("../data/Ecoli_metadata.xlsx")
 ```
 
 ```{r}
@@ -685,7 +685,7 @@ Finally, we can conclude this episode with saving our data frame, in this case
 to a .csv file using the `write.csv()` function:
 
 ```{r}
-write.csv(submission_metadata, file = "submission_metatata_cleaned.csv")
+write.csv(submission_metadata, file = "../data/submission_metatata_cleaned.csv")
 ```
 The `write.csv()` function has some additional arguments listed in the help, but
 at a minimum you need to tell it what data frame to write to file, and give a
