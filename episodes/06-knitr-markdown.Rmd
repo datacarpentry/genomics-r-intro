@@ -5,12 +5,12 @@ exercises: 15
 questions:
 - "How can I integrate software and reports?"
 objectives:
-- Value of reproducible reports
-- Basics of Markdown
-- R code chunks
-- Chunk options
-- Inline R code
-- Other output formats
+- "Value of reproducible reports"
+- "Basics of Markdown"
+- "R code chunks"
+- "Chunk options"
+- "Inline R code"
+- "Other output formats"
 keypoints:
 - "Mix reporting written in R Markdown with software written in R."
 - "Specify chunk options to control formatting."
@@ -20,7 +20,7 @@ source: Rmd
 
 ```{r chunk_options, include=FALSE}
 source("../bin/chunk-options.R")
-knitr_fig_path("15-")
+knitr_fig_path("06-")
 ```
 
 
