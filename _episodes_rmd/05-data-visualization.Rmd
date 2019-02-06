@@ -1,21 +1,33 @@
 ---
-layout: topic
-title: Data Visualization
-author: Data Carpentry contributors
-minutes: 30
+title: "Data Visualization with ggplot2"
+teaching: 20
+exercises: 10
+questions:
+- ""
+- ""
+objectives:
+- "Describe the features of R’s plotting packages (i.e. know the difference between base R and ggplot plotting approaches)."
+- "Create simple scatterplots, histograms, and boxplots in R."
+- "Customize the aesthetics of an existing plot."
+- "Build complex and customized plots from data in a data frame."
+- "Export plots from RStudio to standard graphical file formats."
+
+keypoints:
+- ""
+- ""
+- ""
+source: Rmd
 ---
 
-```{r, echo=FALSE}
-metadata <- read.csv('./data/Ecoli_metadata.csv')
+```{r, include=FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("05-")
 ```
 
-> ## Learning Objectives 
->
-* Describe the features of R’s plotting packages (i.e. know the difference between base R and ggplot plotting approaches).
-* Create simple scatterplots, histograms, and boxplots in R.
-* Customize the aesthetics of an existing plot.
-* Build complex and customized plots from data in a data frame.
-* Export plots from RStudio to standard graphical file formats.
+
+```{r, echo=FALSE}
+metadata <- read.csv("submission_metatata_cleaned.csv")
+```
 
 # Basic plots in R
 

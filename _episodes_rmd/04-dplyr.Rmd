@@ -1,24 +1,32 @@
 ---
-layout: topic
-title: Aggregating and analyzing data with dplyr
-author: Data Carpentry contributors
+title: "Aggregating and Analyzing Data with dplyr"
+teaching: 
+exercises: 
+questions:
+- ""
+- ""
+objectives:
+- "Describe what the dplyr package in R is used for."
+- "Apply common dplyr functions to manipulate data in R."
+- "Employ the ‘pipe’ operator to link together a sequence of functions."
+- "Employ the ‘mutate’ function to apply other chosen functions to existing columns and create new columns of data."
+- "Employ the ‘split-apply-combine’ concept to split the data into groups, apply analysis to each group, and combine the results."
+
+keypoints:
+- ""
+- ""
+- ""
+source: Rmd
 ---
 
-```{r, echo=FALSE, purl=FALSE, message = FALSE}
-# source("setup.R")
-metadata <- read.csv("data/Ecoli_metadata.csv")
+```{r, include=FALSE}
+source("../bin/chunk-options.R")
+knitr_fig_path("04-")
 ```
 
-------------
-
-# Data manipulation using dplyr
-
-# Learning Objectives
-* Describe what the dplyr package in R is used for.
-* Apply common dplyr functions to manipulate data in R.
-* Employ the ‘pipe’ operator to link together a sequence of functions.
-* Employ the ‘mutate’ function to apply other chosen functions to existing columns and create new columns of data.
-* Employ the ‘split-apply-combine’ concept to split the data into groups, apply analysis to each group, and combine the results.
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
+metadata <- read.csv("submission_metatata_cleaned.csv")
+```
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. 
 
