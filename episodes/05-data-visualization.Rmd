@@ -92,20 +92,25 @@ ggplot(submission_metadata) +
 
 ## Boxplot
 
+For a boxplot, we need one categorical and one continuous 
+variable. For our continuous variable, we'll use `RIN` and for our
+categorical variable, we'll use `prep_date`. Let's see if our
+RNA quality varied a lot between days we ran our protocol. 
+
 ```{r, fig.align='center'}
 ggplot(submission_metadata) +
   geom_boxplot(aes(x = prep_date, y = RIN))
 
 ```
 
-Now that we have all the required information, let's try plotting a boxplot. We can add some additional layers to include a plot title and change the axis labels. Explore the code below and all the different layers that we have added to understand what each layer contributes to the final graphic.
+We can add some additional layers to include a plot title and change the axis labels. Explore the code below and all the different layers that we have added to understand what each layer contributes to the final graphic.
 
 ```{r, fig.align='center'}
-ggplot(metadata) +
-  geom_boxplot(aes(x = cit, y = genome_size, fill = cit)) +
-  ggtitle('Boxplot of genome size by citrate mutant type') +
-  xlab('citrate mutant') +
-  ylab('genome size') +
+ggplot(submission_metadata) +
+  geom_boxplot(aes(x = prep_date, y = RIN)) +
+  ggtitle('RNA quality by preparation date') +
+  xlab('preparation date') +
+  ylab('RIN') +
   theme(panel.grid.major = element_line(size = .5, color = "grey"),
           axis.text.x = element_text(angle=45, hjust=1),
           axis.title = element_text(size = rel(1.5)),
@@ -135,8 +140,6 @@ ggplot(example_data) +
 
 dev.off()
 ```
-
-
 
 
 Resources:
