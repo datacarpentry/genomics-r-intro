@@ -64,36 +64,36 @@ start_time: 540
 
 # Specify that things in the episodes collection should be output.
 collections:
-episodes:
-output: true
-permalink: /:path/index.html
-extras:
-output: true
-permalink: /:path/index.html
+  episodes:
+    output: true
+    permalink: /:path/index.html
+  extras:
+    output: true
+    permalink: /:path/index.html
 
 # Set the default layout for things in the episodes collection.
 defaults:
-- values:
-root: .
-layout: page
-- scope:
-path: ""
-type: episodes
-values:
-root: ..
-layout: episode
-- scope:
-path: ""
-type: extras
-values:
-root: ..
-layout: page
-
+  - values:
+      root: .
+      layout: page
+  - scope:
+      path: ""
+      type: episodes
+    values:
+      root: ..
+      layout: episode
+  - scope:
+      path: ""
+      type: extras
+    values:
+      root: ..
+      layout: page
+      
 # Files and directories that are not to be copied.
 exclude:
-- Makefile
-- bin/
-- .Rproj.user/
+  - Makefile
+  - bin/
+  - .Rproj.user/
 
 # Turn on built-in syntax highlighting.
 highlighter: rouge
