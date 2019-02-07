@@ -1,7 +1,7 @@
-"","well_position","tube_barcode","plate_barcode","client_sample_id","replicate","vol_in_µL","concentration..ng.µL.","RIN","prep_date","ship_date","vol_in_L"
-"1","A1",151017990,"LP-10624","wild type 1h1","a",64.2,211.07,8.1,"6-Jul-15","20-Jul",0.00642
-"2","B1",151101577,"LP-10624","wild type 1h1","b",63.7,220.21,9.4,"6-Jul-15","20-Jul",0.00637
-"3","C1",151142725,"LP-10624","wild type 1h1","c",60.2,207.57,8.9,"6-Jul-15","20-Jul",0.00602
+"","well_position","tube_barcode","plate_barcode","client_sample_id","replicate","vol_in_mcL","concentration_ng_per_mcL","RIN","prep_date","ship_date","vol_in_L"
+"1","A1",151017990,"LP-10624","wild type 1h1","A",64.2,211.07,8.1,"6-Jul-15","20-Jul",0.00642
+"2","B1",151101577,"LP-10624","wild type 1h1","B",63.7,220.21,9.4,"6-Jul-15","20-Jul",0.00637
+"3","C1",151142725,"LP-10624","wild type 1h1","C",60.2,207.57,8.9,"6-Jul-15","20-Jul",0.00602
 "4","D1",151232891,"LP-10624","wild type 1h-2","A",55.8,180.62,9,"6-Jul-15","20-Jul",0.00558
 "5","E1",151236606,"LP-10624","wild type 1h-2","B",60.8,190.86,8.1,"6-Jul-15","20-Jul",0.00608
 "6","F1",151323716,"LP-10624","wild type 1h-2","C",57.5,192.97,8.6,"6-Jul-15","20-Jul",0.00575

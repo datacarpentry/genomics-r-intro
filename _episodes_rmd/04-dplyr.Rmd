@@ -25,7 +25,7 @@ knitr_fig_path("04-")
 ```
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
-metadata <- read.csv("submission_metatata_cleaned.csv")
+submission_metadata <- read.csv("../data/submission_metatata_cleaned.csv")
 ```
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. 
@@ -81,13 +81,13 @@ data frame, use `select()`. The first argument to this function is the data
 frame (`metadata`), and the subsequent arguments are the columns to keep.
 
 ```{r, results = 'hide', purl = FALSE}
-select(metadata, sample, clade, cit, genome_size)
+select(submission_metadata, tube_barcode, prep_date, RIN)
 ```
 
 To choose rows, use `filter()`:
 
 ```{r, purl = FALSE}
-filter(metadata, cit == "plus")
+filter(submission_metadata, RIN >= 8)
 ```
 
 ### Pipes
@@ -105,9 +105,9 @@ useful when you need to many things to the same data set.  Pipes in R look like
 part of `dplyr`.
 
 ```{r, purl = FALSE}
-metadata %>%
-  filter(cit == "plus") %>%
-  select(sample, generation, clade)
+submission_metadata %>%
+  filter(RIN >= 8) %>%
+  select(tube_barcode, prep_date)
 ```
 
 In the above we use the pipe to send the `metadata` data set first through
@@ -120,17 +120,26 @@ If we wanted to create a new object with this smaller version of the data we
 could do so by assigning it a new name:
 
 ```{r, purl = FALSE}
-meta_citplus <- metadata %>%
-  filter(cit == "plus") %>%
-  select(sample, generation, clade)
+high_quality_rna <- submission_metadata %>%
+  filter(RIN >= 8) %>%
+  select(tube_barcode, prep_date)
 
-meta_citplus
+high_quality_rna
 ```
 
-> ### Challenge {.challenge}
+> ## Exercise: Pipe and filter
 >
-> Using pipes, subset the data to include rows where the clade is 'Cit+'. Retain columns
-> `sample`, `cit`, and `genome_size.`
+> Using pipes, subset the data to include rows where the volume is greater than > 50 microliters. Retain only the columns `replicate` and `prep_date`.
+>
+>> ## Solution
+>> ~~~
+>> submission_metadata %>%   
+>>  filter(vol_in_mcL > 50) %>%
+>>  select(replicate, prep_date)
+>> ~~~
+>> {: .r}
+> {: .solution}
+{: .challenge}
 
 ### Mutate
 
@@ -138,11 +147,11 @@ Frequently you'll want to create new columns based on the values in existing
 columns, for example to do unit conversions or find the ratio of values in two
 columns. For this we'll use `mutate()`.
 
-To create a new column of genome size in bp:
+To create a new column of molar concentration (grams per liter):
 
 ```{r, purl = FALSE, eval=FALSE}
-metadata %>%
-  mutate(genome_bp = genome_size *1e6)
+submission_metadata %>%
+  mutate(conc_g_per_L = concentration_ng_per_mcL * 0.001)
 ```
 
 If this runs off your screen and you just want to see the first few rows, you
@@ -150,23 +159,10 @@ can use a pipe to view the `head()` of the data (pipes work with non-dplyr
 functions too, as long as the `dplyr` or `magrittr` packages are loaded).
 
 ```{r, purl = FALSE, eval=FALSE}
-metadata %>%
-  mutate(genome_bp = genome_size *1e6) %>%
+submission_metadata %>%
+  mutate(conc_g_per_L = concentration_ng_per_mcL * 0.001) %>%
   head
 ```
-
-The row has a NA value for clade, so if we wanted to remove those we could
-insert a `filter()` in this chain:
-
-```{r, purl = FALSE, eval=FALSE}
-metadata %>%
-  mutate(genome_bp = genome_size *1e6) %>%
-  filter(!is.na(clade)) %>%
-  head
-```
-
-`is.na()` is a function that determines whether something is or is not an `NA`.
-The `!` symbol negates it, so we're asking for everything that is not an `NA`.
 
 ### Split-apply-combine data analysis and the summarize() function
 
@@ -181,7 +177,7 @@ citrate-using mutant status and find the number of rows of data for each
 status, we would do:
 
 ```{r, purl = FALSE}
-metadata %>%
+submission_metadata %>%
   group_by(cit) %>%
   summarize(n())
 ```
