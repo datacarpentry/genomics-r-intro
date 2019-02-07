@@ -173,12 +173,12 @@ then combine the results. `dplyr` makes this very easy through the use of the
 grouped in this way `summarize()` can be used to collapse each group into
 a single-row summary.  `summarize()` does this by applying an aggregating
 or summary function to each group. For example, if we wanted to group by 
-citrate-using mutant status and find the number of rows of data for each 
-status, we would do:
+sample preparation date and find the number of rows of data for each 
+date, we would do:
 
 ```{r, purl = FALSE}
 submission_metadata %>%
-  group_by(cit) %>%
+  group_by(prep_date) %>%
   summarize(n())
 ```
 
@@ -192,47 +192,32 @@ It's a way to make sure that users know they have missing
 data, and make a conscious decision on how to deal with it. When
 dealing with simple statistics like the mean, the easiest way to
 ignore `NA` (the missing data) is to use `na.rm=TRUE` (`rm` stands for
-remove).
+remove). 
 
-So to view mean `genome_size` by mutant status:
+So to view mean concentration by sample prep date:
 
 ```{r, purl = FALSE}
-metadata %>%
-  group_by(cit) %>%
-  summarize(mean_size = mean(genome_size, na.rm = TRUE))
+submission_metadata %>%
+  group_by(prep_date) %>%
+  summarize(mean_conc_ng_per_mcL = mean(concentration_ng_per_mcL))
 ```
 
 You can group by multiple columns too:
 
 ```{r, purl = FALSE}
-metadata %>%
-  group_by(cit, clade) %>%
-  summarize(mean_size = mean(genome_size, na.rm = TRUE))
+submission_metadata %>%
+  group_by(prep_date, replicate) %>%
+  summarize(mean_conc_ng_per_mcL = mean(concentration_ng_per_mcL))
 
 ```
-
-Looks like for one of these clones, the clade is missing. We could then discard those rows using `filter()`:
-
-```{r, purl = FALSE, eval=FALSE}
-metadata %>%
-  group_by(cit, clade) %>%
-  summarize(mean_size = mean(genome_size, na.rm = TRUE)) %>%
-  filter(!is.na(clade))
-```
-
-All of a sudden this isn't running of the screen anymore. That's because `dplyr`
-has changed our `data.frame` to a `tbl_df`. This is a data structure that's very
-similar to a data frame; for our purposes the only difference is that it won't
-automatically show tons of data going off the screen.
 
 You can also summarize multiple variables at the same time:
 
-```{r, purl = FALSE, eval=FALSE}
-metadata %>%
-  group_by(cit, clade) %>%
-  summarize(mean_size = mean(genome_size, na.rm = TRUE),
-            min_generation = min(generation))
-
+```{r, purl = FALSE}
+submission_metadata %>%
+  group_by(prep_date, replicate) %>%
+  summarize(mean_conc_ng_per_mcL = mean(concentration_ng_per_mcL),
+            number = n())
 ```
 
 
