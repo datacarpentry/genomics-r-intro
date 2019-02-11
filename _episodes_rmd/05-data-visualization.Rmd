@@ -138,7 +138,7 @@ metadata_plot
 + geom_point()
 ```
 
-> ### Challenge (optional)
+> ## Challenge (optional)
 >
 > Scatter plots can be useful exploratory tools for small datasets. For data
 > sets with large numbers of observations, such as the `metadata` data
@@ -165,24 +165,7 @@ metadata_plot
 > - What are the relative strengths and weaknesses of a hexagonal bin plot
 >   compared to a scatter plot? Examine the above scatter plot and compare it
 >   with the hexagonal bin plot that you created.
-
-```{r hexbin-challenge, echo=FALSE, eval=FALSE, purl=TRUE}
-### Challenge with hexbin
-##
-## To use the hexagonal binning with **`ggplot2`**, first install the `hexbin`
-## package from CRAN:
-
-install.packages("hexbin")
-library(hexbin)
-
-## Then use the `geom_hex()` function:
-
-metadata_plot +
-geom_hex()
-
-## What are the relative strengths and weaknesses of a hexagonal bin
-## plot compared to a scatter plot?
-```
+{: .challenge}
 
 ## Building your plots iteratively
 
@@ -217,16 +200,19 @@ ggplot(data =metadata, aes(x = sample, y = generation)) +
 geom_point(alpha = 0.1, aes(color = strain))
 ```
 
-> ### Challenge
+> ## Challenge
 >
 > Use what you just learned to create a scatter plot of `genome_size` over
 > `strain` with the plot types showing in different colors. Is this a good
 > way to show this type of data?
-> ```{r scatter-challenge, answer=TRUE, purl=FALSE}
-> ggplot(data = metadata, aes(x = strain, y = genome_size)) +
->    geom_point(aes(color = strain))
-> ```
-
+>
+>> ## Solution
+>> ```{r scatter-challenge, answer=TRUE, purl=FALSE}
+>> ggplot(data = metadata, aes(x = strain, y = genome_size)) +
+>>    geom_point(aes(color = strain))
+>> ```
+> {: .solution}
+{: .challenge}
 
 ## Boxplot
 
@@ -250,14 +236,14 @@ Notice how the boxplot layer is behind the jitter layer? What do you need to
 change in the code to put the boxplot in front of the points such that it's not
 hidden?
 
-> ### Challenges
+> ## Challenge
 >
 > Boxplots are useful summaries, but hide the *shape* of the distribution. For
 > example, if the distribution is bimodal, we would not see it in a
 > boxplot. An alternative to the boxplot is the violin plot, where the shape
 (of the density of points) is drawn.
 >
-> - Replace the box plot with a violin plot; see `geom_violin()`.
+> a) Replace the box plot with a violin plot; see `geom_violin()`.
 >
 > In many types of data, it is important to consider the *scale* of the
 > observations.  For example, it may be worth changing the scale of the axis to
@@ -265,39 +251,19 @@ hidden?
 > of the axes is done similarly to adding/modifying other components (i.e., by
 > incrementally adding commands). Try making these modifications:
 >
-> - Represent genome_size on the log~10~ scale; see `scale_y_log10()`.
+> b) Represent genome_size on the log~10~ scale; see `scale_y_log10()`.
 >
 > So far, we've looked at the distribution of genome_size within strain. Try making a
 > new plot to explore the distribution of another variable within each strain.
 >
-> - Create a boxplot for `hindfoot_length`. Overlay the boxplot layer on a jitter
+> c) Create a boxplot for `hindfoot_length`. Overlay the boxplot layer on a jitter
 >   layer to show actual measurements.
 >
-> - Add color to the data points on your boxplot according to the plot from which
+> d) Add color to the data points on your boxplot according to the plot from which
 >   the sample was taken (`plot_id`).
 >
 > *Hint:* Check the class for `plot_id`. Consider changing the class of `plot_id` from integer to factor. Why does this change how R makes the graph?
-
-```{r boxplot-challenge, eval=FALSE, purl=TRUE, echo=FALSE}
-## Challenge with boxplots:
-##  Start with the boxplot we created:
-ggplot(data =metadata, aes(x = sample, y = generation)) +
-geom_boxplot(alpha = 0) +
-geom_jitter(alpha = 0.3, color = "tomato")
-
-##  1. Replace the box plot with a violin plot; see `geom_violin()`.
-
-##  2. Represent genome_size on the log10 scale; see `scale_y_log10()`.
-
-##  3. Create boxplot for `hindfoot_length` overlaid on a jitter layer.
-
-##  4. Add color to the data points on your boxplot according to the
-##  plot from which the sample was taken (`plot_id`).
-##  *Hint:* Check the class for `plot_id`. Consider changing the class
-##  of `plot_id` from integer to factor. Why does this change how R
-##  makes the graph?
-
-```
+{: .challenge}
 
 
 ## Plotting time series data
