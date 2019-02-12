@@ -84,8 +84,6 @@ in your analysis, and its reproducibility.
 > later in the lesson.  
  {: .callout}
 
-
-
 ## Importing tabular data into R
 There are several ways to import data into R. For our purpose here, we will
 focus on using the tools every R installation comes with (so called "base" R) to
@@ -151,7 +149,7 @@ errors in file paths.** Use it!
 ```{r}
 ## read in a CSV file and save it as 'submission_metadata'
 
-submission_metadata <- read.csv("data/sample_submission.csv")
+submission_metadata <- read.csv("../data/sample_submission.csv")
 ```
 
 One of the first things you should notice is that in the Environment window,
@@ -284,7 +282,7 @@ submission were prepped on each date? We could generate a plot:
 plot(table(submission_metadata$prep_date))
 ```
 
-Let's quickly brake down this line of code:
+Let's break down this line of code:
 
 First we are pulling a single column of data from the `submission_metadata` data frame using `$` notation:
 
@@ -378,7 +376,7 @@ where we are taking a range).
 > ## Exercise: Subsetting a data frame
 >
 > **Try the following indices and functions and try to figure out what they return**
->
+> 
 > a. `submission_metadata[1,1]`
 >
 > b. `submission_metadata[2,4]`
@@ -403,31 +401,78 @@ where we are taking a range).
 >
 > l. `submission_metadata[submission_metadata$RIN >= 9.0,]`
 >
->> ## solution
+>> ## Solution
+>> a. 
+>> ~~~
+>> submission_metadata[1,1]
+>> ~~~
+>> {: .r}
+>> 
+>> b. 
+>> ~~~
+>> submission_metadata[2,4]
+>> ~~~
+>> {: .r}
+>> 
+>> c. 
+>> ~~~
+>> submission_metadata[96,10]
+>> ~~~
+>> {: .r}
+>> 
+>> d. 
+>> ~~~
+>> submission_metadata[2, ]
+>> ~~~
+>> {: .r}
 >>
->> a. `submission_metadata[1,1]` # 1st row, 1st column
+>> e. 
+>> ~~~
+>> submission_metadata[-1, ]
+>> ~~~
+>> {: .r}
 >>
->> b. `submission_metadata[2,4]` # 2nd row, 4th column
+>> f. 
+>> ~~~
+>> submission_metadata[1:4,1]
+>> ~~~
+>> {: .r}
+>> 
+>> g. 
+>> ~~~
+>> submission_metadata[1:10,c("client_sample_id","client_sample_id")]
+>> ~~~
+>> {: .r}
+>> 
+>> h. 
+>> ~~~
+>> submission_metadata[,c("RIN")]
+>> ~~~
+>> {: .r}
 >>
->> c. `submission_metadata[96,10]` # 96th row, 10th column
->>
->> d. `submission_metadata[2, ]` # The entire 2nd row
->>
->> e. `submission_metadata[-1, ]` # The entire data frame except the 1st row
->>
->> f. `submission_metadata[1:4,1]` # rows 1-4, column 1
->>
->> g. `submission_metadata[1:10,c("client_sample_id","client_sample_id")]` # rows 1:10, column 'client_sample_id' and 'RIN'
->>
->> h. `submission_metadata[,c("RIN")]` # all rows, column 'RIN'
->>
->> i. `head(submission_metadata)` # first 6 rows of the data frame
->>
->> j. `tail(submission_metadata)` # last 6 rows of the data frame
->>
->> k. `submission_metadata$prep_date` # "prep_date" column, all rows
->>
->> l. `submission_metadata[submission_metadata$RIN >= 9.0,]` # all rows where the value of "RIN" column is greater-than-or-equal-to 9.0
+>> i. 
+>> ~~~
+>> head(submission_metadata)
+>> ~~~
+>> {: .r}
+>> 
+>> j. 
+>> ~~~
+>> tail(submission_metadata)
+>> ~~~
+>> {: .r}
+>> 
+>> k. 
+>> ~~~
+>> submission_metadata$prep_date
+>> ~~~
+>> {: .r}
+>> 
+>> l. 
+>> ~~~
+>> submission_metadata[submission_metadata$RIN >= 9.0,]
+>> ~~~
+>> {: .r}
 > {: .solution}
 {: .challenge}
 
@@ -553,7 +598,7 @@ submission_metadata$well_position <- as.character(submission_metadata$well_posit
 typeof(submission_metadata$well_position)
 ```
 
-## StringsAsFactors=FALSE
+## StringsAsFactors = FALSE
 
 Lets summarize this section on coercion with a few take home messages.
 
@@ -611,17 +656,40 @@ You can selectively replace values in a data frame based on their value:
 
 
 ```{r}
-sorted_by_replicate$replicate[sorted_by_replicate$replicate == "a"] <- "A"
-head(sorted_by_replicate$replicate)
+submission_metadata$replicate[submission_metadata$replicate == "a"] <- "A"
+head(submission_metadata$replicate)
 ```
 
 You can rename columns:
 
 ```{r}
-colnames(submission_metadata)[colnames(submission_metadata) == "Volume..µL."] <- "vol_in_µL"
+colnames(submission_metadata)[colnames(submission_metadata) == "Volume..µL."] <- "vol_in_mcL"
 
 # check the column name (hint names are returned as a vector)
 colnames(submission_metadata)[6]
+```
+
+## Exercise: More data cleaning
+> 
+> 
+> 
+> > ## Solution
+> > ~~~
+> > submission_metadata$replicate[submission_metadata$replicate == "b"] <- "B"
+> > submission_metadata$replicate[submission_metadata$replicate == "c"] <- "C"
+> > colnames(submission_metadata)[colnames(submission_metadata) == "concentration..ng.µL."] <- "concentration_ng_per_mcL"
+> > ~~~
+> > {: .r}
+> {: .solution}
+{: .challenge}
+
+```{r make-upper-case, echo = FALSE, results='hide', message=FALSE}
+# not sure if this is necessary - do exercise solutions get run when 
+# website renders?
+
+submission_metadata$replicate[submission_metadata$replicate == "b"] <- "B"
+submission_metadata$replicate[submission_metadata$replicate == "c"] <- "C"
+colnames(submission_metadata)[colnames(submission_metadata) == "concentration..ng.µL."] <- "concentration_ng_per_mcL"
 ```
 
 ## Importing data from Excel
@@ -668,7 +736,7 @@ frame:
 
 ```{r, echo=FALSE}
 ## read the file but don't show the code so the rest of the episode works
-Ecoli_metadata <-  readxl::read_xlsx("data/Ecoli_metadata.xlsx")
+Ecoli_metadata <-  readxl::read_xlsx("../data/Ecoli_metadata.xlsx")
 ```
 
 ```{r}
@@ -685,7 +753,7 @@ Finally, we can conclude this episode with saving our data frame, in this case
 to a .csv file using the `write.csv()` function:
 
 ```{r}
-write.csv(submission_metadata, file = "submission_metatata_cleaned.csv")
+write.csv(submission_metadata, file = "../data/submission_metatata_cleaned.csv")
 ```
 The `write.csv()` function has some additional arguments listed in the help, but
 at a minimum you need to tell it what data frame to write to file, and give a
