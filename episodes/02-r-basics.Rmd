@@ -19,7 +19,7 @@ keypoints:
   be an expert to use R and you can start using and analyzing your data with
   with about a day's worth of training"
 - "It is important to understand how data are organized by R in a given object
-  type how the mode of that type (e.g., numeric, character, logical, etc.) will
+  type how the mode of that type (e.g. numeric, character, logical, etc.) will
   determine how R will operate on that data."
 - "Working with vectors effectively prepares you for understanding how data are
   organized in R."
@@ -61,7 +61,7 @@ below.
 - How to create and work with R matrices and R lists
 - How to create and work with loops and conditional statements, and the "apply"
   family of functions (which are super useful, read more [here](https://www.r-bloggers.com/r-tutorial-on-the-apply-family-of-functions/))
-- How to do basic string manipulations (e.g., finding patterns in text using grep, replacing text)
+- How to do basic string manipulations (e.g. finding patterns in text using grep, replacing text)
 - How to plot using the default R graphic tools (we *will* cover ggplot2)
 - How to use advanced R statistical functions
 
@@ -101,8 +101,8 @@ in R.
 
 **To create your object you need:**
 
-- a name (e.g., 'a')
-- a value (e.g., '1')
+- a name (e.g. 'a')
+- a value (e.g. '1')
 - the assignment operator ('<-')
 
 In your script, "**genomics_r_basics.R**", using the R assignment operator '<-',
@@ -172,15 +172,15 @@ Here are some important details about naming objects in R.
 
 - **Avoid spaces and special characters**: Object names cannot contain spaces.
   Typically, you can use '-' or '_ ' to make names more readable. You should avoid
-  using special characters in your object name (e.g., ! @ # . , etc.). Also,
+  using special characters in your object name (e.g. ! @ # . , etc.). Also,
   names cannot begin with a number
 - **Use short, easy-to-understand names**: You should avoid naming your objects
-  using single letters (e.g., 'n', 'p', etc.). This is mostly to encourage you
+  using single letters (e.g. 'n', 'p', etc.). This is mostly to encourage you
   to use names that would make sense to anyone reading your code (a colleague,
   or even yourself a year from now). Also, avoiding excessively long names will
   make your code more readable
 - **Avoid commonly used names**: There are several names that may already have a
-  definition in the R language (e.g., 'mean', 'min', 'max'). One clue that a name
+  definition in the R language (e.g. 'mean', 'min', 'max'). One clue that a name
   already has meaning is that if you start typing a name in RStudio and it gets
   a colored highlight or RStudio gives you a suggested autocompletion you have
   chosen a name that has a reserved meaning
@@ -260,12 +260,12 @@ you will encounter in R are:
 There are a few other modes (i.e. "complex", "raw" etc.) but for now, these three are the most important.
 
 Data types are familiar in many programming languages, but also in natural
-language where we refer to them as the parts of speech, e.g., nouns, verbs,
+language where we refer to them as the parts of speech, e.g. nouns, verbs,
 adverbs, etc. Once you know if a word - perhaps an unfamiliar one - is a noun,
 you can probably guess you can count it and make it plural if there is more than
-one (e.g., 1 [Tuatara](https://en.wikipedia.org/wiki/Tuatara), or 2 Tuataras). If
+one (e.g. 1 [Tuatara](https://en.wikipedia.org/wiki/Tuatara), or 2 Tuataras). If
 something is a adjective, you can usually change it into an adverb by adding
-"-ly" (e.g., [jejune](https://www.merriam-webster.com/dictionary/jejune) vs.
+"-ly" (e.g. [jejune](https://www.merriam-webster.com/dictionary/jejune) vs.
 jejunely). Depending on the context, you may need to decide if a word is in one
 category or another (e.g "cut" may be a noun when it's on your finger, or a verb
 when you are preparing vegetables). These concepts have important analogies when
@@ -414,7 +414,7 @@ snp_positions <- c(8762685, 66560624, 67545785, 154039662)
 Once we have vectors, one thing we may want to do is specifically retrieve one
 or more values from our vector. To do so, we use **bracket notation**. We type
 the name of the vector followed by square brackets. In those square brackets
-we place the index (e.g., a number) in that bracket as follows:
+we place the index (e.g. a number) in that bracket as follows:
 
 ```{r}
 # get the 3rd value in the snp_genes vector
@@ -518,7 +518,7 @@ Notice in the operation above that R inserts an `NA` value to extend our vector 
 >>
 >> C) True
 >>
->> D) False - Vectors have only one mode (e.g., numeric, character); all items in
+>> D) False - Vectors have only one mode (e.g. numeric, character); all items in
 >> a vector must be of this mode.
 >>
 >> E) True
@@ -573,7 +573,7 @@ As demonstrated above, in the square brackets you place the name of the vector f
 > "magic" of programming. We mentioned before that in the bracket notation you
 > take your named vector followed by brackets which contain an index:
 > **named_vector[index]**. The "magic" is that the index needs to *evaluate to*
-> a number. So, even if it does not appear to be an integer (e.g., 1, 2, 3), as
+> a number. So, even if it does not appear to be an integer (e.g. 1, 2, 3), as
 > long as R can evaluate it, we will get a result. That our expression
 > `snp_positions[snp_positions > 100000000]` evaluates to a number can be seen
 > in the following situation. If you wanted to know which **index** (1, 2, 3, or
