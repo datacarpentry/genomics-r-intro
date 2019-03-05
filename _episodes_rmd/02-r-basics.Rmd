@@ -8,7 +8,7 @@ questions:
 - "What are the most common objects in R?"
 objectives:
 - "Be able to create the most common R objects including vectors"
-- "Understand that vectors have modes, which correspond to the types of data they
+- "Understand that vectors have modes, which correspond to the type of data they
   contain"
 - "Be able to use arithmetic operators on R objects"
 - "Be able to retrieve (subset), name, or replace, values from a vector"
