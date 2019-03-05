@@ -13,13 +13,13 @@ objectives:
 - "Be able to use arithmetic operators on R objects"
 - "Be able to retrieve (subset), name, or replace, values from a vector"
 - "Be able to use logical operators in a subsetting operation"
-- "Understand that lists can hold data of more than one mode/type and can be indexed"
+- "Understand that lists can hold data of more than one mode and can be indexed"
 keypoints:
 - "Effectively using R is a journey of months or years. Still you don't have to
   be an expert to use R and you can start using and analyzing your data with
   with about a day's worth of training"
 - "It is important to understand how data are organized by R in a given object
-  type how the mode of that type (e.g. numeric, character, logical, etc.) will
+  type and how the mode of that type (e.g. numeric, character, logical, etc.) will
   determine how R will operate on that data."
 - "Working with vectors effectively prepares you for understanding how data are
   organized in R."
@@ -726,7 +726,7 @@ c("ACTN3","APOA5") %in% snp_genes
 Lists are quite useful in R, but we won't be using them in the genomics lessons.
 That said, you may come across lists in the way that some bioinformatics
 programs may store and/or return data to you. One of the key attributes of a
-list is that unlike a vector, a list may contain data of more than one class.
+list is that unlike a vector, a list may contain data of more than one mode.
 Learn more about creating and using lists using this [nice
 tutorial](http://r4ds.had.co.nz/lists.html). In this one example, we will create
 a named list and show you how to retrieve items from the list.
