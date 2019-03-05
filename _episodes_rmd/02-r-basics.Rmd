@@ -12,14 +12,14 @@ objectives:
   contain"
 - "Be able to use arithmetic operators on R objects"
 - "Be able to retrieve (subset), name, or replace, values from a vector"
-- "Be able to use logical operators in an subsetting operation"
+- "Be able to use logical operators in a subsetting operation"
 - "Understand that lists can hold data of more than one mode and can be indexed"
 keypoints:
 - "Effectively using R is a journey of months or years. Still you don't have to
   be an expert to use R and you can start using and analyzing your data with
   with about a day's worth of training"
 - "It is important to understand how data are organized by R in a given object
-  type how the mode of that type (e.g. numeric, character, logical, etc.) will
+  type and how the mode of that type (e.g. numeric, character, logical, etc.) will
   determine how R will operate on that data."
 - "Working with vectors effectively prepares you for understanding how data are
   organized in R."
@@ -35,7 +35,7 @@ knitr_fig_path("02-")
 ## "The fantastic world of R awaits you" OR "Nobody wants to learn how to use R"
 
 Before we begin this lesson, we want you to be clear on the goal of the workshop
-and these lessons. We believe that every learner can be **achieve competency
+and these lessons. We believe that every learner can **achieve competency
 with R**. You have reached competency when you find that you are able to
 **use R to handle common analysis challenges in a reasonable amount of time**
 (which includes time needed to look at learning materials, search for answers
@@ -51,9 +51,9 @@ Nobody wants to learn how to use R. People want to learn how to use R to analyze
 their own research questions! Ok, maybe some folks learn R for R's sake, but
 these lessons assume that you want to start analyzing genomic data as soon as
 possible. Given this, there are many valuable pieces of information about R
-that we simply wont have time to cover. Hopefully we will clear the hurdle of
+that we simply won't have time to cover. Hopefully, we will clear the hurdle of
 giving you just enough knowledge to be dangerous, which can be a high bar
-in R! We suggest you look into additional the learning materials in the tip box
+in R! We suggest you look into the additional learning materials in the tip box
 below.
 
 **Here are some R skills we will *not* cover in these lessons**
@@ -182,7 +182,7 @@ Here are some important details about naming objects in R.
 - **Avoid commonly used names**: There are several names that may already have a
   definition in the R language (e.g. 'mean', 'min', 'max'). One clue that a name
   already has meaning is that if you start typing a name in RStudio and it gets
-  a colored highlight, or RStudio gives you a suggested autocompletion you have
+  a colored highlight or RStudio gives you a suggested autocompletion you have
   chosen a name that has a reserved meaning
 - **Use the recommended assignment operator**: In R, we use '<- ' as the
   preferred assignment operator. '=' works too, but is most commonly used in
@@ -200,11 +200,11 @@ have advice, and one to start with is the [tidyverse R style guide](http://style
 >
 > If you enter a line of code in your script that contains some error, RStudio
 > may give you an error message and underline this mistake. Sometimes these
-> messages are easy to understand, but often the message may need some figuring
-> out. In any case paying attention to these warnings help you avoid mistakes.
-> In this case, our object name has a space, which is not allowed in R. Notice
+> messages are easy to understand, but often the messages may need some figuring
+> out. Either way, paying attention to these warnings would help you avoid mistakes.
+> In this case, our object name has a 'space', which is not allowed in R. Notice
 > the error message does not say this directly, but essentially R is "not sure"
-> about to to assign the name to "human_ chr_number" when the object name we
+> about how to assign the name to "human_ chr_number" when the object name we
 > want is "human_chr_number".
 >
 > <img src="../fig/rstudio_script_warning.png" alt="rstudio script warning" style="width: 600px;"/>
@@ -267,7 +267,7 @@ one (e.g. 1 [Tuatara](https://en.wikipedia.org/wiki/Tuatara), or 2 Tuataras). If
 something is a adjective, you can usually change it into an adverb by adding
 "-ly" (e.g. [jejune](https://www.merriam-webster.com/dictionary/jejune) vs.
 jejunely). Depending on the context, you may need to decide if a word is in one
-category or another (e.g "cut" may be a noun when its on your finger, or a verb
+category or another (e.g "cut" may be a noun when it's on your finger, or a verb
 when you are preparing vegetables). These concepts have important analogies when
 working with R objects.
 
@@ -294,7 +294,7 @@ working with R objects.
 
 Notice from the solution that even if a series of numbers are given as a value
 R will consider them to be in the "character" mode if they are enclosed as
-single or double quotes. Also notice that you cannot take a string of alphanumeric
+single or double quotes. Also, notice that you cannot take a string of alphanumeric
 characters (e.g. Earhart) and assign as a value for an object. In this case,
 R looks for the object `Earhart` but since there is no object, no assignment can
 be made. If `Earhart` did exist, then the mode of `pilot` would be whatever
@@ -396,7 +396,7 @@ str(snp_genes)
 
 Vectors are quite important in R, mostly for us because data frames are
 essentially collections of vectors (more on this later). What we learn about
-manipulating vectors now will pay off even more when we get to data frames.
+manipulating vectors now will pay off, even more, when we get to data frames.
 
 ## More on creating and subsetting vectors
 
@@ -412,7 +412,7 @@ snp_positions <- c(8762685, 66560624, 67545785, 154039662)
 ```
 
 Once we have vectors, one thing we may want to do is specifically retrieve one
-or more values from our vector. To do so we use **bracket notation**. We type
+or more values from our vector. To do so, we use **bracket notation**. We type
 the name of the vector followed by square brackets. In those square brackets
 we place the index (e.g. a number) in that bracket as follows:
 
@@ -431,8 +431,8 @@ range of numbers:
 snp_genes[1:3]
 ```
 
-If you want to to retreive several (but not necessarily sequential) items from
-a vector, you pass a **vector of indicies**; a vector that has the numbered
+If you want to retrieve several (but not necessarily sequential) items from
+a vector, you pass a **vector of indices**; a vector that has the numbered
 positions you wish to retrieve.
 
 ```{r}
@@ -463,7 +463,7 @@ so, you can use the `c()` function again to add your new value:
 snp_genes <- c(snp_genes, "CYP1A1", "APOA5")
 ```
 
-We can of course verify that "snp_genes" contains the new gene entry
+We can, of course, verify that "snp_genes" contains the new gene entry
 
 ```{r}
 snp_genes
@@ -491,7 +491,7 @@ snp_genes[[7]]<- "APOA5"
 snp_genes
 ```
 
-Notice in the operation above that R inserts an `NA` value to extend our vector so that the gene "APOA5" is an index 7. This may be a good or not so good thing depending on how you use this.
+Notice in the operation above that R inserts an `NA` value to extend our vector so that the gene "APOA5" is an index 7. This may be a good or not-so-good thing depending on how you use this.
 
 > ## Exercise: Examining and subsetting vectors
 > Answer the following questions to test your knowledge of vectors
@@ -637,7 +637,7 @@ c("ACTN3","APOA5") %in% snp_genes
 >
 > Use your knowledge of vectors to accomplish the following tasks:
 >
-> **1) What mode are the following vectors? Use `typeof()` to check**
+> **1) What data types/modes are the following vectors? Use `typeof()` to check**
 >
 >    a. `snps`
 >
@@ -645,7 +645,7 @@ c("ACTN3","APOA5") %in% snp_genes
 >
 >    c. `snp_positions`
 >
-> **2) Add the following values to the following vectors**
+> **2) Add the following values to the specified vectors**
 >
 >    a. To the `snps` vector add: 'rs662799'
 >
@@ -674,11 +674,11 @@ c("ACTN3","APOA5") %in% snp_genes
 >
 >    - The 1st value in `snp_positions`
 >
->   **Check the mode of `combined` using `typeof()`**
+>   **Check the data type/storage mode of `combined` using `typeof()`**
 >
 >> ## Solution
 >>
->> **1) What mode are the following vectors? Use `typeof()` to check**
+>> **1) What data types are the following vectors? Use `typeof()` to check**
 >>
 >>    a. `typeof(snps)` # "character"
 >>
@@ -687,7 +687,7 @@ c("ACTN3","APOA5") %in% snp_genes
 >>    c. `typeof(snp_positions)` # "double" - which is also a numeric type
 >>
 >>
->> **2) Add the following values to the following vectors**
+>> **2) Add the following values to the specified vectors**
 >>
 >>    a. `snps <- c(snps, 'rs662799')`
 >>
@@ -749,7 +749,7 @@ str(snp_data)
 ```
 
 
-To get all of the values for the `position` object in the list we use the `$` notation:
+To get all the values for the `position` object in the list, we use the `$` notation:
 
 ```{r}
 # return all the values of position object
@@ -757,7 +757,7 @@ To get all of the values for the `position` object in the list we use the `$` no
 snp_data$position
 ```
 
-To get the first value in the `position` object, use `[]` notation to index:
+To get the first value in the `position` object, use the `[]` notation to index:
 
 ```{r}
 # return first value of the position object
