@@ -271,7 +271,7 @@ REF <-
 We can now see the new ordering:
 
 ```{r}
-str(more_days_of_the_week)
+
 ```
 
 Although not all levels are shown, notice there are `<` signs indicating an
@@ -319,102 +319,90 @@ where we are taking a range).
 >
 > **Try the following indices and functions and try to figure out what they return**
 > 
-> a. `submission_metadata[1,1]`
+> a. `variants[1,1]`
 >
-> b. `submission_metadata[2,4]`
+> b. `variants[2,4]`
 >
-> c. `submission_metadata[96,10]`
+> c. `variants[801,29]`
 >
-> d. `submission_metadata[2, ]`
+> d. `variants[2, ]`
 >
-> e. `submission_metadata[-1, ]`
+> e. `variants[-1, ]`
 >
-> f. `submission_metadata[1:4,1]`
+> f. `variants[1:4,1]`
 >
-> g. `submission_metadata[1:10,c("client_sample_id","RIN")]`
+> g. `variants[1:10,c("REF","ALT")]`
 >
-> h. `submission_metadata[,c("RIN")]`
+> h. `variants[,c("sample_id")]`
 >
-> i. `head(submission_metadata)`
+> i. `head(variants)`
 >
-> j. `tail(submission_metadata)`
+> j. `tail(variants)`
 >
-> k. `submission_metadata$prep_date`
+> k. `variants$sample_id`
 >
-> l. `submission_metadata[submission_metadata$RIN >= 9.0,]`
+> l. `variants[variants$REF == "A",]`
 >
 >> ## Solution
 >> a. 
->> ~~~
->> submission_metadata[1,1]
->> ~~~
->> {: .r}
+>> ```{r}
+>> variants[1,1]
+>> ```
 >> 
 >> b. 
->> ~~~
->> submission_metadata[2,4]
->> ~~~
->> {: .r}
+>> ```{r}
+>> variants[2,4]
+>> ```
 >> 
 >> c. 
->> ~~~
->> submission_metadata[96,10]
->> ~~~
->> {: .r}
+>> ```{r}
+>> variants[801,29]
+>> ```
 >> 
 >> d. 
->> ~~~
->> submission_metadata[2, ]
->> ~~~
->> {: .r}
+>> ```{r}
+>> variants[2, ]
+>> ```
 >>
 >> e. 
->> ~~~
->> submission_metadata[-1, ]
->> ~~~
->> {: .r}
+>> ```{r}
+>> variants[-1, ]
+>> ```
 >>
 >> f. 
->> ~~~
->> submission_metadata[1:4,1]
->> ~~~
->> {: .r}
+>> ```{r}
+>> variants[1:4,1]
+>> ```
 >> 
 >> g. 
->> ~~~
->> submission_metadata[1:10,c("client_sample_id","client_sample_id")]
->> ~~~
->> {: .r}
+>> ```{r}
+>> variants[1:10,c("REF","ALT")]
+>> ```
 >> 
 >> h. 
->> ~~~
->> submission_metadata[,c("RIN")]
->> ~~~
->> {: .r}
+>> ```{r}
+>> variants[,c("sample_id")]
+>> ```
 >>
 >> i. 
->> ~~~
->> head(submission_metadata)
->> ~~~
->> {: .r}
+>> ```{r}
+>> head(variants)
+>> ```
 >> 
 >> j. 
->> ~~~
->> tail(submission_metadata)
->> ~~~
->> {: .r}
+>> ```{r}
+>> tail(variants)
+>> ```
 >> 
 >> k. 
->> ~~~
->> submission_metadata$prep_date
->> ~~~
->> {: .r}
+>> ```{r}
+>> variants$sample_id
+>> ```
 >> 
 >> l. 
->> ~~~
->> submission_metadata[submission_metadata$RIN >= 9.0,]
->> ~~~
->> {: .r}
+>> ```{r}
+>> variants[variants$REF == "A",]
+>> ```
 > {: .solution}
 {: .challenge}
 
@@ -432,17 +420,17 @@ the screen. Remember that you can create a new data frame object by assigning
 them to a new object name:
 
 ```{r}
-# subset submission_metadata to a new data frame with RIN >= 8
+# create a new data frame containing only observations from SRR2584863 
 
-high_quality_rna <- submission_metadata[submission_metadata$RIN >= 8,]
+SRR2584863_variants <- variants[variants$sample_id == "SRR2584863",]
 
 # check the dimension of the data frame
 
-dim(high_quality_rna)
+dim(SRR2584863_variants)
 
 # get a summary of the data frame
 
-summary(high_quality_rna)
+summary(SRR2584863_variants)
 ```
 
 ## Coercing values in data frames
@@ -515,14 +503,14 @@ snp_chromosomes_2
 ```
 
 Trouble can really start when we try to coerce a factor. For example, when we
-try to coerce the `replicate` column in our data frame into a character mode
+try to coerce the `sample_id` column in our data frame into a numeric mode
 look at the result:
 
 ```{r}
-as.numeric(submission_metadata$replicate)
+as.numeric(variants$sample_id)
 ```
 
-Strangely, it works! Almost. Instead of giving and error message, R returns
+Strangely, it works! Almost. Instead of giving an error message, R returns
 numeric values, which in this case are the integers assigned to the levels in
 this factor. This kind of behavior can lead to hard-to-find bugs, for example
 when we do have numbers in a factor, and we get numbers from a coercion. If
@@ -532,12 +520,12 @@ If you need to coerce an entire column you can overwrite it using an expression
 like this one:
 
 ```{r}
-# make the 'well_position' column a character type column
+# make the 'REF' column a character type column
  
-submission_metadata$well_position <- as.character(submission_metadata$well_position)
+variants$REF <- as.character(variants$REF)
 
 # check the type of the column
-typeof(submission_metadata$well_position)
+typeof(variants$REF)
 ```
 
 ## StringsAsFactors = FALSE
@@ -573,65 +561,46 @@ material [here](https://swcarpentry.github.io/r-novice-inflammation/15-supp-loop
 a subsequent lesson, but overall we will focus on data cleaning and
 visualization.
 
-As you might expect, you can use functions like `mean()`, `min()`, `max()` on an
-individual column:
+You can use functions like `mean()`, `min()`, `max()` on an
+individual column. Let's look at the "DP" or filtered depth. This value shows the number of filtered
+reads that support each of the reported variants.
 
 ```{r}
-mean(submission_metadata$RIN)
-```
-
-You can do math and save the result in a new column:
-
-```{r}
-submission_metadata$vol_in_L <- submission_metadata$Volume..µL. /10000
-head(submission_metadata$vol_in_L)
+max(variants$DP)
 ```
 
 You can sort a data frame using the `order()` function:
 
 ```{r}
-sorted_by_replicate <- submission_metadata[order(submission_metadata$replicate), ]
-head(sorted_by_replicate$replicate)
+sorted_by_DP <- variants[order(variants$DP), ]
+head(sorted_by_DP$DP)
 ```
+
+> ## Exercise
+> The `order()` function lists values in increasing order by default. Look at the documenation
+> for this function and change `sorted_by_DP` to start with variants with the greatest filtered
+> depth ("DP").
+> 
+> > ## Solution
+> > ```{r}
+> > sorted_by_DP <- variants[order(variants$DP, decreasing = TRUE), ]
+> > head(sorted_by_DP$DP)
+> >```
+> {: .solution}
+{: .challenge}
 
 You can selectively replace values in a data frame based on their value:
 
-
 ```{r}
-submission_metadata$replicate[submission_metadata$replicate == "a"] <- "A"
-head(submission_metadata$replicate)
 ```
 
 You can rename columns:
 
 ```{r}
-colnames(submission_metadata)[colnames(submission_metadata) == "Volume..µL."] <- "vol_in_mcL"
+colnames(variants)[colnames(variants) == "sample_id"] <- "strain"
 
 # check the column name (hint names are returned as a vector)
-colnames(submission_metadata)[6]
-```
-
-## Exercise: More data cleaning
-> 
-> 
-> 
-> > ## Solution
-> > ~~~
-> > submission_metadata$replicate[submission_metadata$replicate == "b"] <- "B"
-> > submission_metadata$replicate[submission_metadata$replicate == "c"] <- "C"
-> > colnames(submission_metadata)[colnames(submission_metadata) == "concentration..ng.µL."] <- "concentration_ng_per_mcL"
-> > ~~~
-> > {: .r}
-> {: .solution}
-{: .challenge}
-
-```{r make-upper-case, echo = FALSE, results='hide', message=FALSE}
-# not sure if this is necessary - do exercise solutions get run when 
-# website renders?
-
-submission_metadata$replicate[submission_metadata$replicate == "b"] <- "B"
-submission_metadata$replicate[submission_metadata$replicate == "c"] <- "C"
-colnames(submission_metadata)[colnames(submission_metadata) == "concentration..ng.µL."] <- "concentration_ng_per_mcL"
+colnames(variants)
 ```
 
 ## Importing data from Excel
@@ -644,11 +613,10 @@ Excel files, are you going to open and export all of them?).
 
 One common R package (a set of code with features you can download and add to
 your R installation) is the [readxl package](https://CRAN.R-project.org/package=readxl) which can open and import Excel
-files. Rather than addressing package installation this second, we can take
+files. Rather than addressing package installation this second (we'll discuss this soon!), we can take
 advantage of RStudio's import feature which integrates this package. (Note:
 this feature is available only in the latest versions of RStudio such as is
 installed on our cloud instance).
-
 
 First, in the RStudio menu go to **File**, select **Import Dataset**, and
 choose **From Excel...** (notice there are several other options you can
