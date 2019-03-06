@@ -42,7 +42,7 @@ knitr_fig_path("03-")
 
 A substantial amount of the data we work with in genomics will be tabular data,
 this is data arranged in rows and columns - also known as spreadsheets. We could
-write a whole lesson on how to work with spreadsheets effectively ([actually we did](http://www.datacarpentry.org/spreadsheet-ecology-lesson/)). For our
+write a whole lesson on how to work with spreadsheets effectively ([actually we did](https://datacarpentry.org/organization-genomics/)). For our
 purposes, we want to remind you of a few principles before we work with our
 first set of example data:
 
@@ -59,7 +59,7 @@ spreadsheet for each observation or sample, and one column for every variable
 that we measure or report on. As simple as this sounds, it's very easily
 violated. Most data scientists agree that significant amounts of their time is
 spent tidying data for analysis. Read more about data organization in
-[our lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/) and
+[our lesson](https://datacarpentry.org/organization-genomics/) and
 in [this paper](https://www.jstatsoft.org/article/view/v059i10).
 
 **3) Trust but verify**
@@ -87,7 +87,8 @@ in your analysis, and its reproducibility.
 ## Importing tabular data into R
 There are several ways to import data into R. For our purpose here, we will
 focus on using the tools every R installation comes with (so called "base" R) to
-import a comma-delimited file, a sequencing sample submission sheet. We will need to load the sheet using a function called `read.csv()`.
+import a comma-delimited file containing the results of our variant calling workflow.
+We will need to load the sheet using a function called `read.csv()`.
 
 > ## Exercise: Review the arguments of the `read.csv()` function
 >
@@ -139,22 +140,22 @@ import a comma-delimited file, a sequencing sample submission sheet. We will nee
 {: .challenge}
 
 
-Now, let's read in the file `sample_submission.csv` which will be located in
-`/home/dcuser/dc_sample_data/R`. Save the file as `submission_metadata`. The
+Now, let's read in the file `combined_tidy_vcf.csv` which will be located in
+`/home/dcuser/dc_sample_data/R`. Call this data `variants`. The
 first argument to pass to our `read.csv()` function is the file path for our
 data. The file path must be in quotes and now is a good time to remember to
 use tab autocompletion. **If you use tab autocompletion you avoid typos and
 errors in file paths.** Use it!
 
 ```{r}
-## read in a CSV file and save it as 'submission_metadata'
+## read in a CSV file and save it as 'variants'
 
-submission_metadata <- read.csv("../data/sample_submission.csv")
+variants <- read.csv("../data/combined_tidy_vcf.csv")
 ```
 
 One of the first things you should notice is that in the Environment window,
-you have the `submission_metadata` object, listed as 96 obs. (observations/rows)
-of 10 variables (columns). Double-clicking on the name of the object will open
+you have the `variants` object, listed as 801 obs. (observations/rows)
+of 29 variables (columns). Double-clicking on the name of the object will open
 a view of the data in a new tab.
 
 <img src="../fig/rstudio_dataframeview.png" alt="rstudio data frame view" style="width: 1000px;"/>
@@ -162,26 +163,26 @@ a view of the data in a new tab.
 ## Summarizing and determining the structure of a data frame.
 
 A **data frame is the standard way in R to store tabular data**. A data fame
-could also be thought of as a collect of vectors, all of which have the same
+could also be thought of as a collection of vectors, all of which have the same
 length. Using only two functions, we can learn a lot about out data frame
-including some summary statics as well as well as the "structure" of the data
+including some summary statistics as well as well as the "structure" of the data
 frame. Let's examine what each of these functions can tell us:
 
 ```{r}
 ## get summary statistics on a data frame
 
-summary(submission_metadata)
+summary(variants)
 ```
 
-Our data frame had 10 variables, so we get 10 fields that summarize the data.
-The `tube_barcode`, `Volume..ul.`, `concentration..ng.ul`, `RIN`, variables are
+Our data frame had 29 variables, so we get 29 fields that summarize the data.
+The `QUAL`, `IMF`, and `VDB` variables (and several others) are
 numerical data and so you get summary statistics on the min and max values for
-these columns, as well as mean, median, and interquartile ranges. The other data
-(e.g. `replicate`, etc.) are treated as categorical data (which have special
-treatment in R - more on this in a bit). The top 6 different categories and the
-number of times they appear (e.g. the replicate called 'A' appeared 31 times)
-are displayed. There was only one value for `ship_date`, "20-Jul" which appeared
-96 times.
+these columns, as well as mean, median, and interquartile ranges. Many of the other variables
+(e.g. `sample_id`) are treated as categorical data (which have special
+treatment in R - more on this in a bit). The most frequent 6 different categories and the
+number of times they appear (e.g. the sample_id called 'SRR2584863' appeared 25 times)
+are displayed. There was only one value for `CHROM`, "CP000819.1" which appeared
+in all 801 observations.
 
 Before we operate on the data, we also need to know a little more about the
 data frame structure to do that we use the `str()` function:
@@ -189,14 +190,14 @@ data frame structure to do that we use the `str()` function:
 ```{r}
 ## get the structure of a data frame
 
-str(submission_metadata)
+str(variants)
 ```
 
 Ok, thats a lot up unpack! Some things to notice.
 
 - the object type `data.frame` is displayed in the first row along with its
-  dimensions, in this case 96 observations (rows) and 10 variables (columns)
-- Each variable (column) has a name (e.g. `well_position`). This is followed
+  dimensions, in this case 801 observations (rows) and 29 variables (columns)
+- Each variable (column) has a name (e.g. `sample_id`). This is followed
   by the object mode (e.g. factor, int, num, etc.). Notice that before each
   variable name there is a `$` - this will be important later.
 
@@ -209,121 +210,62 @@ categorial and continuous variables usually have different treatments. Sometimes
 you may want to have data treated as a factor, but in other cases, this may be
 undesirable.
 
-Since some of the data in our data frame are factors, lets see how factors work
-using the `factor()` function to create a factor:
+Since some of the data in our data frame are factors, lets see how factors work. First, we'll
+extract one of the columns of our data frame to a new object, so that we don't end up
+modifying the `variants` object by mistake.
 
 ```{r}
-## create a factor 'days of the week' by passing a vector of characters
+## extract the "REF" column to a new object
 
-days_of_the_week <- factor(c('monday',
-                             'tuesday',
-                             'wednesday',
-                             'thursday',
-                             'friday'))
+REF <- variants$REF
 ```
 
-Notice what happens when we run a line with just the name of our factor:
+Let's look at the first few items in our factor using `head()`:
 
 ```{r}
-# create a factor 'days of the week' by passing a vector of characters
-
-days_of_the_week
+head(REF)
 ```
 
 What we get back are the items in our factor, and also something called "Levels".
 **Levels are the different categories contained in a factor**. By default, R
-will organize the levels in a factor in alphabetical order.
+will organize the levels in a factor in alphabetical order. So the first level in this factor is
+"A".
 
 Lets look at the contents of a factor in a slightly different way using `str()`:
 
 ```{r}
-str(days_of_the_week)
+str(REF)
 ```
 
 For the sake of efficiency, R stores the content of a factor as a vector of
 integers, which an integer is assigned to each of the possible levels. Recall
-levels are assigned in alphabetical order, so:
-
-|Level|integer|
-|-----|-------|
-|friday|1|
-|monday|2|
-|thursday|3|
-|tuesday|4|
-|wednesday|5|
-
-Notice what happens to the levels if we add some repeated values to our factor:
-
-```{r}
-# create a factor with repeated values
-more_days_of_the_week <- factor(c('monday',
-                                  'tuesday',
-                                  'wednesday',
-                                  'thursday',
-                                  'friday',
-                                  'friday',
-                                  'friday'))
-str(more_days_of_the_week)
-```
-
-Going back to our chart above, "friday" is assigned "1" in the factor, and that
-integer is listed three times in our factor. This is slightly obscure, but it
-provides some clarification to why we get this output.
+levels are assigned in alphabetical order. In this case, the first item in our "REF" object is
+"T", which happens to be the 49th level of our factor, ordered alphabeticaly. The next two
+items are both "G"s, which is the 33rd level of our factor.
 
 ## Plotting and ordering factors
 
 One of the most common uses for factors will be when you plot categorical
-values. For example, suppose we want to know how many samples from our sample
-submission were prepped on each date? We could generate a plot:
+values. For example, suppose we want to know how many of our variants had each possible 
+nucleotide (or nucleotide combination) in the reference genome? We could generate a plot:
 
 ```{r}
-# create a factor with repeated values
-
-plot(table(submission_metadata$prep_date))
+plot(REF)
 ```
 
-Let's break down this line of code:
+This isn't a particularly pretty example of a plot. We'll be learning much more about creating
+nice, publication-quality graphics later in this lesson. For now, let's explore how we can order
+the factors in our plot so that the first four values are "A", "C", "G", "T", with multi-nucleotide
+combinations listed alphabetically after these four.
 
-First we are pulling a single column of data from the `submission_metadata` data frame using `$` notation:
-
-```{r}
-# obtain the values of the 'prep_date' variable from the data frame
-
-submission_metadata$prep_date
-```
-
-Then we use the `table()` function to turn this into a table of counts:
-
-```{r}
-# generate a table from values of the 'prep_date' variable from the data frame
-
-table(submission_metadata$prep_date)
-```
-
-Finally, we use R's `plot()` function which attempts to generate a plot from the
-data:
-
-```{r}
-# generate a plot from values of the 'prep_date' variable from the data frame
-
-plot(table(submission_metadata$prep_date))
-```
-
-While this is a toy example, and there are problems with our prep dates that
-need fixing, let's see how you order a factor so that we can fix our plot.
-We can take our existing `more_days_of_the_week` factor, and use the `factor()`
+We can take our existing `REF` factor, and use the `factor()`
 function again. This time we will pass it two new arguments: `levels` will be
-assigned to a vector that has the days of the week in the order we want them,
+assigned to a vector that has the REF values in the order we want them,
 and we will set the `ordered` argument to TRUE.
 
 ```{r}
- # order the 'more_days_of_the_week' factor to our desired set of levels
- more_days_of_the_week <- factor(more_days_of_the_week, levels = c("monday",
-                                                                   "tuesday",
-                                                                   "wednesday",
-                                                                   "thursday",
-                                                                   "friday"),
-                                 ordered = TRUE)
+ # order the 'REF' factor to match our desired set of levels
+REF <- 
 ```        
 
 We can now see the new ordering:
