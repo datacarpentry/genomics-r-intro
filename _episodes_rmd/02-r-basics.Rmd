@@ -26,11 +26,10 @@ keypoints:
 source: Rmd
 ---
 
-```{r, include=FALSE}
+```{r, include = FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("02-")
 ```
-
 
 ## "The fantastic world of R awaits you" OR "Nobody wants to learn how to use R"
 
@@ -109,7 +108,7 @@ In your script, "**genomics_r_basics.R**", using the R assignment operator '<-',
 assign '1' to the object 'a' as shown. Remember to leave a comment in the line
 above (using the '#') to explain what you are doing:
 
-```{r}
+```{r, purl = FALSE}
 # this line creates the object 'a' and assigns it the value '1'
 
 a <- 1
@@ -159,10 +158,12 @@ created in R.
 >> ## Solution
 >>
 >> Here as some possible answers to the challenge:
->> 1. `human_chr_number <- 23`
->> 2. `gene_name <- 'pten'`
->> 3. `ensemble_url <- 'ftp://ftp.ensemblgenomes.org/pub/bacteria/release-39/fasta/bacteria_5_collection/escherichia_coli_b_str_rel606/'`
->> 4. `human_diploid_chr_num <-  2 * human_chr_number`
+>> ```{r, purl = FALSE}
+>> human_chr_number <- 23
+>> gene_name <- 'pten'
+>> `ensemble_url <- 'ftp://ftp.ensemblgenomes.org/pub/bacteria/release-39/fasta/bacteria_5_collection/escherichia_coli_b_str_rel606/'
+>> human_diploid_chr_num <-  2 * human_chr_number
+>> ```
 > {: .solution}
 {: .challenge}
 
@@ -178,19 +179,18 @@ Here are some important details about naming objects in R.
   using single letters (e.g. 'n', 'p', etc.). This is mostly to encourage you
   to use names that would make sense to anyone reading your code (a colleague,
   or even yourself a year from now). Also, avoiding excessively long names will
-  make your code more readable
+  make your code more readable.
 - **Avoid commonly used names**: There are several names that may already have a
   definition in the R language (e.g. 'mean', 'min', 'max'). One clue that a name
   already has meaning is that if you start typing a name in RStudio and it gets
   a colored highlight or RStudio gives you a suggested autocompletion you have
-  chosen a name that has a reserved meaning
+  chosen a name that has a reserved meaning.
 - **Use the recommended assignment operator**: In R, we use '<- ' as the
   preferred assignment operator. '=' works too, but is most commonly used in
   passing arguments to functions (more on functions later). There is a shortcut
   for the R assignment operator:
   - Windows execution shortcut: <KBD>Alt</KBD>+<KBD>-</KBD>
   - Mac execution shortcut: <KBD>Option</KBD>+<KBD>-</KBD>
-
 
 There are a few more suggestions about naming and style you may want to learn
 more about as you write more R code. There are several "style guides" that
@@ -208,8 +208,7 @@ have advice, and one to start with is the [tidyverse R style guide](http://style
 > want is "human_chr_number".
 >
 > <img src="../fig/rstudio_script_warning.png" alt="rstudio script warning" style="width: 600px;"/>
->
- {: .callout}
+> {: .callout}
 
 ## Reassigning object names or deleting objects
 
@@ -217,7 +216,7 @@ Once an object has a value, you can change that value by overwriting it. R will
 not complain about overwriting objects, which may or may not be a good thing
 depending on how you look at it.
 
-```{r}
+```{r, purl = FALSE}
 # gene_name has the value 'pten' or whatever value you used in the challenge.
 # We will now assign the new value 'tp53'
 gene_name <- 'tp53'
@@ -226,7 +225,7 @@ gene_name <- 'tp53'
 You can also remove an object from R's memory entirely. The `rm()` function
 will delete the object.
 
-```{r, eval=FALSE}
+```{r, purl = FALSE, eval = FALSE}
 # delete the object 'gene_name'
 rm(gene_name)
 ```
@@ -283,12 +282,13 @@ working with R objects.
 > 5. `pilot <- Earhart`
 >
 >> ## Solution
->>
->> 1. `mode(chromosome_name)`    # "character"
->> 2. `mode(od_600_value)`     # "numeric"
->> 3. `mode(chr_position)`     # "character"
->> 4. `mode(spock)`       # "logical"
->> 5. `pilot`     # Error: object 'Earhart' not found
+>> ```{r, purl = FALSE}
+>> mode(chromosome_name)
+>> mode(od_600_value)
+>> mode(chr_position)
+>> mode(spock)
+>> pilot
+>> ```
 > {: .solution}
 {: .challenge}
 
@@ -318,7 +318,7 @@ can be added, multiplied, divided, etc. R provides several mathematical
 
 These can be used with literal numbers:
 
-```{r}
+```{r, purl = FALSE}
 (1 + (5 ** 0.5))/2
 ```
 
@@ -326,7 +326,7 @@ and importantly, can be used on any object that evaluates to (i.e. interpreted
 by R) a numeric object:
 
 
-```{r}
+```{r, purl = FALSE}
 # multiply the object 'human_chr_number' by 2
 
 human_chr_number * 2
@@ -337,7 +337,7 @@ operations have their own associated functions. While there are too many to
 list, you can always search the online documentation in R for a function (
 even if you don't know what it may be called in R). For example:
 
-```{r, eval=FALSE}
+```{r, eval = FALSE, purl = FALSE}
 > # search for functions associated with chi squared
 >
 > ??chisquared
@@ -354,15 +354,12 @@ here too.
 > functions. Hint: remember the `round()` function can take 2 arguments.
 >
 >> ## Solution
->>
->> ```{r}
+>> ```{r, purl = FALSE}
 >> round((1 + sqrt(5))/2, digits=3)
 >> ```
->>
->> * Notice that you can place one function inside of another.
+>> Notice that you can place one function inside of another.
 > {: .solution}
 {: .challenge}
-
 
 ## Vectors
 
@@ -374,7 +371,7 @@ ways to create a vector is to use the `c()` function - the "concatenate" or
 "combine" function. Inside the function you may enter one or more values; for
 multiple values, separate each value with a comma:
 
-```{r}
+```{r, purl = FALSE}
 # Create the SNP gene name vector
 
 snp_genes <- c("OXTR", "ACTN3", "AR", "OPRM1")
@@ -387,7 +384,7 @@ Another useful function that gives both of these pieces of information is the
 be of the same mode/ data type**. This is because a vector can have only one
 mode. More on this later.
 
-```{r}
+```{r, purl = FALSE}
 # Check the mode, length, and structure of 'snp_genes'
 mode(snp_genes)
 length(snp_genes)
@@ -402,7 +399,7 @@ manipulating vectors now will pay off, even more, when we get to data frames.
 
 Let's create a few more vectors to play around with:
 
-```{r}
+```{r, purl = FALSE}
 # Some interesting human SNPs
 # while accuracy is important, typos in the data won't hurt you here
 
@@ -416,7 +413,7 @@ or more values from our vector. To do so, we use **bracket notation**. We type
 the name of the vector followed by square brackets. In those square brackets
 we place the index (e.g. a number) in that bracket as follows:
 
-```{r}
+```{r, purl = FALSE}
 # get the 3rd value in the snp_genes vector
 snp_genes[3]
 ```
@@ -425,7 +422,7 @@ In R, every item your vector is indexed, starting from the first item (1)
 through to the final number of items in your vector. You can also retrieve a
 range of numbers:
 
-```{r}
+```{r, purl = FALSE}
 # get the 1st through 3rd value in the snp_genes vector
 
 snp_genes[1:3]
@@ -435,7 +432,7 @@ If you want to retrieve several (but not necessarily sequential) items from
 a vector, you pass a **vector of indices**; a vector that has the numbered
 positions you wish to retrieve.
 
-```{r}
+```{r, purl = FALSE}
 # get the 1st, 3rd, and 4th value in the snp_genes vector
 
 snp_genes[c(1, 3, 4)]
@@ -446,7 +443,7 @@ vector (see [these
 examples](https://thomasleeper.com/Rcourse/Tutorials/vectorindexing.html)).
 Also, several of these subsetting expressions can be combined:
 
-```{r}
+```{r, purl = FALSE}
 # get the 1st through the 3rd value, and 4th value in the snp_genes vector
 # yes, this is a little silly in a vector of only 4 values.
 snp_genes[c(1:3,4)]
@@ -457,36 +454,35 @@ snp_genes[c(1:3,4)]
 Once you have an existing vector, you may want to add a new item to it. To do
 so, you can use the `c()` function again to add your new value:
 
-```{r}
+```{r, purl = FALSE}
 # add the gene 'CYP1A1' and 'APOA5' to our list of snp genes
 # this overwrites our existing vector
 snp_genes <- c(snp_genes, "CYP1A1", "APOA5")
 ```
 
-We can, of course, verify that "snp_genes" contains the new gene entry
+We can verify that "snp_genes" contains the new gene entry
 
-```{r}
+```{r, purl = FALSE}
 snp_genes
 ```
 
 Using a negative index will return a version a vector with that index's
 value removed:
 
-```{r}
+```{r, purl = FALSE}
 snp_genes[-6]
 ```
 
 We can remove that value from our vector by overwriting it with this expression:
 
-
-```{r}
+```{r. purl = FALSE}
 snp_genes <- snp_genes[-6]
 snp_genes
 ```
 
 We can also explicitly rename or add a value to our index using double bracket notation:
 
-```{r}
+```{r, purl = FALSE}
 snp_genes[[7]]<- "APOA5"
 snp_genes
 ```
@@ -497,43 +493,30 @@ Notice in the operation above that R inserts an `NA` value to extend our vector 
 > Answer the following questions to test your knowledge of vectors
 >
 > Which of the following are true of vectors in R?
->
 > A) All vectors have a mode or a length
->
 > B) All vector have a mode and a length
->
 > C) Vectors may have different lengths
->
 > D) Items within a vector may be of different modes
->
 > E) You can use the `c()` to one or more items to an existing vector
->
 > F) You can use the `c()` to add a vector to an exiting vector
 >>
 >> ## Solution
 >>
 >> A) False - Vectors have both of these properties
->>
 >> B) True
->>
 >> C) True
->>
 >> D) False - Vectors have only one mode (e.g. numeric, character); all items in
 >> a vector must be of this mode.
->>
 >> E) True
->>
 >> F) True
->>
 > {: .solution}
 {: .challenge}
-
 
 ## Logical Subsetting
 
 There is one last set of cool subsetting capabilities we want to introduce. It is possible within R to retrieve items in a vector based on a logical evaluation or numerical comparison. For example, let's say we wanted get all of the SNPs in our vector of SNP positions that were greater than 100,000,000. We could index using the '>' (greater than) logical operator:
 
-```{r}
+```{r, purl = FALSE}
 snp_positions[snp_positions > 100000000]
 ```
 
@@ -558,14 +541,14 @@ As demonstrated above, in the square brackets you place the name of the vector f
 > can be better understood if you examine what the expression "snp_positions > 100000000"
 >evaluates to:
 >
-> ```{r}
+> ```{r, purl = FALSE}
 > snp_positions > 100000000
 > ```
 >
 > The output above is a logical vector, the 4th element of which is TRUE. When
 > you pass a logical vector as an index, R will return the true values:
 >
-> ```{r}
+> ```{r, purl = FALSE}
 > snp_positions[c(FALSE, FALSE, FALSE, TRUE)]
 > ```
 >
@@ -583,7 +566,7 @@ As demonstrated above, in the square brackets you place the name of the vector f
 > We can use the `which()` function to return the indices of any item that
 > evaluates as TRUE in our comparison:
 >
-> ```{r}
+> ```{r, purl = FALSE}
 > which(snp_positions > 100000000)
 > ```
 >
@@ -594,7 +577,7 @@ As demonstrated above, in the square brackets you place the name of the vector f
 > pre-determined value (e.g 100000000) we can use an object that can take on
 > whatever value we need. So for example:
 >
-> ```{r}
+> ```{r, purl = FALSE}
 > snp_marker_cutoff <- 100000000
 > snp_positions[snp_positions > snp_marker_cutoff]
 > ```
@@ -611,7 +594,7 @@ vector is an NA value. Missing data will get a more detailed treatment later,
 but the `is.NA()` function will return a logical vector, with TRUE for any NA
 value:
 
-```{r}
+```{r, purl = FALSE}
 # current value of 'snp_genes': chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
 
 is.na(snp_genes)
@@ -622,7 +605,7 @@ present a vector. You can do this using the comparison operator `%in%`, which
 will return TRUE for any value in your collection of one or more values matches
 a value in the vector you are searching:
 
-```{r}
+```{r, purl = FALSE}
 # current value of 'snp_genes':
 # chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
 
@@ -631,7 +614,6 @@ a value in the vector you are searching:
 
 c("ACTN3","APOA5") %in% snp_genes
 ```
-
 
 > ## Review: Creating and subsetting vectors
 >
@@ -732,7 +714,7 @@ tutorial](http://r4ds.had.co.nz/lists.html). In this one example, we will create
 a named list and show you how to retrieve items from the list.
 
 
-```{r}
+```{r, purl = FALSE}
 # Create a named list using the 'list' function and our SNP examples
 # Note, for easy reading we have placed each item in the list on a separate line
 # Nothing special about this, you can do this for any multiline commands
@@ -751,7 +733,7 @@ str(snp_data)
 
 To get all the values for the `position` object in the list, we use the `$` notation:
 
-```{r}
+```{r, purl = FALSE}
 # return all the values of position object
 
 snp_data$position
@@ -759,7 +741,7 @@ snp_data$position
 
 To get the first value in the `position` object, use the `[]` notation to index:
 
-```{r}
+```{r, purl = FALSE}
 # return first value of the position object
 
 snp_data$position[1]
