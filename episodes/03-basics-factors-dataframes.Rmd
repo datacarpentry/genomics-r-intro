@@ -32,11 +32,10 @@ keypoints:
 source: Rmd
 ---
 
-```{r, include=FALSE}
+```{r, include = FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("03-")
 ```
-
 
 ## Working with spreadsheets (tabular data)
 
@@ -147,7 +146,7 @@ data. The file path must be in quotes and now is a good time to remember to
 use tab autocompletion. **If you use tab autocompletion you avoid typos and
 errors in file paths.** Use it!
 
-```{r}
+```{r, purl = FALSE}
 ## read in a CSV file and save it as 'variants'
 
 variants <- read.csv("../data/combined_tidy_vcf.csv")
@@ -168,7 +167,7 @@ length. Using only two functions, we can learn a lot about out data frame
 including some summary statistics as well as well as the "structure" of the data
 frame. Let's examine what each of these functions can tell us:
 
-```{r}
+```{r, purl = FALSE}
 ## get summary statistics on a data frame
 
 summary(variants)
@@ -187,7 +186,7 @@ in all 801 observations.
 Before we operate on the data, we also need to know a little more about the
 data frame structure to do that we use the `str()` function:
 
-```{r}
+```{r, purl = FALSE}
 ## get the structure of a data frame
 
 str(variants)
@@ -214,7 +213,7 @@ Since some of the data in our data frame are factors, lets see how factors work.
 extract one of the columns of our data frame to a new object, so that we don't end up
 modifying the `variants` object by mistake.
 
-```{r}
+```{r, purl = FALSE}
 ## extract the "REF" column to a new object
 
 REF <- variants$REF
@@ -222,7 +221,7 @@ REF <- variants$REF
 
 Let's look at the first few items in our factor using `head()`:
 
-```{r}
+```{r, purl = FALSE}
 head(REF)
 ```
 
@@ -233,7 +232,7 @@ will organize the levels in a factor in alphabetical order. So the first level i
 
 Lets look at the contents of a factor in a slightly different way using `str()`:
 
-```{r}
+```{r, purl = FALSE}
 str(REF)
 ```
 
@@ -249,62 +248,34 @@ One of the most common uses for factors will be when you plot categorical
 values. For example, suppose we want to know how many of our variants had each possible 
 nucleotide (or nucleotide combination) in the reference genome? We could generate a plot:
 
-```{r}
+```{r, purl = FALSE}
 plot(REF)
 ```
 
-This isn't a particularly pretty example of a plot. We'll be learning much more about creating
-nice, publication-quality graphics later in this lesson. For now, let's explore how we can order
-the factors in our plot so that the first four values are "A", "C", "G", "T", with multi-nucleotide
-combinations listed alphabetically after these four.
+This isn't a particularly pretty example of a plot. We'll be learning much more about creating nice, publication-quality graphics later in this lesson. 
 
-We can take our existing `REF` factor, and use the `factor()`
-function again. This time we will pass it two new arguments: `levels` will be
-assigned to a vector that has the REF values in the order we want them,
-and we will set the `ordered` argument to TRUE.
+<!-- For now, let's explore how we can order -->
+<!-- the factors in our plot so that the first four values are "A", "C", "G", "T", with multi-nucleotide -->
+<!-- combinations listed alphabetically after these four. -->
 
-```{r}
- # order the 'REF' factor to match our desired set of levels
-REF <- 
-```        
+<!-- We can take our existing `REF` factor, and use the `factor()` -->
+<!-- function again. This time we will pass it two new arguments: `levels` will be -->
+<!-- assigned to a vector that has the REF values in the order we want them, -->
+<!-- and we will set the `ordered` argument to TRUE. -->
 
-We can now see the new ordering:
+<!-- ```{r, purl = FALSE} -->
+<!--  # order the 'REF' factor to match our desired set of levels -->
+<!-- REF <-  -->
+<!-- ```         -->
 
-```{r}
+<!-- We can now see the new ordering: -->
 
-```
+<!-- ```{r, purl = FALSE} -->
 
-Although not all levels are shown, notice there are `<` signs indicating an
-order.
+<!-- ``` -->
 
-> ## Exercise: Order and plot `sample_submission` `prep_date`
->
-> **Generate a plot of the `prep_date` variable, properly ordered from the `sample_submission`
-> data frame**
->
-> To choose the ordering, assume that the unambiguous dates for this data are:
-> - 7-Jun-15: June 7, 205
-> - 6-Jul-15: July 6, 2015
-> - 7/8/15: July 8, 2015
->
-> *hint*: you can use the `factor()` function inside of your `table()`and `plot()`
-> function calls.
->
-> *hint*: build this single line of code from the inside out!
->
->> ## Solution
->>
->> ```{r}
->> plot(table(factor(submission_metadata$prep_date, levels = c("7-Jun-15",
->>                                                 "6-Jul-15",
->>                                                 "7/8/15"),
->>       ordered = TRUE)))
->> ```
->>
->>
-> {: .solution}
-{: .challenge}
-
+<!-- Although not all levels are shown, notice there are `<` signs indicating an -->
+<!-- order. -->
 
 ## Subsetting data frames
 
@@ -380,9 +351,13 @@ where we are taking a range).
 >> ```
 >> 
 >> h. 
->> ```{r}
+>> ```{r, echo = TRUE, eval = FALSE}
 >> variants[,c("sample_id")]
 >> ```
+>> 
+>> ```{r, echo = FALSE, eval = TRUE}
+>> head(variants[,c("sample_id")])
+>>```
 >>
 >> i. 
 >> ```{r}
@@ -395,13 +370,21 @@ where we are taking a range).
 >> ```
 >> 
 >> k. 
->> ```{r}
+>> ```{r, echo = TRUE, eval = FALSE}
 >> variants$sample_id
+>> ```
+>>
+>> ```{r, echo = FALSE, eval = TRUE}
+>> head(variants$sample_id)
 >> ```
 >> 
 >> l. 
->> ```{r}
+>> ```{r, echo = TRUE, eval = FALSE}
 >> variants[variants$REF == "A",]
+>> ```
+>>
+>> ```{r, echo = FALSE, eval = TRUE}
+>> head(variants[variants$REF == "A",])
 >> ```
 > {: .solution}
 {: .challenge}
@@ -419,7 +402,7 @@ Finally, in all of the subsetting exercises above, we simply printed values to
 the screen. Remember that you can create a new data frame object by assigning
 them to a new object name:
 
-```{r}
+```{r, purl = FALSE}
 # create a new data frame containing only observations from SRR2584863 
 
 SRR2584863_variants <- variants[variants$sample_id == "SRR2584863",]
@@ -455,16 +438,16 @@ First, its very important to recognize that coercion happens in R all the time.
 This can be a good thing when R gets it right, or a bad thing when the result
 is not what you expect. Consider:
 
-```{r}
+```{r, purl = FALSE}
 snp_chromosomes <- c('3', '11', 'X', '6')
 typeof(snp_chromosomes)
 ```
 
 Although there are several numbers in our vector, they are all in quotes, so
-we have explicitly told R to consider them characters. However, even if we removed
+we have explicitly told R to consider them as characters. However, even if we removed
 the quotes from the numbers, R would coerce everything into a character:
 
-```{r}
+```{r, purl = FALSE}
 snp_chromosomes_2 <- c(3, 11, 'X', 6)
 typeof(snp_chromosomes_2)
 snp_chromosomes_2[1]
@@ -474,7 +457,7 @@ We can use the `as.` functions to explicitly coerce values from one form into
 another. Consider the following vector of characters, which all happen to be
 valid numbers:
 
-```{r}
+```{r, purl = FALSE}
 snp_positions_2 <- c("8762685", "66560624", "67545785", "154039662")
 typeof(snp_positions_2)
 snp_positions_2[1]
@@ -482,7 +465,7 @@ snp_positions_2[1]
 
 Now we can coerce `snp_positions_2` into a numeric type using `as.numeric()`:
 
-```{r}
+```{r, purl = FALSE}
 snp_positions_2 <- as.numeric(snp_positions_2)
 typeof(snp_positions_2)
 snp_positions_2[1]
@@ -491,14 +474,14 @@ snp_positions_2[1]
 Sometimes coercion is straight forward, but what would happen if we tried
 using `as.numeric()` on `snp_chromosomes_2`
 
-```{r}
+```{r, purl = FALSE}
 snp_chromosomes_2 <- as.numeric(snp_chromosomes_2)
 ```
 
 If we check, we will see that an `NA` value (R's default value for missing
 data) has been introduced.
 
-```{r}
+```{r, purl = FALSE}
 snp_chromosomes_2
 ```
 
@@ -506,7 +489,7 @@ Trouble can really start when we try to coerce a factor. For example, when we
 try to coerce the `sample_id` column in our data frame into a numeric mode
 look at the result:
 
-```{r}
+```{r, purl = FALSE}
 as.numeric(variants$sample_id)
 ```
 
@@ -519,7 +502,7 @@ we don't look carefully, we may not notice a problem.
 If you need to coerce an entire column you can overwrite it using an expression
 like this one:
 
-```{r}
+```{r, purl = FALSE}
 # make the 'REF' column a character type column
  
 variants$REF <- as.character(variants$REF)
@@ -565,13 +548,13 @@ You can use functions like `mean()`, `min()`, `max()` on an
 individual column. Let's look at the "DP" or filtered depth. This value shows the number of filtered
 reads that support each of the reported variants.
 
-```{r}
+```{r, purl = FALSE}
 max(variants$DP)
 ```
 
 You can sort a data frame using the `order()` function:
 
-```{r}
+```{r, purl = FALSE}
 sorted_by_DP <- variants[order(variants$DP), ]
 head(sorted_by_DP$DP)
 ```
@@ -582,26 +565,40 @@ head(sorted_by_DP$DP)
 > depth ("DP").
 > 
 > > ## Solution
-> > ```{r}
+> > ```{r, purl = FALSE}
 > > sorted_by_DP <- variants[order(variants$DP, decreasing = TRUE), ]
 > > head(sorted_by_DP$DP)
 > >```
 > {: .solution}
 {: .challenge}
 
-You can selectively replace values in a data frame based on their value:
+<!-- You can selectively replace values in a data frame based on their value: -->
 
-```{r}
-```
+<!-- ```{r} -->
+<!-- ``` -->
 
 You can rename columns:
 
-```{r}
+```{r, purl = FALSE}
 colnames(variants)[colnames(variants) == "sample_id"] <- "strain"
 
 # check the column name (hint names are returned as a vector)
 colnames(variants)
 ```
+
+## Saving your data frame to a file
+
+We can save data to a file. We will save our `SRR2584863_variants` object
+to a .csv file using the `write.csv()` function:
+
+```{r, purl = FALSE}
+write.csv(SRR2584863_variants, file = "../data/SRR2584863_variants.csv")
+```
+
+The `write.csv()` function has some additional arguments listed in the help, but
+at a minimum you need to tell it what data frame to write to file, and give a
+path to a file name in quotes (if you only provide a file name, the file will
+be written in the current working directory).
 
 ## Importing data from Excel
 
@@ -644,38 +641,22 @@ In this exercise, we will leave the title of the data frame as
 Finally, let's check the first few lines of the `Ecoli_metadata` metadata data
 frame:
 
-```{r, echo=FALSE}
-## read the file but don't show the code so the rest of the episode works
+```{r, echo = FALSE, purl = FALSE}
+## read the file so the rest of the episode works, but don't show the code
 Ecoli_metadata <-  readxl::read_xlsx("../data/Ecoli_metadata.xlsx")
 ```
 
-```{r}
+```{r, purl = FALSE}
 head(Ecoli_metadata)
 ```
 
-Works as we expect! Notice the type of this object is 'tibble', a type of data
-frame we will talk more about in the 'dplyr' section. Of course, if you needed
+Notice the type of this object is 'tibble', a type of data
+frame we will talk more about in the 'dplyr' section. If you needed
 a true R data frame you could coerce with `as.data.frame()`.
-
-## Saving your data frame to a file
-
-Finally, we can conclude this episode with saving our data frame, in this case
-to a .csv file using the `write.csv()` function:
-
-```{r}
-write.csv(submission_metadata, file = "../data/submission_metatata_cleaned.csv")
-```
-The `write.csv()` function has some additional arguments listed in the help, but
-at a minimum you need to tell it what data frame to write to file, and give a
-path to a file name in quotes (if you only provide a file name, the file will
-be written in the current working directory).
 
 > ## Exercise: Putting it all together - data frames
 >
 > **Using the `Ecoli_metadata` data frame created above, answer the following questions**
->
-> *Hint*: If you did not create the `Ecoli_metadata` data frame, use the
-> instructions above (Importing data from Excel section) to create this object.
 >
 > A) What are the dimensions (# rows, #columns) of the data frame?
 >
@@ -694,22 +675,14 @@ be written in the current working directory).
 > H) Save the edited Ecoli_metadata data frame as "exercise_solution.csv" in your current working directory.
 >
 >> ## Solution
->>
->> A) `dim(Ecoli_metadata)` # (30 rows, 7 columns)
->>
->> B) `levels(as.factor(Ecoli_metadata$cit))` # "minus"   "plus"    "unknown"
->>
->> C) `table(as.factor(Ecoli_metadata$cit))` # 9 minus, 9 plus, 12 unknown
->>
->> D) `Ecoli_metadata[7,7]` # 4.62
->>
->> E) `median(Ecoli_metadata$genome_size)` # 4.625
->>
->> F) `colnames(Ecoli_metadata)[colnames(Ecoli_metadata) == "sample"]<- "sample_id"`
->>
->> G) `Ecoli_metadata$genome_size_bp <- Ecoli_metadata$genome_size * 1000000`
->>
->> H) `write.csv(Ecoli_metadata, file= "exercise_solution.csv")`
+>> ```{r, purl = FALSE}
+>> dim(Ecoli_metadata)
+>> levels(as.factor(Ecoli_metadata$cit))
+>> table(as.factor(Ecoli_metadata$cit))
+>> Ecoli_metadata[7,7]
+>> median(Ecoli_metadata$genome_size)
+>> colnames(Ecoli_metadata)[colnames(Ecoli_metadata) == "sample"] <- "sample_id"
+>> Ecoli_metadata$genome_size_bp <- Ecoli_metadata$genome_size * 1000000
+>> write.csv(Ecoli_metadata, file = "exercise_solution.csv")
 > {: .solution}
 {: .challenge}
-
