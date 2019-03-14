@@ -116,7 +116,7 @@ server:
 <img src="../fig/rstudio_login_screen.png" alt="rstudio default session" style="width: 1000px;"/>
 
 Enter your user credentials and click <kbd>Sign In</kbd>. The credentials for
-the genomics will be provided by your instructors. 
+the genomics Data Carpentry instances will be provided by your instructors. 
 
 You should now see the RStudio interface:
 
