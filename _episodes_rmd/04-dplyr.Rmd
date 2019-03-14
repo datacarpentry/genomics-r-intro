@@ -20,12 +20,12 @@ keypoints:
 source: Rmd
 ---
 
-```{r, include=FALSE}
+```{r, include = FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("04-")
 ```
 
-```{r, echo=FALSE, purl=FALSE, message = FALSE}
+```{r, echo = FALSE, purl = FALSE, message = FALSE}
 variants <- read.csv("../data/combined_tidy_vcf.csv")
 ```
 
@@ -89,27 +89,41 @@ To select columns of a
 data frame, use `select()`. The first argument to this function is the data
 frame (`variants`), and the subsequent arguments are the columns to keep.
 
-```{r, results = 'hide', purl = FALSE}
+```{r, echo = TRUE, eval = FALSE, purl = FALSE}
 select(variants, sample_id, REF, ALT, DP)
+```
+```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+select(variants, sample_id, REF, ALT, DP) %>%
+  head()
 ```
 
 To select all columns *except* certain ones, put a "-" in front of
 the variable to exclude it.
 
-```{r, results = 'hide', purl = FALSE}
+```{r, echo = TRUE, eval = FALSE, purl = FALSE}
 select(variants, -CHROM)
+```
+
+```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+select(variants, -CHROM) %>%
+  head()
 ```
 
 To choose rows, use `filter()`:
 
-```{r, purl = FALSE}
+```{r, echo = TRUE, eval = FALSE, purl = FALSE}
 filter(variants, sample_id == "SRR2584863")
+```
+
+```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+filter(variants, sample_id == "SRR2584863") %>%
+  head()
 ```
 
 Note that this is equivalent to the base R code below, 
 but is easier to read!
 
-```{r}
+```{r, eval = FALSE, purl = FALSE}
 variants[variants$sample_id == "SRR2584863",]
 ```
 
@@ -125,10 +139,11 @@ part of `dplyr`. If you use RStudio, you can type the pipe with
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you're using a PC,
 or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you're using a Mac.
 
-```{r, purl = FALSE}
+```{r, echo = TRUE, eval = TRUE, purl = FALSE}
 variants %>%
   filter(sample_id == "SRR2584863") %>%
-  select(REF, ALT, DP)
+  select(REF, ALT, DP) %>%
+  head()
 ```
 
 In the above code, we use the pipe to send the `variants` dataset first through
@@ -136,11 +151,13 @@ In the above code, we use the pipe to send the `variants` dataset first through
 keep only the `REF`, `ALT`, and `DP` columns. Since `%>%` takes
 the object on its left and passes it as the first argument to the function on
 its right, we don't need to explicitly include the data frame as an argument
-to the `filter()` and `select()` functions any more.
+to the `filter()` and `select()` functions any more. We then pipe the results
+to the `head()` function so that we only see the first six rows of data.
 
 Some may find it helpful to read the pipe like the word "then". For instance,
 in the above example, we took the data frame `variants`, *then* we `filter`ed
-for rows where `sample_id` was SRR2584863, *then* we `select`ed the `REF`, `ALT`, and `DP` columns. The **`dplyr`** functions by themselves are somewhat simple,
+for rows where `sample_id` was SRR2584863, *then* we `select`ed the `REF`, `ALT`, and `DP` columns, *then* we showed only the first six rows. 
+The **`dplyr`** functions by themselves are somewhat simple,
 but by combining them into linear workflows with the pipe, we can accomplish
 more complex manipulations of data frames.
 
@@ -151,8 +168,13 @@ can do so by assigning it a new name:
 SRR2584863_variants <- variants %>%
   filter(sample_id == "SRR2584863") %>%
   select(REF, ALT, DP)
+```
 
-SRR2584863_variants
+This new object includes all of the data from this sample. Let's look at just
+the first six rows to confirm it's what we want:
+
+```{r, purl = FALSE}
+head(SRR2584863_variants)
 ```
 
 > ## Exercise: Pipe and filter
@@ -187,21 +209,13 @@ to a probability value according to the formula:
 Probability = 1- 10 ^ -(QUAL/10)
 
 Let's add a column (`POLPROB`) to our `variants` dataframe that shows 
-the probability of a polymorphism at that site given the data.
+the probability of a polymorphism at that site given the data. We'll show 
+only the first six rows of data.
 
-```{r}
+```{r, purl = FALSE}
 variants %>%
-  mutate(POLPROB = 1 - (10 ^ -(QUAL/10)))
-```
-
-If this runs off your screen and you just want to see the first few rows, you
-can use a pipe to view the `head()` of the data (pipes work with non-dplyr
-functions too, as long as the `dplyr` or `magrittr` packages are loaded).
-
-```{r}
-variants %>%
-  mutate(POLPROB = 1 - 10 ^ -(QUAL/10)) %>%
-  head
+  mutate(POLPROB = 1 - (10 ^ -(QUAL/10))) %>%
+  head()
 ```
 
 > ## Exercise
@@ -258,20 +272,19 @@ variants %>%
   summarize(max(DP))
 ```
 
-You can group by multiple columns too. For example, we might want to 
-know if ... 
+<!-- You can group by multiple columns too. For example, we might want to  -->
+<!-- know if ...  -->
 
-```{r, purl = FALSE}
+<!-- ```{r, purl = FALSE} -->
 
-```
+<!-- ``` -->
 
-You can also summarize multiple variables at the same time. Let's
-count how many samples we have in each group using the `n()` function:
+<!-- You can also summarize multiple variables at the same time. Let's -->
+<!-- count how many samples we have in each group using the `n()` function: -->
 
-```{r, purl = FALSE}
+<!-- ```{r, purl = FALSE} -->
 
-```
-
+<!-- ``` -->
 
 [Handy dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 
