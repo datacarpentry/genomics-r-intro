@@ -475,7 +475,7 @@ snp_genes[-6]
 
 We can remove that value from our vector by overwriting it with this expression:
 
-```{r. purl = FALSE}
+```{r, purl = FALSE}
 snp_genes <- snp_genes[-6]
 snp_genes
 ```
