@@ -291,7 +291,7 @@ the root directory for Linux. Next, use the <KBD>Tab</KBD> key, to take
 advantage of RStudio's Tab-autocompletion method, to select `home`, `dcuser`,
 and `dc_genomics_r` directory. The path in your script should look like this:
 
-```{r, eval = FALSE, purl = FALSe}
+```{r, eval = FALSE, purl = FALSE}
 # This sets the working directory
 setwd("/home/dcuser/dc_genomics_r")
 ```
