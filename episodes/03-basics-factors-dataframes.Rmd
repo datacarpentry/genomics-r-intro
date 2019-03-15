@@ -110,7 +110,7 @@ We will need to load the sheet using a function called `read.csv()`.
 > D) What argument would you have to change to read in only the first 10,000 rows
 > of a very large file?
 >
->> ## solution
+>> ## Solution
 >>
 >> A) The `read.csv()` function has the argument 'header' set to TRUE by default,
 >> this means the function always assumes the first row is header information,
@@ -138,9 +138,8 @@ We will need to load the sheet using a function called `read.csv()`.
 > {: .solution}
 {: .challenge}
 
-
 Now, let's read in the file `combined_tidy_vcf.csv` which will be located in
-`/home/dcuser/dc_sample_data/R`. Call this data `variants`. The
+`/home/dcuser/.solutions/R_data/`. Call this data `variants`. The
 first argument to pass to our `read.csv()` function is the file path for our
 data. The file path must be in quotes and now is a good time to remember to
 use tab autocompletion. **If you use tab autocompletion you avoid typos and
@@ -149,7 +148,7 @@ errors in file paths.** Use it!
 ```{r, purl = FALSE}
 ## read in a CSV file and save it as 'variants'
 
-variants <- read.csv("../data/combined_tidy_vcf.csv")
+variants <- read.csv(".solutions/R_data/combined_tidy_vcf.csv")
 ```
 
 One of the first things you should notice is that in the Environment window,
@@ -336,8 +335,12 @@ where we are taking a range).
 >> ```
 >>
 >> e. 
->> ```{r}
+>> ```{r, echo = TRUE, eval = FALSE}
 >> variants[-1, ]
+>> ```
+>> 
+>> ```{r, echo = FALSE, eval = TRUE}
+>> head(variants[-1, ])
 >> ```
 >>
 >> f. 
@@ -389,7 +392,7 @@ where we are taking a range).
 > {: .solution}
 {: .challenge}
 
-Essentially, the subsetting notation is very similar to what we learned for
+The subsetting notation is very similar to what we learned for
 vectors. The key differences include:
 
 - Typically provide two values separated by commas: data.frame[row, column]
@@ -398,8 +401,8 @@ vectors. The key differences include:
 - For a non continuous set of numbers, pass a vector using `c()`
 - Index using the name of a column(s) by passing them as vectors using `c()`
 
-Finally, in all of the subsetting exercises above, we simply printed values to
-the screen. Remember that you can create a new data frame object by assigning
+Finally, in all of the subsetting exercises above, we printed values to
+the screen. You can create a new data frame object by assigning
 them to a new object name:
 
 ```{r, purl = FALSE}
@@ -638,7 +641,7 @@ In this exercise, we will leave the title of the data frame as
 **Ecoli_metadata**, and there are no other options we need to adjust. Click the
 <KBD>Import</KBD> button to import the data.
 
-Finally, let's check the first few lines of the `Ecoli_metadata` metadata data
+Finally, let's check the first few lines of the `Ecoli_metadata` data
 frame:
 
 ```{r, echo = FALSE, purl = FALSE}
@@ -650,7 +653,7 @@ Ecoli_metadata <-  readxl::read_xlsx("../data/Ecoli_metadata.xlsx")
 head(Ecoli_metadata)
 ```
 
-Notice the type of this object is 'tibble', a type of data
+The type of this object is 'tibble', a type of data
 frame we will talk more about in the 'dplyr' section. If you needed
 a true R data frame you could coerce with `as.data.frame()`.
 
@@ -658,7 +661,7 @@ a true R data frame you could coerce with `as.data.frame()`.
 >
 > **Using the `Ecoli_metadata` data frame created above, answer the following questions**
 >
-> A) What are the dimensions (# rows, #columns) of the data frame?
+> A) What are the dimensions (# rows, # columns) of the data frame?
 >
 > B) What are categories are there in the `cit` column? *hint*: treat column as factor
 >
@@ -684,5 +687,6 @@ a true R data frame you could coerce with `as.data.frame()`.
 >> colnames(Ecoli_metadata)[colnames(Ecoli_metadata) == "sample"] <- "sample_id"
 >> Ecoli_metadata$genome_size_bp <- Ecoli_metadata$genome_size * 1000000
 >> write.csv(Ecoli_metadata, file = "exercise_solution.csv")
+>> ```
 > {: .solution}
 {: .challenge}
