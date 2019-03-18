@@ -42,7 +42,7 @@ online, and ask colleagues for help). As you spend more time using R (there is
 no substitute for regular use and practice) you will find yourself gaining
 competency and even expertise. The more familiar you get, the more
 complex the analyses you will be able to carry out, with less frustration, and
-in less time - the "fantastic world of R" awaits you!
+in less time - the fantastic world of R awaits you!
 
 ## What these lessons will not teach you
 
@@ -61,7 +61,7 @@ below.
 - How to create and work with loops and conditional statements, and the "apply"
   family of functions (which are super useful, read more [here](https://www.r-bloggers.com/r-tutorial-on-the-apply-family-of-functions/))
 - How to do basic string manipulations (e.g. finding patterns in text using grep, replacing text)
-- How to plot using the default R graphic tools (we *will* cover ggplot2)
+- How to plot using the default R graphic tools (we *will* cover plot creation, but will do so using the popular plotting package `ggplot2`)
 - How to use advanced R statistical functions
 
 > ## Tip: Where to learn more
@@ -95,10 +95,10 @@ below.
 > (and commenting it) will make it easier to record what you did and why.
 {: .prereq}
 
-What might be called a variable in many languages is properly called an **object**
+What might be called a variable in many languages is called an **object**
 in R.
 
-**To create your object you need:**
+**To create an object you need:**
 
 - a name (e.g. 'a')
 - a value (e.g. '1')
@@ -122,7 +122,7 @@ script in the header of the Source pane or you can use the appropriate shortcut:
 - Mac execution shortcut: <KBD>Cmd(⌘)</KBD>+<KBD>Enter</KBD>
 
 To run multiple lines of code, you can highlight all the line you wish to run
-and then hit <KBD>Run</KBD> or use the shortcut key combo.
+and then hit <KBD>Run</KBD> or use the shortcut key combo listed above.
 
 In the RStudio 'Console' you should see:
 
@@ -135,13 +135,13 @@ a <- 1
 The 'Console' will display lines of code run from a script and any outputs or
 status/warning/error messages (usually in red).
 
-You should also notice that in the 'Environment' window you get a table:
+In the 'Environment' window you will also get a table:
 
 |Values||
 |------|-|
 |a|1|
 
-The 'Environment' window allows you to easily keep track of the objects you have
+The 'Environment' window allows you to keep track of the objects you have
 created in R.
 
 > ## Exercise: Create some objects in R
@@ -161,7 +161,7 @@ created in R.
 >> ```{r, purl = FALSE}
 >> human_chr_number <- 23
 >> gene_name <- 'pten'
->> `ensemble_url <- 'ftp://ftp.ensemblgenomes.org/pub/bacteria/release-39/fasta/bacteria_5_collection/escherichia_coli_b_str_rel606/'
+>> ensemble_url <- 'ftp://ftp.ensemblgenomes.org/pub/bacteria/release-39/fasta/bacteria_5_collection/escherichia_coli_b_str_rel606/'
 >> human_diploid_chr_num <-  2 * human_chr_number
 >> ```
 > {: .solution}
@@ -171,10 +171,9 @@ created in R.
 
 Here are some important details about naming objects in R.
 
-- **Avoid spaces and special characters**: Object names cannot contain spaces.
-  Typically, you can use '-' or '_ ' to make names more readable. You should avoid
+- **Avoid spaces and special characters**: Object names cannot contain spaces or the minus sign (`-`). You can use '_' to make names more readable. You should avoid
   using special characters in your object name (e.g. ! @ # . , etc.). Also,
-  names cannot begin with a number
+  object names cannot begin with a number.
 - **Use short, easy-to-understand names**: You should avoid naming your objects
   using single letters (e.g. 'n', 'p', etc.). This is mostly to encourage you
   to use names that would make sense to anyone reading your code (a colleague,
@@ -196,14 +195,14 @@ There are a few more suggestions about naming and style you may want to learn
 more about as you write more R code. There are several "style guides" that
 have advice, and one to start with is the [tidyverse R style guide](http://style.tidyverse.org/index.html).
 
->## Tip: Pay attention to warnings in the script console
+> ## Tip: Pay attention to warnings in the script console
 >
-> If you enter a line of code in your script that contains some error, RStudio
+> If you enter a line of code in your script that contains an error, RStudio
 > may give you an error message and underline this mistake. Sometimes these
 > messages are easy to understand, but often the messages may need some figuring
-> out. Either way, paying attention to these warnings would help you avoid mistakes.
-> In this case, our object name has a 'space', which is not allowed in R. Notice
-> the error message does not say this directly, but essentially R is "not sure"
+> out. Paying attention to these warnings will help you avoid mistakes. In the example below, our object name has a space, which
+> is not allowed in R. The error message does not say this directly,
+> but R is "not sure"
 > about how to assign the name to "human_ chr_number" when the object name we
 > want is "human_chr_number".
 >
@@ -213,7 +212,8 @@ have advice, and one to start with is the [tidyverse R style guide](http://style
 ## Reassigning object names or deleting objects
 
 Once an object has a value, you can change that value by overwriting it. R will
-not complain about overwriting objects, which may or may not be a good thing
+not give you a warning or error if you overwriting an object, which
+may or may not be a good thing
 depending on how you look at it.
 
 ```{r, purl = FALSE}
@@ -230,9 +230,9 @@ will delete the object.
 rm(gene_name)
 ```
 
-If you run a line of code that just has an object name, R will normally display
-the contents of that object. In this case, we are told the object is no
-longer defined.
+If you run a line of code that has only an object name, R will normally display
+the contents of that object. In this case, we are told the object no
+longer exists.
 
 ~~~
 Error: object 'gene_name' not found
@@ -247,7 +247,7 @@ In R, **every object has two properties**:
 - **Mode**: What is the classification (type) of that object.
 
 We will get to the "length" property later in the lesson. The **"mode" property**
-**corresponds to the type of data an object**represents**. The most common modes
+**corresponds to the type of data an object represents**. The most common modes
 you will encounter in R are:
 
 |Mode (abbreviation)|Type of data|
@@ -256,7 +256,8 @@ you will encounter in R are:
 |Character (chr)|A sequence of letters/numbers in single '' or double " " quotes|
 |Logical| Boolean values - TRUE or FALSE|
 
-There are a few other modes (i.e. "complex", "raw" etc.) but for now, these three are the most important.
+There are a few other modes (i.e. "complex", "raw" etc.) but these
+are the three we will work with in this lesson.
 
 Data types are familiar in many programming languages, but also in natural
 language where we refer to them as the parts of speech, e.g. nouns, verbs,
@@ -282,12 +283,20 @@ working with R objects.
 > 5. `pilot <- Earhart`
 >
 >> ## Solution
+>> ```{r, echo = FALSE, purl = FALSE}
+>> chromosome_name <- 'chr02'
+>> od_600_value <- 0.47
+>> chr_position <- '1001701'
+>> spock <- TRUE
+>> pilot <- Earhart
+>> ```
+>> 
 >> ```{r, purl = FALSE}
 >> mode(chromosome_name)
 >> mode(od_600_value)
 >> mode(chr_position)
 >> mode(spock)
->> pilot
+>> mode(pilot)
 >> ```
 > {: .solution}
 {: .challenge}
@@ -296,9 +305,16 @@ Notice from the solution that even if a series of numbers are given as a value
 R will consider them to be in the "character" mode if they are enclosed as
 single or double quotes. Also, notice that you cannot take a string of alphanumeric
 characters (e.g. Earhart) and assign as a value for an object. In this case,
-R looks for the object `Earhart` but since there is no object, no assignment can
+R looks for an object named `Earhart` but since there is no object, no assignment can
 be made. If `Earhart` did exist, then the mode of `pilot` would be whatever
-the mode of `Earthrt` was originally.
+the mode of `Earhart` was originally. If we want to create an object
+called `pilot` that was the **name** "Earhart", we need to enclose
+`Earhart` in quotation marks. 
+
+```{r, purl = FALSE}
+pilot <- "Earhart"
+mode(pilot)
+```
 
 ## Mathematical and functional operations on objects
 
@@ -325,26 +341,15 @@ These can be used with literal numbers:
 and importantly, can be used on any object that evaluates to (i.e. interpreted
 by R) a numeric object:
 
+```{r, echo = FALSE, purl = FALSE}
+human_chr_number <- 23
+```
 
 ```{r, purl = FALSE}
 # multiply the object 'human_chr_number' by 2
 
 human_chr_number * 2
 ```
-
-Finally, it is useful to know that several other types of mathematical
-operations have their own associated functions. While there are too many to
-list, you can always search the online documentation in R for a function (
-even if you don't know what it may be called in R). For example:
-
-```{r, eval = FALSE, purl = FALSE}
-> # search for functions associated with chi squared
->
-> ??chisquared
-```
-
-Will open search results in your help tab. Of course, using Google will help
-here too.
 
 > ## Exercise: Compute the golden ratio
 >
@@ -355,7 +360,7 @@ here too.
 >
 >> ## Solution
 >> ```{r, purl = FALSE}
->> round((1 + sqrt(5))/2, digits=3)
+>> round((1 + sqrt(5))/2, digits = 3)
 >> ```
 >> Notice that you can place one function inside of another.
 > {: .solution}
@@ -363,10 +368,10 @@ here too.
 
 ## Vectors
 
-With a solid understanding of the most basic objects, we come to probably the
-most used objects in R, vectors. **A vector is a collection of values (numbers,**
-**characters, etc.)**. Vectors also have a mode (data type), so all of the
-contents of a vector must be of the same mode. One of the most common
+Vectors are probably the
+most used commonly used object type in R. 
+**A vector is a collection of values that are all of the same type (numbers, characters, etc.)**. 
+One of the most common
 ways to create a vector is to use the `c()` function - the "concatenate" or
 "combine" function. Inside the function you may enter one or more values; for
 multiple values, separate each value with a comma:
@@ -377,12 +382,10 @@ multiple values, separate each value with a comma:
 snp_genes <- c("OXTR", "ACTN3", "AR", "OPRM1")
 ```
 
-Two important properties of vectors are their **mode** and their **length**.
-You can check these with the `mode()` and `length()` function respectively.
+Vectors always have a **mode** and a **length**.
+You can check these with the `mode()` and `length()` functions respectively.
 Another useful function that gives both of these pieces of information is the
-`str()` (structure) function. Importantly, **items within a vector must all
-be of the same mode/ data type**. This is because a vector can have only one
-mode. More on this later.
+`str()` (structure) function.
 
 ```{r, purl = FALSE}
 # Check the mode, length, and structure of 'snp_genes'
@@ -391,11 +394,12 @@ length(snp_genes)
 str(snp_genes)
 ```
 
-Vectors are quite important in R, mostly for us because data frames are
-essentially collections of vectors (more on this later). What we learn about
-manipulating vectors now will pay off, even more, when we get to data frames.
+Vectors are quite important in R. Another data type that we will
+work with later in this lesson, data frames, are collections of
+vectors. What we learn here about vectors will pay off even more
+when we start working with data frames. 
 
-## More on creating and subsetting vectors
+## Creating and subsetting vectors
 
 Let's create a few more vectors to play around with:
 
@@ -493,22 +497,22 @@ Notice in the operation above that R inserts an `NA` value to extend our vector 
 > Answer the following questions to test your knowledge of vectors
 >
 > Which of the following are true of vectors in R?
-> A) All vectors have a mode or a length
-> B) All vector have a mode and a length
-> C) Vectors may have different lengths
-> D) Items within a vector may be of different modes
-> E) You can use the `c()` to one or more items to an existing vector
-> F) You can use the `c()` to add a vector to an exiting vector
+> A) All vectors have a mode **or** a length  
+> B) All vectors have a mode **and** a length  
+> C) Vectors may have different lengths  
+> D) Items within a vector may be of different modes  
+> E) You can use the `c()` to one or more items to an existing vector  
+> F) You can use the `c()` to add a vector to an exiting vector  
 >>
 >> ## Solution
 >>
->> A) False - Vectors have both of these properties
->> B) True
->> C) True
->> D) False - Vectors have only one mode (e.g. numeric, character); all items in
+>> A) False - Vectors have both of these properties  
+>> B) True  
+>> C) True  
+>> D) False - Vectors have only one mode (e.g. numeric, character); all items in  
 >> a vector must be of this mode.
->> E) True
->> F) True
+>> E) True  
+>> F) True  
 > {: .solution}
 {: .challenge}
 
@@ -520,7 +524,7 @@ There is one last set of cool subsetting capabilities we want to introduce. It i
 snp_positions[snp_positions > 100000000]
 ```
 
-As demonstrated above, in the square brackets you place the name of the vector followed by the comparison operator and (in this numeric case) a numeric value. Some of the most common logical operators you will use in R are:
+In the square brackets you place the name of the vector followed by the comparison operator and (in this case) a numeric value. Some of the most common logical operators you will use in R are:
 
   | Operator | Description              |
   |----------|--------------------------|
@@ -590,20 +594,21 @@ As demonstrated above, in the square brackets you place the name of the vector f
 
 Finally, there are a few other common retrieve or replace operations you may
 want to know about. First, you can check to see if any of the values of your
-vector is an NA value. Missing data will get a more detailed treatment later,
+vector are missing (i.e. are `NA`). Missing data will get a more detailed treatment later,
 but the `is.NA()` function will return a logical vector, with TRUE for any NA
 value:
 
 ```{r, purl = FALSE}
-# current value of 'snp_genes': chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
+# current value of 'snp_genes': 
+# chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
 
 is.na(snp_genes)
 ```
 
 Sometimes, you may wish to find out if a specific value (or several values) is
 present a vector. You can do this using the comparison operator `%in%`, which
-will return TRUE for any value in your collection of one or more values matches
-a value in the vector you are searching:
+will return TRUE for any value in your collection that is in
+the vector you are searching:
 
 ```{r, purl = FALSE}
 # current value of 'snp_genes':
@@ -615,104 +620,101 @@ a value in the vector you are searching:
 c("ACTN3","APOA5") %in% snp_genes
 ```
 
-> ## Review: Creating and subsetting vectors
+> ## Review Exercise 1
 >
-> Use your knowledge of vectors to accomplish the following tasks:
->
-> **1) What data types/modes are the following vectors? Use `typeof()` to check**
->
+> What data types/modes are the following vectors?
 >    a. `snps`
->
 >    b. `snp_chromosomes`
->
 >    c. `snp_positions`
+> 
+>> ## Solution
+>> 
+>> ```{r, purl = FALSE}
+>> typeof(snps)
+>> typeof(snp_chromosomes)
+>> typeof(snp_positions)
+>> ```
+> {: .solution}
+{: .challenge}
+
+> ## Review Exercise 2
 >
-> **2) Add the following values to the specified vectors**
->
+> Add the following values to the specified vectors:
 >    a. To the `snps` vector add: 'rs662799'
->
 >    b. To the `snp_chromosomes` vector add: 11
->
 >    c. To the `snp_positions` vector add: 	116792991
->
-> **3) Make the following change to the `snp_genes` vector**
-> Hint: Your vector should look like this in the 'Global Environment':
+> 
+>> ## Solution
+>> 
+>> ```{r, purl = FALSE}
+>> snps <- c(snps, 'rs662799')
+>> snps
+>> snp_chromosomes <- c(snp_chromosomes, "11") # did you use quotes?
+>> snp_chromosomes
+>> snp_positions <- c(snp_positions, 116792991)
+>> snp_positions
+>> ```
+> {: .solution}
+{: .challenge}
+
+> ## Review Exercise 3
+> Make the following change to the `snp_genes` vector:
+> 
+> Hint: Your vector should look like this in 'Environment':
 > `chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"`. If not
 > recreate the vector by running this expression:
 > `snp_genes <- c("OXTR", "ACTN3", "AR", "OPRM1", "CYP1A1", NA, "APOA5")`
 >
->    a. Create a new version of `snp_genes` that does not contain CYP1A1
->
->    b. Add 2 NA values to the end of `snp_genes` (hint: final vector should
->    have a length of 8)
->
-> **4) Using indexing, create a new vector `combined` that contains:**
->
->    - The the 1st value in `snp_genes`
->
->    - The 1st value in `snps`
->
->    - The 1st value in `snp_chromosomes`
->
->    - The 1st value in `snp_positions`
->
->   **Check the data type/storage mode of `combined` using `typeof()`**
->
+>    a. Create a new version of `snp_genes` that does not contain CYP1A1 and then
+>    b. Add 2 NA values to the end of `snp_genes`
+> 
 >> ## Solution
->>
->> **1) What data types are the following vectors? Use `typeof()` to check**
->>
->>    a. `typeof(snps)` # "character"
->>
->>    b. `typeof(snp_chromosomes)` # "character"
->>
->>    c. `typeof(snp_positions)` # "double" - which is also a numeric type
->>
->>
->> **2) Add the following values to the specified vectors**
->>
->>    a. `snps <- c(snps, 'rs662799')`
->>
->>    b. `snp_chromosomes <- c(snp_chromosomes, "11")` # did you use quotes?
->>
->>    c. `snp_positions <- c(snp_positions, 116792991)`
->>
->> **3) Make the following change to the `snp_genes` vector**
->>
->>    a. `snp_genes <- snp_genes[-5]` or `snp_genes <- snp_genes[c(1,2,3,4,6,7)]`, etc.
->>
->>    b. `snp_genes <- c(snp_genes, NA, NA)` or `snp_genes[[8]] <- NA`, etc.
->>
->>
->> **4) Using indexing, create a new vector `combined` that contains:**
->>
->>    - The the 1st value in `snp_genes`
->>
->>    - The 1st value in `snps`
->>
->>    - The 1st value in `snp_chromosomes`
->>
->>    - The 1st value in `snp_positions`
->>
->>
->>    `combined <- c(snp_genes[1], snps[1], snp_chromosomes[1], snp_positions[1])`
->>
->>    `typeof(combined)`  # "character" - Do you know why this is?
->>
+>> 
+>> ```{r, purl = FALSE}
+>> snp_genes <- snp_genes[-5]
+>> snp_genes <- c(snp_genes, NA, NA)
+>> snp_genes
+>> ```
 > {: .solution}
 {: .challenge}
 
+> ## Review Exercise 4
+> 
+> Using indexing, create a new vector named `combined` that contains:
+>    - The the 1st value in `snp_genes`
+>    - The 1st value in `snps`
+>    - The 1st value in `snp_chromosomes`
+>    - The 1st value in `snp_positions`
+> 
+>> ## Solution
+>> 
+>> ```{r, purl = FALSE}
+>> combined <- c(snp_genes[1], snps[1], snp_chromosomes[1], snp_positions[1])
+>> ```
+> {: .solution}
+{: .challenge}
+
+
+> ## Review Exercise 5
+> What type of data is `combined`?
+> 
+>> ## Solution
+>> 
+>> ```{r, purl = FALSE}
+>> typeof(combined)
+>> ```
+> {: .solution}
+{: .challenge}
 
 ## Bonus material: Lists
 
 Lists are quite useful in R, but we won't be using them in the genomics lessons.
 That said, you may come across lists in the way that some bioinformatics
 programs may store and/or return data to you. One of the key attributes of a
-list is that unlike a vector, a list may contain data of more than one mode.
+list is that, unlike a vector, a list may contain data of more than one mode.
 Learn more about creating and using lists using this [nice
 tutorial](http://r4ds.had.co.nz/lists.html). In this one example, we will create
 a named list and show you how to retrieve items from the list.
-
 
 ```{r, purl = FALSE}
 # Create a named list using the 'list' function and our SNP examples
