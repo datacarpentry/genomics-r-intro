@@ -497,8 +497,8 @@ Notice in the operation above that R inserts an `NA` value to extend our vector 
 > Answer the following questions to test your knowledge of vectors
 >
 > Which of the following are true of vectors in R?
-> A) All vectors have a mode or a length  
-> B) All vector have a mode and a length  
+> A) All vectors have a mode **or** a length  
+> B) All vectors have a mode **and** a length  
 > C) Vectors may have different lengths  
 > D) Items within a vector may be of different modes  
 > E) You can use the `c()` to one or more items to an existing vector  
@@ -594,7 +594,7 @@ In the square brackets you place the name of the vector followed by the comparis
 
 Finally, there are a few other common retrieve or replace operations you may
 want to know about. First, you can check to see if any of the values of your
-vector is missing (i.e. is `NA`). Missing data will get a more detailed treatment later,
+vector are missing (i.e. are `NA`). Missing data will get a more detailed treatment later,
 but the `is.NA()` function will return a logical vector, with TRUE for any NA
 value:
 
