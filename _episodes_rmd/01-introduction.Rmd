@@ -103,10 +103,10 @@ standalone software.
 
 Open a web browser and enter the IP address of your instance 
 (provided by your instructors), followed by
-`:8787`. For example, if your IP address was 123.456.789 your URL would be
+`:8787`. For example, if your IP address was 123.45.67.89 your URL would be
 
 ```
-http://123.456.789:8787
+http://123.45.67.89:8787
 ```
 
 > ## Tip: Make sure there are no spaces before or after your URL or
@@ -193,7 +193,7 @@ environment:
   commands here), but for the most part we will run a script (or lines in a
   script) in the source pane and watch their execution and output here. The
   "Terminal" tab give you access to the BASH terminal (the Linux operating
-  system, unrelated to R) - we will not be using this tab.
+  system, unrelated to R).
 - **Environment/History**: Here, RStudio will show you what datasets and
   objects (variables) you have created and which are defined in memory.
   You can also see some properties of objects/datasets such as their type
@@ -356,7 +356,7 @@ function's behavior. For example the function `round()` will round a number
 with a decimal:
 
 ```{r}
-# This will round a number to the nearest whole number
+# This will round a number to the nearest integer
 round(3.14)
 ```
 
@@ -381,7 +381,7 @@ You can also see a function's argument using the `args()` function:
 args(round)
 ```
 
-`round()` takes two arguments, `x` which is the number to be 
+`round()` takes two arguments, `x`, which is the number to be 
 rounded, and a
 `digits` argument. The `=` sign indicates that a default (in this case 0) is
 already set. Since `x` is not set, `round()` requires we provide it, in contrast
@@ -417,7 +417,8 @@ Error in .helpForCall(topicExpr, parent.frame()) :
 {: .error}
 
 Use two question marks (i.e. `??geom_point()`) and R will return
-online search results in the "Help" tab. Finally, if you think there
+results from a search of the documentation for packages you have installed on your computer
+in the "Help" tab. Finally, if you think there
 should be a function, for example a statistical test, but you aren't
 sure what it is called in R, or what functions may be available, use
 the `help.search()` function.
