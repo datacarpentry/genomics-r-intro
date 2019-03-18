@@ -29,9 +29,10 @@ source("../bin/chunk-options.R")
 knitr_fig_path("05-")
 ```
 
+```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+## silently read in CSV file from FigShare
 
-```{r, echo=FALSE, purl=FALSE, message = FALSE}
-variants <- read.csv("../data/combined_tidy_vcf.csv")
+variants <- read.csv("https://ndownloader.figshare.com/files/14632895")
 ```
 
 We start by loading the required packages. **`ggplot2`** is included in the **`tidyverse`** package.
