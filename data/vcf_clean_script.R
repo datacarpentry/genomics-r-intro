@@ -9,7 +9,7 @@ library("vcfR")
 library("plyr")
 
 # set the path to vcf files (output from the previous pipeline)
-path_to_vcf_dir <- "../data/wrangling-solutions/variant_calling_auto/vcf/"
+path_to_vcf_dir <- "~/.solutions/wrangling-solutions/variant_calling_auto/results/vcf/"
 
 # list all files in the vcf directory
 vcf_file_names <- list.files(path_to_vcf_dir)
@@ -49,7 +49,5 @@ combined_vcf_data <- ldply(just_vcf_data,
 
 # write out the csv of this single combined data frame
 write.csv(combined_vcf_data,
-          file = "../data/combined_tidy_vcf.csv",
+          file = "~/r_data/combined_tidy_vcf.csv",
           row.names = FALSE)
-
-
