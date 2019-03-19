@@ -145,10 +145,17 @@ data. The file path must be in quotes and now is a good time to remember to
 use tab autocompletion. **If you use tab autocompletion you avoid typos and
 errors in file paths.** Use it!
 
-```{r, purl = FALSE}
+```{r, eval = FALSE, purl = FALSE}
 ## read in a CSV file and save it as 'variants'
 
-variants <- read.csv(".solutions/R_data/combined_tidy_vcf.csv")
+variants <- read.csv("../r_data/combined_tidy_vcf.csv")
+```
+
+
+```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+## silently read in CSV file from FigShare
+
+variants <- read.csv("https://ndownloader.figshare.com/files/14632895")
 ```
 
 One of the first things you should notice is that in the Environment window,

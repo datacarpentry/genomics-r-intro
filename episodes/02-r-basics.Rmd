@@ -207,7 +207,7 @@ have advice, and one to start with is the [tidyverse R style guide](http://style
 > want is "human_chr_number".
 >
 > <img src="../fig/rstudio_script_warning.png" alt="rstudio script warning" style="width: 600px;"/>
-> {: .callout}
+{: .callout}
 
 ## Reassigning object names or deleting objects
 
@@ -353,7 +353,7 @@ human_chr_number * 2
 
 > ## Exercise: Compute the golden ratio
 >
-> One appoximation of the golen ratio (φ) can be found by taking the sum of 1
+> One appoximation of the golden ratio (φ) can be found by taking the sum of 1
 > and the square root of 5, and dividing by 2 as in the example above. Compute
 > the golden ratio to 3 digits of precision using the `sqrt()` and `round()`
 > functions. Hint: remember the `round()` function can take 2 arguments.
@@ -623,9 +623,9 @@ c("ACTN3","APOA5") %in% snp_genes
 > ## Review Exercise 1
 >
 > What data types/modes are the following vectors?
->    a. `snps`
->    b. `snp_chromosomes`
->    c. `snp_positions`
+>    a. `snps`  
+>    b. `snp_chromosomes`  
+>    c. `snp_positions`  
 > 
 >> ## Solution
 >> 
@@ -640,9 +640,9 @@ c("ACTN3","APOA5") %in% snp_genes
 > ## Review Exercise 2
 >
 > Add the following values to the specified vectors:
->    a. To the `snps` vector add: 'rs662799'
->    b. To the `snp_chromosomes` vector add: 11
->    c. To the `snp_positions` vector add: 	116792991
+>    a. To the `snps` vector add: 'rs662799'  
+>    b. To the `snp_chromosomes` vector add: 11  
+>    c. To the `snp_positions` vector add: 	116792991  
 > 
 >> ## Solution
 >> 
@@ -665,8 +665,8 @@ c("ACTN3","APOA5") %in% snp_genes
 > recreate the vector by running this expression:
 > `snp_genes <- c("OXTR", "ACTN3", "AR", "OPRM1", "CYP1A1", NA, "APOA5")`
 >
->    a. Create a new version of `snp_genes` that does not contain CYP1A1 and then
->    b. Add 2 NA values to the end of `snp_genes`
+>    a. Create a new version of `snp_genes` that does not contain CYP1A1 and then  
+>    b. Add 2 NA values to the end of `snp_genes`  
 > 
 >> ## Solution
 >> 
@@ -690,6 +690,7 @@ c("ACTN3","APOA5") %in% snp_genes
 >> 
 >> ```{r, purl = FALSE}
 >> combined <- c(snp_genes[1], snps[1], snp_chromosomes[1], snp_positions[1])
+>> combined
 >> ```
 > {: .solution}
 {: .challenge}

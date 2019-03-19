@@ -25,8 +25,10 @@ source("../bin/chunk-options.R")
 knitr_fig_path("04-")
 ```
 
-```{r, echo = FALSE, purl = FALSE, message = FALSE}
-variants <- read.csv("../data/combined_tidy_vcf.csv")
+```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+## silently read in CSV file from FigShare
+
+variants <- read.csv("https://ndownloader.figshare.com/files/14632895")
 ```
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. 
