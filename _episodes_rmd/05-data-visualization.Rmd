@@ -171,7 +171,9 @@ To make our plot more readable, we can add axis labels:
 
 ```{r add-axis-labels, purl=FALSE}
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) + 
-  geom_jitter(alpha = 0.5) + labs(x = "Base Pair Position", y = "Read Depth (DP)")
+  geom_jitter(alpha = 0.5) + 
+  labs(x = "Base Pair Position", 
+       y = "Read Depth (DP)")
 ```
 
 > ## Challenge
@@ -183,7 +185,9 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 > > ## Solution
 > > ```{r scatter-challenge, purl=FALSE}
 > >  ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) + 
-> >  geom_point() + labs(x="Base Pair Position", y="Mapping Quality (MQ)")
+> >   geom_point() + 
+> >   labs(x = "Base Pair Position", 
+> >        y = "Mapping Quality (MQ)")
 > > ```
 > {: .solution}
 {: .challenge}
@@ -196,8 +200,10 @@ mapping quality plot into three panels, one for each sample.
 
 ```{r first-facet, purl=FALSE}
 ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) + 
- geom_point() + labs(x="Base Pair Position", y="Mapping Quality (MQ)") + 
-    facet_grid(~ sample_id)
+ geom_point() + 
+ labs(x = "Base Pair Position", 
+      y = "Mapping Quality (MQ)") + 
+ facet_grid(~ sample_id)
 ```
 
 This looks ok, but it would be easier to read if the plot facets were stacked vertically rather 
@@ -208,8 +214,10 @@ a placeholder that indicates only one row or column).
 
 ```{r second-facet, purl=FALSE}
 ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) + 
- geom_point() + labs(x="Base Pair Position", y="Mapping Quality (MQ)") + 
-    facet_grid(sample_id ~ .)
+ geom_point() + 
+ labs(x = "Base Pair Position", 
+      y = "Mapping Quality (MQ)") + 
+ facet_grid(sample_id ~ .)
 ```
 
 Usually plots with white background look more readable when printed.  We can set
@@ -218,7 +226,9 @@ the grid:
 
 ```{r facet-plot-white-bg, purl=FALSE}
 ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) + 
-  geom_point() + labs(x="Base Pair Position", y="Mapping Quality (MQ)") + 
+  geom_point() + 
+  labs(x = "Base Pair Position", 
+       y = "Mapping Quality (MQ)") + 
   facet_grid(sample_id ~ .) +
   theme_bw() +
   theme(panel.grid = element_blank())
@@ -233,9 +243,10 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
 > > ## Solution
 > > ```{r scatter-challenge-2, purl=FALSE}
 > >  ggplot(data = variants, aes(x = POS, y = QUAL, color = sample_id)) + 
-> >  geom_point() + 
-> >  labs(x = "Base Pair Position", y = "PHRED-sacled Quality (QUAL)") +
-> >  facet_grid(sample_id ~ .)
+> >   geom_point() + 
+> >   labs(x = "Base Pair Position", 
+> >        y = "PHRED-sacled Quality (QUAL)") +
+> >   facet_grid(sample_id ~ .)
 > > ```
 > {: .solution}
 {: .challenge}
@@ -259,8 +270,8 @@ ggplot(data = variants, aes(x = INDEL, fill = sample_id)) +
 >> ## Solution
 >> ```{r barplot-challenge, purl=FALSE}
 >> ggplot(data = variants, aes(x = INDEL, color = sample_id)) + 
->> geom_bar(show.legend = F) +
->> facet_grid(sample_id ~ .)
+>>    geom_bar(show.legend = F) +
+>>    facet_grid(sample_id ~ .)
 >> ```
 > {: .solution}
 {: .challenge}
