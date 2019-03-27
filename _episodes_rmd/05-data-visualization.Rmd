@@ -35,19 +35,18 @@ knitr_fig_path("05-")
 variants <- read.csv("https://ndownloader.figshare.com/files/14632895")
 ```
 
-We start by loading the required packages. **`ggplot2`** is included in the **`tidyverse`** package.
+We start by loading the package **`ggplot2`**.
 
-```{r load-package, message=FALSE, purl=FALSE}
-library(tidyverse)
+```{r load-ggplot2, message=FALSE, purl=FALSE}
+library(ggplot2)
 ```
-
 ## Plotting with **`ggplot2`**
 
 **`ggplot2`** is a plotting package that makes it simple to create complex plots
 from data in a data frame. It provides a more programmatic interface for
 specifying what variables to plot, how they are displayed, and general visual
 properties. Therefore, we only need minimal changes if the underlying data change
-or if we decide to change from a bar plot to a scatterplot. This helps in creating
+or if we decide to change from a bar plot to a scatter plot. This helps in creating
 publication quality plots with minimal amounts of adjustments and tweaking.
 
 **`ggplot2`** functions like data in the 'long' format, i.e., a column for every dimension,
@@ -59,10 +58,12 @@ this fashion allows for extensive flexibility and customization of plots.
 
 To build a ggplot, we will use the following basic template that can be used for different types of plots:
 
+```
 ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) +  <GEOM_FUNCTION>()
+```
 
 - use the `ggplot()` function and bind the plot to a specific data frame using the
-`data` argument
+      `data` argument
 
 ```{r, eval=FALSE, purl=FALSE}
 ggplot(data = variants)
@@ -71,33 +72,23 @@ ggplot(data = variants)
 - define a mapping (using the aesthetic (`aes`) function), by selecting the variables to be plotted and specifying how to present them in the graph, e.g. as x/y positions or characteristics such as size, shape, color, etc.
 
 ```{r, eval=FALSE, purl=FALSE}
-ggplot(data = variants, aes(x = sample_id, y = generation))
+ggplot(data = variants, aes(x = POS, y = DP))
 ```
 
 - add 'geoms' – graphical representations of the data in the plot (points,
-lines, bars). **`ggplot2`** offers many different geoms; we will use some
-common ones today, including:
+  lines, bars). **`ggplot2`** offers many different geoms; we will use some 
+  common ones today, including:
+  
+      * `geom_point()` for scatter plots, dot plots, etc.
+      * `geom_boxplot()` for, well, boxplots!
+      * `geom_line()` for trend lines, time series, etc.  
 
-* `geom_point()` for scatter plots, dot plots, etc.
-* `geom_boxplot()` for, well, boxplots!
-* `geom_line()` for trend lines, time series, etc.
-
-To add a geom to the plot use the `+` operator. Let's start out by
-plotting the positions with observed variations for each sample using
-`geom_point()`:
+To add a geom to the plot use the `+` operator. Because we have two continuous variables,
+let's use `geom_point()` first:
 
 ```{r first-ggplot, purl=FALSE}
-ggplot(data = variants, aes(x = POS, y = sample_id))+
-geom_point()
-```
-
-At a glance, we can see that the SRR2584866 sample has many more
-positions of variation than the other two samples, but a lot of the points overlap with each other. To get a clearer picture of all
-of the data, we can use the `geom_jitter()` geom.
-
-```{r jitter-plot, purl=FALSE}
-ggplot(data = variants, aes(x = POS, y = sample_id))+
-geom_jitter()
+ggplot(data = variants, aes(x = POS, y = DP)) + 
+  geom_point()
 ```
 
 The `+` in the **`ggplot2`** package is particularly useful because it allows you
@@ -107,33 +98,33 @@ plot can also be generated with code like this:
 
 ```{r, first-ggplot-with-plus, eval=FALSE, purl=FALSE}
 # Assign plot to a variable
-metadata_plot <- ggplot(data =metadata, aes(x = sample, y = generation))
+coverage_plot <- ggplot(data = variants, aes(x = POS, y = DP))
 
 # Draw the plot
-metadata_plot +
-geom_point()
+coverage_plot + 
+    geom_point()
 ```
 
 **Notes**
 
 - Anything you put in the `ggplot()` function can be seen by any geom layers
-that you add (i.e., these are universal plot settings). This includes the x- and
-y-axis mapping you set up in `aes()`.
+  that you add (i.e., these are universal plot settings). This includes the x- and
+  y-axis mapping you set up in `aes()`.
 - You can also specify mappings for a given geom independently of the
-mappings defined globally in the `ggplot()` function.
+  mappings defined globally in the `ggplot()` function.
 - The `+` sign used to add new layers must be placed at the end of the line containing
 the *previous* layer. If, instead, the `+` sign is added at the beginning of the line
-containing the new layer, **`ggplot2`** will not add the new layer and will return an
+containing the new layer, **`ggplot2`** will not add the new layer and will return an 
 error message.
 
 ```{r, ggplot-with-plus-position, eval=FALSE, purl=FALSE}
 # This is the correct syntax for adding layers
-variants_plot  +
-geom_point()
+coverage_plot +
+  geom_point()
 
 # This will not add the new layer and will return an error message
-variants_plot
-+ geom_point()
+coverage_plot
+  + geom_point()
 ```
 
 ## Building your plots iteratively
@@ -142,129 +133,163 @@ Building plots with **`ggplot2`** is typically an iterative process. We start by
 defining the dataset we'll use, lay out the axes, and choose a geom:
 
 ```{r create-ggplot-object, purl=FALSE}
-ggplot(data = metadata, aes(x = sample, y = generation)) +
-geom_point()
+ggplot(data = variants, aes(x = POS, y = DP)) + 
+  geom_point()
 ```
 
-Alternatively, we can make our data points slightly transparent. We
-do this by adding an aesthetic within our `geom_point()` function 
-call. The name of the aesthetic we want is "alpha". 
+Then, we start modifying this plot to extract more information from it. For
+instance, we can add transparency (`alpha`) to avoid overplotting:
 
-```{r alpha, purl=FALSE}
-ggplot(data = variants, aes(x = POS, y = sample_id))+
-geom_point(alpha = 0.1)
+```{r adding-transparency, purl=FALSE}
+ggplot(data = variants, aes(x = POS, y = DP)) +
+    geom_point(alpha = 0.5)
 ```
 
 We can also add colors for all the points:
 
 ```{r adding-colors, purl=FALSE}
-ggplot(data = variants, aes(x = POS, y = sample_id))+
-geom_point(alpha = 0.1, color = "blue")
+
+ggplot(data = variants, aes(x = POS, y = DP)) +
+  geom_point(alpha = 0.5, color = "blue")
 ```
 
-We could also color code each of our points according to the number of
-reads (after filtering) that support that variant. This information
-is in the `DP` column: 
+Or to color each species in the plot differently, you could use a vector as an input to the argument **color**. **`ggplot2`** will provide a different color corresponding to different values in the vector. Here is an example where we color with **`sample_id`**:
 
+```{r color-by-sample-1, purl=FALSE}
+ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) + 
+  geom_point(alpha = 0.5)
+```
 
-```{r color-by-DP, purl=FALSE}
-ggplot(data = variants, aes(x = POS, y = sample_id))+
-geom_point(aes(color = DP))
+Notice that we can change the geom layer and colors will be still determined by **`sample_id`**
+
+```{r color-by-sample-2, purl=FALSE}
+ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) + 
+  geom_jitter(alpha = 0.5)
+```
+
+To make our plot more readable, we can add axis labels:
+
+```{r add-axis-labels, purl=FALSE}
+ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) + 
+  geom_jitter(alpha = 0.5) + labs(x = "Base Pair Position", y = "Read Depth (DP)")
 ```
 
 > ## Challenge
 >
-> Use what you just learned to create a scatter plot of `DP` 
-> versus
-> `sample_id`. Is this a good
-> way to show this type of data?
->
->> ## Solution
->> ```{r scatter-challenge, answer=TRUE, purl=FALSE}
->> ggplot(data = variants, aes(x = DP, y = sample_id)) +
->>    geom_point()
->> ```
+> Use what you just learned to create a scatter plot of mapping quality (`MQ`) over
+> position (`POS`) with the samples showing in different colors. Make sure to give your plot
+> relevant axis labels.
+> 
+> > ## Solution
+> > ```{r scatter-challenge, purl=FALSE}
+> >  ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) + 
+> >  geom_point() + labs(x="Base Pair Position", y="Mapping Quality (MQ)")
+> > ```
 > {: .solution}
 {: .challenge}
 
-## Boxplot
+## Faceting
 
-When we have one continuous and one categorical variable
-it is usually much more appropriate to make a boxplot
-than a scatterplot. In this case, our continuous variable
-is read depth (`DP`) and our categorical variable in
-`sample_id`. We can use boxplots to visualize the distribution of (filtered) sequencing depth `DP` within each sample:
+**`ggplot2`** has a special technique called *faceting* that allows the user to split one
+plot into multiple plots based on a factor included in the dataset. We will use it to split our
+mapping quality plot into three panels, one for each sample.
 
-```{r boxplot, purl=FALSE}
-ggplot(data = variants, aes(x = sample_id, y = DP))+
-geom_boxplot()
+```{r first-facet, purl=FALSE}
+ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) + 
+ geom_point() + labs(x="Base Pair Position", y="Mapping Quality (MQ)") + 
+    facet_grid(~ sample_id)
 ```
 
-By adding points to boxplot, we can have a better idea of the number of
-measurements and of their distribution:
+This looks ok, but it would be easier to read if the plot facets were stacked vertically rather 
+than horizontally. The `facet_grid`
+geometry allows you to explicitly specify how you want your plots to be
+arranged via formula notation (`rows ~ columns`; a `.` can be used as
+a placeholder that indicates only one row or column).
 
-```{r boxplot-with-points, purl=FALSE}
-ggplot(data = variants, aes(x = sample_id, y = DP))+
-geom_boxplot() +
-geom_jitter(alpha = 0.3, color = "tomato")
+```{r second-facet, purl=FALSE}
+ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) + 
+ geom_point() + labs(x="Base Pair Position", y="Mapping Quality (MQ)") + 
+    facet_grid(sample_id ~ .)
 ```
 
-> ## Exercise
+Usually plots with white background look more readable when printed.  We can set
+the background to white using the function `theme_bw()`. Additionally, you can remove
+the grid:
+
+```{r facet-plot-white-bg, purl=FALSE}
+ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) + 
+  geom_point() + labs(x="Base Pair Position", y="Mapping Quality (MQ)") + 
+  facet_grid(sample_id ~ .) +
+  theme_bw() +
+  theme(panel.grid = element_blank())
+```
+
+> ## Challenge
+>
+> Use what you just learned to create a scatter plot of PHRED scaled quality (`QUAL`) over
+> position (`POS`) with the samples showing in different colors. Make sure to give your plot
+> relevant axis labels.
 > 
-> In the plot above, the boxplot layer appears behind the 
-> jitter layer. Recreate the plot, but put the boxplot 
-> in front of the jitter plot so that it's easier to see
-> the boxplot.
+> > ## Solution
+> > ```{r scatter-challenge-2, purl=FALSE}
+> >  ggplot(data = variants, aes(x = POS, y = QUAL, color = sample_id)) + 
+> >  geom_point() + 
+> >  labs(x = "Base Pair Position", y = "PHRED-sacled Quality (QUAL)") +
+> >  facet_grid(sample_id ~ .)
+> > ```
+> {: .solution}
+{: .challenge}
+
+## Barplots
+
+We can create barplots using the `geom_bar` geom. Let's make a barplot showing 
+the number of variants for each sample that are indels.
+
+```{r barplot, purl=FALSE}
+ggplot(data = variants, aes(x = INDEL, fill = sample_id)) + 
+  geom_bar() +
+  facet_grid(sample_id ~ .)
+```
+
+> ## Challenge
+> Since we already have the sample_id labels on the individual plot facets, we don't need the 
+> legend. Use the help file for `geom_bar` and any other online resources you want to use to
+> remove the legend from the plot. 
+> 
 >> ## Solution
->> ```{r}
->> ggplot(data = variants, aes(x = sample_id, y = DP)) +
->> geom_jitter(alpha = 0.3, color = "tomato") + 
->> geom_boxplot()
+>> ```{r barplot-challenge, purl=FALSE}
+>> ggplot(data = variants, aes(x = INDEL, color = sample_id)) + 
+>> geom_bar(show.legend = F) +
+>> facet_grid(sample_id ~ .)
 >> ```
 > {: .solution}
 {: .challenge}
 
-> ## Exercise (intermediate)
->
-> Boxplots are useful summaries, but hide the *shape* of the distribution. For
-> example, if the distribution is bimodal, we would not see it in a
-> boxplot. An alternative to the boxplot is the violin plot, where the shape
-(of the density of points) is drawn.
->
-> Replace the box plot with a violin plot. You'll need to 
-> look at the documenation to find an appropriate geom.
-> 
->> ## Solution
->> ```{r}
->> ggplot(data = variants, aes(x = sample_id, y = DP)) +
->> geom_jitter(alpha = 0.3, color = "tomato") + 
->> geom_violin()
->> ```
-> {: .solution}
-{: .challenge}
+## **`ggplot2`** themes
 
-> ## Exercise (intermediate)
-> So far, we've looked at the distribution of read
-> depth within each sample. Make a new plot to
-> explore the distribution of another 
-> continuous variable within each sample.
-> 
->> ## Solution
->> One possible answer:
->> 
->> ```{r}
->> ggplot(data = variants, aes(x = sample_id, y = QUAL)) +
->> geom_jitter(alpha = 0.3, color = "tomato") + 
->> geom_boxplot()
->> ```
-> {: .solution}
-{: .challenge}
+In addition to `theme_bw()`, which changes the plot background to white, **`ggplot2`**
+comes with several other themes which can be useful to quickly change the look
+of your visualization. The complete list of themes is available
+at <https://ggplot2.tidyverse.org/reference/ggtheme.html>. `theme_minimal()` and
+`theme_light()` are popular, and `theme_void()` can be useful as a starting
+point to create a new hand-crafted theme.
 
-> c) Create a boxplot for `hindfoot_length`. Overlay the boxplot layer on a jitter
->   layer to show actual measurements.
+The
+[ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package
+provides a wide variety of options (including an Excel 2003 theme).
+The [**`ggplot2`** extensions website](https://www.ggplot2-exts.org) provides a list
+of packages that extend the capabilities of **`ggplot2`**, including additional
+themes.
+
+> ### Challenge
+> 
+> With all of this information in hand, please take another five minutes to
+> either improve one of the plots generated in this exercise or create a
+> beautiful graph of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
+> for inspiration. Here are some ideas:
 >
-> d) Add color to the data points on your boxplot according to the plot from which
->   the sample was taken (`plot_id`).
->
-> *Hint:* Check the class for `plot_id`. Consider changing the class of `plot_id` from integer to factor. Why does this change how R makes the graph?
+> * See if you can change the size or shape of the plotting symbol.
+> * Can you find a way to change the name of the legend? What about its labels?
+> * Try using a different color palette (see
+>   http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
 {: .challenge}
