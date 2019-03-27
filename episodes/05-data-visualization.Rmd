@@ -203,7 +203,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
  geom_point() + 
  labs(x = "Base Pair Position", 
       y = "Mapping Quality (MQ)") + 
- facet_grid(~ sample_id)
+ facet_grid(. ~ sample_id)
 ```
 
 This looks ok, but it would be easier to read if the plot facets were stacked vertically rather 
