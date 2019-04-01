@@ -101,9 +101,9 @@ standalone software.
 
 ## Log on to RStudio Server
 
-Open a web browser and enter the DNS address you used to log in at the terminal 
+Open a web browser and enter the URL you used to log in at the terminal 
 (provided by your instructors), followed by
-`:8787`. For example, if your DNS address was ec2.12.2.45.678.compute-1.amazonaws.com,  your URL would be
+`:8787`. For example, if your URL was ec2.12.2.45.678.compute-1.amazonaws.com, you should enter:
 
 ```
 http://ec2.12.2.45.678.compute-1.amazonaws.com:8787
