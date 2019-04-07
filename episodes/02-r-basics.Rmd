@@ -82,9 +82,7 @@ below.
     and applications for R
 > - [Programming in R Software Carpentry lesson](https://software-carpentry.org/lessons/):
     There are several Software Carpentry lessons in R to choose from
-> - [Data Camp Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r):
-    This is a fun online learning platform for Data Science, including R.
- {: .callout}
+{: .callout}
 
 ## Creating objects in R
 
