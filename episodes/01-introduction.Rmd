@@ -12,7 +12,7 @@ objectives:
    project"
 - "Be able to customize the RStudio layout"
 - "Be able to locate and change the current working directory with `getwd()` and
-  `setwd()`"
+  `setwd()`; introduce the `here` package"
 - "Compose an R script file containing comments and commands"
 - "Understand what an R function is"
 - "Locate help for an R function using `?`, `??`, and `args()`"
