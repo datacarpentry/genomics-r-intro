@@ -20,13 +20,15 @@ keypoints:
 source: Rmd
 ---
 
-```{r, include=FALSE}
+```{r, include = FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("04-")
 ```
 
-```{r, echo=FALSE, purl=FALSE, message = FALSE}
-submission_metadata <- read.csv("../data/submission_metatata_cleaned.csv")
+```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+## silently read in CSV file from FigShare
+
+variants <- read.csv("https://ndownloader.figshare.com/files/14632895")
 ```
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. 
@@ -87,23 +89,44 @@ back just what you need for analysis in R.
 
 To select columns of a
 data frame, use `select()`. The first argument to this function is the data
-frame (`submission_metadata`), and the subsequent arguments are the columns to keep.
+frame (`variants`), and the subsequent arguments are the columns to keep.
 
-```{r, results = 'hide', purl = FALSE}
-select(submission_metadata, tube_barcode, prep_date, RIN)
+```{r, echo = TRUE, eval = FALSE, purl = FALSE}
+select(variants, sample_id, REF, ALT, DP)
+```
+```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+select(variants, sample_id, REF, ALT, DP) %>%
+  head()
 ```
 
 To select all columns *except* certain ones, put a "-" in front of
 the variable to exclude it.
 
-```{r, results = 'hide', purl = FALSE}
-select(submission_metadata, -tube_barcode, -prep_date, -RIN)
+```{r, echo = TRUE, eval = FALSE, purl = FALSE}
+select(variants, -CHROM)
+```
+
+```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+select(variants, -CHROM) %>%
+  head()
 ```
 
 To choose rows, use `filter()`:
 
-```{r, purl = FALSE}
-filter(submission_metadata, RIN >= 8)
+```{r, echo = TRUE, eval = FALSE, purl = FALSE}
+filter(variants, sample_id == "SRR2584863")
+```
+
+```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+filter(variants, sample_id == "SRR2584863") %>%
+  head()
+```
+
+Note that this is equivalent to the base R code below, 
+but is easier to read!
+
+```{r, eval = FALSE, purl = FALSE}
+variants[variants$sample_id == "SRR2584863",]
 ```
 
 ### Pipes
@@ -118,22 +141,25 @@ part of `dplyr`. If you use RStudio, you can type the pipe with
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you're using a PC,
 or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you're using a Mac.
 
-```{r, purl = FALSE}
-submission_metadata %>%
-  filter(RIN >= 8) %>%
-  select(tube_barcode, prep_date)
+```{r, echo = TRUE, eval = TRUE, purl = FALSE}
+variants %>%
+  filter(sample_id == "SRR2584863") %>%
+  select(REF, ALT, DP) %>%
+  head()
 ```
 
-In the above code, we use the pipe to send the `submission_metadata` dataset first through
-`filter()`, to keep rows where `RIN` is at least 8, and then through `select()` to
-keep only the `tube_barcode` and `prep_date` columns. Since `%>%` takes
+In the above code, we use the pipe to send the `variants` dataset first through
+`filter()`, to keep rows where `sample_id` matches a particular sample, and then through `select()` to
+keep only the `REF`, `ALT`, and `DP` columns. Since `%>%` takes
 the object on its left and passes it as the first argument to the function on
 its right, we don't need to explicitly include the data frame as an argument
-to the `filter()` and `select()` functions any more.
+to the `filter()` and `select()` functions any more. We then pipe the results
+to the `head()` function so that we only see the first six rows of data.
 
 Some may find it helpful to read the pipe like the word "then". For instance,
-in the above example, we took the data frame `submission_metadata`, *then* we `filter`ed
-for rows with `RIN >= 5`, *then* we `select`ed columns `tube_barcode`, and `prep_data`. The **`dplyr`** functions by themselves are somewhat simple,
+in the above example, we took the data frame `variants`, *then* we `filter`ed
+for rows where `sample_id` was SRR2584863, *then* we `select`ed the `REF`, `ALT`, and `DP` columns, *then* we showed only the first six rows. 
+The **`dplyr`** functions by themselves are somewhat simple,
 but by combining them into linear workflows with the pipe, we can accomplish
 more complex manipulations of data frames.
 
@@ -141,24 +167,32 @@ If we want to create a new object with this smaller version of the data we
 can do so by assigning it a new name:
 
 ```{r, purl = FALSE}
-high_quality_rna <- submission_metadata %>%
-  filter(RIN >= 8) %>%
-  select(tube_barcode, prep_date)
+SRR2584863_variants <- variants %>%
+  filter(sample_id == "SRR2584863") %>%
+  select(REF, ALT, DP)
+```
 
-high_quality_rna
+This new object includes all of the data from this sample. Let's look at just
+the first six rows to confirm it's what we want:
+
+```{r, purl = FALSE}
+head(SRR2584863_variants)
 ```
 
 > ## Exercise: Pipe and filter
 >
-> Using pipes, subset the data to include rows where the volume is greater than > 50 microliters. Retain only the columns `replicate` and `prep_date`.
+> Starting with the `variants` dataframe, use pipes to subset the data
+> to include only observations from SRR2584863 sample,
+> where the filtered
+> depth (DP) is at least 10. Retain only the columns `REF`, `ALT`, 
+> and `POS`.
 >
 >> ## Solution
->> ~~~
->> submission_metadata %>%   
->>  filter(vol_in_mcL > 50) %>%
->>  select(replicate, prep_date)
->> ~~~
->> {: .r}
+>> ```{r}
+>>  variants %>%   
+>>  filter(sample_id == "SRR2584863" & DP >= 10) %>%
+>>  select(REF, ALT, POS)
+>> ```
 > {: .solution}
 {: .challenge}
 
@@ -168,23 +202,38 @@ Frequently you'll want to create new columns based on the values in existing
 columns, for example to do unit conversions or find the ratio of values in two
 columns. For this we'll use the `dplyr` function `mutate()`.
 
-We already know our RNA concentrations and volume. Let's calculate
-the total amount of RNA we have for each sample, in micrograms. 
+We have a column titled "QUAL". This is a Phred-scaled confidence
+score that a polymorphism exists at this position given the sequencing
+data. Lower QUAL scores indicate low probability of a polymorphism
+existing at that site. We can convert the confidence value QUAL
+to a probability value according to the formula:
 
-```{r, purl = FALSE, eval=FALSE}
-submission_metadata %>%
-  mutate(mcg_RNA = vol_in_mcL * concentration_ng_per_mcL / 1000)
+Probability = 1- 10 ^ -(QUAL/10)
+
+Let's add a column (`POLPROB`) to our `variants` dataframe that shows 
+the probability of a polymorphism at that site given the data. We'll show 
+only the first six rows of data.
+
+```{r, purl = FALSE}
+variants %>%
+  mutate(POLPROB = 1 - (10 ^ -(QUAL/10))) %>%
+  head()
 ```
 
-If this runs off your screen and you just want to see the first few rows, you
-can use a pipe to view the `head()` of the data (pipes work with non-dplyr
-functions too, as long as the `dplyr` or `magrittr` packages are loaded).
-
-```{r, purl = FALSE, eval=FALSE}
-submission_metadata %>%
-  mutate(mcg_RNA = vol_in_mcL * concentration_ng_per_mcL / 1000) %>%
-  head
-```
+> ## Exercise
+> There are a lot of columns in our dataset, so let's just look at the
+> `sample_id`, `POS`, `QUAL`, and `POLPROB` columns for now. Add a 
+> line to the above code to only show those columns. 
+> 
+>> ## Solution
+>> ```{r}
+>> variants %>%
+>>  mutate(POLPROB = 1 - 10 ^ -(QUAL/10)) %>%
+>>  head %>%
+>>  select(sample_id, POS, QUAL, POLPROB)
+>> ```
+> {: .solution}
+{: .challenge}
 
 ### Split-apply-combine data analysis and the summarize() function
 
@@ -194,13 +243,13 @@ then combine the results. `dplyr` makes this very easy through the use of the
 `group_by()` function, which splits the data into groups. When the data is
 grouped in this way `summarize()` can be used to collapse each group into
 a single-row summary. `summarize()` does this by applying an aggregating
-or summary function to each group. For example, if we wanted to group by 
-sample preparation date and find the number of rows of data for each 
-date, we would do:
+or summary function to each group. For example, if we wanted to group
+by sample_id and find the number of rows of data for each 
+sample, we would do:
 
 ```{r, purl = FALSE}
-submission_metadata %>%
-  group_by(prep_date) %>%
+variants %>%
+  group_by(sample_id) %>%
   summarize(n())
 ```
 
@@ -217,35 +266,27 @@ dealing with simple statistics like the mean, the easiest way to
 ignore `NA` (the missing data) is to use `na.rm = TRUE` (`rm` stands for
 remove). 
 
-So to view mean concentration by sample prep date:
+So to view the highest filtered depth (`DP`) for each sample:
 
 ```{r, purl = FALSE}
-submission_metadata %>%
-  group_by(prep_date) %>%
-  summarize(mean_conc_ng_per_mcL = mean(concentration_ng_per_mcL))
+variants %>%
+  group_by(sample_id) %>%
+  summarize(max(DP))
 ```
 
-You can group by multiple columns too. For example, we might want to 
-know if our concentrations were different for each replicate on 
-different days. 
+<!-- You can group by multiple columns too. For example, we might want to  -->
+<!-- know if ...  -->
 
-```{r, purl = FALSE}
-submission_metadata %>%
-  group_by(prep_date, replicate) %>%
-  summarize(mean_conc_ng_per_mcL = mean(concentration_ng_per_mcL))
+<!-- ```{r, purl = FALSE} -->
 
-```
+<!-- ``` -->
 
-You can also summarize multiple variables at the same time. Let's
-count how many samples we have in each group using the `n()` function:
+<!-- You can also summarize multiple variables at the same time. Let's -->
+<!-- count how many samples we have in each group using the `n()` function: -->
 
-```{r, purl = FALSE}
-submission_metadata %>%
-  group_by(prep_date, replicate) %>%
-  summarize(mean_conc_ng_per_mcL = mean(concentration_ng_per_mcL),
-            number = n())
-```
+<!-- ```{r, purl = FALSE} -->
 
+<!-- ``` -->
 
 [Handy dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
 

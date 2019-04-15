@@ -26,7 +26,7 @@ keypoints:
 source: Rmd
 ---
 
-```{r, include=FALSE}
+```{r, include = FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("01-")
 ```
@@ -101,14 +101,17 @@ standalone software.
 
 ## Log on to RStudio Server
 
-Open a web browser and enter the IP address of your instance, followed by
-`:8787`. For example, if your IP address was 123.456.789 your URL would be
+Open a web browser and enter the IP address of your instance 
+(provided by your instructors), followed by
+`:8787`. For example, if your IP address was 123.45.67.89 your URL would be
 
-> ~~~
-> http://123.456.789:8787
->
-> # Tip: Make sure there are no spaces before or after your URL or your web browser may interpret it as a search query
-> ~~~
+```
+http://123.45.67.89:8787
+```
+
+> ## Tip: Make sure there are no spaces before or after your URL or
+> your web browser may interpret it as a search query.
+{: .callout}
 
 You should now be looking at a page that will allow you to login to the RStudio
 server:
@@ -116,11 +119,7 @@ server:
 <img src="../fig/rstudio_login_screen.png" alt="rstudio default session" style="width: 1000px;"/>
 
 Enter your user credentials and click <kbd>Sign In</kbd>. The credentials for
-the genomics Data Carpentry instances are:
-
- > **username**: dcuser
- >
- > **password**: data4Carp
+the genomics Data Carpentry instances will be provided by your instructors. 
 
 You should now see the RStudio interface:
 
@@ -166,8 +165,6 @@ pane (more about the RStudio layout in a moment), you should see an RStudio
 > installation instructions.
 {: .callout}
 
----
-
 ## Creating your first R script
 
 Now that we are ready to start exploring R, we will want to keep a record of the
@@ -181,36 +178,32 @@ window that opens, name your file **"genomics_r_basics"**. The new script
 **genomics_r_basics.R** should appear under "files" in the output pane. By
 convention, R scripts end with the file extension **.R**.
 
----
-
 ## Overview and customization of the RStudio layout
 
-Now that we have covered the basics, lets address some ways to configure the
-layout of RStudio. First, here are the major windows (or panes) of the RStudio
+Here are the major windows (or panes) of the RStudio
 environment:
 
 <img src="../fig/rstudio_session_4pane_layout.png" alt="rstudio default session" style="width: 1000px;"/>
 
 - **Source**: This pane is where you will write/view R scripts. Some outputs
-  (such as if you view a dataset using `View()`) will appear as a tab here
+  (such as if you view a dataset using `View()`) will appear as a tab here.
 - **Console/Terminal**: This is actually where you see the execution of
   commands. This is the same display you would see if you were using R at the
   command line without RStudio. You can work interactively (i.e. enter R
   commands here), but for the most part we will run a script (or lines in a
   script) in the source pane and watch their execution and output here. The
   "Terminal" tab give you access to the BASH terminal (the Linux operating
-  system, unrelated to R)
+  system, unrelated to R).
 - **Environment/History**: Here, RStudio will show you what datasets and
   objects (variables) you have created and which are defined in memory.
   You can also see some properties of objects/datasets such as their type
-  and dimensions. A "History" tab also contains a history of executed R commands.
-  In the history tab you can see a list of previously executed commands
-- **Files/plots/Packages/help**: This multipurpose pane will show you the
+  and dimensions. The "History" tab contains a history of the R commands you've executed R.
+- **Files/Plots/Packages/Help**: This multipurpose pane will show you the
   contents of directories on your computer. You can also use the "Files" tab to
   navigate and set the working directory. The "Plots" tab will show the output
   of any plots generated. In "Packages" you will see what packages are actively
   loaded, or you can attach installed packages. "Help" will display help files
-  for R functions/packages
+  for R functions and packages.
 
 >## Tip: Uploads and downloads in the cloud
 > In the "Files" tab you can select a file and download it from your cloud
@@ -225,16 +218,13 @@ pane layout are in the <KBD>View</KBD> menu. Other options such as font sizes,
 colors/themes, and more are in the <KBD>Tools</KBD> menu under
 <KBD>Global Options</KBD>.
 
->## Don't be fooled - you are working with R
+>## You are working with R
 > Although we won't be working with R at the terminal, there are lots of reasons
 > to. For example, once you have written an RScript, you can run it at any Linux
-> or Windows terminal without the need to start up RStudio. We just don't want
+> or Windows terminal without the need to start up RStudio. We don't want
 > you to get confused - RStudio runs R, but R is not RStudio. For more on
-> running an R Script at the terminal see this [Carpentry lesson](https://swcarpentry.github.io/r-novice-inflammation/05-cmdline/).
+> running an R Script at the terminal see this [Software Carpentry lesson](https://swcarpentry.github.io/r-novice-inflammation/05-cmdline/).
 {: .callout}
-
-
----
 
 ## Getting to work with R: navigating directories
 Now that we have covered the more aesthetic aspects of RStudio, we can get to
@@ -243,10 +233,9 @@ learn in our **genomics_r_basics.R** script that is loaded in the Source pane.
 First, lets see what directory we are in. To do so, type the following command
 into the script:
 
-~~~
+```{r, eval = FALSE, purl = FALSE}
 getwd()
-~~~
-{: .language-r}
+```
 
 To execute this command, make sure your cursor is on the same line the command
 is written. Then click the <KBD>Run</KBD> button that is just above the first
@@ -265,23 +254,20 @@ above the output in blue.
 
 Since we will be learning several commands, we may already want to keep some
 short notes in our script to explain the purpose of the command. Entering a `#`
-before any line in an R script. Edit your script to include a comment on the
+before any line in an R script turns that line into a comment, which R will
+not try to interpret as code. Edit your script to include a comment on the
 purpose of commands you are learning, e.g.:
 
-~~~
+```{r, eval = FALSE, purl = FALSE}
 # this command shows the current working directory
 getwd()
-~~~
-{: .language-r}
-
----
+```
 
 > ## Exercise: Work interactively in R
 >
 > What happens when you try to enter the `getwd()` command in the Console pane?
 >
 >> ## Solution
->
 >> You will get the same output you did as when you ran `getwd()` from the
 >> source. You can run any command in the Console, however, executing it from
 >> the source script will make it easier for us to record what we have done,
@@ -289,16 +275,14 @@ getwd()
 > {: .solution}
 {: .challenge}
 
-
-For the purposes of this exercise we want you to be in the directory `"/home/dcuser/dc_genomics_r"`.
+For the purposes of this exercise we want you to be in the directory `"/home/dcuser/R_data"`.
 What if you weren't? You can set your home directory using the `setwd()`
 command. Enter this command in your script, but *don't run* this yet.
 
-~~~
+```{r, eval = FALSE, purl = FALSE}
 # This sets the working directory
 setwd()
-~~~
-{: .language-r}
+```
 
 You may have guessed, you need to tell the `setwd()` command
 what directory you want to set as your working directory. To do so, inside of
@@ -307,12 +291,10 @@ the root directory for Linux. Next, use the <KBD>Tab</KBD> key, to take
 advantage of RStudio's Tab-autocompletion method, to select `home`, `dcuser`,
 and `dc_genomics_r` directory. The path in your script should look like this:
 
-~~~
+```{r, eval = FALSE, purl = FALSE}
 # This sets the working directory
 setwd("/home/dcuser/dc_genomics_r")
-~~~
-{: .language-r}
-
+```
 
 When you run this command, the console repeats the command, but gives you no
 output. Instead, you see the blank R prompt: `>`. Congratulations! Although it
@@ -334,15 +316,12 @@ working directory is the first step to analyzing your data.
 > and other R tips.
 {: .callout}
 
----
-
 ## Using functions in R, without needing to master them
 
-Functions may seem like an advanced topic (and they are), but you have already
-been using functions in R. In fact, even if you never learn how anything else
-works in R, the next sections will help you understand what is happening in
-any R script. A function in R (or any computing language) is basically a short
-program that takes an input and returns and output.
+A function in R (or any computing language) is a short
+program that takes some input and returns some output. Functions may seem like an advanced topic (and they are), but you have already
+used at least one function in R. `getwd()` is a function! The next sections will help you understand what is happening in
+any R script.
 
 > ## Exercise: What do these functions do?
 >
@@ -354,8 +333,8 @@ program that takes an input and returns and output.
 > - `date()`
 > - `Sys.time()`
 >
->> ## solution
->> - `dir()` # lists files in the working directory
+>> ## Solution
+>> - `dir()` # Lists files in the working directory
 >> - `sessionInfo()` # Gives the version of R and additional info including
 >>    on attached packages
 >> - `date()` # Gives the current date
@@ -365,22 +344,20 @@ program that takes an input and returns and output.
 > {: .solution}
 {: .challenge}
 
-You have hopefully noticed a pattern, some more abstract exceptions aside, in R
-a function has three key properties:
-- functions have a name (e.g. `dir`, `getwd`); note that functions are case
+You have hopefully noticed a pattern - an R
+function has three key properties:
+- Functions have a name (e.g. `dir`, `getwd`); note that functions are case
   sensitive!
-- following the name, functions have a pair of `()`
+- Following the name, functions have a pair of `()`
 - Inside the parentheses, a function may take 0 or more arguments
 
 An argument may be a specific input for your function and/or may modify the
 function's behavior. For example the function `round()` will round a number
 with a decimal:
 
-
 ```{r}
-# This will round up a number
+# This will round a number to the nearest integer
 round(3.14)
-# Which returns
 ```
 
 ## Getting help with function arguments
@@ -390,22 +367,22 @@ do this, but you may first need to read the help to find out how. To see the hel
 (In R sometimes also called a "vignette") enter a `?` in front of the function
 name:
 
-
 ```{r, eval=FALSE}
 ?round()
 ```
 
 The "Help" tab will show you information (often, too much information). You
-will slowly learn how to read through that. Checking the "Usage" or "Examples"
+will slowly learn how to read and make sense of help files. Checking the "Usage" or "Examples"
 headings is often a good place to look first. If you look under "Arguments," we
-also see what arguments we can "pass" to this function to modify its behavior.
+also see what arguments we can pass to this function to modify its behavior.
 You can also see a function's argument using the `args()` function:
 
 ```{r}
 args(round)
 ```
 
-We see that `round()` takes two arguments, `x` which is your number, and a
+`round()` takes two arguments, `x`, which is the number to be 
+rounded, and a
 `digits` argument. The `=` sign indicates that a default (in this case 0) is
 already set. Since `x` is not set, `round()` requires we provide it, in contrast
 to `digits` where R will use the default value 0 unless you explicitly provide
@@ -439,12 +416,16 @@ Error in .helpForCall(topicExpr, parent.frame()) :
 ~~~
 {: .error}
 
-
-Use two question marks (i.e. `?? geom_point()`) and R will return online search results in the "Help" tab. Finally, if you think there should be a function, for example a statistical test, but you aren't sure what R calls it, or what functions may be available, use the `help.search()` function.
+Use two question marks (i.e. `??geom_point()`) and R will return
+results from a search of the documentation for packages you have installed on your computer
+in the "Help" tab. Finally, if you think there
+should be a function, for example a statistical test, but you aren't
+sure what it is called in R, or what functions may be available, use
+the `help.search()` function.
 
 > ## Exercise: Searching for R functions
 > Use `help.search()` to find R functions for the following statistical
-> functions. Remember to put your search query in quotes inside the function
+> functions. Remember to put your search query in quotes inside the function's
 > parentheses.
 >
 > - Chi-Squared test
@@ -452,7 +433,6 @@ Use two question marks (i.e. `?? geom_point()`) and R will return online search 
 > - mixed linear model
 >
 >> ## Solution
->>
 >>   While your search results may return several tests, we list a few you might
 >>   find:
 >> - Chi-Squared test: `stats::Chisquare`
@@ -462,8 +442,7 @@ Use two question marks (i.e. `?? geom_point()`) and R will return online search 
 {: .challenge}
 
 
-We will discuss more on where to look for the libraries and packages that contain functions you want to use. For now, be aware that two important ones are [CRAN](https://cran.r-project.org/) - the main repository for R, and [Bioconductor](http://bioconductor.org/) - a popular repository for bioinformatics R.
-
+We will discuss more on where to look for the libraries and packages that contain functions you want to use. For now, be aware that two important ones are [CRAN](https://cran.r-project.org/) - the main repository for R, and [Bioconductor](http://bioconductor.org/) - a popular repository for bioinformatics-related R packages.
 
 ## RStudio contextual help
 
@@ -475,6 +454,7 @@ RStudio will display functions and associated help:
 <img src="../fig/studio_contexthelp1.png" alt="rstudio default session" style="width: 600px;"/>
 
 Once you type a function, hitting the <KBD>Tab</KBD> inside the parentheses
-will remind you of arguments and provide additional help.
+will show you the function's arguments and provide additional help
+for each of these arguments.
 
 <img src="../fig/studio_contexthelp2.png" alt="rstudio default session" style="width: 600px;"/>
