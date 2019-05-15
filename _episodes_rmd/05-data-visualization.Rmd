@@ -3,7 +3,7 @@ title: "Data Visualization with ggplot2"
 teaching: 60
 exercises: 30
 questions:
-- ""
+- How can I create publication-quality graphics in R?
 - ""
 objectives:
 - ""
