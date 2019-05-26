@@ -351,7 +351,7 @@ human_chr_number * 2
 
 > ## Exercise: Compute the golden ratio
 >
-> One appoximation of the golden ratio (φ) can be found by taking the sum of 1
+> One approximation of the golden ratio (φ) can be found by taking the sum of 1
 > and the square root of 5, and dividing by 2 as in the example above. Compute
 > the golden ratio to 3 digits of precision using the `sqrt()` and `round()`
 > functions. Hint: remember the `round()` function can take 2 arguments.

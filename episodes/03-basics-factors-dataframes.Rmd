@@ -570,7 +570,7 @@ head(sorted_by_DP$DP)
 ```
 
 > ## Exercise
-> The `order()` function lists values in increasing order by default. Look at the documenation
+> The `order()` function lists values in increasing order by default. Look at the documentation
 > for this function and change `sorted_by_DP` to start with variants with the greatest filtered
 > depth ("DP").
 > 
