@@ -351,7 +351,7 @@ human_chr_number * 2
 
 > ## Exercise: Compute the golden ratio
 >
-> One appoximation of the golden ratio (φ) can be found by taking the sum of 1
+> One approximation of the golden ratio (φ) can be found by taking the sum of 1
 > and the square root of 5, and dividing by 2 as in the example above. Compute
 > the golden ratio to 3 digits of precision using the `sqrt()` and `round()`
 > functions. Hint: remember the `round()` function can take 2 arguments.
@@ -712,7 +712,7 @@ That said, you may come across lists in the way that some bioinformatics
 programs may store and/or return data to you. One of the key attributes of a
 list is that, unlike a vector, a list may contain data of more than one mode.
 Learn more about creating and using lists using this [nice
-tutorial](http://r4ds.had.co.nz/lists.html). In this one example, we will create
+tutorial](https://r4ds.had.co.nz/vectors.html#lists). In this one example, we will create
 a named list and show you how to retrieve items from the list.
 
 ```{r, purl = FALSE}

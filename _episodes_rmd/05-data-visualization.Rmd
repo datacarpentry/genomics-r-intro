@@ -58,7 +58,7 @@ this fashion allows for extensive flexibility and customization of plots.
 
 To build a ggplot, we will use the following basic template that can be used for different types of plots:
 
-```
+```{r, eval=FALSE}
 ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) +  <GEOM_FUNCTION>()
 ```
 
