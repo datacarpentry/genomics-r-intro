@@ -485,7 +485,7 @@ snp_genes
 We can also explicitly rename or add a value to our index using double bracket notation:
 
 ```{r, purl = FALSE}
-snp_genes[[7]]<- "APOA5"
+snp_genes[7]<- "APOA5"
 snp_genes
 ```
 
