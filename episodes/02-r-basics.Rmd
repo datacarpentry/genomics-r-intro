@@ -468,7 +468,7 @@ We can verify that "snp_genes" contains the new gene entry
 snp_genes
 ```
 
-Using a negative index will return a version a vector with that index's
+Using a negative index will return a version of a vector with that index's
 value removed:
 
 ```{r, purl = FALSE}
