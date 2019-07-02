@@ -41,7 +41,7 @@ R working.
 > Remember, these lessons assume we are using the pre-configured virtual machine
 > instances provided to you at a genomics workshop. Much of this work could be
 > done on your laptop, but we use instances to simplify workshop setup
-> requirements, and to get you familiar with using the cloud (a common
+> requirements and to get you familiar with using the cloud (a common
 > requirement for working with big data).
 > Visit the [Genomics Workshop setup page](http://www.datacarpentry.org/genomics-workshop/setup.html)
 > for details on getting this instance running on your own, or for the info you
@@ -52,7 +52,7 @@ R working.
 ## A Brief History of R
 
 [R](https://en.wikipedia.org/wiki/R_(programming_language)) has been around
-since 1995, and was created by Ross Ihaka and Robert Gentleman at the University
+since 1995 and was created by Ross Ihaka and Robert Gentleman at the University
 of Auckland, New Zealand. R is based off the S programming language developed
 at Bell Labs and was developed to teach intro statistics. See this [slide deck](https://www.stat.auckland.ac.nz/~ihaka/downloads/Massey.pdf)
 by Ross Ihaka for more info on the subject.
@@ -64,12 +64,12 @@ analyzing data in R:
 
  - **R is [open source](https://en.wikipedia.org/wiki/Open-source_software)**.
    This means R is free - an advantage if you are at an institution where you
-   have to pay for your own MATLAB or SAS license. Open source, is important to
+   have to pay for your own MATLAB or SAS license. Open source is important to
    your colleagues in parts of the world where expensive software in
    inaccessible. It also means that R is actively developed by a community (see
    [r-project.org](https://www.r-project.org/)),
    and there are regular updates.
- - **R is widely used**. Ok, maybe programming is a popularity contest. Because,
+ - **R is widely used**. Ok, maybe programming is a popularity contest. Because
    R is used in many areas (not just bioinformatics), you are more likely to
    find help online when you need it. Chances are, almost any error message you
    run into, someone else has already experienced.
@@ -145,7 +145,7 @@ called an **RStudio Project**. An RStudio project allows you to more easily:
 "Directory name:" enter **dc_genomics_r**. For "Create project as subdirectory of",
 you may leave the default, which is your home directory "~".
 
-3. Finally click <kbd>Create Project</kbd>. In the "Files" tab of your output
+3. Finally, click <kbd>Create Project</kbd>. In the "Files" tab of your output
 pane (more about the RStudio layout in a moment), you should see an RStudio
  project file, **dc_genomics_r.Rroj**. All RStudio projects end with the
  "**.Rproj**" file extension.
@@ -190,9 +190,9 @@ environment:
 - **Console/Terminal**: This is actually where you see the execution of
   commands. This is the same display you would see if you were using R at the
   command line without RStudio. You can work interactively (i.e. enter R
-  commands here), but for the most part we will run a script (or lines in a
+  commands here), but for the most part, we will run a script (or lines in a
   script) in the source pane and watch their execution and output here. The
-  "Terminal" tab give you access to the BASH terminal (the Linux operating
+  "Terminal" tab gives you access to the BASH terminal (the Linux operating
   system, unrelated to R).
 - **Environment/History**: Here, RStudio will show you what datasets and
   objects (variables) you have created and which are defined in memory.
@@ -230,7 +230,7 @@ colors/themes, and more are in the <KBD>Tools</KBD> menu under
 Now that we have covered the more aesthetic aspects of RStudio, we can get to
 work using some commands. We will write, execute, and save the commands we
 learn in our **genomics_r_basics.R** script that is loaded in the Source pane.
-First, lets see what directory we are in. To do so, type the following command
+First, let's see what directory we are in. To do so, type the following command
 into the script:
 
 ```{r, eval = FALSE, purl = FALSE}
@@ -275,7 +275,7 @@ getwd()
 > {: .solution}
 {: .challenge}
 
-For the purposes of this exercise we want you to be in the directory `"/home/dcuser/R_data"`.
+For the purposes of this exercise, we want you to be in the directory `"/home/dcuser/R_data"`.
 What if you weren't? You can set your home directory using the `setwd()`
 command. Enter this command in your script, but *don't run* this yet.
 
@@ -296,14 +296,14 @@ and `dc_genomics_r` directory. The path in your script should look like this:
 setwd("/home/dcuser/dc_genomics_r")
 ```
 
-When you run this command, the console repeats the command, but gives you no
+When you run this command, the console repeats the command but gives you no
 output. Instead, you see the blank R prompt: `>`. Congratulations! Although it
 seems small, knowing what your working directory is and being able to set your
 working directory is the first step to analyzing your data.
 
 > ## Tip: Never use `setwd()`
 >
-> Wait, what was the last 2 minutes about? Well, setting your working directory
+> Wait, what were the last 2 minutes about? Well, setting your working directory
 > is something you need to do, you need to be very careful about using this as
 > a step in your script. For example, what if your script is being on a computer
 > that has a different directory structure? The top-level path in a Unix file
@@ -352,7 +352,7 @@ function has three key properties:
 - Inside the parentheses, a function may take 0 or more arguments
 
 An argument may be a specific input for your function and/or may modify the
-function's behavior. For example the function `round()` will round a number
+function's behavior. For example, the function `round()` will round a number
 with a decimal:
 
 ```{r}
@@ -419,7 +419,7 @@ Error in .helpForCall(topicExpr, parent.frame()) :
 Use two question marks (i.e. `??geom_point()`) and R will return
 results from a search of the documentation for packages you have installed on your computer
 in the "Help" tab. Finally, if you think there
-should be a function, for example a statistical test, but you aren't
+should be a function, for example, a statistical test, but you aren't
 sure what it is called in R, or what functions may be available, use
 the `help.search()` function.
 
