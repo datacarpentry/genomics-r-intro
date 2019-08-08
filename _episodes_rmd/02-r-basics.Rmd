@@ -299,7 +299,7 @@ working with R objects.
 > {: .solution}
 {: .challenge}
 
-Notice from the solution that even if a series of numbers are given as a value
+Notice from the solution that even if a series of numbers is given as a value
 R will consider them to be in the "character" mode if they are enclosed as
 single or double quotes. Also, notice that you cannot take a string of alphanumeric
 characters (e.g. Earhart) and assign as a value for an object. In this case,
