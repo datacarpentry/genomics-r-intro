@@ -145,7 +145,7 @@ or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you're using a Mac.
 variants %>%
   filter(sample_id == "SRR2584863") %>%
   select(REF, ALT, DP) %>%
-  head()
+  glimpse()
 ```
 
 In the above code, we use the pipe to send the `variants` dataset first through
@@ -217,7 +217,7 @@ only the first six rows of data.
 ```{r, purl = FALSE}
 variants %>%
   mutate(POLPROB = 1 - (10 ^ -(QUAL/10))) %>%
-  head()
+  glimpse()
 ```
 
 > ## Exercise
@@ -229,7 +229,7 @@ variants %>%
 >> ```{r}
 >> variants %>%
 >>  mutate(POLPROB = 1 - 10 ^ -(QUAL/10)) %>%
->>  head %>%
+>>  glimpse %>%
 >>  select(sample_id, POS, QUAL, POLPROB)
 >> ```
 > {: .solution}
