@@ -147,7 +147,7 @@ you may leave the default, which is your home directory "~".
 
 3. Finally click <kbd>Create Project</kbd>. In the "Files" tab of your output
 pane (more about the RStudio layout in a moment), you should see an RStudio
- project file, **dc_genomics_r.Rroj**. All RStudio projects end with the
+ project file, **dc_genomics_r.Rproj**. All RStudio projects end with the
  "**.Rproj**" file extension.
 
 >## Tip: Make your project more reproducible with Packrat
