@@ -3,7 +3,7 @@ title: Producing Reports With knitr
 teaching: 60
 exercises: 15
 questions:
-- "How can I integrate software and reports?"
+- "How can I integrate analyses and reports?"
 objectives:
 - "Value of reproducible reports"
 - "Basics of Markdown"
@@ -12,9 +12,9 @@ objectives:
 - "Inline R code"
 - "Other output formats"
 keypoints:
-- "Mix reporting written in R Markdown with software written in R."
-- "Specify chunk options to control formatting."
-- "Use `knitr` to convert these documents into PDF and other formats."
+- "Keep reporting and R software together in one document using R Markdown."
+- "Control formatting using chunk options."
+- "`knitr` can convert R Markdown documents to PDF and other formats."
 source: Rmd
 ---
 
