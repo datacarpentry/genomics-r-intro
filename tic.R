@@ -1,10 +1,9 @@
-source("build_lesson.R")
-
 get_stage("before_install") %>%
   add_code_step(install.packages("git2r")) %>%
   add_code_step(install.packages("renv")) %>%
   add_code_step(install.packages("rprojroot")) %>%
-  add_code_step(update.packages(ask = FALSE))
+  add_code_step(update.packages(ask = FALSE)) %>%
+  add_code_step(source("build_lesson.R"))
 
 get_stage("install") %>%
   add_code_step(system("python -m pip install update-copyright")) %>%
