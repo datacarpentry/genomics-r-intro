@@ -29,9 +29,10 @@ CheckLinks <- R6::R6Class(
       ## actually need to generate the website so we can test the links.
       on.exit(system("rm -rf _rendered/_site"))
 
-      system("cd _rendered && rvm 2.5.3 do ruby -S jekyll build")
+      system("cd _rendered && ls -la && rvm 2.5.3 do ruby -S jekyll build")
 
-      res <- checker::check_links("_site",
+      res <- checker::check_jekyll_links(
+        site_root = "_render",
         show_summary = TRUE,
         check_external = TRUE,
         only_with_issues = FALSE,
