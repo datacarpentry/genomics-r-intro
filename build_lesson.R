@@ -33,6 +33,7 @@ CheckLinks <- R6::R6Class(
 
       res <- checker::check_jekyll_links(
         site_root = "_rendered",
+        ruby_cmd = "rvm 2.5.8 do",
         show_summary = TRUE,
         check_external = TRUE,
         only_with_issues = FALSE,
