@@ -32,7 +32,7 @@ CheckLinks <- R6::R6Class(
       system("cd _rendered && ls -la && rvm 2.5.3 do ruby -S bundle install")
 
       res <- checker::check_jekyll_links(
-        site_root = "_render",
+        site_root = "_rendered",
         show_summary = TRUE,
         check_external = TRUE,
         only_with_issues = FALSE,
