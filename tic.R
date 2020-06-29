@@ -22,10 +22,8 @@ if (ci_on_travis()) {
   # - `Sys.getenv("BUILD_PKGDOWN") != ""`: If the env var "BUILD_PKGDOWN" is set
   # - `Sys.getenv("TRAVIS_EVENT_TYPE") == "cron"`: Only for Travis cron jobs
 
-  if (ci_has_env("id_rsa")) {
-    get_stage("before_deploy") %>%
+  get_stage("before_deploy") %>%
       add_step(step_setup_ssh())
-  }
 
   ## if there is a tag associated with the push or we are in master, the
   ## lesson gets deployed on gh-pages, and rendered by GitHub
