@@ -6,7 +6,7 @@ install_lesson_dependencies <- function() {
   needed_pkgs <- c("remotes", "renv", "rprojroot")
   missing_pkgs <- setdiff(needed_pkgs, rownames(installed.packages()))
 
-  if (length(avaialble_pkgs)) {
+  if (length(missing_pkgs)) {
     message(
       "Installing missing required core packages: ",
       paste(missing_pkgs, collpase = ", ")
