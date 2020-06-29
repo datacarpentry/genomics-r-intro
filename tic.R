@@ -15,14 +15,17 @@ get_stage("deploy") %>%
   add_step(build_lesson()) %>%
   add_step(check_links())
 
-if (Sys.getenv("id_rsa") != "") {
+if (ci_on_travis()) {
   # pkgdown documentation can be built optionally. Other example criteria:
   # - `inherits(ci(), "TravisCI")`: Only for Travis CI
   # - `ci()$is_tag()`: Only for tags, not for branches
   # - `Sys.getenv("BUILD_PKGDOWN") != ""`: If the env var "BUILD_PKGDOWN" is set
   # - `Sys.getenv("TRAVIS_EVENT_TYPE") == "cron"`: Only for Travis cron jobs
-  get_stage("before_deploy") %>%
-    add_step(step_setup_ssh())
+
+  if (ci_has_env("id_rsa")) {
+    get_stage("before_deploy") %>%
+      add_step(step_setup_ssh())
+  }
 
   ## if there is a tag associated with the push or we are in master, the
   ## lesson gets deployed on gh-pages, and rendered by GitHub
