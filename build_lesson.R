@@ -45,24 +45,3 @@ CheckLinks <- R6::R6Class(
 check_links <- function() {
   CheckLinks$new()
 }
-
-install_lesson_dependencies <- function() {
-
-  cfg  <- rprojroot::has_file_pattern("^_config.y*ml$")
-  root <- rprojroot::find_root(cfg)
-
-  required_pkgs <- unique(c(
-    ## Packages for episodes
-    renv::dependencies(file.path(root, "_episodes_rmd"), progress = FALSE, error = "ignore")$Package,
-    ## Pacakges for tools
-    renv::dependencies(file.path(root, "bin"), progress = FALSE, error = "ignore")$Package
-  ))
-
-  missing_pkgs <- setdiff(required_pkgs, rownames(installed.packages()))
-
-  if (length(missing_pkgs)) {
-    message("Installing missing required packages: ",
-      paste(missing_pkgs, collapse=", "))
-    install.packages(missing_pkgs)
-  }
-}
