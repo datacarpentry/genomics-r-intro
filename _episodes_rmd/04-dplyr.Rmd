@@ -33,7 +33,7 @@ variants <- read.csv("https://ndownloader.figshare.com/files/14632895")
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. 
 
-Luckily, the [`dplyr`](https://cran.r-project.org/package=dplyr
+Luckily, the [`dplyr`](https://cran.r-project.org/package=dplyr)
 package provides a number of very useful functions for manipulating dataframes
 in a way that will reduce repetition, reduce the probability of making
 errors, and probably even save you some typing. As an added bonus, you might
