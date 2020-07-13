@@ -328,6 +328,7 @@ can be added, multiplied, divided, etc. R provides several mathematical
 |*|multiplication|
 |/|division|
 |^ or **|exponentiation|
+|a%/%b| integer division (division where the remainder is discarded)|
 |a%%b|modulus (returns the remainder after division)|
 
 These can be used with literal numbers:
