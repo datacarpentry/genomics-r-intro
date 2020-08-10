@@ -233,7 +233,7 @@ ggplot(data = variants, aes(x = sample_id, y = DP, color = sample_id)) +
 > What happens when we switch around the layers from our last plot?
 >
 > > ## Solution
-> > ```{r jitter-challenge, purl=FALSE}
+> > ```{r jitter-challenge3, purl=FALSE}
 > >  ggplot(data = variants, aes(x = sample_id, y = DP, color = sample_id)) +
 > >   geom_jitter() +
 > >   geom_boxplot()
