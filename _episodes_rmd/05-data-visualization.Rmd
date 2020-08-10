@@ -224,6 +224,22 @@ ggplot(data = variants, aes(x = sample_id, y = DP, color = sample_id)) +
 > >   geom_boxplot(color="black") +
 > >   geom_jitter(alpha=0.5)
 > > ```
+> > Color and other settings specified in the geom overrides the color specified in ggplot call.
+> {: .solution}
+{: .challenge}
+
+> ## Challenge
+>
+> What happens when we switch around the layers from our last plot?
+>
+> > ## Solution
+> > ```{r jitter-challenge, purl=FALSE}
+> >  ggplot(data = variants, aes(x = sample_id, y = DP, color = sample_id)) +
+> >   geom_jitter() +
+> >   geom_boxplot()
+> > ```
+> > Order makes a difference in ggplot so the jitter geom is plotted first and then
+> > the boxplot geom is plotted on top of the jitter.
 > {: .solution}
 {: .challenge}
 
