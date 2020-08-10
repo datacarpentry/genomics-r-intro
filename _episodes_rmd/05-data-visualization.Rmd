@@ -188,7 +188,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 
 ## More geoms and colors
 
-Let's see try changing the geom and create a boxplot to see that the colors will be still determined by **`sample_id`**.
+Let's try changing the geom and create a boxplot to see that the colors will be still determined by **`sample_id`**.
 This time we'll use the sample_id for the x axis as well since this makes more sense for a boxplot.
 
 ```{r color-by-sample-boxplot, purl=FALSE}
@@ -197,6 +197,8 @@ ggplot(data = variants, aes(x = sample_id, y = DP, color = sample_id)) +
 ```
 
 We can also add multiple geoms to the same plot.  Let's add `geom_jitter` into this plot as well.
+`geom_jitter` will plot points for each of the the depth values like `geom_point`
+but it will add a bit of randomness so they won't be plotted on top of one another.
 
 
 ```{r box-and-jitter, purl=FALSE}
@@ -208,7 +210,7 @@ ggplot(data = variants, aes(x = sample_id, y = DP, color = sample_id)) +
 > ## Challenge
 >
 > In the last plot the jitter for one of the samples covers up the box plot
-> Use what you just learned to a boxplot with jitter of depth (`DP`) by
+> Use what you just learned to create a boxplot with jitter of depth (`DP`) by
 > sample (`sample_id`) with the samples showing in different colors where the jitter is more transparent.
 > Bonus:  Change only the boxplots to be black.
 >
@@ -238,8 +240,8 @@ ggplot(data = variants, aes(x = sample_id, y = DP, color = sample_id)) +
 > >   geom_jitter() +
 > >   geom_boxplot()
 > > ```
-> > Order makes a difference in ggplot so the jitter geom is plotted first and then
-> > the boxplot geom is plotted on top of the jitter.
+> > Order makes a difference in ggplot so when we switch the geom order the jitter geom
+> > is plotted first and then the boxplot geom is plotted on top of the jitter.
 > {: .solution}
 {: .challenge}
 
