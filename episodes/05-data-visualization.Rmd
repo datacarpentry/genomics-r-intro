@@ -292,7 +292,7 @@ The [**`ggplot2`** extensions website](https://exts.ggplot2.tidyverse.org/) prov
 of packages that extend the capabilities of **`ggplot2`**, including additional
 themes.
 
-> ### Challenge
+> ## Challenge
 >
 > With all of this information in hand, please take another five minutes to
 > either improve one of the plots generated in this exercise or create a
