@@ -429,14 +429,14 @@ the `help.search()` function.
 > parentheses.
 >
 > - Chi-Squared test
-> - Student-t test
+> - Student t-test
 > - mixed linear model
 >
 >> ## Solution
 >>   While your search results may return several tests, we list a few you might
 >>   find:
 >> - Chi-Squared test: `stats::Chisquare`
->> - Student-t test: `stats::TDist`
+>> - Student t-test: `stats::t.test`
 >> - mixed linear model: `stats::lm.glm`
 > {: .solution}
 {: .challenge}
