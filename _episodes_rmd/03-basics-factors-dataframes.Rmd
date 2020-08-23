@@ -80,7 +80,7 @@ in your analysis, and its reproducibility.
 > "save"-click away from overwriting the original file. You have to purposely
 > use a writing function (e.g. `write.csv()`) to save data loaded into R. In
 > that case, be sure to save the manipulated data into a new file. More on this
-> later in the lesson.  
+> later in the lesson.
  {: .callout}
 
 ## Importing tabular data into R
@@ -139,7 +139,7 @@ We will need to load the sheet using a function called `read.csv()`.
 {: .challenge}
 
 Now, let's read in the file `combined_tidy_vcf.csv` which will be located in
-`/home/dcuser/.solutions/R_data/`. Call this data `variants`. The
+`/home/dcuser/r_data/`. Call this data `variants`. The
 first argument to pass to our `read.csv()` function is the file path for our
 data. The file path must be in quotes and now is a good time to remember to
 use tab autocompletion. **If you use tab autocompletion you avoid typos and
@@ -148,7 +148,7 @@ errors in file paths.** Use it!
 ```{r, eval = FALSE, purl = FALSE}
 ## read in a CSV file and save it as 'variants'
 
-variants <- read.csv("../r_data/combined_tidy_vcf.csv")
+variants <- read.csv("/home/dcuser/r_data/combined_tidy_vcf.csv")
 ```
 
 
@@ -251,14 +251,14 @@ items are both "G"s, which is the 33rd level of our factor.
 ## Plotting and ordering factors
 
 One of the most common uses for factors will be when you plot categorical
-values. For example, suppose we want to know how many of our variants had each possible 
+values. For example, suppose we want to know how many of our variants had each possible
 nucleotide (or nucleotide combination) in the reference genome? We could generate a plot:
 
 ```{r, purl = FALSE}
 plot(REF)
 ```
 
-This isn't a particularly pretty example of a plot. We'll be learning much more about creating nice, publication-quality graphics later in this lesson. 
+This isn't a particularly pretty example of a plot. We'll be learning much more about creating nice, publication-quality graphics later in this lesson.
 
 <!-- For now, let's explore how we can order -->
 <!-- the factors in our plot so that the first four values are "A", "C", "G", "T", with multi-nucleotide -->
@@ -295,7 +295,7 @@ where we are taking a range).
 > ## Exercise: Subsetting a data frame
 >
 > **Try the following indices and functions and try to figure out what they return**
-> 
+>
 > a. `variants[1,1]`
 >
 > b. `variants[2,4]`
@@ -321,65 +321,65 @@ where we are taking a range).
 > l. `variants[variants$REF == "A",]`
 >
 >> ## Solution
->> a. 
+>> a.
 >> ```{r}
 >> variants[1,1]
 >> ```
->> 
->> b. 
+>>
+>> b.
 >> ```{r}
 >> variants[2,4]
 >> ```
->> 
->> c. 
+>>
+>> c.
 >> ```{r}
 >> variants[801,29]
 >> ```
->> 
->> d. 
+>>
+>> d.
 >> ```{r}
 >> variants[2, ]
 >> ```
 >>
->> e. 
+>> e.
 >> ```{r, echo = TRUE, eval = FALSE}
 >> variants[-1, ]
 >> ```
->> 
+>>
 >> ```{r, echo = FALSE, eval = TRUE}
 >> head(variants[-1, ])
 >> ```
 >>
->> f. 
+>> f.
 >> ```{r}
 >> variants[1:4,1]
 >> ```
->> 
->> g. 
+>>
+>> g.
 >> ```{r}
 >> variants[1:10,c("REF","ALT")]
 >> ```
->> 
->> h. 
+>>
+>> h.
 >> ```{r, echo = TRUE, eval = FALSE}
 >> variants[,c("sample_id")]
 >> ```
->> 
+>>
 >> ```{r, echo = FALSE, eval = TRUE}
 >> head(variants[,c("sample_id")])
 >>```
 >>
->> i. 
+>> i.
 >> ```{r}
 >> head(variants)
 >> ```
->> 
->> j. 
+>>
+>> j.
 >> ```{r}
 >> tail(variants)
 >> ```
->> 
->> k. 
+>>
+>> k.
 >> ```{r, echo = TRUE, eval = FALSE}
 >> variants$sample_id
 >> ```
@@ -387,8 +387,8 @@ where we are taking a range).
 >> ```{r, echo = FALSE, eval = TRUE}
 >> head(variants$sample_id)
 >> ```
->> 
->> l. 
+>>
+>> l.
 >> ```{r, echo = TRUE, eval = FALSE}
 >> variants[variants$REF == "A",]
 >> ```
@@ -413,7 +413,7 @@ the screen. You can create a new data frame object by assigning
 them to a new object name:
 
 ```{r, purl = FALSE}
-# create a new data frame containing only observations from SRR2584863 
+# create a new data frame containing only observations from SRR2584863
 
 SRR2584863_variants <- variants[variants$sample_id == "SRR2584863",]
 
@@ -514,7 +514,7 @@ like this one:
 
 ```{r, purl = FALSE}
 # make the 'REF' column a character type column
- 
+
 variants$REF <- as.character(variants$REF)
 
 # check the type of the column
@@ -527,7 +527,7 @@ Lets summarize this section on coercion with a few take home messages.
 
 - When you explicitly coerce one data type into another (this is known as
   **explicit coercion**), be careful to check the result. Ideally, you should try to see if its possible to avoid steps in your analysis that force you to
-  coerce.  
+  coerce.
 - R will sometimes coerce without you asking for it. This is called
   (appropriately) **implicit coercion**. For example when we tried to create
   a vector with multiple data types, R chose one type through implicit
@@ -573,7 +573,7 @@ head(sorted_by_DP$DP)
 > The `order()` function lists values in increasing order by default. Look at the documentation
 > for this function and change `sorted_by_DP` to start with variants with the greatest filtered
 > depth ("DP").
-> 
+>
 > > ## Solution
 > > ```{r, purl = FALSE}
 > > sorted_by_DP <- variants[order(variants$DP, decreasing = TRUE), ]
