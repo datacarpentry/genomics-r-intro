@@ -157,10 +157,10 @@ environment:
   loaded, or you can attach installed packages. "Help" will display help files
   for R functions and packages.
 
->## Tip: Uploads and downloads in the cloud
-> In the "Files" tab you can select a file and download it from your cloud
-> instance (click the "more" button) to your local computer.
-> Uploads are also possible.
+>## Tip: One of the big advantages of using RStudio is the fact that all of the different panes are *integrated*. 
+> For example, you can create a variable in a script, then watch the execution of the command that creates the variable in the console, and finally inspect the contents of the variable in the environment. 
+> At first, it is a mild case of information overload. 
+> But learning how to interprt the information in each of these panes will greatly increase your ability to keep track of what is happening.
 {: .callout}
 
 All of the panes in RStudio have configuration options. For example, you can
@@ -170,12 +170,12 @@ pane layout are in the <KBD>View</KBD> menu. Other options such as font sizes,
 colors/themes, and more are in the <KBD>Tools</KBD> menu under
 <KBD>Global Options</KBD>.
 
->## You are working with R
-> Although we won't be working with R at the terminal, there are lots of reasons
-> to. For example, once you have written an RScript, you can run it at any Linux
-> or Windows terminal without the need to start up RStudio. We don't want
-> you to get confused - RStudio runs R, but R is not RStudio. For more on
-> running an R Script at the terminal see this [Software Carpentry lesson](https://swcarpentry.github.io/r-novice-inflammation/05-cmdline/).
+>## R and RStudio are not the same
+> R is a programming language (and an interpreter for running commands in that language). 
+> RStudio is integrated development environment -- a set of tools for working with R. 
+> You can use R from the terminal without RStudio, and there are lots of reasons to -- including using R on the cluster.
+> Once you have written an RScript, you can run it at any Linux or Windows terminal without the need to start up RStudio. 
+> For more on running an R Script at the terminal see this [Software Carpentry lesson](https://swcarpentry.github.io/r-novice-inflammation/05-cmdline/).
 {: .callout}
 
 ## Getting to work with R: navigating directories
@@ -197,7 +197,7 @@ line of your script in the header of the Source pane.
 In the console, we expect to see the following output*:
 
 ~~~
-[1] "/home/dcuser/dc_genomics_r"
+[1] "/Users/your_username/projects/dc_genomics_r"
 ~~~
 {: .output}
 
@@ -227,9 +227,10 @@ getwd()
 > {: .solution}
 {: .challenge}
 
-For the purposes of this exercise we want you to be in the directory `"/home/dcuser/R_data"`.
-What if you weren't? You can set your home directory using the `setwd()`
-command. Enter this command in your script, but *don't run* this yet.
+For the purposes of this exercise we want you to be in the directory `"/Users/your_username/projects/dc_genomics_r"`.
+What if you weren't? 
+You can set your home directory using the `setwd()` command. 
+Enter this command in your script, but *don't run* this yet.
 
 ```{r, eval = FALSE, purl = FALSE}
 # This sets the working directory
@@ -245,7 +246,7 @@ and `dc_genomics_r` directory. The path in your script should look like this:
 
 ```{r, eval = FALSE, purl = FALSE}
 # This sets the working directory
-setwd("/home/dcuser/dc_genomics_r")
+setwd("/Users/home/your_username/dc_genomics_r")
 ```
 
 When you run this command, the console repeats the command, but gives you no
@@ -271,15 +272,14 @@ working directory is the first step to analyzing your data.
 ## Using functions in R, without needing to master them
 
 A function in R (or any computing language) is a short
-program that takes some input and returns some output. Functions may seem like an advanced topic (and they are), but you have already
-used at least one function in R. `getwd()` is a function! The next sections will help you understand what is happening in
-any R script.
+program that takes some input and returns some output. 
+Functions may seem like an advanced topic (and they are), but you have already used at least one function in R. `getwd()` is a function! 
+The next sections will help you understand what is happening in any R script.
 
 > ## Exercise: What do these functions do?
 >
-> Try the following functions by writing them in your script. See if you can
-> guess what they do, and make sure to add comments to your script about your
-> assumed purpose.
+> Try the following functions by writing them in your script. 
+> See if you can guess what they do, and make sure to add comments to your script about your assumed purpose.
 > - `dir()`
 > - `sessionInfo()`
 > - `date()`
