@@ -104,18 +104,8 @@ called an **RStudio Project**. An RStudio project allows you to more easily:
 - Collaborate, especially if you are using version control such as [git](http://swcarpentry.github.io/git-novice/).
 
 
-1. To create a project, go to the <kbd>File</kbd> menu, and click <kbd>New Project...</kbd>.
-
-<img src="../fig/new_project_window.png" alt="rstudio default session" style="width: 600px;"/>
-
-2. In the window that opens select **New Directory**, then **New Project**. For
-"Directory name:" enter **dc_genomics_r**. For "Create project as subdirectory of",
-you may leave the default, which is your home directory "~".
-
-3. Finally click <kbd>Create Project</kbd>. In the "Files" tab of your output
-pane (more about the RStudio layout in a moment), you should see an RStudio
- project file, **dc_genomics_r.Rproj**. All RStudio projects end with the
- "**.Rproj**" file extension.
+In the GitLab workflow above, you created a new project directory and linked it to a repository on GitLab. 
+There are other ways to manage projects, but this is what we recommend.
 
 >## Tip: Make your project more reproducible with Packrat
 > One of the most wonderful and also frustrating aspects of working with R is
