@@ -107,19 +107,14 @@ called an **RStudio Project**. An RStudio project allows you to more easily:
 In the GitLab workflow above, you created a new project directory and linked it to a repository on GitLab. 
 There are other ways to manage projects, but this is what we recommend.
 
->## Tip: Make your project more reproducible with Packrat
-> One of the most wonderful and also frustrating aspects of working with R is
-> managing packages. We will talk more about them, but packages (e.g. ggplot2)
-> are add-ons that extend what you can do with R. Unfortunately it is very
-> common that you may run into versions of R and/or R packages that are not
-> compatible. This may make it difficult for someone to run your R script using
-> their version of R or a given R package, and/or make it more difficult to run
-> their scripts on your machine. [Packrat](https://rstudio.github.io/packrat/)
-> is an RStudio add-on that will associate your packages and project so that
-> your work is more portable and reproducible. To turn on Packrat click on
-> the <KBD>Tools</KBD> menu and select <KBD>Project Options</KBD>. Under
-> **Packrat** check off "**Use packrat with this project**" and follow any
-> installation instructions.
+>## Tip: Make your project more reproducible with renv
+> One of the most wonderful and also frustrating aspects of working with R is managing packages. 
+> We will talk more about them, but packages (e.g. ggplot2) are add-ons that extend what you can do with R. 
+> Unfortunately it is very common that you may run into versions of R and/or R packages that are not compatible. 
+> This may make it difficult for someone to run your R script using their version of R or a given R package, and/or make it more difficult to run their scripts on your machine. 
+> [renv](https://rstudio.github.io/renv/) is an RStudio add-on that will associate your packages and project so that your work is more portable and reproducible. 
+> The renv package supercedes another package called "packrat". 
+> They both do basically the same thing, but renv does it better.
 {: .callout}
 
 ## Creating your first R script
