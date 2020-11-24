@@ -101,30 +101,40 @@ standalone software.
 
 ## Log on to RStudio Server
 
-Open a web browser and enter the IP address of your instance 
-(provided by your instructors), followed by
-`:8787`. For example, if your IP address was 123.45.67.89 your URL would be
+### Users with University of Edinburgh EASE logins
+
+Open a web browser and enter the IP address of the noteable server from EDINA:
 
 ```
-http://123.45.67.89:8787
+https://noteable.edina.ac.uk/login/
 ```
 
 > ## Tip: Make sure there are no spaces before or after your URL or
 > your web browser may interpret it as a search query.
 {: .callout}
 
-You should now be looking at a page that will allow you to login to the RStudio
-server:
+Login using your EASE username and password.
 
-<img src="../fig/rstudio_login_screen.png" alt="rstudio default session" style="width: 1000px;"/>
+You should now see a choice of notebook servers to run. Please choose RStudio server and click on "Start":
 
-Enter your user credentials and click <kbd>Sign In</kbd>. The credentials for
-the genomics Data Carpentry instances will be provided by your instructors. 
+<img src="../fig/edina_noteable_rstudioserver_choose.png" alt="choose rstudio server" style="width: 400px;"/>
 
 You should now see the RStudio interface:
 
 <img src="../fig/rstudio_session_default.png" alt="rstudio default session" style="width:1000px;"/>
 
+> ## Tip: If you get disconnected, you should be able to return to 
+> [noteable login](https://noteable.edina.ac.uk/login/) and
+> reconnect to the same session later.
+{: .callout}
+
+### Other users
+
+We recommend that you install a local copy of both R ([download R](https://www.stats.bris.ac.uk/R/)) and RStudio ([download RStudio desktop](https://rstudio.com/products/rstudio/)) on your computer. 
+
+There are other ways to get access to an RStudio server, including free pricing at [RStudio Cloud](https://rstudio.cloud/). Or your local organisation may have an instance that you can use.
+
+In this case, you should be able to start Rstudio and see a similar login page. to that shown above.
 
 ## Create an RStudio project
 
@@ -241,6 +251,7 @@ To execute this command, make sure your cursor is on the same line the command
 is written. Then click the <KBD>Run</KBD> button that is just above the first
 line of your script in the header of the Source pane.
 
+*NOTE: this part needs to be updated for Edinburgh.*
 
 In the console, we expect to see the following output*:
 
