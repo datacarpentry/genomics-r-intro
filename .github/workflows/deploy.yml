@@ -11,11 +11,13 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GH_PAT }}
       RSPM: 'https://packagemanager.rstudio.com/cran/__linux__/bionic/latest'
-
+      
     steps:
 
       - name: Checkout repo
         uses: actions/checkout@v2
+        with:
+          persist-credentials: false
 
       - name: Setup R
         uses: r-lib/actions/setup-r@master
