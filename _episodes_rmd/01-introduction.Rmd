@@ -36,16 +36,15 @@ knitr_fig_path("01-")
 In this lesson we will take you through the very first things you need to get
 R working.
 
-> ## Tip: This lesson works best on the cloud
+> ## Tip: Install R and RStudio locally anyway
 >
 > Remember, these lessons assume we are using the pre-configured virtual machine
-> instances provided to you at a genomics workshop. Much of this work could be
-> done on your laptop, but we use instances to simplify workshop setup
-> requirements, and to get you familiar with using the cloud (a common
-> requirement for working with big data).
-> Visit the [Genomics Workshop setup page](http://www.datacarpentry.org/genomics-workshop/setup.html)
-> for details on getting this instance running on your own, or for the info you
-> need to do this on your own computer.
+> instances provided to you at a genomics workshop, running an RStudio server. 
+> This simplifies installation and running of the workshop - but servers can go down 
+> during workshops. As a backup plan, if you are using your own computer for this workshop, 
+> please install a local copy of both R and RStudio, see instructions at the
+> [R ecology lesson setup page](https://datacarpentry.org/R-ecology-lesson/#install-r-and-rstudio)
+> After the workshop, this enables you to keep analysing data on your local computer.
 {: .callout}
 
 
