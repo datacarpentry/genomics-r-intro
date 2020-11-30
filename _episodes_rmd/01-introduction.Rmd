@@ -36,16 +36,15 @@ knitr_fig_path("01-")
 In this lesson we will take you through the very first things you need to get
 R working.
 
-> ## Tip: This lesson works best on the cloud
+> ## Tip: Install R and RStudio locally anyway
 >
-> Remember, these lessons assume we are using the pre-configured virtual machine
-> instances provided to you at a genomics workshop. Much of this work could be
-> done on your laptop, but we use instances to simplify workshop setup
-> requirements, and to get you familiar with using the cloud (a common
-> requirement for working with big data).
-> Visit the [Genomics Workshop setup page](http://www.datacarpentry.org/genomics-workshop/setup.html)
-> for details on getting this instance running on your own, or for the info you
-> need to do this on your own computer.
+> These lessons are designed to use an online RStudio server. This simplifies
+> installation and running of the workshop - but servers can go down 
+> during workshops.
+> If you are using your own computer for this lesson, please install a local copy 
+> of both R ([download R](https://www.stats.bris.ac.uk/R/)) 
+> and RStudio ([download RStudio desktop](https://rstudio.com/products/rstudio/)).
+> After the workshop, this enables you to keep analysing data on your local computer.
 {: .callout}
 
 
@@ -129,8 +128,6 @@ You should now see the RStudio interface:
 {: .callout}
 
 ### Other users
-
-We recommend that you install a local copy of both R ([download R](https://www.stats.bris.ac.uk/R/)) and RStudio ([download RStudio desktop](https://rstudio.com/products/rstudio/)) on your computer. 
 
 There are other ways to get access to an RStudio server, including free pricing at [RStudio Cloud](https://rstudio.cloud/). Or your local organisation may have an instance that you can use.
 
