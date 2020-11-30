@@ -104,9 +104,7 @@ standalone software.
 
 Open a web browser and enter the IP address of the noteable server from EDINA:
 
-```
 https://noteable.edina.ac.uk/login/
-```
 
 > ## Tip: Make sure there are no spaces before or after your URL or
 > your web browser may interpret it as a search query.
