@@ -16,8 +16,6 @@ jobs:
 
       - name: Checkout repo
         uses: actions/checkout@v2
-        with:
-          persist-credentials: false
 
       - name: Setup R
         uses: r-lib/actions/setup-r@master
@@ -63,4 +61,5 @@ jobs:
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'edcarp/genomics-r-intro' }}
         env:
           BUILD_DIR: _rendered/
-          GH_PAT: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
