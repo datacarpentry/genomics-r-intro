@@ -27,7 +27,7 @@ bioinformatics. R especially shines where a variety of statistical tools are
 required (e.g. RNA-Seq, population genomics, etc.) and in the generation of
 publication-quality graphs and figures. Rather than get into an R vs. Python
 debate (both are useful), keep in mind that many of the concepts you will learn
-apply to Python and other programming languages.
+apply to Python and other programming languages, as well.
 
 Finally, we won’t lie; R is not the easiest-to-learn programming language ever
 created. So, don’t get discouraged! The truth is that even with the modest
