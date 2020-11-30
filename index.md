@@ -24,7 +24,7 @@ there are no kits?
 
 R is one of the most widely-used and powerful programming languages in
 bioinformatics. R especially shines where a variety of statistical tools are
-required (e.g. RNA-Seq, population genomics, etc.) and in the generation of
+required (e.g. RNA-Seq, population genomics, et cetera.) and in the generation of
 publication-quality graphs and figures. Rather than get into an R vs. Python
 debate (both are useful), keep in mind that many of the concepts you will learn
 apply to Python and other programming languages, as well.
