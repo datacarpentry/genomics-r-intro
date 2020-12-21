@@ -3,24 +3,20 @@ title: "Data Visualization with ggplot2"
 teaching: 60
 exercises: 30
 questions:
-- ""
-- ""
+- "How do I plot my data in R?"
+- "How do I adjust plots to better display my data?"
 objectives:
-- ""
 - "Describe the role of data, aesthetics, and geoms in ggplot functions."
-- "Choose the correct aesthetics and alter the geom parameters for a scatter plot, histogram, or box plot."
-- "Layer multiple geometries in a single plot."
+- "Choose aesthetics and alter the geom parameters for a scatter plot, histogram, or box plot."
 - "Customize plot scales, titles, subtitles, themes, fonts, layout, and orientation."
 - "Apply a facet to a plot."
-- "Apply additional ggplot2-compatible plotting libraries."
 - "Save a ggplot to a file."
-- "List several resources for getting help with ggplot."
-- "List several resources for creating informative scientific plots."
+- "List resources for getting help with ggplot and creating informative scientific plots."
 
 keypoints:
-- ""
-- ""
-- ""
+- "ggplot2 maps variables in a tidy data frame to visual aesthetics such as position and color."
+- "Plots are built iteratively from different components: data, geoms, scales, and themes."
+- "You can customize any aspect of a plot to best display your data."
 source: Rmd
 ---
 
@@ -35,23 +31,68 @@ knitr_fig_path("05-")
 variants <- read.csv("https://ndownloader.figshare.com/files/14632895")
 ```
 
-We start by loading the package **`ggplot2`**.
+We start by loading the package **`ggplot2`**. 
 
-```{r load-ggplot2, message=FALSE, purl=FALSE}
+```{r load-ggplot2, message=FALSE, purl = TRUE}
 library(ggplot2)
 ```
+
+The *gg* in **`ggplot2`** stands for "grammar of graphics". The idea is that 
+any tidy data set can be made into an informative plot in a systematic way, by mapping
+variables in the data to positions, colours, shapes, and sizes of visual output. 
+These visual features are referred to as "aesthetics", or "aes" for short.
+There are different ways of mapping aesthetics to visual features - 
+bar plots, line plots, and so on. These differ in their geometry and so are referred 
+to as "geometries", or "geom" for short.
+
+Some simple examples will help. We will first plot one of R's built-in datasets,
+the [*Iris* flower dataset](https://en.wikipedia.org/wiki/Iris_flower_data_set),
+which measured sizes of iris flowers in different species, in 1930s Canada^[The iris dataset was collected by scientists who supported eugenics, a discredited and discriminatory historical practice. More background is given on the wikipedia page.].
+This data set records the length and width of two different parts of flowers, the Sepal 
+and the Petal, for three different species, (*Iris setosa*, *Iris virginica* and *Iris versicolor*).
+
+```{r print-iris, message=FALSE, purl = TRUE}
+head(iris)
+```
+
+This scatter plot displays points (`geom_point`), where:
+
+* x-axis position is given by `Petal.Width`
+* y-axis position is given by `Petal.Length`
+* colour is given by `Species`
+
+```{r scatter-plot-iris, message=FALSE, purl = TRUE, fig.height=3, fig.width=4.5}
+ggplot(data = iris, aes(x = Petal.Width, y = Petal.Length, colour = Species)) +
+  geom_point()
+```
+
+We could just as easily make a scatter plot where:
+
+* x-axis position is given by `Species`
+* y-axis position is given by `Petal.Length`
+* colour is given by `Petal.Width`
+
+```{r scatter-plot-iris-ugly, message=FALSE, purl = TRUE, fig.height=3, fig.width=4.5}
+ggplot(data = iris, aes(x = Species, y = Petal.Length, colour = Petal.Width)) +
+  geom_point()
+```
+
+You may find this plot less informative, or even uglier. This makes the point that
+the choice of how to map data features onto visual aesthetics is important.
+
 ## Plotting with **`ggplot2`**
 
 **`ggplot2`** is a plotting package that makes it simple to create complex plots
-from data in a data frame. It provides a more programmatic interface for
-specifying what variables to plot, how they are displayed, and general visual
-properties. Therefore, we only need minimal changes if the underlying data change
-or if we decide to change from a bar plot to a scatter plot. This helps in creating
+from a tidy data frame. It provides a programmatic interface for
+specifying what variables to plot, how they are displayed, and other visual
+properties. This helps in creating
 publication quality plots with minimal amounts of adjustments and tweaking.
 
-**`ggplot2`** functions like data in the 'long' format, i.e., a column for every dimension,
+**`ggplot2`** works with tidy data, i.e., a column for every variable,
 and a row for every observation. Well-structured data will save you lots of time
-when making figures with **`ggplot2`**
+when making figures with **`ggplot2`**. If you need to reorganise your
+data, you can use other tidyverse packages such as **`dplyr`** and **`tidyr`**, 
+and then afterwards plot the reorganised data using **`ggplot2`**.
 
 ggplot graphics are built step by step by adding new elements. Adding layers in
 this fashion allows for extensive flexibility and customization of plots.
@@ -62,41 +103,43 @@ To build a ggplot, we will use the following basic template that can be used for
 ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) +  <GEOM_FUNCTION>()
 ```
 
-- use the `ggplot()` function and bind the plot to a specific data frame using the
-      `data` argument
+The `ggplot()` function sets up an empty plot, which is "bound" to a specific data frame, using the
+      `data` argument. We will use the `variants` data frame from earlier in this workshop.
 
-```{r, eval=FALSE, purl=FALSE}
+```{r, eval=FALSE, purl = TRUE}
 ggplot(data = variants)
 ```
 
-- define a mapping (using the aesthetic (`aes`) function), by selecting the variables to be plotted and specifying how to present them in the graph, e.g. as x/y positions or characteristics such as size, shape, color, etc.
+The aesthetic (`aes`) function defines a mapping by selecting the variables to be
+plotted and specifying how to present them in the plot. 
+Here we use genomic position `POS` for the `x` position, and read depth `DP` for
+the `y` position.
 
-```{r, eval=FALSE, purl=FALSE}
+```{r, eval=FALSE, purl = TRUE}
 ggplot(data = variants, aes(x = POS, y = DP))
 ```
 
-- add 'geoms' – graphical representations of the data in the plot (points,
-  lines, bars). **`ggplot2`** offers many different geoms; we will use some
+'geoms' provide graphical representations of the data in the plot. 
+**`ggplot2`** offers many different geoms; we will use some
   common ones today, including:
 
       * `geom_point()` for scatter plots, dot plots, etc.
       * `geom_boxplot()` for, well, boxplots!
       * `geom_line()` for trend lines, time series, etc.
 
-To add a geom to the plot use the `+` operator. Because we have two continuous variables,
-let's use `geom_point()` first:
+To add a geom to the plot we use the `+` operator. 
+Because we have two continuous variables, let's use `geom_point()` first:
 
-```{r first-ggplot, purl=FALSE}
+```{r first-ggplot, purl = TRUE}
 ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point()
 ```
 
-The `+` in the **`ggplot2`** package is particularly useful because it allows you
-to modify existing `ggplot` objects. This means you can easily set up plot
-templates and conveniently explore different types of plots, so the above
-plot can also be generated with code like this:
+The `+` in the **`ggplot2`** package allows you to modify existing `ggplot` objects,
+by adding more plot elements. This means you can easily set up plot
+templates and conveniently explore different types of plots, like this:
 
-```{r, first-ggplot-with-plus, eval=FALSE, purl=FALSE}
+```{r, first-ggplot-with-plus, eval=FALSE, purl = TRUE}
 # Assign plot to a variable
 coverage_plot <- ggplot(data = variants, aes(x = POS, y = DP))
 
@@ -107,17 +150,18 @@ coverage_plot +
 
 **Notes**
 
-- Anything you put in the `ggplot()` function can be seen by any geom layers
+- Data and aesthetics in the `ggplot()` function can be seen by geom layers
   that you add (i.e., these are universal plot settings). This includes the x- and
   y-axis mapping you set up in `aes()`.
-- You can also specify mappings for a given geom independently of the
+- You can instead specify mappings for a given geom to replace or add to those
   mappings defined globally in the `ggplot()` function.
 - The `+` sign used to add new layers must be placed at the end of the line containing
-the *previous* layer. If, instead, the `+` sign is added at the beginning of the line
-containing the new layer, **`ggplot2`** will not add the new layer and will return an
-error message.
+the *previous* layer. This is because R assumes that the end of a line is the end of
+a command, unless you tell it otherwise. So, if the `+` sign is added at the beginning of 
+the next line containing the new layer, **`ggplot2`** will not add that new layer and will 
+return an error message.
 
-```{r, ggplot-with-plus-position, eval=FALSE, purl=FALSE}
+```{r, ggplot-with-plus-position, eval=FALSE, purl = TRUE}
 # This is the correct syntax for adding layers
 coverage_plot +
   geom_point()
@@ -127,63 +171,118 @@ coverage_plot
   + geom_point()
 ```
 
-## Building your plots iteratively
+## Building your plots iteratively: geoms.
 
 Building plots with **`ggplot2`** is typically an iterative process. We start by
 defining the dataset we'll use, lay out the axes, and choose a geom:
 
-```{r create-ggplot-object, purl=FALSE}
+```{r create-ggplot-object, purl = TRUE}
 ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point()
 ```
 
-Then, we start modifying this plot to extract more information from it. For
-instance, we can add transparency (`alpha`) to avoid overplotting:
+To be clear, this plot tells us the position and read depth of each genomic variant.
 
-```{r adding-transparency, purl=FALSE}
+To learn more, we start modifying this plot. For example nearby points may be 
+"overplotted" so that it is hard to distinguish one point from many nearby points.
+To reduce overplotting, we can add transparency using the aesthetic (`alpha`):
+
+```{r adding-transparency, purl = TRUE}
 ggplot(data = variants, aes(x = POS, y = DP)) +
     geom_point(alpha = 0.5)
 ```
 
-We can also add colors for all the points:
+## Using colors as an aesthetic
 
-```{r adding-colors, purl=FALSE}
+If plotting with a different color is more clear, we can add colors for all the points:
+
+```{r adding-colors, purl = TRUE}
 
 ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point(alpha = 0.5, color = "blue")
 ```
 
-Or to color each species in the plot differently, you could use a vector as an input to the argument **color**. **`ggplot2`** will provide a different color corresponding to different values in the vector. Here is an example where we color with **`sample_id`**:
+To add sample-specific visual information, we can color each sample in the plot differently.
+**`ggplot2`** is designed to make it easy to map variables to visual aesthetics, such as **color**. 
+Here is an example where we color with **`sample_id`**:
 
-```{r color-by-sample-1, purl=FALSE}
+```{r color-by-sample-1, purl = TRUE}
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_point(alpha = 0.5)
 ```
 
-Notice that we can change the geom layer and colors will be still determined by **`sample_id`**
+> ## Challenge: 
+>
+> 1. What is the difference between `color = sample_id` (no quotes) and `color = "sample_id"` (auotes)? 
+> 2. What is the difference between specifying color **inside** the `aes()` function, or **outside**?
+>
+>> ## Solution
+>> 
+>> ```{r, echo=TRUE}
+>> ggplot(data = variants, aes(x = POS, y = DP, color = "sample_id")) +
+>>  geom_point(alpha = 0.5)
+>> ```
+>> 
+>> In this case, `ggplot` interprets `color = "sample_id"` as mapping the *string* `"sample_id"`,
+>> not the variable `sample_id`. These distinctions turn out to be important.
+>>
+> {: .solution}
+{: .challenge}
 
-```{r color-by-sample-2, purl=FALSE}
+We can plot the same aesthetic mappings using different geometries. For example, 
+we can change the geom from point to column, and positions and colors will be still 
+determined in the same way, but they will look different:
+
+```{r color-by-sample-2, purl = TRUE}
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
-  geom_jitter(alpha = 0.5)
+  geom_col(alpha = 0.5)
 ```
 
-To make our plot more readable, we can add axis labels:
+To find out more about the different aesthetics, you can use the help functions, such as 
+`?geom_point` and `?geom_col`. There are many more useful resources that we link to below.
 
-```{r add-axis-labels, purl=FALSE}
+
+## Building plots iteratively: axis labels
+
+To make our plot more interpretable, we can add axis labels:
+
+```{r add-axis-labels, purl = TRUE}
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_jitter(alpha = 0.5) +
   labs(x = "Base Pair Position",
        y = "Read Depth (DP)")
 ```
 
+ggplot also allows you to change the way in which variables are mapped to
+aesthetics, using **scales**. For example, variables that are widely dispersed 
+may be easier to visualise on a log scale, where equal spacings on the page 
+represent equal fold-changes in the variable. Here we use the built-in
+`scale_y_log10` to display the y-axis on a log(10) scale.
+
+```{r y-log10-scale, purl = TRUE}
+ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
+  geom_jitter(alpha = 0.5) +
+  labs(x = "Base Pair Position",
+       y = "Read Depth (DP)") +
+  scale_y_log10()
+```
+
+Although we could transform the x-axis using `scale_x_log10`, that is not appropriate if the x-axis represents genomic position.
+ggplot allows you to customize almost any aspect of a plot, whether or not it is a good idea!
+
+To find out more about different scales, you can again use the help functions, such as 
+`?scale_y_log10`. Or, type `scale_` and tab autocomplete to find out what other options are available.
+
 > ## Challenge
 >
 > Use what you just learned to create a scatter plot of mapping quality (`MQ`) over
 > position (`POS`) with the samples showing in different colors. Make sure to give your plot
 > relevant axis labels.
+> 
+> Does it make sense to try a different y-axis scale here?
 >
 > > ## Solution
-> > ```{r scatter-challenge, purl=FALSE}
+> > ```{r scatter-challenge, purl = TRUE}
 > >  ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
 > >   geom_point() +
 > >   labs(x = "Base Pair Position",
@@ -192,17 +291,18 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 > {: .solution}
 {: .challenge}
 
-## Faceting
+## Creating subplots by Faceting
 
-**`ggplot2`** has a special technique called *faceting* that allows the user to split one
-plot into multiple plots based on a factor included in the dataset. We will use it to split our
-mapping quality plot into three panels, one for each sample.
+**`ggplot2`** has a feature called *faceting* that allows the user to split one
+plot into multiple plots based on a factor included in the dataset. This offers
+an alternative to splittting differnt factors by, for example, colour or shape.
+We will use it to split our read depth plot into three panels, one for each sample.
 
-```{r first-facet, purl=FALSE}
-ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
+```{r first-facet, purl = TRUE}
+ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
  geom_point() +
  labs(x = "Base Pair Position",
-      y = "Mapping Quality (MQ)") +
+      y = "Read Depth (DP)") +
  facet_grid(. ~ sample_id)
 ```
 
@@ -212,19 +312,39 @@ geometry allows you to explicitly specify how you want your plots to be
 arranged via formula notation (`rows ~ columns`; a `.` can be used as
 a placeholder that indicates only one row or column).
 
-```{r second-facet, purl=FALSE}
-ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
+```{r second-facet, purl = TRUE}
+ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
  geom_point() +
  labs(x = "Base Pair Position",
-      y = "Mapping Quality (MQ)") +
+      y = "Read Depth (DP)") +
  facet_grid(sample_id ~ .)
 ```
 
-Usually plots with white background look more readable when printed.  We can set
-the background to white using the function `theme_bw()`. Additionally, you can remove
-the grid:
+In this case, stacking the plots vertically makes sense as all samples
+measure read depth along the same genome, represented by the x-axis.
 
-```{r facet-plot-white-bg, purl=FALSE}
+## Building plots iteratively: adjusting plot appearance with themes
+
+Plots have many visual elements besides the data - axis and tick labels, grid lines, 
+background colours, and so on. All of these can vary in their appearance. Text elements
+vary in font. Most elements vary by their size and color, and even by their presence or
+absence. ggplot controls the appearance of these other plot elements with **themes**. 
+
+For example, plots with white background look more readable when printed.  We can set
+the background to white using built-in theme, `theme_bw()`:
+
+```{r facet-plot-white-bg, purl = TRUE}
+ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
+  geom_point() +
+  labs(x = "Base Pair Position",
+       y = "Mapping Quality (MQ)") +
+  facet_grid(sample_id ~ .) +
+  theme_bw()
+```
+
+We can remove individual plot elements that aren't needed, for example the grid lines:
+
+```{r facet-plot-white-bg-no-grid, purl = TRUE}
 ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
   geom_point() +
   labs(x = "Base Pair Position",
@@ -241,7 +361,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
 > relevant axis labels.
 >
 > > ## Solution
-> > ```{r scatter-challenge-2, purl=FALSE}
+> > ```{r scatter-challenge-2, purl = TRUE}
 > >  ggplot(data = variants, aes(x = POS, y = QUAL, color = sample_id)) +
 > >   geom_point() +
 > >   labs(x = "Base Pair Position",
@@ -251,36 +371,9 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
 > {: .solution}
 {: .challenge}
 
-## Barplots
-
-We can create barplots using the `geom_bar` geom. Let's make a barplot showing
-the number of variants for each sample that are indels.
-
-```{r barplot, purl=FALSE}
-ggplot(data = variants, aes(x = INDEL, fill = sample_id)) +
-  geom_bar() +
-  facet_grid(sample_id ~ .)
-```
-
-> ## Challenge
-> Since we already have the sample_id labels on the individual plot facets, we don't need the
-> legend. Use the help file for `geom_bar` and any other online resources you want to use to
-> remove the legend from the plot.
->
->> ## Solution
->> ```{r barplot-challenge, purl=FALSE}
->> ggplot(data = variants, aes(x = INDEL, color = sample_id)) +
->>    geom_bar(show.legend = F) +
->>    facet_grid(sample_id ~ .)
->> ```
-> {: .solution}
-{: .challenge}
-
-## **`ggplot2`** themes
-
 In addition to `theme_bw()`, which changes the plot background to white, **`ggplot2`**
 comes with several other themes which can be useful to quickly change the look
-of your visualization. The complete list of themes is available
+of your visualization. The complete list of built-in themes is available
 at <https://ggplot2.tidyverse.org/reference/ggtheme.html>. `theme_minimal()` and
 `theme_light()` are popular, and `theme_void()` can be useful as a starting
 point to create a new hand-crafted theme.
@@ -291,6 +384,47 @@ provides a wide variety of options (including an Excel 2003 theme).
 The [**`ggplot2`** extensions website](https://exts.ggplot2.tidyverse.org/) provides a list
 of packages that extend the capabilities of **`ggplot2`**, including additional
 themes.
+
+## Making barplots to count the number of observations in groups
+
+Plots with similar appearances can mean different things.
+Earlier we used `geom_col` to plot read depth (DP) as the height of a column.
+However, bar plots are commonly used to count the number of observations in groups.
+ggplot distinguishes between `geom_col`, which plots the raw dat supplied, and `geom_bar`, 
+which does the counting for you. 
+
+We can create barplots of counts using `geom_bar`: Let's make a barplot showing
+the number of variants for each sample that are indels.
+
+```{r barplot, purl = TRUE}
+ggplot(data = variants, aes(x = INDEL)) +
+  geom_bar() +
+  facet_grid(sample_id ~ .)
+```
+
+> ## Challenge
+> Since we already have the sample_id labels on the individual plot facets, we don't need the
+> legend. Use the help file for `geom_bar` and any other online resources you want to use to
+> remove the legend from the plot.
+>
+>> ## Solution
+>> ```{r barplot-challenge, purl = TRUE}
+>> ggplot(data = variants, aes(x = INDEL, color = sample_id)) +
+>>    geom_bar(show.legend = F) +
+>>    facet_grid(sample_id ~ .)
+>> ```
+> {: .solution}
+{: .challenge}
+
+There is much more flexibility in terms of statistical summaries and counting in ggplot.
+See the Tip box "Where to learn more about plotting" to find out more.
+
+
+## Exporting plots to files
+
+To export a plot to a file, use the **Export** button, in the bottom right plotting window in RStudio.
+Or you can write this into a script using the function `ggsave` - remember, use `?ggsave` to
+ask for help from your R session.
 
 > ## Challenge
 >
@@ -304,3 +438,20 @@ themes.
 > * Try using a different color palette (see
 >   http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
 {: .challenge}
+
+> ## Tip: Where to learn more about plotting
+> There are amazing online and print resources for learning more about ggplot2.
+> Some of them talk about the ideas behind plotting, and give galleries of examples.
+> Others are more practical about how to program with ggplot2.
+> - [R for ecology ggplot2](https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html):
+    Episode from Data Carpentry lesson introducing ggplot with a different example dataset.
+> - [ggplot2: elegant graphics for data analysis](https://ggplot2-book.org/): By Hadley Wickham, 
+    Danielle Navarro, and Thomas Lin Pedersen. Gives some basics of ggplot2, but its primary focus
+    is explaining the Grammar of Graphics that ggplot2 uses.
+> - [Data Visualization: A Practical Introduction](https://kieranhealy.org/publications/dataviz/): 
+    By Kieran Healy. Teaches how to makedata visualizations with R and ggplot2 in a clear, 
+    sensible, and reproducible way. Accompanied by the `socviz` package with example code.
+> - [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/): By Claus Wilke.
+    A guide to making visualizations that accurately reflect the data, tell a story, and look 
+    professional. Complete source code, with plots made in ggplot2, is available.
+{: .callout}
