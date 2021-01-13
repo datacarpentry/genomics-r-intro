@@ -15,27 +15,26 @@ keypoints:
 - "Use the `dplyr` package to manipulate dataframes."
 - "Use `select()` to choose variables from a dataframe."
 - "Use `filter()` to choose data based on values."
-- "Use `mutate()` to create new variables."
 - "Use `group_by()` and `summarize()` to work with subsets of data."
-
+- "Use `mutate()` to create new variables."
 source: Rmd
 ---
 
 ```{r, include = FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("04-")
-library(tidyverse)
 ```
 
-```{r, include = FALSE, echo = FALSE, eval = TRUE, purl = FALSE}
+```{r, echo = FALSE, eval = TRUE, purl = FALSE}
 ## silently read in CSV file from FigShare
-variants <- read_csv("../data/combined_tidy_vcf.csv")
+
+variants <- read.csv("https://ndownloader.figshare.com/files/14632895")
 ```
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. 
 
 Luckily, the [`dplyr`](https://cran.r-project.org/package=dplyr)
-package provides a number of very useful functions for manipulating data frames
+package provides a number of very useful functions for manipulating dataframes
 in a way that will reduce repetition, reduce the probability of making
 errors, and probably even save you some typing. As an added bonus, you might
 even find the `dplyr` grammar easier to read.
@@ -146,7 +145,7 @@ or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you're using a Mac.
 variants %>%
   filter(sample_id == "SRR2584863") %>%
   select(REF, ALT, DP) %>%
-  head()
+  glimpse()
 ```
 
 In the above code, we use the pipe to send the `variants` dataset first through
@@ -177,12 +176,7 @@ This new object includes all of the data from this sample. Let's look at just
 the first six rows to confirm it's what we want:
 
 ```{r, purl = FALSE}
-SRR2584863_variants %>% head()
-```
-We can also look at the first six rows using tidyverse function `slice()`:
-
-```{r}
-SRR2584863_variants %>% slice(1:6)
+head(SRR2584863_variants)
 ```
 
 > ## Exercise: Pipe and filter
@@ -223,7 +217,7 @@ only the first six rows of data.
 ```{r, purl = FALSE}
 variants %>%
   mutate(POLPROB = 1 - (10 ^ -(QUAL/10))) %>%
-  slice(1:6)
+  glimpse()
 ```
 
 > ## Exercise
@@ -253,43 +247,28 @@ or summary function to each group. For example, if we wanted to group
 by sample_id and find the number of rows of data for each 
 sample, we would do:
 
-```{r, purl = FALSE, message = FALSE}
+```{r, purl = FALSE}
 variants %>%
   group_by(sample_id) %>%
   summarize(n())
 ```
 
-It can be a bit tricky at first, but we can imagine physically splitting the data 
-frame by groups and applying a certain function to summarize the data.
-
-<center>
-<img src="../fig/split_apply_combine.png" alt="rstudio default session" style="width: 500px;"/>
-</center>
-^[This figure was adapted from the Software Carpentry lesson, [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)]
-
 Here the summary function used was `n()` to find the count for each
-group. Since this is a quite a common operation, there is a simpler method 
-called `tally()`:
-
-```{r, purl = FALSE, message = FALSE}
-variants %>%
-  group_by(sample_id) %>%
-  tally()
-```
-
-We can also apply many other functions to individual columns to get other 
-summary statistics. For example,we can use built-in functions like `mean()`, 
-`median()`, `min()`, and `max()`. These are called "built-in functions" because 
-they come with R and don't require that you install any additional packages. 
-By default, all **R functions operating on vectors that contains missing data will return NA**.
-It's a way to make sure that users know they have missing data, and make a 
-conscious decision on how to deal with it. When dealing with simple statistics 
-like the mean, the easiest way to ignore `NA` (the missing data) is 
-to use `na.rm = TRUE` (`rm` stands for remove). 
+group. We can also apply many other functions  to individual columns
+to get other summary statistics. For example,
+we can use built-in functions like
+`mean()`, `median()`, `min()`, and `max()`. These are called 
+"built-in functions" because they come with R and don't require that you install any additional packages. By default, all **R functions
+operating on vectors that contains missing data will return NA**.
+It's a way to make sure that users know they have missing
+data, and make a conscious decision on how to deal with it. When
+dealing with simple statistics like the mean, the easiest way to
+ignore `NA` (the missing data) is to use `na.rm = TRUE` (`rm` stands for
+remove). 
 
 So to view the highest filtered depth (`DP`) for each sample:
 
-```{r, purl = FALSE, message = FALSE}
+```{r, purl = FALSE}
 variants %>%
   group_by(sample_id) %>%
   summarize(max(DP))
@@ -311,4 +290,4 @@ variants %>%
 
 [Handy dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 
-^[Much of this lesson was copied or adapted from Jeff Hollister's [materials](http://usepa.github.io/introR/2015/01/14/03-Clean/)]
+*Much of this lesson was copied or adapted from Jeff Hollister's [materials](http://usepa.github.io/introR/2015/01/14/03-Clean/)*
