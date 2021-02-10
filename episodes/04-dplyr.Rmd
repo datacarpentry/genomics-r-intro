@@ -190,10 +190,14 @@ the first six rows to confirm it's what we want:
 SRR2584863_variants %>% head()
 ```
 
-We can also look at the first six rows using tidyverse function `slice()`:
+Similar to `head()` and `tail()` functions, we can also look at the first or last six rows using tidyverse function `slice()`. The differences between these two functions are minimal. The advantage of `slice()` is that you are not bound by the first or last Nth rows, and specific rows can be viewed:
 
 ```{r}
 SRR2584863_variants %>% slice(1:6)
+```
+
+```{r}
+SRR2584863_variants %>% slice(10:15)
 ```
 
 > ## Exercise: Pipe and filter
@@ -234,7 +238,7 @@ only the first six rows of data.
 ```{r, purl = FALSE}
 variants %>%
   mutate(POLPROB = 1 - (10 ^ -(QUAL/10))) %>%
-  slice(1:6)
+  head()
 ```
 
 > ## Exercise
