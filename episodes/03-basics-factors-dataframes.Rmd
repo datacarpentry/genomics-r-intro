@@ -155,7 +155,7 @@ variants <- read.csv("../r_data/combined_tidy_vcf.csv")
 ```{r, echo = FALSE, eval = TRUE, purl = FALSE}
 ## silently read in CSV file from FigShare
 
-variants <- read.csv("https://ndownloader.figshare.com/files/14632895",stringsAsFactors = FALSE)
+variants <- read.csv("https://ndownloader.figshare.com/files/14632895")
 ```
 
 One of the first things you should notice is that in the Environment window,
