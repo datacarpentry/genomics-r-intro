@@ -292,6 +292,13 @@ variants %>%
   tally()
 ```
 
+To show that there are many ways to acheive the same results, there is another way to appraoch this, which bypasses `group_by()` using the function `count()`:
+
+```{r, purl = FALSE, message = FALSE}
+variants %>%
+  count(sample_id)
+```
+
 We can also apply many other functions to individual columns to get other
 summary statistics. For example,we can use built-in functions like `mean()`,
 `median()`, `min()`, and `max()`. These are called "built-in functions" because
