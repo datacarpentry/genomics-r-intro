@@ -3,7 +3,7 @@ title: "Aggregating and Analyzing Data with dplyr"
 teaching: 40
 exercises: 15
 questions:
-- "How can I manipulate dataframes without repeating myself?"
+- "How can I manipulate data frames without repeating myself?"
 objectives:
 - "Describe what the `dplyr` package in R is used for."
 - "Apply common `dplyr` functions to manipulate data in R."
@@ -12,9 +12,9 @@ objectives:
 - "Employ the ‘split-apply-combine’ concept to split the data into groups, apply analysis to each group, and combine the results."
 
 keypoints:
-- "Use the `dplyr` package to manipulate dataframes."
-- "Use `glimpse()` to quickly look at your dataframe."
-- "Use `select()` to choose variables from a dataframe."
+- "Use the `dplyr` package to manipulate data frames."
+- "Use `glimpse()` to quickly look at your data frame."
+- "Use `select()` to choose variables from a data frame."
 - "Use `filter()` to choose data based on values."
 - "Use `mutate()` to create new variables."
 - "Use `group_by()` and `summarize()` to work with subsets of data."
@@ -88,9 +88,9 @@ memory. The database connections essentially remove that limitation in that you
 can have a database of many 100s GB, conduct queries on it directly and pull
 back just what you need for analysis in R.
 
-### Taking a quick look at dataframes
+### Taking a quick look at data frames
 
-Similar to `str()`, which comes built into R, `glimpse()` is a `dplyr` function that (as the name suggests) gives a glimpse of the dataframe.
+Similar to `str()`, which comes built into R, `glimpse()` is a `dplyr` function that (as the name suggests) gives a glimpse of the data frame.
 
 ```{r, echo = FALSE, eval = TRUE, purl = FALSE}
 glimpse(variants)
@@ -100,7 +100,7 @@ In the above output, we can already gather some information about `variants`, su
 
 ### Selecting columns and filtering rows
 
-To select columns of a data frame, use `select()`. The first argument to this function is the dataframe (`variants`), and the subsequent arguments are the columns to keep.
+To select columns of a data frame, use `select()`. The first argument to this function is the data frame (`variants`), and the subsequent arguments are the columns to keep.
 
 ```{r, echo = TRUE, eval = FALSE, purl = FALSE}
 select(variants, sample_id, REF, ALT, DP)
@@ -202,7 +202,7 @@ SRR2584863_variants %>% slice(10:15)
 
 > ## Exercise: Pipe and filter
 >
-> Starting with the `variants` dataframe, use pipes to subset the data
+> Starting with the `variants` data frame, use pipes to subset the data
 > to include only observations from SRR2584863 sample,
 > where the filtered
 > depth (DP) is at least 10. Retain only the columns `REF`, `ALT`,
@@ -231,7 +231,7 @@ to a probability value according to the formula:
 
 Probability = 1- 10 ^ -(QUAL/10)
 
-Let's add a column (`POLPROB`) to our `variants` dataframe that shows
+Let's add a column (`POLPROB`) to our `variants` data frame that shows
 the probability of a polymorphism at that site given the data. We'll show
 only the first six rows of data.
 
