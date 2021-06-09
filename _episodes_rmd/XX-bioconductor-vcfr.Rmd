@@ -44,22 +44,21 @@ The first step is to install a package that *is* on CRAN, `BiocManager`. This pa
 install.packages("BiocManager")
 ```
 
+To check if this worked (and also so you can make a note of the version for reproducibility purposes), you can run `BiocManager::version()` and it should give you the version number.
+
 ```{r check-bioconductor-version, eval = FALSE}
 # to make sure it worked, check the version
 BiocManager::version()
 ```
 
-```r
-> BiocManager::version()
-[1] ‘3.13’
-```
-
-# Second, install a package from Bioconductor using `BiocManager`
+# Second, install the vcfR package from Bioconductor using `BiocManager`
 
 ```{r install-vcfR, eval = FALSE}
 # install the vcfR package from bioconductor using BiocManager::install()
 BiocManager::install("vcfR")
 ```
+
+You may need to also allow it to install some dependencies or update installed packages in order to successfully complete the process.
 
 # Search for Bioconductor packages based on your analysis needs
 
