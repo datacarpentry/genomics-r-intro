@@ -73,7 +73,7 @@ every time you open a new R session and want to use that package.
 ## What is dplyr?
 
 The package `dplyr` is a fairly new (2014) package that tries to provide easy
-tools for the most common data manipulation tasks. This package is also included larger collection of the `tidyverse` package. It is built to work directly
+tools for the most common data manipulation tasks. This package is also included in the [`tidyverse` package](https://www.tidyverse.org/), which is a collection of eight different packages (`dplyr`, `ggplot2`, `tibble`, `tidyr`, `readr`, `purrr`, `stringr`, and `forcats`). It is built to work directly
 with data frames. The thinking behind it was largely inspired by the package
 `plyr` which has been in use for some time but suffered from being slow in some
 cases.` dplyr` addresses this by porting much of the computation to C++. An
@@ -85,7 +85,7 @@ and only the results of the query returned.
 This addresses a common problem with R in that all operations are conducted in
 memory and thus the amount of data you can work with is limited by available
 memory. The database connections essentially remove that limitation in that you
-can have a database of many 100s GB, conduct queries on it directly and pull
+can have a database that is over 100s of GB, conduct queries on it directly and pull
 back just what you need for analysis in R.
 
 ### Taking a quick look at data frames
@@ -252,7 +252,7 @@ variants %>%
 >>  mutate(POLPROB = 1 - 10 ^ -(QUAL/10)) %>%
 >>  select(sample_id, POS, QUAL, POLPROB) %>%
 >>  head
->>  
+>>
 >> ```
 > {: .solution}
 {: .challenge}
