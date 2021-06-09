@@ -250,9 +250,9 @@ variants %>%
 >> ```{r}
 >> variants %>%
 >>  mutate(POLPROB = 1 - 10 ^ -(QUAL/10)) %>%
->>  select(sample_id, POS, QUAL, POLPROB)
->>  glimpse %>%
->>  
+>>  select(sample_id, POS, QUAL, POLPROB) %>%
+>>  head
+>>
 >> ```
 > {: .solution}
 {: .challenge}
