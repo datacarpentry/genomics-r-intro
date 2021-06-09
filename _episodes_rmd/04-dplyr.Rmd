@@ -85,7 +85,7 @@ and only the results of the query returned.
 This addresses a common problem with R in that all operations are conducted in
 memory and thus the amount of data you can work with is limited by available
 memory. The database connections essentially remove that limitation in that you
-can have a database of many 100s GB, conduct queries on it directly and pull
+can have a database that is over 100s of GB, conduct queries on it directly and pull
 back just what you need for analysis in R.
 
 ### Taking a quick look at data frames
