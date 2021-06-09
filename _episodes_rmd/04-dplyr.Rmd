@@ -3,7 +3,7 @@ title: "Aggregating and Analyzing Data with dplyr"
 teaching: 40
 exercises: 15
 questions:
-- "How can I manipulate dataframes without repeating myself?"
+- "How can I manipulate data frames without repeating myself?"
 objectives:
 - "Describe what the `dplyr` package in R is used for."
 - "Apply common `dplyr` functions to manipulate data in R."
@@ -12,11 +12,13 @@ objectives:
 - "Employ the ‘split-apply-combine’ concept to split the data into groups, apply analysis to each group, and combine the results."
 
 keypoints:
-- "Use the `dplyr` package to manipulate dataframes."
-- "Use `select()` to choose variables from a dataframe."
+- "Use the `dplyr` package to manipulate data frames."
+- "Use `glimpse()` to quickly look at your data frame."
+- "Use `select()` to choose variables from a data frame."
 - "Use `filter()` to choose data based on values."
-- "Use `group_by()` and `summarize()` to work with subsets of data."
 - "Use `mutate()` to create new variables."
+- "Use `group_by()` and `summarize()` to work with subsets of data."
+
 source: Rmd
 ---
 
@@ -25,16 +27,16 @@ source("../bin/chunk-options.R")
 knitr_fig_path("04-")
 ```
 
-```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+```{r, include = FALSE, echo = FALSE, eval = TRUE, purl = FALSE}
 ## silently read in CSV file from FigShare
-
-variants <- read.csv("https://ndownloader.figshare.com/files/14632895")
+library(tidyverse)
+variants <- read_csv("../data/combined_tidy_vcf.csv")
 ```
 
-Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. 
+Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations.
 
 Luckily, the [`dplyr`](https://cran.r-project.org/package=dplyr)
-package provides a number of very useful functions for manipulating dataframes
+package provides a number of very useful functions for manipulating data frames
 in a way that will reduce repetition, reduce the probability of making
 errors, and probably even save you some typing. As an added bonus, you might
 even find the `dplyr` grammar easier to read.
@@ -42,11 +44,12 @@ even find the `dplyr` grammar easier to read.
 Here we're going to cover 6 of the most commonly used functions as well as using
 pipes (`%>%`) to combine them.
 
-1. `select()`
-2. `filter()`
-3. `group_by()`
-4. `summarize()`
-5. `mutate()`
+1. `glimpse()`
+2. `select()`
+3. `filter()`
+4. `group_by()`
+5. `summarize()`
+6. `mutate()`
 
 Packages in R are sets of additional functions that let you do more
 stuff in R. The functions we've been using, like `str()`, come built into R;
@@ -70,7 +73,7 @@ every time you open a new R session and want to use that package.
 ## What is dplyr?
 
 The package `dplyr` is a fairly new (2014) package that tries to provide easy
-tools for the most common data manipulation tasks. It is built to work directly
+tools for the most common data manipulation tasks. This package is also included in the [`tidyverse` package](https://www.tidyverse.org/), which is a collection of eight different packages (`dplyr`, `ggplot2`, `tibble`, `tidyr`, `readr`, `purrr`, `stringr`, and `forcats`). It is built to work directly
 with data frames. The thinking behind it was largely inspired by the package
 `plyr` which has been in use for some time but suffered from being slow in some
 cases.` dplyr` addresses this by porting much of the computation to C++. An
@@ -82,14 +85,22 @@ and only the results of the query returned.
 This addresses a common problem with R in that all operations are conducted in
 memory and thus the amount of data you can work with is limited by available
 memory. The database connections essentially remove that limitation in that you
-can have a database of many 100s GB, conduct queries on it directly and pull
+can have a database that is over 100s of GB, conduct queries on it directly and pull
 back just what you need for analysis in R.
+
+### Taking a quick look at data frames
+
+Similar to `str()`, which comes built into R, `glimpse()` is a `dplyr` function that (as the name suggests) gives a glimpse of the data frame.
+
+```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+glimpse(variants)
+```
+
+In the above output, we can already gather some information about `variants`, such as the number of rows and columns, column names, type of vector in the columns, and the first few entries of each column. Although what we see is similar to outputs of `str()`, this method gives a cleaner visual output.
 
 ### Selecting columns and filtering rows
 
-To select columns of a
-data frame, use `select()`. The first argument to this function is the data
-frame (`variants`), and the subsequent arguments are the columns to keep.
+To select columns of a data frame, use `select()`. The first argument to this function is the data frame (`variants`), and the subsequent arguments are the columns to keep.
 
 ```{r, echo = TRUE, eval = FALSE, purl = FALSE}
 select(variants, sample_id, REF, ALT, DP)
@@ -122,7 +133,7 @@ filter(variants, sample_id == "SRR2584863") %>%
   head()
 ```
 
-Note that this is equivalent to the base R code below, 
+Note that this is equivalent to the base R code below,
 but is easier to read!
 
 ```{r, eval = FALSE, purl = FALSE}
@@ -134,7 +145,7 @@ variants[variants$sample_id == "SRR2584863",]
 But what if you wanted to select and filter? We can do this with pipes. Pipes, are a fairly recent addition to R. Pipes let you
 take the output of one function and send it directly to the next, which is
 useful when you need to many things to the same data set. It was
-possible to do this before pipes were added to R, but it was 
+possible to do this before pipes were added to R, but it was
 much messier and more difficult. Pipes in R look like
 `%>%` and are made available via the `magrittr` package, which is installed as
 part of `dplyr`. If you use RStudio, you can type the pipe with
@@ -145,7 +156,7 @@ or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you're using a Mac.
 variants %>%
   filter(sample_id == "SRR2584863") %>%
   select(REF, ALT, DP) %>%
-  glimpse()
+  head()
 ```
 
 In the above code, we use the pipe to send the `variants` dataset first through
@@ -158,7 +169,7 @@ to the `head()` function so that we only see the first six rows of data.
 
 Some may find it helpful to read the pipe like the word "then". For instance,
 in the above example, we took the data frame `variants`, *then* we `filter`ed
-for rows where `sample_id` was SRR2584863, *then* we `select`ed the `REF`, `ALT`, and `DP` columns, *then* we showed only the first six rows. 
+for rows where `sample_id` was SRR2584863, *then* we `select`ed the `REF`, `ALT`, and `DP` columns, *then* we showed only the first six rows.
 The **`dplyr`** functions by themselves are somewhat simple,
 but by combining them into linear workflows with the pipe, we can accomplish
 more complex manipulations of data frames.
@@ -176,20 +187,30 @@ This new object includes all of the data from this sample. Let's look at just
 the first six rows to confirm it's what we want:
 
 ```{r, purl = FALSE}
-head(SRR2584863_variants)
+SRR2584863_variants %>% head()
+```
+
+Similar to `head()` and `tail()` functions, we can also look at the first or last six rows using tidyverse function `slice()`. The differences between these two functions are minimal. The advantage of `slice()` is that you are not bound by the first or last Nth rows, and specific rows can be viewed:
+
+```{r}
+SRR2584863_variants %>% slice(1:6)
+```
+
+```{r}
+SRR2584863_variants %>% slice(10:15)
 ```
 
 > ## Exercise: Pipe and filter
 >
-> Starting with the `variants` dataframe, use pipes to subset the data
+> Starting with the `variants` data frame, use pipes to subset the data
 > to include only observations from SRR2584863 sample,
 > where the filtered
-> depth (DP) is at least 10. Retain only the columns `REF`, `ALT`, 
+> depth (DP) is at least 10. Retain only the columns `REF`, `ALT`,
 > and `POS`.
 >
 >> ## Solution
 >> ```{r}
->>  variants %>%   
+>>  variants %>%
 >>  filter(sample_id == "SRR2584863" & DP >= 10) %>%
 >>  select(REF, ALT, POS)
 >> ```
@@ -210,27 +231,28 @@ to a probability value according to the formula:
 
 Probability = 1- 10 ^ -(QUAL/10)
 
-Let's add a column (`POLPROB`) to our `variants` dataframe that shows 
-the probability of a polymorphism at that site given the data. We'll show 
+Let's add a column (`POLPROB`) to our `variants` data frame that shows
+the probability of a polymorphism at that site given the data. We'll show
 only the first six rows of data.
 
 ```{r, purl = FALSE}
 variants %>%
   mutate(POLPROB = 1 - (10 ^ -(QUAL/10))) %>%
-  glimpse()
+  head()
 ```
 
 > ## Exercise
 > There are a lot of columns in our dataset, so let's just look at the
-> `sample_id`, `POS`, `QUAL`, and `POLPROB` columns for now. Add a 
-> line to the above code to only show those columns. 
-> 
+> `sample_id`, `POS`, `QUAL`, and `POLPROB` columns for now. Add a
+> line to the above code to only show those columns.
+>
 >> ## Solution
 >> ```{r}
 >> variants %>%
 >>  mutate(POLPROB = 1 - 10 ^ -(QUAL/10)) %>%
->>  glimpse %>%
 >>  select(sample_id, POS, QUAL, POLPROB)
+>>  glimpse %>%
+>>  
 >> ```
 > {: .solution}
 {: .challenge}
@@ -244,31 +266,53 @@ then combine the results. `dplyr` makes this very easy through the use of the
 grouped in this way `summarize()` can be used to collapse each group into
 a single-row summary. `summarize()` does this by applying an aggregating
 or summary function to each group. For example, if we wanted to group
-by sample_id and find the number of rows of data for each 
+by sample_id and find the number of rows of data for each
 sample, we would do:
 
-```{r, purl = FALSE}
+```{r, purl = FALSE, message = FALSE}
 variants %>%
   group_by(sample_id) %>%
   summarize(n())
 ```
 
+It can be a bit tricky at first, but we can imagine physically splitting the data
+frame by groups and applying a certain function to summarize the data.
+
+<center>
+<img src="../fig/split_apply_combine.png" alt="rstudio default session" style="width: 500px;"/>
+</center>
+^[The figure was adapted from the Software Carpentry lesson, [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)]
+
 Here the summary function used was `n()` to find the count for each
-group. We can also apply many other functions  to individual columns
-to get other summary statistics. For example,
-we can use built-in functions like
-`mean()`, `median()`, `min()`, and `max()`. These are called 
-"built-in functions" because they come with R and don't require that you install any additional packages. By default, all **R functions
-operating on vectors that contains missing data will return NA**.
-It's a way to make sure that users know they have missing
-data, and make a conscious decision on how to deal with it. When
-dealing with simple statistics like the mean, the easiest way to
-ignore `NA` (the missing data) is to use `na.rm = TRUE` (`rm` stands for
-remove). 
+group. Since this is a quite a common operation, there is a simpler method
+called `tally()`:
+
+```{r, purl = FALSE, message = FALSE}
+variants %>%
+  group_by(sample_id) %>%
+  tally()
+```
+
+To show that there are many ways to acheive the same results, there is another way to appraoch this, which bypasses `group_by()` using the function `count()`:
+
+```{r, purl = FALSE, message = FALSE}
+variants %>%
+  count(sample_id)
+```
+
+We can also apply many other functions to individual columns to get other
+summary statistics. For example,we can use built-in functions like `mean()`,
+`median()`, `min()`, and `max()`. These are called "built-in functions" because
+they come with R and don't require that you install any additional packages.
+By default, all **R functions operating on vectors that contains missing data will return NA**.
+It's a way to make sure that users know they have missing data, and make a
+conscious decision on how to deal with it. When dealing with simple statistics
+like the mean, the easiest way to ignore `NA` (the missing data) is
+to use `na.rm = TRUE` (`rm` stands for remove).
 
 So to view the highest filtered depth (`DP`) for each sample:
 
-```{r, purl = FALSE}
+```{r, purl = FALSE, message = FALSE}
 variants %>%
   group_by(sample_id) %>%
   summarize(max(DP))
@@ -290,4 +334,4 @@ variants %>%
 
 [Handy dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 
-*Much of this lesson was copied or adapted from Jeff Hollister's [materials](http://usepa.github.io/introR/2015/01/14/03-Clean/)*
+[Much of this lesson was copied or adapted from Jeff Hollister's materials](http://usepa.github.io/introR/2015/01/14/03-Clean/)
