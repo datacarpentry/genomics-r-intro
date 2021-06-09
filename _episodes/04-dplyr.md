@@ -442,21 +442,25 @@ variants %>%
 >> ~~~
 >> variants %>%
 >>  mutate(POLPROB = 1 - 10 ^ -(QUAL/10)) %>%
->>  select(sample_id, POS, QUAL, POLPROB)
->>  glimpse %>%
->>  
+>>  select(sample_id, POS, QUAL, POLPROB) %>%
+>>  head
 >> ~~~
 >> {: .language-r}
 >> 
 >> 
 >> 
 >> ~~~
->> Error: <text>:6:0: unexpected end of input
->> 4:  glimpse %>%
->> 5:  
->>   ^
+>> # A tibble: 6 x 4
+>>   sample_id     POS  QUAL POLPROB
+>>   <chr>       <dbl> <dbl>   <dbl>
+>> 1 SRR2584863   9972    91    1.00
+>> 2 SRR2584863 263235    85    1.00
+>> 3 SRR2584863 281923   217    1   
+>> 4 SRR2584863 433359    64    1.00
+>> 5 SRR2584863 473901   228    1   
+>> 6 SRR2584863 648692   210    1   
 >> ~~~
->> {: .error}
+>> {: .output}
 > {: .solution}
 {: .challenge}
 
