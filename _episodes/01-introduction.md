@@ -100,7 +100,7 @@ standalone software.
 
 ## Log on to RStudio Server
 
-Open a web browser and enter the IP address of your instance 
+Open a web browser and enter the IP address of your instance
 (provided by your instructors), followed by
 `:8787`. For example, if your IP address was 123.45.67.89 your URL would be
 
@@ -118,7 +118,7 @@ server:
 <img src="../fig/rstudio_login_screen.png" alt="rstudio default session" style="width: 1000px;"/>
 
 Enter your user credentials and click <kbd>Sign In</kbd>. The credentials for
-the genomics Data Carpentry instances will be provided by your instructors. 
+the genomics Data Carpentry instances will be provided by your instructors.
 
 You should now see the RStudio interface:
 
@@ -141,26 +141,25 @@ called an **RStudio Project**. An RStudio project allows you to more easily:
 <img src="../fig/new_project_window.png" alt="rstudio default session" style="width: 600px;"/>
 
 2. In the window that opens select **New Directory**, then **New Project**. For
-"Directory name:" enter **dc_genomics_r**. For "Create project as subdirectory of",
-you may leave the default, which is your home directory "~".
+"Directory name:" enter **dc_genomics_r**. For "Create project as subdirectory of", click <kbd>Browse...</kbd> and then click <kbd>Choose</kbd> which will select your home directory "~".
 
 3. Finally click <kbd>Create Project</kbd>. In the "Files" tab of your output
 pane (more about the RStudio layout in a moment), you should see an RStudio
  project file, **dc_genomics_r.Rproj**. All RStudio projects end with the
  "**.Rproj**" file extension.
 
->## Tip: Make your project more reproducible with Packrat
+>## Tip: Make your project more reproducible with renv
 > One of the most wonderful and also frustrating aspects of working with R is
 > managing packages. We will talk more about them, but packages (e.g. ggplot2)
 > are add-ons that extend what you can do with R. Unfortunately it is very
 > common that you may run into versions of R and/or R packages that are not
 > compatible. This may make it difficult for someone to run your R script using
 > their version of R or a given R package, and/or make it more difficult to run
-> their scripts on your machine. [Packrat](https://rstudio.github.io/packrat/)
+> their scripts on your machine. [renv](https://rstudio.github.io/renv/)
 > is an RStudio add-on that will associate your packages and project so that
-> your work is more portable and reproducible. To turn on Packrat click on
+> your work is more portable and reproducible. To turn on renv click on
 > the <KBD>Tools</KBD> menu and select <KBD>Project Options</KBD>. Under
-> **Packrat** check off "**Use packrat with this project**" and follow any
+> **Enviornments** check off "**Use renv with this project**" and follow any
 > installation instructions.
 {: .callout}
 
@@ -186,23 +185,24 @@ environment:
 
 - **Source**: This pane is where you will write/view R scripts. Some outputs
   (such as if you view a dataset using `View()`) will appear as a tab here.
-- **Console/Terminal**: This is actually where you see the execution of
+- **Console/Terminal/Jobs**: This is actually where you see the execution of
   commands. This is the same display you would see if you were using R at the
   command line without RStudio. You can work interactively (i.e. enter R
   commands here), but for the most part we will run a script (or lines in a
   script) in the source pane and watch their execution and output here. The
   "Terminal" tab give you access to the BASH terminal (the Linux operating
-  system, unrelated to R).
+  system, unrelated to R). RStudio also allows you to run jobs (analyses) in the background. This is useful if some analysis will take a while to run. You can see the status of those jobs in the background.
 - **Environment/History**: Here, RStudio will show you what datasets and
   objects (variables) you have created and which are defined in memory.
   You can also see some properties of objects/datasets such as their type
   and dimensions. The "History" tab contains a history of the R commands you've executed R.
-- **Files/Plots/Packages/Help**: This multipurpose pane will show you the
+- **Files/Plots/Packages/Help/Viewer**: This multipurpose pane will show you the
   contents of directories on your computer. You can also use the "Files" tab to
   navigate and set the working directory. The "Plots" tab will show the output
   of any plots generated. In "Packages" you will see what packages are actively
   loaded, or you can attach installed packages. "Help" will display help files
-  for R functions and packages.
+  for R functions and packages. "Viewer" will allow you to view local web
+  content (e.g. HTML outputs). 
 
 >## Tip: Uploads and downloads in the cloud
 > In the "Files" tab you can select a file and download it from your cloud
@@ -409,7 +409,7 @@ NULL
 ~~~
 {: .output}
 
-`round()` takes two arguments, `x`, which is the number to be 
+`round()` takes two arguments, `x`, which is the number to be
 rounded, and a
 `digits` argument. The `=` sign indicates that a default (in this case 0) is
 already set. Since `x` is not set, `round()` requires we provide it, in contrast

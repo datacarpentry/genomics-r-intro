@@ -162,7 +162,7 @@ a view of the data in a new tab.
 
 <img src="../fig/rstudio_dataframeview.png" alt="rstudio data frame view" style="width: 1000px;"/>
 
-## Summarizing and determining the structure of a data frame.
+## Summarizing, subsetting, and determining the structure of a data frame.
 
 A **data frame is the standard way in R to store tabular data**. A data fame
 could also be thought of as a collection of vectors, all of which have the same
@@ -243,66 +243,49 @@ summary(variants)
 Our data frame had 29 variables, so we get 29 fields that summarize the data.
 The `QUAL`, `IMF`, and `VDB` variables (and several others) are
 numerical data and so you get summary statistics on the min and max values for
-these columns, as well as mean, median, and interquartile ranges. Many of the other variables
-(e.g. `sample_id`) are treated as categorical data (which have special
-treatment in R - more on this in a bit). The most frequent 6 different categories and the
-number of times they appear (e.g. the sample_id called 'SRR2584863' appeared 25 times)
-are displayed. There was only one value for `CHROM`, "CP000819.1" which appeared
-in all 801 observations.
+these columns, as well as mean, median, and interquartile ranges. Many of the
+other variables (e.g. `sample_id`) are treated as characters data (more on this
+in a bit).
 
-Before we operate on the data, we also need to know a little more about the
-data frame structure to do that we use the `str()` function:
+There is a lot to work with, so we will subset the first three columns into a
+new data frame using the `data.frame()` function.
+
+
+~~~
+## put the first three columns of variants into a new data frame called subset
+
+subset<-data.frame(variants[,c(1:3,6)])
+~~~
+{: .language-r}
+
+Now, let's use the `str()` (structure) function to look a little more closely
+at how data frames work:
 
 
 ~~~
 ## get the structure of a data frame
 
-str(variants)
+str(subset)
 ~~~
 {: .language-r}
 
 
 
 ~~~
-'data.frame':	801 obs. of  29 variables:
- $ sample_id    : chr  "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863" ...
- $ CHROM        : chr  "CP000819.1" "CP000819.1" "CP000819.1" "CP000819.1" ...
- $ POS          : int  9972 263235 281923 433359 473901 648692 1331794 1733343 2103887 2333538 ...
- $ ID           : logi  NA NA NA NA NA NA ...
- $ REF          : chr  "T" "G" "G" "CTTTTTTT" ...
- $ ALT          : chr  "G" "T" "T" "CTTTTTTTT" ...
- $ QUAL         : num  91 85 217 64 228 210 178 225 56 167 ...
- $ FILTER       : logi  NA NA NA NA NA NA ...
- $ INDEL        : logi  FALSE FALSE FALSE TRUE TRUE FALSE ...
- $ IDV          : int  NA NA NA 12 9 NA NA NA 2 7 ...
- $ IMF          : num  NA NA NA 1 0.9 ...
- $ DP           : int  4 6 10 12 10 10 8 11 3 7 ...
- $ VDB          : num  0.0257 0.0961 0.7741 0.4777 0.6595 ...
- $ RPB          : num  NA 1 NA NA NA NA NA NA NA NA ...
- $ MQB          : num  NA 1 NA NA NA NA NA NA NA NA ...
- $ BQB          : num  NA 1 NA NA NA NA NA NA NA NA ...
- $ MQSB         : num  NA NA 0.975 1 0.916 ...
- $ SGB          : num  -0.556 -0.591 -0.662 -0.676 -0.662 ...
- $ MQ0F         : num  0 0.167 0 0 0 ...
- $ ICB          : logi  NA NA NA NA NA NA ...
- $ HOB          : logi  NA NA NA NA NA NA ...
- $ AC           : int  1 1 1 1 1 1 1 1 1 1 ...
- $ AN           : int  1 1 1 1 1 1 1 1 1 1 ...
- $ DP4          : chr  "0,0,0,4" "0,1,0,5" "0,0,4,5" "0,1,3,8" ...
- $ MQ           : int  60 33 60 60 60 60 60 60 60 60 ...
- $ Indiv        : chr  "/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam" "/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam" "/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam" "/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam" ...
- $ gt_PL        : chr  "121,0" "112,0" "247,0" "91,0" ...
- $ gt_GT        : int  1 1 1 1 1 1 1 1 1 1 ...
- $ gt_GT_alleles: chr  "G" "T" "T" "CTTTTTTTT" ...
+'data.frame':	801 obs. of  4 variables:
+ $ sample_id: chr  "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863" ...
+ $ CHROM    : chr  "CP000819.1" "CP000819.1" "CP000819.1" "CP000819.1" ...
+ $ POS      : int  9972 263235 281923 433359 473901 648692 1331794 1733343 2103887 2333538 ...
+ $ ALT      : chr  "G" "T" "T" "CTTTTTTTT" ...
 ~~~
 {: .output}
 
 Ok, thats a lot up unpack! Some things to notice.
 
 - the object type `data.frame` is displayed in the first row along with its
-  dimensions, in this case 801 observations (rows) and 29 variables (columns)
+  dimensions, in this case 801 observations (rows) and 4 variables (columns)
 - Each variable (column) has a name (e.g. `sample_id`). This is followed
-  by the object mode (e.g. factor, int, num, etc.). Notice that before each
+  by the object mode (e.g. chr, int, etc.). Notice that before each
   variable name there is a `$` - this will be important later.
 
 ## Introducing Factors
@@ -310,19 +293,18 @@ Ok, thats a lot up unpack! Some things to notice.
 Factors are the final major data structure we will introduce in our R genomics
 lessons. Factors can be thought of as vectors which are specialized for
 categorical data. Given R's specialization for statistics, this make sense since
-categorial and continuous variables usually have different treatments. Sometimes
+categorial and continuous variables are usually treated differently. Sometimes
 you may want to have data treated as a factor, but in other cases, this may be
 undesirable.
 
-Since some of the data in our data frame are factors, lets see how factors work. First, we'll
-extract one of the columns of our data frame to a new object, so that we don't end up
-modifying the `variants` object by mistake.
+Let's see the value of treating some of which are categorical in nature as
+factors. Let's take a look at just the alternate alleles
 
 
 ~~~
-## extract the "REF" column to a new object
+## extract the "ALT" column to a new object
 
-REF <- variants$REF
+alt_alleles <- subset$ALT
 ~~~
 {: .language-r}
 
@@ -330,52 +312,39 @@ Let's look at the first few items in our factor using `head()`:
 
 
 ~~~
-head(REF)
+head(alt_alleles)
 ~~~
 {: .language-r}
 
 
 
 ~~~
-[1] "T"        "G"        "G"        "CTTTTTTT" "CCGC"     "C"       
+[1] "G"         "T"         "T"         "CTTTTTTTT" "CCGCGC"    "T"        
 ~~~
 {: .output}
 
-What we get back are the items in our factor, and also something called "Levels".
-**Levels are the different categories contained in a factor**. By default, R
-will organize the levels in a factor in alphabetical order. So the first level in this factor is
-"A".
-
-Lets look at the contents of a factor in a slightly different way using `str()`:
+There are 801 alleles (one for each row). To simplify, lets look at just the
+single-nuleotide alleles (SNPs). We can use some of the vector indexing skills
+from the last episode.
 
 
 ~~~
-str(REF)
+snps <- c(alt_alleles[alt_alleles=="A"],
+  alt_alleles[alt_alleles=="T"],
+  alt_alleles[alt_alleles=="G"],
+  alt_alleles[alt_alleles=="C"])
 ~~~
 {: .language-r}
 
+This leaves us with a vector of the 701 alternative alleles which were single
+nucleotides. Right now, they are being treated a characters, but we could treat
+them as categories of SNP. Doing this will enable some nice features. For
+example, we can try to generate a plot of this character vector as it is right
+now:
 
 
 ~~~
- chr [1:801] "T" "G" "G" "CTTTTTTT" "CCGC" "C" "C" "G" ...
-~~~
-{: .output}
-
-For the sake of efficiency, R stores the content of a factor as a vector of
-integers, which an integer is assigned to each of the possible levels. Recall
-levels are assigned in alphabetical order. In this case, the first item in our "REF" object is
-"T", which happens to be the 49th level of our factor, ordered alphabeticaly. The next two
-items are both "G"s, which is the 33rd level of our factor.
-
-## Plotting and ordering factors
-
-One of the most common uses for factors will be when you plot categorical
-values. For example, suppose we want to know how many of our variants had each possible 
-nucleotide (or nucleotide combination) in the reference genome? We could generate a plot:
-
-
-~~~
-plot(REF)
+plot(snps)
 ~~~
 {: .language-r}
 
@@ -407,9 +376,133 @@ Error in plot.window(...): need finite 'ylim' values
 ~~~
 {: .error}
 
-<img src="../fig/rmd-03-unnamed-chunk-9-1.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" width="612" style="display: block; margin: auto;" />
+Whoops! Though the `plot()` function will do its best to give us a quick plot,
+it is unable to do so here. One way to fix this it to tell R to treat the SNPs
+as categories (i.e. a factor vector); we will create a new object to avoid
+confusion using the `factor()` function:
 
-This isn't a particularly pretty example of a plot. We'll be learning much more about creating nice, publication-quality graphics later in this lesson. 
+
+~~~
+factor_snps <- factor(snps)
+~~~
+{: .language-r}
+
+Let's learn a little more about this new type of vector:
+
+
+
+~~~
+str(factor_snps)
+~~~
+{: .language-r}
+
+
+
+~~~
+ Factor w/ 4 levels "A","C","G","T": 1 1 1 1 1 1 1 1 1 1 ...
+~~~
+{: .output}
+
+What we get back are the categories ("A","C","G","T") in our factor; these are
+called "Levels". **Levels are the different categories contained in a factor**.
+By default, R will organize the levels in a factor in alphabetical order. So the
+first level in this factor is "A".
+
+For the sake of efficiency, R stores the content of a factor as a vector of
+integers, which an integer is assigned to each of the possible levels. Recall
+levels are assigned in alphabetical order. In this case, the first item in our
+`factor_snps` object is "A", which happens to be the 1st level of our factor,
+ordered alphabetically. This explains the sequence of "1"s ("Factor w/ 4 levels
+"A","C","G","T": 1 1 1 1 1 1 1 1 1 1 ..."), since "A" is the first level, and
+the first few items in our factor are all "A"s.
+
+We can see how many items in our vector fall into each category:
+
+
+~~~
+summary(factor_snps)
+~~~
+{: .language-r}
+
+
+
+~~~
+  A   C   G   T 
+211 139 154 203 
+~~~
+{: .output}
+
+As you can imagine, this is already useful when you want to generate a tally.
+
+
+> ## Tip: treating objects as categories without changing their mode
+>
+> You don't have to make an object a factor to get the benefits of treating
+> an object as a factor. See what happens when you use the `as.factor()`
+> function on `factor_snps`. To generate a tally, you can sometimes also use
+> the `table()` function; though sometimes you may need to combine both (i.e.
+> `table(as.factor(object))`)
+{: .callout}
+
+
+
+## Plotting and ordering factors
+
+One of the most common uses for factors will be when you plot categorical
+values. For example, suppose we want to know how many of our variants had each
+possible SNP we could generate a plot:
+
+
+~~~
+plot(factor_snps)
+~~~
+{: .language-r}
+
+<img src="../fig/rmd-03-unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="612" style="display: block; margin: auto;" />
+
+This isn't a particularly pretty example of a plot but it works. We'll be
+learning much more about creating nice, publication-quality graphics later in
+this lesson.
+
+If you recall, factors are ordered alphabetically. That might make sense, but
+categories (e.g., "red", "blue", "green") often do not have an intrinsic order.
+What if we wanted to order our plot according to the numerical value (i.e.,
+in descending order of SNP frequency)? We can enforce an order on our factors:
+
+
+~~~
+ordered_factor_snps <- factor(factor_snps, levels = names(sort(table(factor_snps))))
+~~~
+{: .language-r}
+
+Let's deconstruct this from the inside out (you can try each of these commands
+to see why this works):
+
+1. We create a table of `factor_snps` to get the frequency of each SNP:
+   `table(factor_snps)`
+2. We sort this table: `sort(table(factor_snps))`; use the `decreasing =`
+   parameter for this function if you wanted to change from the default of
+   FALSE
+3. Using the `names` function gives us just the character names of the table
+   sorted by frequencies:`names(sort(table(factor_snps)))`
+4. The `factor` function is what allows us to create a factor. We give it the
+   `factor_snps` object as input, and use the `levels=` parameter to enforce the
+   ordering of the levels.
+
+Now we see our plot has be reordered:
+
+
+~~~
+plot(ordered_factor_snps)
+~~~
+{: .language-r}
+
+<img src="../fig/rmd-03-unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="612" style="display: block; margin: auto;" />
+
+Factors come in handy in many places when using R. Even using more
+sophisticated plotting packages such as ggplot2 will sometimes require you
+to understand how to manipulate factors.
+
 
 <!-- For now, let's explore how we can order -->
 <!-- the factors in our plot so that the first four values are "A", "C", "G", "T", with multi-nucleotide -->
@@ -446,7 +539,7 @@ where we are taking a range).
 > ## Exercise: Subsetting a data frame
 >
 > **Try the following indices and functions and try to figure out what they return**
-> 
+>
 > a. `variants[1,1]`
 >
 > b. `variants[2,4]`
@@ -472,7 +565,7 @@ where we are taking a range).
 > l. `variants[variants$REF == "A",]`
 >
 >> ## Solution
->> a. 
+>> a.
 >> 
 >> ~~~
 >> variants[1,1]
@@ -485,8 +578,8 @@ where we are taking a range).
 >> [1] "SRR2584863"
 >> ~~~
 >> {: .output}
->> 
->> b. 
+>>
+>> b.
 >> 
 >> ~~~
 >> variants[2,4]
@@ -499,8 +592,8 @@ where we are taking a range).
 >> [1] NA
 >> ~~~
 >> {: .output}
->> 
->> c. 
+>>
+>> c.
 >> 
 >> ~~~
 >> variants[801,29]
@@ -513,8 +606,8 @@ where we are taking a range).
 >> [1] "T"
 >> ~~~
 >> {: .output}
->> 
->> d. 
+>>
+>> d.
 >> 
 >> ~~~
 >> variants[2, ]
@@ -535,13 +628,13 @@ where we are taking a range).
 >> ~~~
 >> {: .output}
 >>
->> e. 
+>> e.
 >> 
 >> ~~~
 >> variants[-1, ]
 >> ~~~
 >> {: .language-r}
->> 
+>>
 >> 
 >> ~~~
 >>    sample_id      CHROM     POS ID      REF       ALT QUAL FILTER INDEL IDV IMF
@@ -575,7 +668,7 @@ where we are taking a range).
 >> ~~~
 >> {: .output}
 >>
->> f. 
+>> f.
 >> 
 >> ~~~
 >> variants[1:4,1]
@@ -588,8 +681,8 @@ where we are taking a range).
 >> [1] "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863"
 >> ~~~
 >> {: .output}
->> 
->> g. 
+>>
+>> g.
 >> 
 >> ~~~
 >> variants[1:10,c("REF","ALT")]
@@ -623,14 +716,14 @@ where we are taking a range).
 >> 10                                                      ATT
 >> ~~~
 >> {: .output}
->> 
->> h. 
+>>
+>> h.
 >> 
 >> ~~~
 >> variants[,c("sample_id")]
 >> ~~~
 >> {: .language-r}
->> 
+>>
 >> 
 >> ~~~
 >> [1] "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863"
@@ -638,7 +731,7 @@ where we are taking a range).
 >> ~~~
 >> {: .output}
 >>
->> i. 
+>> i.
 >> 
 >> ~~~
 >> head(variants)
@@ -678,8 +771,8 @@ where we are taking a range).
 >> 6     1             T
 >> ~~~
 >> {: .output}
->> 
->> j. 
+>>
+>> j.
 >> 
 >> ~~~
 >> tail(variants)
@@ -719,8 +812,8 @@ where we are taking a range).
 >> 801     1             T
 >> ~~~
 >> {: .output}
->> 
->> k. 
+>>
+>> k.
 >> 
 >> ~~~
 >> variants$sample_id
@@ -733,8 +826,8 @@ where we are taking a range).
 >> [6] "SRR2584863"
 >> ~~~
 >> {: .output}
->> 
->> l. 
+>>
+>> l.
 >> 
 >> ~~~
 >> variants[variants$REF == "A",]
@@ -798,7 +891,7 @@ them to a new object name:
 
 
 ~~~
-# create a new data frame containing only observations from SRR2584863 
+# create a new data frame containing only observations from SRR2584863
 
 SRR2584863_variants <- variants[variants$sample_id == "SRR2584863",]
 
@@ -1116,7 +1209,7 @@ like this one:
 
 ~~~
 # make the 'REF' column a character type column
- 
+
 variants$REF <- as.character(variants$REF)
 
 # check the type of the column
@@ -1131,7 +1224,7 @@ typeof(variants$REF)
 ~~~
 {: .output}
 
-## StringsAsFactors = FALSE
+## StringsAsFactors = ?
 
 Lets summarize this section on coercion with a few take home messages.
 
@@ -1144,14 +1237,19 @@ Lets summarize this section on coercion with a few take home messages.
   coercion.
 - Check the structure (`str()`) of your data frames before working with them!
 
-Regarding the first bullet point, one way to avoid needless coercion when
-importing a data frame using any one of the `read.table()` functions such as
-`read.csv()` is to set the argument `StringsAsFactors` to FALSE. By default,
-this argument is TRUE. Setting it to FALSE will treat any non-numeric column to
-a character type. `read.csv()` documentation, you will also see you can
-explicitly type your columns using the `colClasses` argument. Other R packages
-(such as the Tidyverse "readr") don't have this particular conversion issue,
-but many packages will still try to guess a  data type.
+
+> ## Tip: coercion isn't limited to data frames
+>
+> Prior to R 4.0 when importing a data frame using any one of the `read.table()`
+> functions such as `read.csv()` , the argument `StringsAsFactors` was by
+> default
+> set to true TRUE. Setting it to FALSE will treat any non-numeric column to
+> a character type. `read.csv()` documentation, you will also see you can
+> explicitly type your columns using the `colClasses` argument. Other R packages
+> (such as the Tidyverse "readr") don't have this particular conversion issue,
+> but many packages will still try to guess a data type.
+{: .callout}
+
 
 ## Data frame bonus material: math, sorting, renaming
 
@@ -1201,7 +1299,7 @@ head(sorted_by_DP$DP)
 > The `order()` function lists values in increasing order by default. Look at the documentation
 > for this function and change `sorted_by_DP` to start with variants with the greatest filtered
 > depth ("DP").
-> 
+>
 > > ## Solution
 > > 
 > > ~~~
@@ -1307,10 +1405,6 @@ Finally, let's check the first few lines of the `Ecoli_metadata` data
 frame:
 
 
-~~~
-Error: `path` does not exist: '../data/Ecoli_metadata.xlsx'
-~~~
-{: .error}
 
 
 ~~~
@@ -1321,9 +1415,17 @@ head(Ecoli_metadata)
 
 
 ~~~
-Error in head(Ecoli_metadata): object 'Ecoli_metadata' not found
+# A tibble: 6 x 7
+  sample   generation clade   strain cit     run       genome_size
+  <chr>         <dbl> <chr>   <chr>  <chr>   <chr>           <dbl>
+1 REL606            0 NA      REL606 unknown <NA>             4.62
+2 REL1166A       2000 unknown REL606 unknown SRR098028        4.63
+3 ZDB409         5000 unknown REL606 unknown SRR098281        4.6 
+4 ZDB429        10000 UC      REL606 unknown SRR098282        4.59
+5 ZDB446        15000 UC      REL606 unknown SRR098283        4.66
+6 ZDB458        20000 (C1,C2) REL606 unknown SRR098284        4.63
 ~~~
-{: .error}
+{: .output}
 
 The type of this object is 'tibble', a type of data
 frame we will talk more about in the 'dplyr' section. If you needed
@@ -1359,9 +1461,9 @@ a true R data frame you could coerce with `as.data.frame()`.
 >> 
 >> 
 >> ~~~
->> Error in eval(expr, envir, enclos): object 'Ecoli_metadata' not found
+>> [1] 30  7
 >> ~~~
->> {: .error}
+>> {: .output}
 >> 
 >> 
 >> 
@@ -1373,9 +1475,9 @@ a true R data frame you could coerce with `as.data.frame()`.
 >> 
 >> 
 >> ~~~
->> Error in is.factor(x): object 'Ecoli_metadata' not found
+>> [1] "minus"   "plus"    "unknown"
 >> ~~~
->> {: .error}
+>> {: .output}
 >> 
 >> 
 >> 
@@ -1387,9 +1489,11 @@ a true R data frame you could coerce with `as.data.frame()`.
 >> 
 >> 
 >> ~~~
->> Error in is.factor(x): object 'Ecoli_metadata' not found
+>> 
+>>   minus    plus unknown 
+>>       9       9      12 
 >> ~~~
->> {: .error}
+>> {: .output}
 >> 
 >> 
 >> 
@@ -1401,9 +1505,12 @@ a true R data frame you could coerce with `as.data.frame()`.
 >> 
 >> 
 >> ~~~
->> Error in eval(expr, envir, enclos): object 'Ecoli_metadata' not found
+>> # A tibble: 1 x 1
+>>   genome_size
+>>         <dbl>
+>> 1        4.62
 >> ~~~
->> {: .error}
+>> {: .output}
 >> 
 >> 
 >> 
@@ -1415,50 +1522,17 @@ a true R data frame you could coerce with `as.data.frame()`.
 >> 
 >> 
 >> ~~~
->> Error in median(Ecoli_metadata$genome_size): object 'Ecoli_metadata' not found
+>> [1] 4.625
 >> ~~~
->> {: .error}
+>> {: .output}
 >> 
 >> 
 >> 
 >> ~~~
 >> colnames(Ecoli_metadata)[colnames(Ecoli_metadata) == "sample"] <- "sample_id"
->> ~~~
->> {: .language-r}
->> 
->> 
->> 
->> ~~~
->> Error in colnames(Ecoli_metadata)[colnames(Ecoli_metadata) == "sample"] <- "sample_id": object 'Ecoli_metadata' not found
->> ~~~
->> {: .error}
->> 
->> 
->> 
->> ~~~
 >> Ecoli_metadata$genome_size_bp <- Ecoli_metadata$genome_size * 1000000
->> ~~~
->> {: .language-r}
->> 
->> 
->> 
->> ~~~
->> Error in eval(expr, envir, enclos): object 'Ecoli_metadata' not found
->> ~~~
->> {: .error}
->> 
->> 
->> 
->> ~~~
 >> write.csv(Ecoli_metadata, file = "exercise_solution.csv")
 >> ~~~
 >> {: .language-r}
->> 
->> 
->> 
->> ~~~
->> Error in is.data.frame(x): object 'Ecoli_metadata' not found
->> ~~~
->> {: .error}
 > {: .solution}
 {: .challenge}

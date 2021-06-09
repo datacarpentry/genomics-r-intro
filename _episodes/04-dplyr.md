@@ -225,9 +225,9 @@ variants %>%
 ~~~
 Rows: 25
 Columns: 3
-$ REF [3m[90m<chr>[39m[23m "T", "G", "G", "CTTTTTTT", "CCGC", "C", "C", "G", "ACAGCCAGCCAGCC…
-$ ALT [3m[90m<chr>[39m[23m "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "ACAGCCAGCCA…
-$ DP  [3m[90m<int>[39m[23m 4, 6, 10, 12, 10, 10, 8, 11, 3, 7, 9, 20, 12, 19, 15, 10, 14, 9, …
+$ REF <chr> "T", "G", "G", "CTTTTTTT", "CCGC", "C", "C", "G", "ACAGCCAGCCAGCCA…
+$ ALT <chr> "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "ACAGCCAGCCAG…
+$ DP  <int> 4, 6, 10, 12, 10, 10, 8, 11, 3, 7, 9, 20, 12, 19, 15, 10, 14, 9, 1…
 ~~~
 {: .output}
 
@@ -352,36 +352,36 @@ variants %>%
 ~~~
 Rows: 801
 Columns: 30
-$ sample_id     [3m[90m<chr>[39m[23m "SRR2584863", "SRR2584863", "SRR2584863", "SRR2584863",…
-$ CHROM         [3m[90m<chr>[39m[23m "CP000819.1", "CP000819.1", "CP000819.1", "CP000819.1",…
-$ POS           [3m[90m<int>[39m[23m 9972, 263235, 281923, 433359, 473901, 648692, 1331794, …
-$ ID            [3m[90m<lgl>[39m[23m NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ REF           [3m[90m<chr>[39m[23m "T", "G", "G", "CTTTTTTT", "CCGC", "C", "C", "G", "ACAG…
-$ ALT           [3m[90m<chr>[39m[23m "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "A…
-$ QUAL          [3m[90m<dbl>[39m[23m 91.0000, 85.0000, 217.0000, 64.0000, 228.0000, 210.0000…
-$ FILTER        [3m[90m<lgl>[39m[23m NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ INDEL         [3m[90m<lgl>[39m[23m FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, T…
-$ IDV           [3m[90m<int>[39m[23m NA, NA, NA, 12, 9, NA, NA, NA, 2, 7, NA, NA, NA, NA, NA…
-$ IMF           [3m[90m<dbl>[39m[23m NA, NA, NA, 1.000000, 0.900000, NA, NA, NA, 0.666667, 1…
-$ DP            [3m[90m<int>[39m[23m 4, 6, 10, 12, 10, 10, 8, 11, 3, 7, 9, 20, 12, 19, 15, 1…
-$ VDB           [3m[90m<dbl>[39m[23m 0.0257451, 0.0961330, 0.7740830, 0.4777040, 0.6595050, …
-$ RPB           [3m[90m<dbl>[39m[23m NA, 1.000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.900802,…
-$ MQB           [3m[90m<dbl>[39m[23m NA, 1.0000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.150134…
-$ BQB           [3m[90m<dbl>[39m[23m NA, 1.000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.750668,…
-$ MQSB          [3m[90m<dbl>[39m[23m NA, NA, 0.974597, 1.000000, 0.916482, 0.916482, 0.90080…
-$ SGB           [3m[90m<dbl>[39m[23m -0.556411, -0.590765, -0.662043, -0.676189, -0.662043, …
-$ MQ0F          [3m[90m<dbl>[39m[23m 0.000000, 0.166667, 0.000000, 0.000000, 0.000000, 0.000…
-$ ICB           [3m[90m<lgl>[39m[23m NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ HOB           [3m[90m<lgl>[39m[23m NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ AC            [3m[90m<int>[39m[23m 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-$ AN            [3m[90m<int>[39m[23m 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-$ DP4           [3m[90m<chr>[39m[23m "0,0,0,4", "0,1,0,5", "0,0,4,5", "0,1,3,8", "1,0,2,7", …
-$ MQ            [3m[90m<int>[39m[23m 60, 33, 60, 60, 60, 60, 60, 60, 60, 60, 25, 60, 10, 60,…
-$ Indiv         [3m[90m<chr>[39m[23m "/home/dcuser/dc_workshop/results/bam/SRR2584863.aligne…
-$ gt_PL         [3m[90m<chr>[39m[23m "121,0", "112,0", "247,0", "91,0", "255,0", "240,0", "2…
-$ gt_GT         [3m[90m<int>[39m[23m 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-$ gt_GT_alleles [3m[90m<chr>[39m[23m "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "A…
-$ POLPROB       [3m[90m<dbl>[39m[23m 1.0000000, 1.0000000, 1.0000000, 0.9999996, 1.0000000, …
+$ sample_id     <chr> "SRR2584863", "SRR2584863", "SRR2584863", "SRR2584863", …
+$ CHROM         <chr> "CP000819.1", "CP000819.1", "CP000819.1", "CP000819.1", …
+$ POS           <int> 9972, 263235, 281923, 433359, 473901, 648692, 1331794, 1…
+$ ID            <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ REF           <chr> "T", "G", "G", "CTTTTTTT", "CCGC", "C", "C", "G", "ACAGC…
+$ ALT           <chr> "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "AC…
+$ QUAL          <dbl> 91.0000, 85.0000, 217.0000, 64.0000, 228.0000, 210.0000,…
+$ FILTER        <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ INDEL         <lgl> FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TR…
+$ IDV           <int> NA, NA, NA, 12, 9, NA, NA, NA, 2, 7, NA, NA, NA, NA, NA,…
+$ IMF           <dbl> NA, NA, NA, 1.000000, 0.900000, NA, NA, NA, 0.666667, 1.…
+$ DP            <int> 4, 6, 10, 12, 10, 10, 8, 11, 3, 7, 9, 20, 12, 19, 15, 10…
+$ VDB           <dbl> 0.0257451, 0.0961330, 0.7740830, 0.4777040, 0.6595050, 0…
+$ RPB           <dbl> NA, 1.000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.900802, …
+$ MQB           <dbl> NA, 1.0000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.1501340…
+$ BQB           <dbl> NA, 1.000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.750668, …
+$ MQSB          <dbl> NA, NA, 0.974597, 1.000000, 0.916482, 0.916482, 0.900802…
+$ SGB           <dbl> -0.556411, -0.590765, -0.662043, -0.676189, -0.662043, -…
+$ MQ0F          <dbl> 0.000000, 0.166667, 0.000000, 0.000000, 0.000000, 0.0000…
+$ ICB           <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ HOB           <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ AC            <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ AN            <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ DP4           <chr> "0,0,0,4", "0,1,0,5", "0,0,4,5", "0,1,3,8", "1,0,2,7", "…
+$ MQ            <int> 60, 33, 60, 60, 60, 60, 60, 60, 60, 60, 25, 60, 10, 60, …
+$ Indiv         <chr> "/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned…
+$ gt_PL         <chr> "121,0", "112,0", "247,0", "91,0", "255,0", "240,0", "20…
+$ gt_GT         <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ gt_GT_alleles <chr> "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "AC…
+$ POLPROB       <dbl> 1.0000000, 1.0000000, 1.0000000, 0.9999996, 1.0000000, 1…
 ~~~
 {: .output}
 
@@ -405,36 +405,36 @@ $ POLPROB       [3m[90m<dbl>[39m[23m 1.0000000, 1.0000000, 1.0000000, 0.9999
 >> ~~~
 >> Rows: 801
 >> Columns: 30
->> $ sample_id     [3m[90m<chr>[39m[23m "SRR2584863", "SRR2584863", "SRR2584863", "SRR2584863",…
->> $ CHROM         [3m[90m<chr>[39m[23m "CP000819.1", "CP000819.1", "CP000819.1", "CP000819.1",…
->> $ POS           [3m[90m<int>[39m[23m 9972, 263235, 281923, 433359, 473901, 648692, 1331794, …
->> $ ID            [3m[90m<lgl>[39m[23m NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
->> $ REF           [3m[90m<chr>[39m[23m "T", "G", "G", "CTTTTTTT", "CCGC", "C", "C", "G", "ACAG…
->> $ ALT           [3m[90m<chr>[39m[23m "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "A…
->> $ QUAL          [3m[90m<dbl>[39m[23m 91.0000, 85.0000, 217.0000, 64.0000, 228.0000, 210.0000…
->> $ FILTER        [3m[90m<lgl>[39m[23m NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
->> $ INDEL         [3m[90m<lgl>[39m[23m FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, T…
->> $ IDV           [3m[90m<int>[39m[23m NA, NA, NA, 12, 9, NA, NA, NA, 2, 7, NA, NA, NA, NA, NA…
->> $ IMF           [3m[90m<dbl>[39m[23m NA, NA, NA, 1.000000, 0.900000, NA, NA, NA, 0.666667, 1…
->> $ DP            [3m[90m<int>[39m[23m 4, 6, 10, 12, 10, 10, 8, 11, 3, 7, 9, 20, 12, 19, 15, 1…
->> $ VDB           [3m[90m<dbl>[39m[23m 0.0257451, 0.0961330, 0.7740830, 0.4777040, 0.6595050, …
->> $ RPB           [3m[90m<dbl>[39m[23m NA, 1.000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.900802,…
->> $ MQB           [3m[90m<dbl>[39m[23m NA, 1.0000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.150134…
->> $ BQB           [3m[90m<dbl>[39m[23m NA, 1.000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.750668,…
->> $ MQSB          [3m[90m<dbl>[39m[23m NA, NA, 0.974597, 1.000000, 0.916482, 0.916482, 0.90080…
->> $ SGB           [3m[90m<dbl>[39m[23m -0.556411, -0.590765, -0.662043, -0.676189, -0.662043, …
->> $ MQ0F          [3m[90m<dbl>[39m[23m 0.000000, 0.166667, 0.000000, 0.000000, 0.000000, 0.000…
->> $ ICB           [3m[90m<lgl>[39m[23m NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
->> $ HOB           [3m[90m<lgl>[39m[23m NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
->> $ AC            [3m[90m<int>[39m[23m 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
->> $ AN            [3m[90m<int>[39m[23m 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
->> $ DP4           [3m[90m<chr>[39m[23m "0,0,0,4", "0,1,0,5", "0,0,4,5", "0,1,3,8", "1,0,2,7", …
->> $ MQ            [3m[90m<int>[39m[23m 60, 33, 60, 60, 60, 60, 60, 60, 60, 60, 25, 60, 10, 60,…
->> $ Indiv         [3m[90m<chr>[39m[23m "/home/dcuser/dc_workshop/results/bam/SRR2584863.aligne…
->> $ gt_PL         [3m[90m<chr>[39m[23m "121,0", "112,0", "247,0", "91,0", "255,0", "240,0", "2…
->> $ gt_GT         [3m[90m<int>[39m[23m 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
->> $ gt_GT_alleles [3m[90m<chr>[39m[23m "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "A…
->> $ POLPROB       [3m[90m<dbl>[39m[23m 1.0000000, 1.0000000, 1.0000000, 0.9999996, 1.0000000, …
+>> $ sample_id     <chr> "SRR2584863", "SRR2584863", "SRR2584863", "SRR2584863", …
+>> $ CHROM         <chr> "CP000819.1", "CP000819.1", "CP000819.1", "CP000819.1", …
+>> $ POS           <int> 9972, 263235, 281923, 433359, 473901, 648692, 1331794, 1…
+>> $ ID            <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+>> $ REF           <chr> "T", "G", "G", "CTTTTTTT", "CCGC", "C", "C", "G", "ACAGC…
+>> $ ALT           <chr> "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "AC…
+>> $ QUAL          <dbl> 91.0000, 85.0000, 217.0000, 64.0000, 228.0000, 210.0000,…
+>> $ FILTER        <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+>> $ INDEL         <lgl> FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TR…
+>> $ IDV           <int> NA, NA, NA, 12, 9, NA, NA, NA, 2, 7, NA, NA, NA, NA, NA,…
+>> $ IMF           <dbl> NA, NA, NA, 1.000000, 0.900000, NA, NA, NA, 0.666667, 1.…
+>> $ DP            <int> 4, 6, 10, 12, 10, 10, 8, 11, 3, 7, 9, 20, 12, 19, 15, 10…
+>> $ VDB           <dbl> 0.0257451, 0.0961330, 0.7740830, 0.4777040, 0.6595050, 0…
+>> $ RPB           <dbl> NA, 1.000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.900802, …
+>> $ MQB           <dbl> NA, 1.0000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.1501340…
+>> $ BQB           <dbl> NA, 1.000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.750668, …
+>> $ MQSB          <dbl> NA, NA, 0.974597, 1.000000, 0.916482, 0.916482, 0.900802…
+>> $ SGB           <dbl> -0.556411, -0.590765, -0.662043, -0.676189, -0.662043, -…
+>> $ MQ0F          <dbl> 0.000000, 0.166667, 0.000000, 0.000000, 0.000000, 0.0000…
+>> $ ICB           <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+>> $ HOB           <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+>> $ AC            <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+>> $ AN            <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+>> $ DP4           <chr> "0,0,0,4", "0,1,0,5", "0,0,4,5", "0,1,3,8", "1,0,2,7", "…
+>> $ MQ            <int> 60, 33, 60, 60, 60, 60, 60, 60, 60, 60, 25, 60, 10, 60, …
+>> $ Indiv         <chr> "/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned…
+>> $ gt_PL         <chr> "121,0", "112,0", "247,0", "91,0", "255,0", "240,0", "20…
+>> $ gt_GT         <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+>> $ gt_GT_alleles <chr> "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "AC…
+>> $ POLPROB       <dbl> 1.0000000, 1.0000000, 1.0000000, 0.9999996, 1.0000000, 1…
 >> ~~~
 >> {: .output}
 >> 
@@ -1271,19 +1271,12 @@ variants %>%
 
 
 ~~~
-`summarise()` ungrouping output (override with `.groups` argument)
-~~~
-{: .output}
-
-
-
-~~~
-[90m# A tibble: 3 x 2[39m
+# A tibble: 3 x 2
   sample_id  `n()`
-  [3m[90m<chr>[39m[23m      [3m[90m<int>[39m[23m
-[90m1[39m SRR2584863    25
-[90m2[39m SRR2584866   766
-[90m3[39m SRR2589044    10
+  <chr>      <int>
+1 SRR2584863    25
+2 SRR2584866   766
+3 SRR2589044    10
 ~~~
 {: .output}
 
@@ -1313,19 +1306,12 @@ variants %>%
 
 
 ~~~
-`summarise()` ungrouping output (override with `.groups` argument)
-~~~
-{: .output}
-
-
-
-~~~
-[90m# A tibble: 3 x 2[39m
+# A tibble: 3 x 2
   sample_id  `max(DP)`
-  [3m[90m<chr>[39m[23m          [3m[90m<int>[39m[23m
-[90m1[39m SRR2584863        20
-[90m2[39m SRR2584866        79
-[90m3[39m SRR2589044        16
+  <chr>          <int>
+1 SRR2584863        20
+2 SRR2584866        79
+3 SRR2589044        16
 ~~~
 {: .output}
 
