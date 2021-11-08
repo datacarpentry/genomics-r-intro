@@ -41,8 +41,8 @@ in a way that will reduce repetition, reduce the probability of making
 errors, and probably even save you some typing. As an added bonus, you might
 even find the `dplyr` grammar easier to read.
 
-Here we're going to cover 6 of the most commonly used functions as well as using
-pipes (`%>%`) to combine them.
+Here we're going to cover some of the most commonly used functions as well as using
+pipes (`%>%`) to combine them:
 
 1. `glimpse()`
 2. `select()`
@@ -50,6 +50,7 @@ pipes (`%>%`) to combine them.
 4. `group_by()`
 5. `summarize()`
 6. `mutate()`
+7. `pivot_longer` and `pivot_wider`
 
 Packages in R are sets of additional functions that let you do more
 stuff in R. The functions we've been using, like `str()`, come built into R;
@@ -122,11 +123,11 @@ select(variants, ends_with("B"))
 > ## Challenge
 >
 > Create a table that contains all the columns with the letter "i" and column "POS",
-> without columns "Indiv" and "FILTER". 
+> without columns "Indiv" and "FILTER".
 > Hint: look at the help function `ends_with()` we've just covered.
 >
 >> ## Solution
->> 
+>>
 >> ```{r}
 >> select(variants, contains("i"), -Indiv, -FILTER, POS)
 >> ```
@@ -142,7 +143,7 @@ filter(variants, sample_id == "SRR2584863")
 `filter()` will keep all the rows that match the conditions that are provided. Here are a few examples:
 
 ```{r}
-# rows for which the reference genome has T or G 
+# rows for which the reference genome has T or G
 filter(variants, REF %in% c("T", "G"))
 # rows with QUAL values greater than or equal to 100
 filter(variants, QUAL >= 100)
@@ -168,7 +169,7 @@ filter(variants, sample_id == "SRR2584863", (INDEL | QUAL >= 100))
 > and 2e6 (included) that are not indels and have QUAL greater than 200.
 >
 >> ## Solution
->> 
+>>
 >> ```{r}
 >> filter(variants, POS >= 1e6 & POS <= 2e6, !INDEL, QUAL > 200)
 >> ```
@@ -199,7 +200,7 @@ In the above code, we use the pipe to send the `variants` dataset first through
 keep only the `REF`, `ALT`, and `DP` columns. Since `%>%` takes
 the object on its left and passes it as the first argument to the function on
 its right, we don't need to explicitly include the data frame as an argument
-to the `filter()` and `select()` functions any more. 
+to the `filter()` and `select()` functions any more.
 
 Some may find it helpful to read the pipe like the word "then". For instance,
 in the above example, we took the data frame `variants`, *then* we `filter`ed
@@ -238,7 +239,7 @@ SRR2584863_variants %>% slice(10:25)
 >
 > Starting with the `variants` data frame, use pipes to subset the data
 > to include only observations from SRR2584863 sample,
-> where the filtered depth (DP) is at least 10. 
+> where the filtered depth (DP) is at least 10.
 > Shwoing only 5th through 11th rows of columns `REF`, `ALT`, and `POS`.
 >
 >> ## Solution
@@ -266,8 +267,7 @@ to a probability value according to the formula:
 Probability = 1- 10 ^ -(QUAL/10)
 
 Let's add a column (`POLPROB`) to our `variants` data frame that shows
-the probability of a polymorphism at that site given the data. We'll show
-only the first six rows of data.
+the probability of a polymorphism at that site given the data.
 
 ```{r, purl = FALSE}
 variants %>%
@@ -378,38 +378,28 @@ variants %>%
     max_DP = max(DP))
 ```
 
-> ## Challenge
->
-> What are the largest insertions and deletions? Hint: the function `abs()`
-> returns the absolute value.
-> 
->> ## Solution
->>
->> ```{r}
->> variants_indel %>%
->>   group_by(mutation_type) %>%
->>   summarize(
->>     max_size = max(abs(indel_size))
->>   )
->> ```
-> {: .solution}
-{: .challenge}
+### Reshaping data frames
 
+It can sometimes be useful to transform the "long" tidy format, into the wide format. This transformation can be done with the `pivot_wider()` function provided by the `tidyr` package (also part of the `tidyverse`).
 
-<!-- You can group by multiple columns too. For example, we might want to  -->
-<!-- know if ...  -->
+`pivot_wider()` takes a data frame as the first argument, and two arguments: the column name that will become the columns  and the column name that will become the cells in the wide data.
 
-<!-- ```{r, purl = FALSE} -->
+```{r}
+variants_wide <- variants %>%
+  group_by(sample_id, CHROM) %>%
+  summarize(mean_DP = mean(DP)) %>%
+  pivot_wider(names_from = sample_id, values_from = mean_DP)
+variants_wide
+```
 
-<!-- ``` -->
+The opposite operation of `pivot_wider()` is taken care by `pivot_longer()`. We specify the names of the new columns, and here add `-CHROM` as this column shouldn't be affected by the reshaping:
 
-<!-- You can also summarize multiple variables at the same time. Let's -->
-<!-- count how many samples we have in each group using the `n()` function: -->
+```{r}
+variants_wide %>%
+  pivot_longer(-CHROM, names_to = "sample_id", values_to = "mean_DP")
+```
+### Resources
 
-<!-- ```{r, purl = FALSE} -->
+* [Handy dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 
-<!-- ``` -->
-
-[Handy dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
-
-[Much of this lesson was copied or adapted from Jeff Hollister's materials](http://usepa.github.io/introR/2015/01/14/03-Clean/)
+* [Much of this lesson was copied or adapted from Jeff Hollister's materials](http://usepa.github.io/introR/2015/01/14/03-Clean/)
