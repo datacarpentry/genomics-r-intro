@@ -28,7 +28,7 @@ knitr_fig_path("04-")
 ```
 
 ```{r, include = FALSE, echo = FALSE, eval = TRUE, purl = FALSE}
-## silently read in CSV file from FigShare
+## silently read in CSV file from data folder
 library(tidyverse)
 variants <- read_csv("../data/combined_tidy_vcf.csv")
 ```
@@ -102,43 +102,79 @@ In the above output, we can already gather some information about `variants`, su
 
 To select columns of a data frame, use `select()`. The first argument to this function is the data frame (`variants`), and the subsequent arguments are the columns to keep.
 
-```{r, echo = TRUE, eval = FALSE, purl = FALSE}
+```{r, echo = TRUE, eval = TRUE, purl = FALSE}
 select(variants, sample_id, REF, ALT, DP)
-```
-```{r, echo = FALSE, eval = TRUE, purl = FALSE}
-select(variants, sample_id, REF, ALT, DP) %>%
-  head()
 ```
 
 To select all columns *except* certain ones, put a "-" in front of
 the variable to exclude it.
 
-```{r, echo = TRUE, eval = FALSE, purl = FALSE}
+```{r, echo = TRUE, eval = TRUE, purl = FALSE}
 select(variants, -CHROM)
 ```
 
-```{r, echo = FALSE, eval = TRUE, purl = FALSE}
-select(variants, -CHROM) %>%
-  head()
+`dplyr` also provides useful functions to select columns based on their names. For instance, `ends_with()` allows you to select columns that ends with specific letters. For instance, if you wanted to select columns that end with the letter "B":
+
+```{r}
+select(variants, ends_with("B"))
 ```
+
+> ## Challenge
+>
+> Create a table that contains all the columns with the letter "i" and column "POS",
+> without columns "Indiv" and "FILTER". 
+> Hint: look at the help function `ends_with()` we've just covered.
+>
+>> ## Solution
+>> 
+>> ```{r}
+>> select(variants, contains("i"), -Indiv, -FILTER, POS)
+>> ```
+> {: .solution}
+{: .challenge}
 
 To choose rows, use `filter()`:
 
-```{r, echo = TRUE, eval = FALSE, purl = FALSE}
+```{r, echo = TRUE, eval = TRUE, purl = FALSE}
 filter(variants, sample_id == "SRR2584863")
 ```
 
-```{r, echo = FALSE, eval = TRUE, purl = FALSE}
-filter(variants, sample_id == "SRR2584863") %>%
-  head()
+`filter()` will keep all the rows that match the conditions that are provided. Here are a few examples:
+
+```{r}
+# rows for which the reference genome has T or G 
+filter(variants, REF %in% c("T", "G"))
+# rows with QUAL values greater than or equal to 100
+filter(variants, QUAL >= 100)
+# rows that have TRUE in the column INDEL
+filter(variants, INDEL)
+# rows that don't have missing data in the IDV column
+filter(variants, !is.na(IDV))
 ```
 
-Note that this is equivalent to the base R code below,
-but is easier to read!
+`filter()` allows you to combine multiple conditions. You can separate them using a `,` as arguments to the function, they will be combined using the `&` (AND) logical operator. If you need to use the `|` (OR) logical operator, you can specify it explicitly:
 
-```{r, eval = FALSE, purl = FALSE}
-variants[variants$sample_id == "SRR2584863",]
+```{r}
+# this is equivalent to:
+#   filter(variants, sample_id == "SRR2584863" & QUAL >= 100)
+filter(variants, sample_id == "SRR2584863", QUAL >= 100)
+# using `|` logical operator
+filter(variants, sample_id == "SRR2584863", (INDEL | QUAL >= 100))
 ```
+
+> ## Challenge
+>
+> Select all the mutations that occurred between the positions 1e6 (one million)
+> and 2e6 (included) that are not indels and have QUAL greater than 200.
+>
+>> ## Solution
+>> 
+>> ```{r}
+>> filter(variants, POS >= 1e6 & POS <= 2e6, !INDEL, QUAL > 200)
+>> ```
+> {: .solution}
+{: .challenge}
+
 
 ### Pipes
 
@@ -155,8 +191,7 @@ or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you're using a Mac.
 ```{r, echo = TRUE, eval = TRUE, purl = FALSE}
 variants %>%
   filter(sample_id == "SRR2584863") %>%
-  select(REF, ALT, DP) %>%
-  head()
+  select(REF, ALT, DP)
 ```
 
 In the above code, we use the pipe to send the `variants` dataset first through
@@ -164,8 +199,7 @@ In the above code, we use the pipe to send the `variants` dataset first through
 keep only the `REF`, `ALT`, and `DP` columns. Since `%>%` takes
 the object on its left and passes it as the first argument to the function on
 its right, we don't need to explicitly include the data frame as an argument
-to the `filter()` and `select()` functions any more. We then pipe the results
-to the `head()` function so that we only see the first six rows of data.
+to the `filter()` and `select()` functions any more. 
 
 Some may find it helpful to read the pipe like the word "then". For instance,
 in the above example, we took the data frame `variants`, *then* we `filter`ed
@@ -187,31 +221,31 @@ This new object includes all of the data from this sample. Let's look at just
 the first six rows to confirm it's what we want:
 
 ```{r, purl = FALSE}
-SRR2584863_variants %>% head()
+SRR2584863_variants
 ```
 
-Similar to `head()` and `tail()` functions, we can also look at the first or last six rows using tidyverse function `slice()`. The differences between these two functions are minimal. The advantage of `slice()` is that you are not bound by the first or last Nth rows, and specific rows can be viewed:
+Similar to `head()` and `tail()` functions, we can also look at the first or last six rows using tidyverse function `slice()`. Slice is a more versatile function that allows users to specify a range to view:
 
 ```{r}
 SRR2584863_variants %>% slice(1:6)
 ```
 
 ```{r}
-SRR2584863_variants %>% slice(10:15)
+SRR2584863_variants %>% slice(10:25)
 ```
 
 > ## Exercise: Pipe and filter
 >
 > Starting with the `variants` data frame, use pipes to subset the data
 > to include only observations from SRR2584863 sample,
-> where the filtered
-> depth (DP) is at least 10. Retain only the columns `REF`, `ALT`,
-> and `POS`.
+> where the filtered depth (DP) is at least 10. 
+> Shwoing only 5th through 11th rows of columns `REF`, `ALT`, and `POS`.
 >
 >> ## Solution
 >> ```{r}
 >>  variants %>%
 >>  filter(sample_id == "SRR2584863" & DP >= 10) %>%
+>>  slice(5:11) %>%
 >>  select(REF, ALT, POS)
 >> ```
 > {: .solution}
@@ -237,8 +271,7 @@ only the first six rows of data.
 
 ```{r, purl = FALSE}
 variants %>%
-  mutate(POLPROB = 1 - (10 ^ -(QUAL/10))) %>%
-  head()
+  mutate(POLPROB = 1 - (10 ^ -(QUAL/10)))
 ```
 
 > ## Exercise
@@ -247,17 +280,17 @@ variants %>%
 > line to the above code to only show those columns.
 >
 >> ## Solution
+>>
 >> ```{r}
 >> variants %>%
 >>  mutate(POLPROB = 1 - 10 ^ -(QUAL/10)) %>%
->>  select(sample_id, POS, QUAL, POLPROB) %>%
->>  head
->>
+>>  select(sample_id, POS, QUAL, POLPROB)
 >> ```
+>>
 > {: .solution}
 {: .challenge}
 
-### Split-apply-combine data analysis and the summarize() function
+### group_by() and  summarize() functions
 
 Many data analysis tasks can be approached using the "split-apply-combine"
 paradigm: split the data into groups, apply some analysis to each group, and
@@ -289,16 +322,39 @@ called `tally()`:
 
 ```{r, purl = FALSE, message = FALSE}
 variants %>%
-  group_by(sample_id) %>%
+  group_by(ALT) %>%
   tally()
 ```
 
-To show that there are many ways to acheive the same results, there is another way to appraoch this, which bypasses `group_by()` using the function `count()`:
+To show that there are many ways to achieve the same results, there is another way to approach this, which bypasses `group_by()` using the function `count()`:
 
 ```{r, purl = FALSE, message = FALSE}
 variants %>%
-  count(sample_id)
+  count(ALT)
 ```
+
+> ## Challenge
+>
+> * How many mutations are found in each sample?
+>
+>> ## Solution
+>>
+>> ```{r}
+>> variants %>%
+>>   count(sample_id)
+>> ```
+> {: .solution}
+>
+> * How many mutation types are found in sample?
+>
+>> ## Solution
+>>
+>> ```{r}
+>> variants_indel %>%
+>>   count(sample_id, mutation_type)
+>> ```
+> {: .solution}
+{: .challenge}
 
 We can also apply many other functions to individual columns to get other
 summary statistics. For example,we can use built-in functions like `mean()`,
@@ -310,13 +366,35 @@ conscious decision on how to deal with it. When dealing with simple statistics
 like the mean, the easiest way to ignore `NA` (the missing data) is
 to use `na.rm = TRUE` (`rm` stands for remove).
 
-So to view the highest filtered depth (`DP`) for each sample:
+So to view the mean, median, maximum, and minimum filtered depth (`DP`) for each sample:
 
 ```{r, purl = FALSE, message = FALSE}
 variants %>%
   group_by(sample_id) %>%
-  summarize(max(DP))
+  summarize(
+    mean_DP = mean(DP),
+    median_DP = median(DP),
+    min_DP = min(DP),
+    max_DP = max(DP))
 ```
+
+> ## Challenge
+>
+> What are the largest insertions and deletions? Hint: the function `abs()`
+> returns the absolute value.
+> 
+>> ## Solution
+>>
+>> ```{r}
+>> variants_indel %>%
+>>   group_by(mutation_type) %>%
+>>   summarize(
+>>     max_size = max(abs(indel_size))
+>>   )
+>> ```
+> {: .solution}
+{: .challenge}
+
 
 <!-- You can group by multiple columns too. For example, we might want to  -->
 <!-- know if ...  -->
