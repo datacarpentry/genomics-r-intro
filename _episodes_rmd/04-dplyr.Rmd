@@ -2,23 +2,22 @@
 title: "Aggregating and Analyzing Data with dplyr"
 teaching: 40
 exercises: 15
-questions:
-- "How can I manipulate data frames without repeating myself?"
+questions: How can I manipulate data frames without repeating myself?
 objectives:
-- "Describe what the `dplyr` package in R is used for."
-- "Apply common `dplyr` functions to manipulate data in R."
-- "Employ the ‘pipe’ operator to link together a sequence of functions."
-- "Employ the ‘mutate’ function to apply other chosen functions to existing columns and create new columns of data."
-- "Employ the ‘split-apply-combine’ concept to split the data into groups, apply analysis to each group, and combine the results."
-
+- Describe what the `dplyr` package in R is used for.
+- Apply common `dplyr` functions to manipulate data in R.
+- Employ the ‘pipe’ operator to link together a sequence of functions.
+- Employ the ‘mutate’ function to apply other chosen functions to existing columns
+  and create new columns of data.
+- Employ the ‘split-apply-combine’ concept to split the data into groups, apply analysis
+  to each group, and combine the results.
 keypoints:
-- "Use the `dplyr` package to manipulate data frames."
-- "Use `glimpse()` to quickly look at your data frame."
-- "Use `select()` to choose variables from a data frame."
-- "Use `filter()` to choose data based on values."
-- "Use `mutate()` to create new variables."
-- "Use `group_by()` and `summarize()` to work with subsets of data."
-
+- Use the `dplyr` package to manipulate data frames.
+- Use `glimpse()` to quickly look at your data frame.
+- Use `select()` to choose variables from a data frame.
+- Use `filter()` to choose data based on values.
+- Use `mutate()` to create new variables.
+- Use `group_by()` and `summarize()` to work with subsets of data.
 source: Rmd
 ---
 
@@ -342,16 +341,6 @@ variants %>%
 >> ```{r}
 >> variants %>%
 >>   count(sample_id)
->> ```
-> {: .solution}
->
-> * How many mutation types are found in sample?
->
->> ## Solution
->>
->> ```{r}
->> variants_indel %>%
->>   count(sample_id, mutation_type)
 >> ```
 > {: .solution}
 {: .challenge}
