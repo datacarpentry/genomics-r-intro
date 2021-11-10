@@ -47,7 +47,7 @@ exercises in class, re-do them on your own, and then work on your own problems.
 >    approach to bioinformatics that treats it like any other experiment. There
 >    are probably a variety of metaphors we could employ (data are our
 >    reagents, scripts are our protocols, etc.), but the most important idea of
->    the mindset is to remind you that as a researcher, you need to employee all
+>    the mindset is to remind you that as a researcher, you need to employ all
 >    of your training in the bench or field to working with analyses. Evaluate
 >    results critically, and don't expect that things will always work the first
 >    time, or that they will always work in the same way.
