@@ -57,19 +57,24 @@ BiocManager::version()
 # install the vcfR package from bioconductor using BiocManager::install()
 BiocManager::install("vcfR")
 ```
+You may need to also allow it to install some dependencies or update installed packages in order to successfully complete the process.
 
-> ## Note: Installing packages from Bioconductor vs installing packages from CRAN
-> Some packages begin by being available only on Bioconductor, and then later move to CRAN. `vcfR` is one such package,
-> that originally was only available from Bioconductor but is currently available from CRAN. The other thing to know is
-> that `BiocManager::install()` will also install packages from CRAN  There are other benefits to using
-> `BiocManager::install()` for Bioconductor packages, many of which are outlined [here](https://www.bioconductor.org/install/).
-> In short, Bioconductor packages have a release cycle that is different from CRAN and the `install()` function is
-> aware of that ability, so it helps to keep package versions in line with one another in a way that doesn't
-> generally happen with the base R `install.packages()`.
+> ## Note: Installing packages from Bioconductor vs from CRAN 
+> Some packages begin by being available only on Bioconductor, and then later
+> move to CRAN. `vcfR` is one such package, which originally was only available
+> from Bioconductor, but is currently available from CRAN. The other thing to
+> know is that `BiocManager::install()` will also install packages from CRAN (it
+> is a wrapper around `install.packages()` that adds some extra features). There
+> are other benefits to using `BiocManager::install()` for Bioconductor
+> packages, many of which are outlined
+> [here](https://www.bioconductor.org/install/). In short, Bioconductor packages
+> have a release cycle that is different from CRAN and the `install()` function
+> is aware of that difference, so it helps to keep package versions in line with
+> one another in a way that doesn't generally happen with the base R
+> `install.packages()`.
 >
 {: .callout}
 
-You may need to also allow it to install some dependencies or update installed packages in order to successfully complete the process.
 
 # Search for Bioconductor packages based on your analysis needs
 
