@@ -713,7 +713,7 @@ Notice in the operation above that R inserts an `NA` value to extend our vector 
 > B) All vectors have a mode **and** a length  
 > C) Vectors may have different lengths  
 > D) Items within a vector may be of different modes  
-> E) You can use the `c()` to one or more items to an existing vector  
+> E) You can use the `c()` to add one or more items to an existing vector  
 > F) You can use the `c()` to add a vector to an exiting vector  
 >>
 >> ## Solution
