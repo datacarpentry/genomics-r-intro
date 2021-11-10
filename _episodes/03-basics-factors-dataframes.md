@@ -1268,60 +1268,66 @@ head(sorted_by_DP$DP)
 ~~~
 {: .output}
 
+
 > ## Exercise
-> The `order()` function lists values in increasing order by default. Look at the documentation
-> for this function and change `sorted_by_DP` to start with variants with the greatest filtered
-> depth ("DP").
+> The `order()` function lists values in increasing order by default. Look at
+> the documentation for this function and change `sorted_by_DP` to start with
+> variants with the greatest filtered depth ("DP").
 >
 > > ## Solution
 > > 
 > > ~~~
-> > sorted_by_DP <- variants[order(variants$DP, decreasing = TRUE), ]
-> > head(sorted_by_DP$DP)
-> > ```
-> > > {: .solution}
-> > {: .challenge}
-> > 
-> > <!-- You can selectively replace values in a data frame based on their value: -->
-> > 
-> > <!-- ```{r} -->
-> > <!-- ``` -->
-> > 
-> > You can rename columns:
+> >    sorted_by_DP <- variants[order(variants$DP, decreasing = TRUE), ]
+> >    head(sorted_by_DP$DP)
 > > ~~~
 > > {: .language-r}
 > > 
 > > 
 > > 
 > > ~~~
-> > Error: attempt to use zero-length variable name
+> > [1] 79 46 41 29 29 27
 > > ~~~
-> > {: .error}
+> > {: .output}
+> {: .solution}
+{: .challenge}
+
+
+
+You can rename columns:
+
 
 ~~~
 colnames(variants)[colnames(variants) == "sample_id"] <- "strain"
 
 # check the column name (hint names are returned as a vector)
 colnames(variants)
-```
-
-## Saving your data frame to a file
-
-We can save data to a file. We will save our `SRR2584863_variants` object
-to a .csv file using the `write.csv()` function:
 ~~~
 {: .language-r}
 
 
 
 ~~~
-Error: attempt to use zero-length variable name
+ [1] "strain"        "CHROM"         "POS"           "ID"           
+ [5] "REF"           "ALT"           "QUAL"          "FILTER"       
+ [9] "INDEL"         "IDV"           "IMF"           "DP"           
+[13] "VDB"           "RPB"           "MQB"           "BQB"          
+[17] "MQSB"          "SGB"           "MQ0F"          "ICB"          
+[21] "HOB"           "AC"            "AN"            "DP4"          
+[25] "MQ"            "Indiv"         "gt_PL"         "gt_GT"        
+[29] "gt_GT_alleles"
 ~~~
-{: .error}
+{: .output}
+
+## Saving your data frame to a file
+
+We can save data to a file. We will save our `SRR2584863_variants` object
+to a .csv file using the `write.csv()` function:
+
 
 ~~~
 write.csv(SRR2584863_variants, file = "../data/SRR2584863_variants.csv")
-```
+~~~
+{: .language-r}
 
 The `write.csv()` function has some additional arguments listed in the help, but
 at a minimum you need to tell it what data frame to write to file, and give a
@@ -1368,24 +1374,29 @@ In this exercise, we will leave the title of the data frame as
 
 Finally, let's check the first few lines of the `Ecoli_metadata` data
 frame:
+
+
+
+
+~~~
+head(Ecoli_metadata)
 ~~~
 {: .language-r}
 
 
 
 ~~~
-Error: attempt to use zero-length variable name
+# A tibble: 6 × 7
+  sample   generation clade   strain cit     run       genome_size
+  <chr>         <dbl> <chr>   <chr>  <chr>   <chr>           <dbl>
+1 REL606            0 NA      REL606 unknown <NA>             4.62
+2 REL1166A       2000 unknown REL606 unknown SRR098028        4.63
+3 ZDB409         5000 unknown REL606 unknown SRR098281        4.6 
+4 ZDB429        10000 UC      REL606 unknown SRR098282        4.59
+5 ZDB446        15000 UC      REL606 unknown SRR098283        4.66
+6 ZDB458        20000 (C1,C2) REL606 unknown SRR098284        4.63
 ~~~
-{: .error}
-
-~~~
-Error: attempt to use zero-length variable name
-~~~
-{: .error}
-
-~~~
-head(Ecoli_metadata)
-```
+{: .output}
 
 The type of this object is 'tibble', a type of data
 frame we will talk more about in the 'dplyr' section. If you needed
@@ -1412,34 +1423,87 @@ a true R data frame you could coerce with `as.data.frame()`.
 > H) Save the edited Ecoli_metadata data frame as "exercise_solution.csv" in your current working directory.
 >
 >> ## Solution
-~~~
-{: .language-r}
-
-
-
-~~~
-Error: attempt to use zero-length variable name
-~~~
-{: .error}
 >> 
 >> ~~~
 >> dim(Ecoli_metadata)
->> levels(as.factor(Ecoli_metadata$cit))
->> table(as.factor(Ecoli_metadata$cit))
->> Ecoli_metadata[7,7]
->> median(Ecoli_metadata$genome_size)
->> colnames(Ecoli_metadata)[colnames(Ecoli_metadata) == "sample"] <- "sample_id"
->> Ecoli_metadata$genome_size_bp <- Ecoli_metadata$genome_size * 1000000
->> write.csv(Ecoli_metadata, file = "exercise_solution.csv")
->> ```
->> > {: .solution}
->> {: .challenge}
 >> ~~~
 >> {: .language-r}
 >> 
 >> 
 >> 
 >> ~~~
->> Error: attempt to use zero-length variable name
+>> [1] 30  7
 >> ~~~
->> {: .error}
+>> {: .output}
+>> 
+>> 
+>> 
+>> ~~~
+>> levels(as.factor(Ecoli_metadata$cit))
+>> ~~~
+>> {: .language-r}
+>> 
+>> 
+>> 
+>> ~~~
+>> [1] "minus"   "plus"    "unknown"
+>> ~~~
+>> {: .output}
+>> 
+>> 
+>> 
+>> ~~~
+>> table(as.factor(Ecoli_metadata$cit))
+>> ~~~
+>> {: .language-r}
+>> 
+>> 
+>> 
+>> ~~~
+>> 
+>>   minus    plus unknown 
+>>       9       9      12 
+>> ~~~
+>> {: .output}
+>> 
+>> 
+>> 
+>> ~~~
+>> Ecoli_metadata[7,7]
+>> ~~~
+>> {: .language-r}
+>> 
+>> 
+>> 
+>> ~~~
+>> # A tibble: 1 × 1
+>>   genome_size
+>>         <dbl>
+>> 1        4.62
+>> ~~~
+>> {: .output}
+>> 
+>> 
+>> 
+>> ~~~
+>> median(Ecoli_metadata$genome_size)
+>> ~~~
+>> {: .language-r}
+>> 
+>> 
+>> 
+>> ~~~
+>> [1] 4.625
+>> ~~~
+>> {: .output}
+>> 
+>> 
+>> 
+>> ~~~
+>> colnames(Ecoli_metadata)[colnames(Ecoli_metadata) == "sample"] <- "sample_id"
+>> Ecoli_metadata$genome_size_bp <- Ecoli_metadata$genome_size * 1000000
+>> write.csv(Ecoli_metadata, file = "exercise_solution.csv")
+>> ~~~
+>> {: .language-r}
+> {: .solution}
+{: .challenge}
