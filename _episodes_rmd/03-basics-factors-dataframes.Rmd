@@ -80,7 +80,7 @@ in your analysis, and its reproducibility.
 > "save"-click away from overwriting the original file. You have to purposely
 > use a writing function (e.g. `write.csv()`) to save data loaded into R. In
 > that case, be sure to save the manipulated data into a new file. More on this
-> later in the lesson.  
+> later in the lesson.
  {: .callout}
 
 ## Importing tabular data into R
@@ -139,7 +139,7 @@ We will need to load the sheet using a function called `read.csv()`.
 {: .challenge}
 
 Now, let's read in the file `combined_tidy_vcf.csv` which will be located in
-`/home/dcuser/.solutions/R_data/`. Call this data `variants`. The
+`/home/dcuser/r_data/`. Call this data `variants`. The
 first argument to pass to our `read.csv()` function is the file path for our
 data. The file path must be in quotes and now is a good time to remember to
 use tab autocompletion. **If you use tab autocompletion you avoid typos and
@@ -148,7 +148,7 @@ errors in file paths.** Use it!
 ```{r, eval = FALSE, purl = FALSE}
 ## read in a CSV file and save it as 'variants'
 
-variants <- read.csv("../r_data/combined_tidy_vcf.csv")
+variants <- read.csv("/home/dcuser/r_data/combined_tidy_vcf.csv")
 ```
 
 
@@ -352,30 +352,6 @@ plot(ordered_factor_snps)
 Factors come in handy in many places when using R. Even using more
 sophisticated plotting packages such as ggplot2 will sometimes require you
 to understand how to manipulate factors.
-
-
-<!-- For now, let's explore how we can order -->
-<!-- the factors in our plot so that the first four values are "A", "C", "G", "T", with multi-nucleotide -->
-<!-- combinations listed alphabetically after these four. -->
-
-<!-- We can take our existing `REF` factor, and use the `factor()` -->
-<!-- function again. This time we will pass it two new arguments: `levels` will be -->
-<!-- assigned to a vector that has the REF values in the order we want them, -->
-<!-- and we will set the `ordered` argument to TRUE. -->
-
-<!-- ```{r, purl = FALSE} -->
-<!--  # order the 'REF' factor to match our desired set of levels -->
-<!-- REF <-  -->
-<!-- ```         -->
-
-<!-- We can now see the new ordering: -->
-
-<!-- ```{r, purl = FALSE} -->
-
-<!-- ``` -->
-
-<!-- Although not all levels are shown, notice there are `<` signs indicating an -->
-<!-- order. -->
 
 ## Subsetting data frames
 
@@ -621,7 +597,7 @@ Lets summarize this section on coercion with a few take home messages.
 
 - When you explicitly coerce one data type into another (this is known as
   **explicit coercion**), be careful to check the result. Ideally, you should try to see if its possible to avoid steps in your analysis that force you to
-  coerce.  
+  coerce.
 - R will sometimes coerce without you asking for it. This is called
   (appropriately) **implicit coercion**. For example when we tried to create
   a vector with multiple data types, R chose one type through implicit
