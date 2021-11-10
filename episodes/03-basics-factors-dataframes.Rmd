@@ -644,23 +644,21 @@ sorted_by_DP <- variants[order(variants$DP), ]
 head(sorted_by_DP$DP)
 ```
 
+
 > ## Exercise
-> The `order()` function lists values in increasing order by default. Look at the documentation
-> for this function and change `sorted_by_DP` to start with variants with the greatest filtered
-> depth ("DP").
+> The `order()` function lists values in increasing order by default. Look at
+> the documentation for this function and change `sorted_by_DP` to start with
+> variants with the greatest filtered depth ("DP").
 >
 > > ## Solution
 > > ```{r, purl = FALSE}
-> > sorted_by_DP <- variants[order(variants$DP, decreasing = TRUE), ]
-> > head(sorted_by_DP$DP)
-> >```
+> >    sorted_by_DP <- variants[order(variants$DP, decreasing = TRUE), ]
+> >    head(sorted_by_DP$DP)
+> > ```
 > {: .solution}
 {: .challenge}
 
-<!-- You can selectively replace values in a data frame based on their value: -->
 
-<!-- ```{r} -->
-<!-- ``` -->
 
 You can rename columns:
 
