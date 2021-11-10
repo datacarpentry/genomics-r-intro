@@ -140,7 +140,7 @@ select(variants, sample_id, REF, ALT, DP)
 {: .language-r}
 
 ~~~
-# A tibble: 6 x 4
+# A tibble: 6 × 4
   sample_id  REF      ALT          DP
   <chr>      <chr>    <chr>     <dbl>
 1 SRR2584863 T        G             4
@@ -163,7 +163,7 @@ select(variants, -CHROM)
 
 
 ~~~
-# A tibble: 6 x 28
+# A tibble: 6 × 28
   sample_id    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP    VDB
   <chr>      <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>  <dbl>
 1 SRR25848…   9972 NA    T     G        91 NA     FALSE    NA  NA       4 0.0257
@@ -188,7 +188,7 @@ filter(variants, sample_id == "SRR2584863")
 
 
 ~~~
-# A tibble: 6 x 29
+# A tibble: 6 × 29
   sample_id  CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
   <chr>      <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
 1 SRR2584863 CP00…   9972 NA    T     G        91 NA     FALSE    NA  NA       4
@@ -237,7 +237,7 @@ variants %>%
 
 
 ~~~
-# A tibble: 6 x 3
+# A tibble: 6 × 3
   REF      ALT          DP
   <chr>    <chr>     <dbl>
 1 T        G             4
@@ -287,7 +287,7 @@ SRR2584863_variants %>% head()
 
 
 ~~~
-# A tibble: 6 x 3
+# A tibble: 6 × 3
   REF      ALT          DP
   <chr>    <chr>     <dbl>
 1 T        G             4
@@ -310,7 +310,7 @@ SRR2584863_variants %>% slice(1:6)
 
 
 ~~~
-# A tibble: 6 x 3
+# A tibble: 6 × 3
   REF      ALT          DP
   <chr>    <chr>     <dbl>
 1 T        G             4
@@ -331,7 +331,7 @@ SRR2584863_variants %>% slice(10:15)
 
 
 ~~~
-# A tibble: 6 x 3
+# A tibble: 6 × 3
   REF   ALT      DP
   <chr> <chr> <dbl>
 1 AT    ATT       7
@@ -363,7 +363,7 @@ SRR2584863_variants %>% slice(10:15)
 >> 
 >> 
 >> ~~~
->> # A tibble: 16 x 3
+>> # A tibble: 16 × 3
 >>    REF      ALT           POS
 >>    <chr>    <chr>       <dbl>
 >>  1 G        T          281923
@@ -416,7 +416,7 @@ variants %>%
 
 
 ~~~
-# A tibble: 6 x 30
+# A tibble: 6 × 30
   sample_id  CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
   <chr>      <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
 1 SRR2584863 CP00…   9972 NA    T     G        91 NA     FALSE    NA  NA       4
@@ -450,7 +450,7 @@ variants %>%
 >> 
 >> 
 >> ~~~
->> # A tibble: 6 x 4
+>> # A tibble: 6 × 4
 >>   sample_id     POS  QUAL POLPROB
 >>   <chr>       <dbl> <dbl>   <dbl>
 >> 1 SRR2584863   9972    91    1.00
@@ -487,7 +487,7 @@ variants %>%
 
 
 ~~~
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   sample_id  `n()`
   <chr>      <int>
 1 SRR2584863    25
@@ -519,7 +519,7 @@ variants %>%
 
 
 ~~~
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   sample_id      n
   <chr>      <int>
 1 SRR2584863    25
@@ -540,7 +540,7 @@ variants %>%
 
 
 ~~~
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   sample_id      n
   <chr>      <int>
 1 SRR2584863    25
@@ -572,7 +572,7 @@ variants %>%
 
 
 ~~~
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   sample_id  `max(DP)`
   <chr>          <dbl>
 1 SRR2584863        20

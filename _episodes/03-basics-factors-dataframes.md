@@ -79,7 +79,7 @@ in your analysis, and its reproducibility.
 > "save"-click away from overwriting the original file. You have to purposely
 > use a writing function (e.g. `write.csv()`) to save data loaded into R. In
 > that case, be sure to save the manipulated data into a new file. More on this
-> later in the lesson.  
+> later in the lesson.
  {: .callout}
 
 ## Importing tabular data into R
@@ -138,7 +138,7 @@ We will need to load the sheet using a function called `read.csv()`.
 {: .challenge}
 
 Now, let's read in the file `combined_tidy_vcf.csv` which will be located in
-`/home/dcuser/.solutions/R_data/`. Call this data `variants`. The
+`/home/dcuser/r_data/`. Call this data `variants`. The
 first argument to pass to our `read.csv()` function is the file path for our
 data. The file path must be in quotes and now is a good time to remember to
 use tab autocompletion. **If you use tab autocompletion you avoid typos and
@@ -148,7 +148,7 @@ errors in file paths.** Use it!
 ~~~
 ## read in a CSV file and save it as 'variants'
 
-variants <- read.csv("../r_data/combined_tidy_vcf.csv")
+variants <- read.csv("/home/dcuser/r_data/combined_tidy_vcf.csv")
 ~~~
 {: .language-r}
 
@@ -503,30 +503,6 @@ Factors come in handy in many places when using R. Even using more
 sophisticated plotting packages such as ggplot2 will sometimes require you
 to understand how to manipulate factors.
 
-
-<!-- For now, let's explore how we can order -->
-<!-- the factors in our plot so that the first four values are "A", "C", "G", "T", with multi-nucleotide -->
-<!-- combinations listed alphabetically after these four. -->
-
-<!-- We can take our existing `REF` factor, and use the `factor()` -->
-<!-- function again. This time we will pass it two new arguments: `levels` will be -->
-<!-- assigned to a vector that has the REF values in the order we want them, -->
-<!-- and we will set the `ordered` argument to TRUE. -->
-
-<!-- ```{r, purl = FALSE} -->
-<!--  # order the 'REF' factor to match our desired set of levels -->
-<!-- REF <-  -->
-<!-- ```         -->
-
-<!-- We can now see the new ordering: -->
-
-<!-- ```{r, purl = FALSE} -->
-
-<!-- ``` -->
-
-<!-- Although not all levels are shown, notice there are `<` signs indicating an -->
-<!-- order. -->
-
 ## Subsetting data frames
 
 Next, we are going to talk about how you can get specific values from data frames, and where necessary, change the mode of a column of values.
@@ -726,12 +702,9 @@ where we are taking a range).
 >>
 >> 
 >> ~~~
->> [1] "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863"
->> [6] "SRR2584863"
+>> Error: attempt to use zero-length variable name
 >> ~~~
->> {: .output}
->>
->> i.
+>> {: .error}
 >> 
 >> ~~~
 >> head(variants)
@@ -1230,7 +1203,7 @@ Lets summarize this section on coercion with a few take home messages.
 
 - When you explicitly coerce one data type into another (this is known as
   **explicit coercion**), be careful to check the result. Ideally, you should try to see if its possible to avoid steps in your analysis that force you to
-  coerce.  
+  coerce.
 - R will sometimes coerce without you asking for it. This is called
   (appropriately) **implicit coercion**. For example when we tried to create
   a vector with multiple data types, R chose one type through implicit
@@ -1305,58 +1278,50 @@ head(sorted_by_DP$DP)
 > > ~~~
 > > sorted_by_DP <- variants[order(variants$DP, decreasing = TRUE), ]
 > > head(sorted_by_DP$DP)
+> > ```
+> > > {: .solution}
+> > {: .challenge}
+> > 
+> > <!-- You can selectively replace values in a data frame based on their value: -->
+> > 
+> > <!-- ```{r} -->
+> > <!-- ``` -->
+> > 
+> > You can rename columns:
 > > ~~~
 > > {: .language-r}
 > > 
 > > 
 > > 
 > > ~~~
-> > [1] 79 46 41 29 29 27
+> > Error: attempt to use zero-length variable name
 > > ~~~
-> > {: .output}
-> {: .solution}
-{: .challenge}
-
-<!-- You can selectively replace values in a data frame based on their value: -->
-
-<!-- ```{r} -->
-<!-- ``` -->
-
-You can rename columns:
-
+> > {: .error}
 
 ~~~
 colnames(variants)[colnames(variants) == "sample_id"] <- "strain"
 
 # check the column name (hint names are returned as a vector)
 colnames(variants)
-~~~
-{: .language-r}
-
-
-
-~~~
- [1] "strain"        "CHROM"         "POS"           "ID"           
- [5] "REF"           "ALT"           "QUAL"          "FILTER"       
- [9] "INDEL"         "IDV"           "IMF"           "DP"           
-[13] "VDB"           "RPB"           "MQB"           "BQB"          
-[17] "MQSB"          "SGB"           "MQ0F"          "ICB"          
-[21] "HOB"           "AC"            "AN"            "DP4"          
-[25] "MQ"            "Indiv"         "gt_PL"         "gt_GT"        
-[29] "gt_GT_alleles"
-~~~
-{: .output}
+```
 
 ## Saving your data frame to a file
 
 We can save data to a file. We will save our `SRR2584863_variants` object
 to a .csv file using the `write.csv()` function:
+~~~
+{: .language-r}
 
+
+
+~~~
+Error: attempt to use zero-length variable name
+~~~
+{: .error}
 
 ~~~
 write.csv(SRR2584863_variants, file = "../data/SRR2584863_variants.csv")
-~~~
-{: .language-r}
+```
 
 The `write.csv()` function has some additional arguments listed in the help, but
 at a minimum you need to tell it what data frame to write to file, and give a
@@ -1403,29 +1368,24 @@ In this exercise, we will leave the title of the data frame as
 
 Finally, let's check the first few lines of the `Ecoli_metadata` data
 frame:
-
-
-
-
-~~~
-head(Ecoli_metadata)
 ~~~
 {: .language-r}
 
 
 
 ~~~
-# A tibble: 6 x 7
-  sample   generation clade   strain cit     run       genome_size
-  <chr>         <dbl> <chr>   <chr>  <chr>   <chr>           <dbl>
-1 REL606            0 NA      REL606 unknown <NA>             4.62
-2 REL1166A       2000 unknown REL606 unknown SRR098028        4.63
-3 ZDB409         5000 unknown REL606 unknown SRR098281        4.6 
-4 ZDB429        10000 UC      REL606 unknown SRR098282        4.59
-5 ZDB446        15000 UC      REL606 unknown SRR098283        4.66
-6 ZDB458        20000 (C1,C2) REL606 unknown SRR098284        4.63
+Error: attempt to use zero-length variable name
 ~~~
-{: .output}
+{: .error}
+
+~~~
+Error: attempt to use zero-length variable name
+~~~
+{: .error}
+
+~~~
+head(Ecoli_metadata)
+```
 
 The type of this object is 'tibble', a type of data
 frame we will talk more about in the 'dplyr' section. If you needed
@@ -1452,87 +1412,34 @@ a true R data frame you could coerce with `as.data.frame()`.
 > H) Save the edited Ecoli_metadata data frame as "exercise_solution.csv" in your current working directory.
 >
 >> ## Solution
+~~~
+{: .language-r}
+
+
+
+~~~
+Error: attempt to use zero-length variable name
+~~~
+{: .error}
 >> 
 >> ~~~
 >> dim(Ecoli_metadata)
->> ~~~
->> {: .language-r}
->> 
->> 
->> 
->> ~~~
->> [1] 30  7
->> ~~~
->> {: .output}
->> 
->> 
->> 
->> ~~~
 >> levels(as.factor(Ecoli_metadata$cit))
->> ~~~
->> {: .language-r}
->> 
->> 
->> 
->> ~~~
->> [1] "minus"   "plus"    "unknown"
->> ~~~
->> {: .output}
->> 
->> 
->> 
->> ~~~
 >> table(as.factor(Ecoli_metadata$cit))
->> ~~~
->> {: .language-r}
->> 
->> 
->> 
->> ~~~
->> 
->>   minus    plus unknown 
->>       9       9      12 
->> ~~~
->> {: .output}
->> 
->> 
->> 
->> ~~~
 >> Ecoli_metadata[7,7]
->> ~~~
->> {: .language-r}
->> 
->> 
->> 
->> ~~~
->> # A tibble: 1 x 1
->>   genome_size
->>         <dbl>
->> 1        4.62
->> ~~~
->> {: .output}
->> 
->> 
->> 
->> ~~~
 >> median(Ecoli_metadata$genome_size)
->> ~~~
->> {: .language-r}
->> 
->> 
->> 
->> ~~~
->> [1] 4.625
->> ~~~
->> {: .output}
->> 
->> 
->> 
->> ~~~
 >> colnames(Ecoli_metadata)[colnames(Ecoli_metadata) == "sample"] <- "sample_id"
 >> Ecoli_metadata$genome_size_bp <- Ecoli_metadata$genome_size * 1000000
 >> write.csv(Ecoli_metadata, file = "exercise_solution.csv")
+>> ```
+>> > {: .solution}
+>> {: .challenge}
 >> ~~~
 >> {: .language-r}
-> {: .solution}
-{: .challenge}
+>> 
+>> 
+>> 
+>> ~~~
+>> Error: attempt to use zero-length variable name
+>> ~~~
+>> {: .error}
