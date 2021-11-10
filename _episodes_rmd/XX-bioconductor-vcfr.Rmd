@@ -90,6 +90,14 @@ While we are only focusing in this workshop on VCF analyses, there are hundreds 
 >
 {: .callout}
 
+In bioinformatics, there are often many different tools that can be used in a
+particular instance. The authors of `vcfR` have [compiled some of
+them](https://github.com/knausb/vcfR#software-that-produce-vcf-files). One of
+those packages that [is available from
+Bioconductor](https://bioconductor.org/packages/release/bioc/html/VariantAnnotation.html)
+is called `VariantAnnotation` and may also be of interest to those working with
+vcf files in R.
+
 > ## Challenge
 >
 > Add code chunks to
