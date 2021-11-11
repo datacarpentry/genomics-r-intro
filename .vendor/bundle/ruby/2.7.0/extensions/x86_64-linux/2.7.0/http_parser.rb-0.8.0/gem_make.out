@@ -1,0 +1,130 @@
+current directory: /home/runner/work/genomics-r-intro/genomics-r-intro/.vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.8.0/ext/ruby_http_parser
+/opt/hostedtoolcache/Ruby/2.7.4/x64/bin/ruby -I /opt/hostedtoolcache/Ruby/2.7.4/x64/lib/ruby/2.7.0 -r ./siteconf20211111-12549-11kyy7e.rb extconf.rb
+creating Makefile
+
+current directory: /home/runner/work/genomics-r-intro/genomics-r-intro/.vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.8.0/ext/ruby_http_parser
+make "DESTDIR=" clean
+make[1]: Entering directory '/home/runner/work/genomics-r-intro/genomics-r-intro/.vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.8.0/ext/ruby_http_parser'
+Makefile:175: warning: overriding recipe for target 'clean'
+€Þ¢ÄüU:175: warning: ignoring old recipe for target 'clean'
+Makefile:182: warning: overriding recipe for target 'distclean'
+€Þ¢ÄüU:182: warning: ignoring old recipe for target 'distclean'
+Makefile:190: warning: overriding recipe for target 'install-so'
+€Þ¢ÄüU:190: warning: ignoring old recipe for target 'install-so'
+Makefile:200: warning: overriding recipe for target 'pre-install-rb-default'
+€Þ¢ÄüU:200: warning: ignoring old recipe for target 'pre-install-rb-default'
+Makefile:202: warning: overriding recipe for target '.sitearchdir.time'
+€Þ¢ÄüU:202: warning: ignoring old recipe for target '.sitearchdir.time'
+Makefile:212: warning: overriding recipe for target '.cc.o'
+€Þ¢ÄüU:212: warning: ignoring old recipe for target '.cc.o'
+Makefile:216: warning: overriding recipe for target '.cc.S'
+€Þ¢ÄüU:216: warning: ignoring old recipe for target '.cc.S'
+Makefile:220: warning: overriding recipe for target '.mm.o'
+€Þ¢ÄüU:220: warning: ignoring old recipe for target '.mm.o'
+Makefile:224: warning: overriding recipe for target '.mm.S'
+€Þ¢ÄüU:224: warning: ignoring old recipe for target '.mm.S'
+Makefile:228: warning: overriding recipe for target '.cxx.o'
+€Þ¢ÄüU:228: warning: ignoring old recipe for target '.cxx.o'
+Makefile:232: warning: overriding recipe for target '.cxx.S'
+€Þ¢ÄüU:232: warning: ignoring old recipe for target '.cxx.S'
+Makefile:236: warning: overriding recipe for target '.cpp.o'
+€Þ¢ÄüU:236: warning: ignoring old recipe for target '.cpp.o'
+Makefile:240: warning: overriding recipe for target '.cpp.S'
+€Þ¢ÄüU:240: warning: ignoring old recipe for target '.cpp.S'
+Makefile:244: warning: overriding recipe for target '.c.o'
+€Þ¢ÄüU:244: warning: ignoring old recipe for target '.c.o'
+Makefile:248: warning: overriding recipe for target '.c.S'
+€Þ¢ÄüU:248: warning: ignoring old recipe for target '.c.S'
+Makefile:252: warning: overriding recipe for target '.m.o'
+€Þ¢ÄüU:252: warning: ignoring old recipe for target '.m.o'
+Makefile:256: warning: overriding recipe for target '.m.S'
+€Þ¢ÄüU:256: warning: ignoring old recipe for target '.m.S'
+Makefile:260: warning: overriding recipe for target 'ruby_http_parser.so'
+€Þ¢ÄüU:260: warning: ignoring old recipe for target 'ruby_http_parser.so'
+make[1]: Leaving directory '/home/runner/work/genomics-r-intro/genomics-r-intro/.vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.8.0/ext/ruby_http_parser'
+
+current directory: /home/runner/work/genomics-r-intro/genomics-r-intro/.vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.8.0/ext/ruby_http_parser
+make "DESTDIR="
+make[1]: Entering directory '/home/runner/work/genomics-r-intro/genomics-r-intro/.vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.8.0/ext/ruby_http_parser'
+Makefile:175: warning: overriding recipe for target 'clean'
+€3„©U:175: warning: ignoring old recipe for target 'clean'
+Makefile:182: warning: overriding recipe for target 'distclean'
+€3„©U:182: warning: ignoring old recipe for target 'distclean'
+Makefile:190: warning: overriding recipe for target 'install-so'
+€3„©U:190: warning: ignoring old recipe for target 'install-so'
+Makefile:200: warning: overriding recipe for target 'pre-install-rb-default'
+€3„©U:200: warning: ignoring old recipe for target 'pre-install-rb-default'
+Makefile:202: warning: overriding recipe for target '.sitearchdir.time'
+€3„©U:202: warning: ignoring old recipe for target '.sitearchdir.time'
+Makefile:212: warning: overriding recipe for target '.cc.o'
+€3„©U:212: warning: ignoring old recipe for target '.cc.o'
+Makefile:216: warning: overriding recipe for target '.cc.S'
+€3„©U:216: warning: ignoring old recipe for target '.cc.S'
+Makefile:220: warning: overriding recipe for target '.mm.o'
+€3„©U:220: warning: ignoring old recipe for target '.mm.o'
+Makefile:224: warning: overriding recipe for target '.mm.S'
+€3„©U:224: warning: ignoring old recipe for target '.mm.S'
+Makefile:228: warning: overriding recipe for target '.cxx.o'
+€3„©U:228: warning: ignoring old recipe for target '.cxx.o'
+Makefile:232: warning: overriding recipe for target '.cxx.S'
+€3„©U:232: warning: ignoring old recipe for target '.cxx.S'
+Makefile:236: warning: overriding recipe for target '.cpp.o'
+€3„©U:236: warning: ignoring old recipe for target '.cpp.o'
+Makefile:240: warning: overriding recipe for target '.cpp.S'
+€3„©U:240: warning: ignoring old recipe for target '.cpp.S'
+Makefile:244: warning: overriding recipe for target '.c.o'
+€3„©U:244: warning: ignoring old recipe for target '.c.o'
+Makefile:248: warning: overriding recipe for target '.c.S'
+€3„©U:248: warning: ignoring old recipe for target '.c.S'
+Makefile:252: warning: overriding recipe for target '.m.o'
+€3„©U:252: warning: ignoring old recipe for target '.m.o'
+Makefile:256: warning: overriding recipe for target '.m.S'
+€3„©U:256: warning: ignoring old recipe for target '.m.S'
+Makefile:260: warning: overriding recipe for target 'ruby_http_parser.so'
+€3„©U:260: warning: ignoring old recipe for target 'ruby_http_parser.so'
+compiling ruby_http_parser.c
+compiling ryah_http_parser.c
+linking shared-object ruby_http_parser.so
+make[1]: Leaving directory '/home/runner/work/genomics-r-intro/genomics-r-intro/.vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.8.0/ext/ruby_http_parser'
+
+current directory: /home/runner/work/genomics-r-intro/genomics-r-intro/.vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.8.0/ext/ruby_http_parser
+make "DESTDIR=" install
+make[1]: Entering directory '/home/runner/work/genomics-r-intro/genomics-r-intro/.vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.8.0/ext/ruby_http_parser'
+Makefile:175: warning: overriding recipe for target 'clean'
+€®·Ï˜U:175: warning: ignoring old recipe for target 'clean'
+Makefile:182: warning: overriding recipe for target 'distclean'
+€®·Ï˜U:182: warning: ignoring old recipe for target 'distclean'
+Makefile:190: warning: overriding recipe for target 'install-so'
+€®·Ï˜U:190: warning: ignoring old recipe for target 'install-so'
+Makefile:200: warning: overriding recipe for target 'pre-install-rb-default'
+€®·Ï˜U:200: warning: ignoring old recipe for target 'pre-install-rb-default'
+Makefile:202: warning: overriding recipe for target '.sitearchdir.time'
+€®·Ï˜U:202: warning: ignoring old recipe for target '.sitearchdir.time'
+Makefile:212: warning: overriding recipe for target '.cc.o'
+€®·Ï˜U:212: warning: ignoring old recipe for target '.cc.o'
+Makefile:216: warning: overriding recipe for target '.cc.S'
+€®·Ï˜U:216: warning: ignoring old recipe for target '.cc.S'
+Makefile:220: warning: overriding recipe for target '.mm.o'
+€®·Ï˜U:220: warning: ignoring old recipe for target '.mm.o'
+Makefile:224: warning: overriding recipe for target '.mm.S'
+€®·Ï˜U:224: warning: ignoring old recipe for target '.mm.S'
+Makefile:228: warning: overriding recipe for target '.cxx.o'
+€®·Ï˜U:228: warning: ignoring old recipe for target '.cxx.o'
+Makefile:232: warning: overriding recipe for target '.cxx.S'
+€®·Ï˜U:232: warning: ignoring old recipe for target '.cxx.S'
+Makefile:236: warning: overriding recipe for target '.cpp.o'
+€®·Ï˜U:236: warning: ignoring old recipe for target '.cpp.o'
+Makefile:240: warning: overriding recipe for target '.cpp.S'
+€®·Ï˜U:240: warning: ignoring old recipe for target '.cpp.S'
+Makefile:244: warning: overriding recipe for target '.c.o'
+€®·Ï˜U:244: warning: ignoring old recipe for target '.c.o'
+Makefile:248: warning: overriding recipe for target '.c.S'
+€®·Ï˜U:248: warning: ignoring old recipe for target '.c.S'
+Makefile:252: warning: overriding recipe for target '.m.o'
+€®·Ï˜U:252: warning: ignoring old recipe for target '.m.o'
+Makefile:256: warning: overriding recipe for target '.m.S'
+€®·Ï˜U:256: warning: ignoring old recipe for target '.m.S'
+Makefile:260: warning: overriding recipe for target 'ruby_http_parser.so'
+€®·Ï˜U:260: warning: ignoring old recipe for target 'ruby_http_parser.so'
+/usr/bin/install -c -m 0755 ruby_http_parser.so ./.gem.20211111-12549-1molokz
+make[1]: Leaving directory '/home/runner/work/genomics-r-intro/genomics-r-intro/.vendor/bundle/ruby/2.7.0/gems/http_parser.rb-0.8.0/ext/ruby_http_parser'
