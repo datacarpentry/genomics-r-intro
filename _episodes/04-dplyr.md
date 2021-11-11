@@ -4,23 +4,22 @@
 title: "Aggregating and Analyzing Data with dplyr"
 teaching: 40
 exercises: 15
-questions:
-- "How can I manipulate data frames without repeating myself?"
+questions: How can I manipulate data frames without repeating myself?
 objectives:
-- "Describe what the `dplyr` package in R is used for."
-- "Apply common `dplyr` functions to manipulate data in R."
-- "Employ the ‘pipe’ operator to link together a sequence of functions."
-- "Employ the ‘mutate’ function to apply other chosen functions to existing columns and create new columns of data."
-- "Employ the ‘split-apply-combine’ concept to split the data into groups, apply analysis to each group, and combine the results."
-
+- Describe what the `dplyr` package in R is used for.
+- Apply common `dplyr` functions to manipulate data in R.
+- Employ the ‘pipe’ operator to link together a sequence of functions.
+- Employ the ‘mutate’ function to apply other chosen functions to existing columns
+  and create new columns of data.
+- Employ the ‘split-apply-combine’ concept to split the data into groups, apply analysis
+  to each group, and combine the results.
 keypoints:
-- "Use the `dplyr` package to manipulate data frames."
-- "Use `glimpse()` to quickly look at your data frame."
-- "Use `select()` to choose variables from a data frame."
-- "Use `filter()` to choose data based on values."
-- "Use `mutate()` to create new variables."
-- "Use `group_by()` and `summarize()` to work with subsets of data."
-
+- Use the `dplyr` package to manipulate data frames.
+- Use `glimpse()` to quickly look at your data frame.
+- Use `select()` to choose variables from a data frame.
+- Use `filter()` to choose data based on values.
+- Use `mutate()` to create new variables.
+- Use `group_by()` and `summarize()` to work with subsets of data.
 source: Rmd
 ---
 
@@ -36,8 +35,8 @@ in a way that will reduce repetition, reduce the probability of making
 errors, and probably even save you some typing. As an added bonus, you might
 even find the `dplyr` grammar easier to read.
 
-Here we're going to cover 6 of the most commonly used functions as well as using
-pipes (`%>%`) to combine them.
+Here we're going to cover some of the most commonly used functions as well as using
+pipes (`%>%`) to combine them:
 
 1. `glimpse()`
 2. `select()`
@@ -45,6 +44,7 @@ pipes (`%>%`) to combine them.
 4. `group_by()`
 5. `summarize()`
 6. `mutate()`
+7. `pivot_longer` and `pivot_wider`
 
 Packages in R are sets of additional functions that let you do more
 stuff in R. The functions we've been using, like `str()`, come built into R;
@@ -139,16 +139,23 @@ select(variants, sample_id, REF, ALT, DP)
 ~~~
 {: .language-r}
 
+
+
 ~~~
-# A tibble: 6 × 4
-  sample_id  REF      ALT          DP
-  <chr>      <chr>    <chr>     <dbl>
-1 SRR2584863 T        G             4
-2 SRR2584863 G        T             6
-3 SRR2584863 G        T            10
-4 SRR2584863 CTTTTTTT CTTTTTTTT    12
-5 SRR2584863 CCGC     CCGCGC       10
-6 SRR2584863 C        T            10
+# A tibble: 801 × 4
+   sample_id  REF                              ALT                            DP
+   <chr>      <chr>                            <chr>                       <dbl>
+ 1 SRR2584863 T                                G                               4
+ 2 SRR2584863 G                                T                               6
+ 3 SRR2584863 G                                T                              10
+ 4 SRR2584863 CTTTTTTT                         CTTTTTTTT                      12
+ 5 SRR2584863 CCGC                             CCGCGC                         10
+ 6 SRR2584863 C                                T                              10
+ 7 SRR2584863 C                                A                               8
+ 8 SRR2584863 G                                A                              11
+ 9 SRR2584863 ACAGCCAGCCAGCCAGCCAGCCAGCCAGCCAG ACAGCCAGCCAGCCAGCCAGCCAGCC…     3
+10 SRR2584863 AT                               ATT                             7
+# … with 791 more rows
 ~~~
 {: .output}
 
@@ -162,21 +169,91 @@ select(variants, -CHROM)
 {: .language-r}
 
 
+
 ~~~
-# A tibble: 6 × 28
-  sample_id    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP    VDB
-  <chr>      <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>  <dbl>
-1 SRR25848…   9972 NA    T     G        91 NA     FALSE    NA  NA       4 0.0257
-2 SRR25848… 263235 NA    G     T        85 NA     FALSE    NA  NA       6 0.0961
-3 SRR25848… 281923 NA    G     T       217 NA     FALSE    NA  NA      10 0.774 
-4 SRR25848… 433359 NA    CTTT… CTTT…    64 NA     TRUE     12   1      12 0.478 
-5 SRR25848… 473901 NA    CCGC  CCGC…   228 NA     TRUE      9   0.9    10 0.660 
-6 SRR25848… 648692 NA    C     T       210 NA     FALSE    NA  NA      10 0.268 
-# … with 16 more variables: RPB <dbl>, MQB <dbl>, BQB <dbl>, MQSB <dbl>,
-#   SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>, AC <dbl>, AN <dbl>, DP4 <chr>,
-#   MQ <dbl>, Indiv <chr>, gt_PL <dbl>, gt_GT <dbl>, gt_GT_alleles <chr>
+# A tibble: 801 × 28
+   sample_id      POS ID    REF     ALT     QUAL FILTER INDEL   IDV    IMF    DP
+   <chr>        <dbl> <lgl> <chr>   <chr>  <dbl> <lgl>  <lgl> <dbl>  <dbl> <dbl>
+ 1 SRR2584863    9972 NA    T       G         91 NA     FALSE    NA NA         4
+ 2 SRR2584863  263235 NA    G       T         85 NA     FALSE    NA NA         6
+ 3 SRR2584863  281923 NA    G       T        217 NA     FALSE    NA NA        10
+ 4 SRR2584863  433359 NA    CTTTTT… CTTTT…    64 NA     TRUE     12  1        12
+ 5 SRR2584863  473901 NA    CCGC    CCGCGC   228 NA     TRUE      9  0.9      10
+ 6 SRR2584863  648692 NA    C       T        210 NA     FALSE    NA NA        10
+ 7 SRR2584863 1331794 NA    C       A        178 NA     FALSE    NA NA         8
+ 8 SRR2584863 1733343 NA    G       A        225 NA     FALSE    NA NA        11
+ 9 SRR2584863 2103887 NA    ACAGCC… ACAGC…    56 NA     TRUE      2  0.667     3
+10 SRR2584863 2333538 NA    AT      ATT      167 NA     TRUE      7  1         7
+# … with 791 more rows, and 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
+#   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
+#   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
+#   gt_GT <dbl>, gt_GT_alleles <chr>
 ~~~
 {: .output}
+
+`dplyr` also provides useful functions to select columns based on their names. For instance, `ends_with()` allows you to select columns that ends with specific letters. For instance, if you wanted to select columns that end with the letter "B":
+
+
+~~~
+select(variants, ends_with("B"))
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 801 × 8
+      VDB   RPB   MQB   BQB   MQSB    SGB ICB   HOB  
+    <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl> <lgl> <lgl>
+ 1 0.0257    NA    NA    NA NA     -0.556 NA    NA   
+ 2 0.0961     1     1     1 NA     -0.591 NA    NA   
+ 3 0.774     NA    NA    NA  0.975 -0.662 NA    NA   
+ 4 0.478     NA    NA    NA  1     -0.676 NA    NA   
+ 5 0.660     NA    NA    NA  0.916 -0.662 NA    NA   
+ 6 0.268     NA    NA    NA  0.916 -0.670 NA    NA   
+ 7 0.624     NA    NA    NA  0.901 -0.651 NA    NA   
+ 8 0.992     NA    NA    NA  1.01  -0.670 NA    NA   
+ 9 0.902     NA    NA    NA  1     -0.454 NA    NA   
+10 0.568     NA    NA    NA  1.01  -0.617 NA    NA   
+# … with 791 more rows
+~~~
+{: .output}
+
+> ## Challenge
+>
+> Create a table that contains all the columns with the letter "i" and column "POS",
+> without columns "Indiv" and "FILTER".
+> Hint: look at the help function `ends_with()` we've just covered.
+>
+>> ## Solution
+>>
+>> 
+>> ~~~
+>> select(variants, contains("i"), -Indiv, -FILTER, POS)
+>> ~~~
+>> {: .language-r}
+>> 
+>> 
+>> 
+>> ~~~
+>> # A tibble: 801 × 7
+>>    sample_id  ID    INDEL   IDV    IMF ICB       POS
+>>    <chr>      <lgl> <lgl> <dbl>  <dbl> <lgl>   <dbl>
+>>  1 SRR2584863 NA    FALSE    NA NA     NA       9972
+>>  2 SRR2584863 NA    FALSE    NA NA     NA     263235
+>>  3 SRR2584863 NA    FALSE    NA NA     NA     281923
+>>  4 SRR2584863 NA    TRUE     12  1     NA     433359
+>>  5 SRR2584863 NA    TRUE      9  0.9   NA     473901
+>>  6 SRR2584863 NA    FALSE    NA NA     NA     648692
+>>  7 SRR2584863 NA    FALSE    NA NA     NA    1331794
+>>  8 SRR2584863 NA    FALSE    NA NA     NA    1733343
+>>  9 SRR2584863 NA    TRUE      2  0.667 NA    2103887
+>> 10 SRR2584863 NA    TRUE      7  1     NA    2333538
+>> # … with 791 more rows
+>> ~~~
+>> {: .output}
+> {: .solution}
+{: .challenge}
 
 To choose rows, use `filter()`:
 
@@ -187,16 +264,188 @@ filter(variants, sample_id == "SRR2584863")
 {: .language-r}
 
 
+
 ~~~
-# A tibble: 6 × 29
-  sample_id  CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
-  <chr>      <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
-1 SRR2584863 CP00…   9972 NA    T     G        91 NA     FALSE    NA  NA       4
-2 SRR2584863 CP00… 263235 NA    G     T        85 NA     FALSE    NA  NA       6
-3 SRR2584863 CP00… 281923 NA    G     T       217 NA     FALSE    NA  NA      10
-4 SRR2584863 CP00… 433359 NA    CTTT… CTTT…    64 NA     TRUE     12   1      12
-5 SRR2584863 CP00… 473901 NA    CCGC  CCGC…   228 NA     TRUE      9   0.9    10
-6 SRR2584863 CP00… 648692 NA    C     T       210 NA     FALSE    NA  NA      10
+# A tibble: 25 × 29
+   sample_id  CHROM     POS ID    REF    ALT      QUAL FILTER INDEL   IDV    IMF
+   <chr>      <chr>   <dbl> <lgl> <chr>  <chr>   <dbl> <lgl>  <lgl> <dbl>  <dbl>
+ 1 SRR2584863 CP000… 9.97e3 NA    T      G          91 NA     FALSE    NA NA    
+ 2 SRR2584863 CP000… 2.63e5 NA    G      T          85 NA     FALSE    NA NA    
+ 3 SRR2584863 CP000… 2.82e5 NA    G      T         217 NA     FALSE    NA NA    
+ 4 SRR2584863 CP000… 4.33e5 NA    CTTTT… CTTTTT…    64 NA     TRUE     12  1    
+ 5 SRR2584863 CP000… 4.74e5 NA    CCGC   CCGCGC    228 NA     TRUE      9  0.9  
+ 6 SRR2584863 CP000… 6.49e5 NA    C      T         210 NA     FALSE    NA NA    
+ 7 SRR2584863 CP000… 1.33e6 NA    C      A         178 NA     FALSE    NA NA    
+ 8 SRR2584863 CP000… 1.73e6 NA    G      A         225 NA     FALSE    NA NA    
+ 9 SRR2584863 CP000… 2.10e6 NA    ACAGC… ACAGCC…    56 NA     TRUE      2  0.667
+10 SRR2584863 CP000… 2.33e6 NA    AT     ATT       167 NA     TRUE      7  1    
+# … with 15 more rows, and 18 more variables: DP <dbl>, VDB <dbl>, RPB <dbl>,
+#   MQB <dbl>, BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>,
+#   HOB <lgl>, AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>,
+#   gt_PL <dbl>, gt_GT <dbl>, gt_GT_alleles <chr>
+~~~
+{: .output}
+
+`filter()` will keep all the rows that match the conditions that are provided. Here are a few examples:
+
+
+~~~
+# rows for which the reference genome has T or G
+filter(variants, REF %in% c("T", "G"))
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 340 × 29
+   sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
+   <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
+ 1 SRR25848… CP00… 9.97e3 NA    T     G      91   NA     FALSE    NA    NA     4
+ 2 SRR25848… CP00… 2.63e5 NA    G     T      85   NA     FALSE    NA    NA     6
+ 3 SRR25848… CP00… 2.82e5 NA    G     T     217   NA     FALSE    NA    NA    10
+ 4 SRR25848… CP00… 1.73e6 NA    G     A     225   NA     FALSE    NA    NA    11
+ 5 SRR25848… CP00… 2.62e6 NA    G     T      31.9 NA     FALSE    NA    NA    12
+ 6 SRR25848… CP00… 3.00e6 NA    G     A     225   NA     FALSE    NA    NA    15
+ 7 SRR25848… CP00… 3.91e6 NA    G     T     225   NA     FALSE    NA    NA    10
+ 8 SRR25848… CP00… 9.97e3 NA    T     G     214   NA     FALSE    NA    NA    10
+ 9 SRR25848… CP00… 1.06e4 NA    G     A     225   NA     FALSE    NA    NA    11
+10 SRR25848… CP00… 6.40e4 NA    G     A     225   NA     FALSE    NA    NA    18
+# … with 330 more rows, and 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
+#   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
+#   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
+#   gt_GT <dbl>, gt_GT_alleles <chr>
+~~~
+{: .output}
+
+
+
+~~~
+# rows with QUAL values greater than or equal to 100
+filter(variants, QUAL >= 100)
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 666 × 29
+   sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
+   <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
+ 1 SRR25848… CP00… 2.82e5 NA    G     T       217 NA     FALSE    NA  NA      10
+ 2 SRR25848… CP00… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9   0.9    10
+ 3 SRR25848… CP00… 6.49e5 NA    C     T       210 NA     FALSE    NA  NA      10
+ 4 SRR25848… CP00… 1.33e6 NA    C     A       178 NA     FALSE    NA  NA       8
+ 5 SRR25848… CP00… 1.73e6 NA    G     A       225 NA     FALSE    NA  NA      11
+ 6 SRR25848… CP00… 2.33e6 NA    AT    ATT     167 NA     TRUE      7   1       7
+ 7 SRR25848… CP00… 2.41e6 NA    A     C       104 NA     FALSE    NA  NA       9
+ 8 SRR25848… CP00… 2.45e6 NA    A     C       225 NA     FALSE    NA  NA      20
+ 9 SRR25848… CP00… 2.67e6 NA    A     T       225 NA     FALSE    NA  NA      19
+10 SRR25848… CP00… 3.00e6 NA    G     A       225 NA     FALSE    NA  NA      15
+# … with 656 more rows, and 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
+#   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
+#   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
+#   gt_GT <dbl>, gt_GT_alleles <chr>
+~~~
+{: .output}
+
+
+
+~~~
+# rows that have TRUE in the column INDEL
+filter(variants, INDEL)
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 101 × 29
+   sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
+   <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
+ 1 SRR25848… CP00… 4.33e5 NA    CTTT… CTTT…  64   NA     TRUE     12 1        12
+ 2 SRR25848… CP00… 4.74e5 NA    CCGC  CCGC… 228   NA     TRUE      9 0.9      10
+ 3 SRR25848… CP00… 2.10e6 NA    ACAG… ACAG…  56   NA     TRUE      2 0.667     3
+ 4 SRR25848… CP00… 2.33e6 NA    AT    ATT   167   NA     TRUE      7 1         7
+ 5 SRR25848… CP00… 3.90e6 NA    A     AC     43.4 NA     TRUE      2 1         2
+ 6 SRR25848… CP00… 4.43e6 NA    TGG   T     228   NA     TRUE     10 1        10
+ 7 SRR25848… CP00… 1.48e5 NA    AGGGG AGGG… 122   NA     TRUE      8 1         8
+ 8 SRR25848… CP00… 1.58e5 NA    GTTT… GTTT…  19.5 NA     TRUE      6 1         6
+ 9 SRR25848… CP00… 1.73e5 NA    CAA   CA    180   NA     TRUE     11 1        11
+10 SRR25848… CP00… 1.75e5 NA    GAA   GA    194   NA     TRUE     10 1        10
+# … with 91 more rows, and 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
+#   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
+#   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
+#   gt_GT <dbl>, gt_GT_alleles <chr>
+~~~
+{: .output}
+
+
+
+~~~
+# rows that don't have missing data in the IDV column
+filter(variants, !is.na(IDV))
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 101 × 29
+   sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
+   <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
+ 1 SRR25848… CP00… 4.33e5 NA    CTTT… CTTT…  64   NA     TRUE     12 1        12
+ 2 SRR25848… CP00… 4.74e5 NA    CCGC  CCGC… 228   NA     TRUE      9 0.9      10
+ 3 SRR25848… CP00… 2.10e6 NA    ACAG… ACAG…  56   NA     TRUE      2 0.667     3
+ 4 SRR25848… CP00… 2.33e6 NA    AT    ATT   167   NA     TRUE      7 1         7
+ 5 SRR25848… CP00… 3.90e6 NA    A     AC     43.4 NA     TRUE      2 1         2
+ 6 SRR25848… CP00… 4.43e6 NA    TGG   T     228   NA     TRUE     10 1        10
+ 7 SRR25848… CP00… 1.48e5 NA    AGGGG AGGG… 122   NA     TRUE      8 1         8
+ 8 SRR25848… CP00… 1.58e5 NA    GTTT… GTTT…  19.5 NA     TRUE      6 1         6
+ 9 SRR25848… CP00… 1.73e5 NA    CAA   CA    180   NA     TRUE     11 1        11
+10 SRR25848… CP00… 1.75e5 NA    GAA   GA    194   NA     TRUE     10 1        10
+# … with 91 more rows, and 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
+#   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
+#   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
+#   gt_GT <dbl>, gt_GT_alleles <chr>
+~~~
+{: .output}
+
+`filter()` allows you to combine multiple conditions. You can separate them using a `,` as arguments to the function, they will be combined using the `&` (AND) logical operator. If you need to use the `|` (OR) logical operator, you can specify it explicitly:
+
+
+~~~
+# this is equivalent to:
+#   filter(variants, sample_id == "SRR2584863" & QUAL >= 100)
+filter(variants, sample_id == "SRR2584863", QUAL >= 100)
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 19 × 29
+   sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
+   <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
+ 1 SRR25848… CP00… 2.82e5 NA    G     T       217 NA     FALSE    NA  NA      10
+ 2 SRR25848… CP00… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9   0.9    10
+ 3 SRR25848… CP00… 6.49e5 NA    C     T       210 NA     FALSE    NA  NA      10
+ 4 SRR25848… CP00… 1.33e6 NA    C     A       178 NA     FALSE    NA  NA       8
+ 5 SRR25848… CP00… 1.73e6 NA    G     A       225 NA     FALSE    NA  NA      11
+ 6 SRR25848… CP00… 2.33e6 NA    AT    ATT     167 NA     TRUE      7   1       7
+ 7 SRR25848… CP00… 2.41e6 NA    A     C       104 NA     FALSE    NA  NA       9
+ 8 SRR25848… CP00… 2.45e6 NA    A     C       225 NA     FALSE    NA  NA      20
+ 9 SRR25848… CP00… 2.67e6 NA    A     T       225 NA     FALSE    NA  NA      19
+10 SRR25848… CP00… 3.00e6 NA    G     A       225 NA     FALSE    NA  NA      15
+11 SRR25848… CP00… 3.34e6 NA    A     C       211 NA     FALSE    NA  NA      10
+12 SRR25848… CP00… 3.40e6 NA    C     A       225 NA     FALSE    NA  NA      14
+13 SRR25848… CP00… 3.48e6 NA    A     G       200 NA     FALSE    NA  NA       9
+14 SRR25848… CP00… 3.49e6 NA    A     C       225 NA     FALSE    NA  NA      13
+15 SRR25848… CP00… 3.91e6 NA    G     T       225 NA     FALSE    NA  NA      10
+16 SRR25848… CP00… 4.10e6 NA    A     G       225 NA     FALSE    NA  NA      16
+17 SRR25848… CP00… 4.20e6 NA    A     C       225 NA     FALSE    NA  NA      11
+18 SRR25848… CP00… 4.43e6 NA    TGG   T       228 NA     TRUE     10   1      10
+19 SRR25848… CP00… 4.62e6 NA    A     C       185 NA     FALSE    NA  NA       9
 # … with 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>, BQB <dbl>,
 #   MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>, AC <dbl>,
 #   AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>, gt_GT <dbl>,
@@ -204,14 +453,75 @@ filter(variants, sample_id == "SRR2584863")
 ~~~
 {: .output}
 
-Note that this is equivalent to the base R code below,
-but is easier to read!
 
 
 ~~~
-variants[variants$sample_id == "SRR2584863",]
+# using `|` logical operator
+filter(variants, sample_id == "SRR2584863", (INDEL | QUAL >= 100))
 ~~~
 {: .language-r}
+
+
+
+~~~
+# A tibble: 22 × 29
+   sample_id  CHROM     POS ID    REF    ALT      QUAL FILTER INDEL   IDV    IMF
+   <chr>      <chr>   <dbl> <lgl> <chr>  <chr>   <dbl> <lgl>  <lgl> <dbl>  <dbl>
+ 1 SRR2584863 CP000… 2.82e5 NA    G      T         217 NA     FALSE    NA NA    
+ 2 SRR2584863 CP000… 4.33e5 NA    CTTTT… CTTTTT…    64 NA     TRUE     12  1    
+ 3 SRR2584863 CP000… 4.74e5 NA    CCGC   CCGCGC    228 NA     TRUE      9  0.9  
+ 4 SRR2584863 CP000… 6.49e5 NA    C      T         210 NA     FALSE    NA NA    
+ 5 SRR2584863 CP000… 1.33e6 NA    C      A         178 NA     FALSE    NA NA    
+ 6 SRR2584863 CP000… 1.73e6 NA    G      A         225 NA     FALSE    NA NA    
+ 7 SRR2584863 CP000… 2.10e6 NA    ACAGC… ACAGCC…    56 NA     TRUE      2  0.667
+ 8 SRR2584863 CP000… 2.33e6 NA    AT     ATT       167 NA     TRUE      7  1    
+ 9 SRR2584863 CP000… 2.41e6 NA    A      C         104 NA     FALSE    NA NA    
+10 SRR2584863 CP000… 2.45e6 NA    A      C         225 NA     FALSE    NA NA    
+# … with 12 more rows, and 18 more variables: DP <dbl>, VDB <dbl>, RPB <dbl>,
+#   MQB <dbl>, BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>,
+#   HOB <lgl>, AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>,
+#   gt_PL <dbl>, gt_GT <dbl>, gt_GT_alleles <chr>
+~~~
+{: .output}
+
+> ## Challenge
+>
+> Select all the mutations that occurred between the positions 1e6 (one million)
+> and 2e6 (included) that are not indels and have QUAL greater than 200.
+>
+>> ## Solution
+>>
+>> 
+>> ~~~
+>> filter(variants, POS >= 1e6 & POS <= 2e6, !INDEL, QUAL > 200)
+>> ~~~
+>> {: .language-r}
+>> 
+>> 
+>> 
+>> ~~~
+>> # A tibble: 77 × 29
+>>    sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
+>>    <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
+>>  1 SRR25848… CP00… 1.73e6 NA    G     A       225 NA     FALSE    NA    NA    11
+>>  2 SRR25848… CP00… 1.00e6 NA    A     G       225 NA     FALSE    NA    NA    15
+>>  3 SRR25848… CP00… 1.02e6 NA    A     G       225 NA     FALSE    NA    NA    12
+>>  4 SRR25848… CP00… 1.06e6 NA    C     T       225 NA     FALSE    NA    NA    17
+>>  5 SRR25848… CP00… 1.06e6 NA    A     G       206 NA     FALSE    NA    NA     9
+>>  6 SRR25848… CP00… 1.07e6 NA    G     T       225 NA     FALSE    NA    NA    11
+>>  7 SRR25848… CP00… 1.07e6 NA    T     C       225 NA     FALSE    NA    NA    12
+>>  8 SRR25848… CP00… 1.10e6 NA    C     T       225 NA     FALSE    NA    NA    15
+>>  9 SRR25848… CP00… 1.11e6 NA    C     T       212 NA     FALSE    NA    NA     9
+>> 10 SRR25848… CP00… 1.11e6 NA    A     G       225 NA     FALSE    NA    NA    14
+>> # … with 67 more rows, and 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
+>> #   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
+>> #   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
+>> #   gt_GT <dbl>, gt_GT_alleles <chr>
+>> ~~~
+>> {: .output}
+> {: .solution}
+{: .challenge}
+
 
 ### Pipes
 
@@ -229,23 +539,27 @@ or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you're using a Mac.
 ~~~
 variants %>%
   filter(sample_id == "SRR2584863") %>%
-  select(REF, ALT, DP) %>%
-  head()
+  select(REF, ALT, DP)
 ~~~
 {: .language-r}
 
 
 
 ~~~
-# A tibble: 6 × 3
-  REF      ALT          DP
-  <chr>    <chr>     <dbl>
-1 T        G             4
-2 G        T             6
-3 G        T            10
-4 CTTTTTTT CTTTTTTTT    12
-5 CCGC     CCGCGC       10
-6 C        T            10
+# A tibble: 25 × 3
+   REF                              ALT                                       DP
+   <chr>                            <chr>                                  <dbl>
+ 1 T                                G                                          4
+ 2 G                                T                                          6
+ 3 G                                T                                         10
+ 4 CTTTTTTT                         CTTTTTTTT                                 12
+ 5 CCGC                             CCGCGC                                    10
+ 6 C                                T                                         10
+ 7 C                                A                                          8
+ 8 G                                A                                         11
+ 9 ACAGCCAGCCAGCCAGCCAGCCAGCCAGCCAG ACAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGC…     3
+10 AT                               ATT                                        7
+# … with 15 more rows
 ~~~
 {: .output}
 
@@ -254,8 +568,7 @@ In the above code, we use the pipe to send the `variants` dataset first through
 keep only the `REF`, `ALT`, and `DP` columns. Since `%>%` takes
 the object on its left and passes it as the first argument to the function on
 its right, we don't need to explicitly include the data frame as an argument
-to the `filter()` and `select()` functions any more. We then pipe the results
-to the `head()` function so that we only see the first six rows of data.
+to the `filter()` and `select()` functions any more.
 
 Some may find it helpful to read the pipe like the word "then". For instance,
 in the above example, we took the data frame `variants`, *then* we `filter`ed
@@ -280,26 +593,31 @@ the first six rows to confirm it's what we want:
 
 
 ~~~
-SRR2584863_variants %>% head()
+SRR2584863_variants
 ~~~
 {: .language-r}
 
 
 
 ~~~
-# A tibble: 6 × 3
-  REF      ALT          DP
-  <chr>    <chr>     <dbl>
-1 T        G             4
-2 G        T             6
-3 G        T            10
-4 CTTTTTTT CTTTTTTTT    12
-5 CCGC     CCGCGC       10
-6 C        T            10
+# A tibble: 25 × 3
+   REF                              ALT                                       DP
+   <chr>                            <chr>                                  <dbl>
+ 1 T                                G                                          4
+ 2 G                                T                                          6
+ 3 G                                T                                         10
+ 4 CTTTTTTT                         CTTTTTTTT                                 12
+ 5 CCGC                             CCGCGC                                    10
+ 6 C                                T                                         10
+ 7 C                                A                                          8
+ 8 G                                A                                         11
+ 9 ACAGCCAGCCAGCCAGCCAGCCAGCCAGCCAG ACAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGC…     3
+10 AT                               ATT                                        7
+# … with 15 more rows
 ~~~
 {: .output}
 
-Similar to `head()` and `tail()` functions, we can also look at the first or last six rows using tidyverse function `slice()`. The differences between these two functions are minimal. The advantage of `slice()` is that you are not bound by the first or last Nth rows, and specific rows can be viewed:
+Similar to `head()` and `tail()` functions, we can also look at the first or last six rows using tidyverse function `slice()`. Slice is a more versatile function that allows users to specify a range to view:
 
 
 ~~~
@@ -324,22 +642,32 @@ SRR2584863_variants %>% slice(1:6)
 
 
 ~~~
-SRR2584863_variants %>% slice(10:15)
+SRR2584863_variants %>% slice(10:25)
 ~~~
 {: .language-r}
 
 
 
 ~~~
-# A tibble: 6 × 3
-  REF   ALT      DP
-  <chr> <chr> <dbl>
-1 AT    ATT       7
-2 A     C         9
-3 A     C        20
-4 G     T        12
-5 A     T        19
-6 G     A        15
+# A tibble: 16 × 3
+   REF   ALT      DP
+   <chr> <chr> <dbl>
+ 1 AT    ATT       7
+ 2 A     C         9
+ 3 A     C        20
+ 4 G     T        12
+ 5 A     T        19
+ 6 G     A        15
+ 7 A     C        10
+ 8 C     A        14
+ 9 A     G         9
+10 A     C        13
+11 A     AC        2
+12 G     T        10
+13 A     G        16
+14 A     C        11
+15 TGG   T        10
+16 A     C         9
 ~~~
 {: .output}
 
@@ -347,15 +675,15 @@ SRR2584863_variants %>% slice(10:15)
 >
 > Starting with the `variants` data frame, use pipes to subset the data
 > to include only observations from SRR2584863 sample,
-> where the filtered
-> depth (DP) is at least 10. Retain only the columns `REF`, `ALT`,
-> and `POS`.
+> where the filtered depth (DP) is at least 10.
+> Shwoing only 5th through 11th rows of columns `REF`, `ALT`, and `POS`.
 >
 >> ## Solution
 >> 
 >> ~~~
 >>  variants %>%
 >>  filter(sample_id == "SRR2584863" & DP >= 10) %>%
+>>  slice(5:11) %>%
 >>  select(REF, ALT, POS)
 >> ~~~
 >> {: .language-r}
@@ -363,25 +691,16 @@ SRR2584863_variants %>% slice(10:15)
 >> 
 >> 
 >> ~~~
->> # A tibble: 16 × 3
->>    REF      ALT           POS
->>    <chr>    <chr>       <dbl>
->>  1 G        T          281923
->>  2 CTTTTTTT CTTTTTTTT  433359
->>  3 CCGC     CCGCGC     473901
->>  4 C        T          648692
->>  5 G        A         1733343
->>  6 A        C         2446984
->>  7 G        T         2618472
->>  8 A        T         2665639
->>  9 G        A         2999330
->> 10 A        C         3339313
->> 11 C        A         3401754
->> 12 A        C         3488669
->> 13 G        T         3909807
->> 14 A        G         4100183
->> 15 A        C         4201958
->> 16 TGG      T         4431393
+>> # A tibble: 7 × 3
+>>   REF   ALT       POS
+>>   <chr> <chr>   <dbl>
+>> 1 G     A     1733343
+>> 2 A     C     2446984
+>> 3 G     T     2618472
+>> 4 A     T     2665639
+>> 5 G     A     2999330
+>> 6 A     C     3339313
+>> 7 C     A     3401754
 >> ~~~
 >> {: .output}
 > {: .solution}
@@ -402,33 +721,35 @@ to a probability value according to the formula:
 Probability = 1- 10 ^ -(QUAL/10)
 
 Let's add a column (`POLPROB`) to our `variants` data frame that shows
-the probability of a polymorphism at that site given the data. We'll show
-only the first six rows of data.
+the probability of a polymorphism at that site given the data.
 
 
 ~~~
 variants %>%
-  mutate(POLPROB = 1 - (10 ^ -(QUAL/10))) %>%
-  head()
+  mutate(POLPROB = 1 - (10 ^ -(QUAL/10)))
 ~~~
 {: .language-r}
 
 
 
 ~~~
-# A tibble: 6 × 30
-  sample_id  CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
-  <chr>      <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
-1 SRR2584863 CP00…   9972 NA    T     G        91 NA     FALSE    NA  NA       4
-2 SRR2584863 CP00… 263235 NA    G     T        85 NA     FALSE    NA  NA       6
-3 SRR2584863 CP00… 281923 NA    G     T       217 NA     FALSE    NA  NA      10
-4 SRR2584863 CP00… 433359 NA    CTTT… CTTT…    64 NA     TRUE     12   1      12
-5 SRR2584863 CP00… 473901 NA    CCGC  CCGC…   228 NA     TRUE      9   0.9    10
-6 SRR2584863 CP00… 648692 NA    C     T       210 NA     FALSE    NA  NA      10
-# … with 18 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>, BQB <dbl>,
-#   MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>, AC <dbl>,
-#   AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>, gt_GT <dbl>,
-#   gt_GT_alleles <chr>, POLPROB <dbl>
+# A tibble: 801 × 30
+   sample_id  CHROM     POS ID    REF    ALT      QUAL FILTER INDEL   IDV    IMF
+   <chr>      <chr>   <dbl> <lgl> <chr>  <chr>   <dbl> <lgl>  <lgl> <dbl>  <dbl>
+ 1 SRR2584863 CP000… 9.97e3 NA    T      G          91 NA     FALSE    NA NA    
+ 2 SRR2584863 CP000… 2.63e5 NA    G      T          85 NA     FALSE    NA NA    
+ 3 SRR2584863 CP000… 2.82e5 NA    G      T         217 NA     FALSE    NA NA    
+ 4 SRR2584863 CP000… 4.33e5 NA    CTTTT… CTTTTT…    64 NA     TRUE     12  1    
+ 5 SRR2584863 CP000… 4.74e5 NA    CCGC   CCGCGC    228 NA     TRUE      9  0.9  
+ 6 SRR2584863 CP000… 6.49e5 NA    C      T         210 NA     FALSE    NA NA    
+ 7 SRR2584863 CP000… 1.33e6 NA    C      A         178 NA     FALSE    NA NA    
+ 8 SRR2584863 CP000… 1.73e6 NA    G      A         225 NA     FALSE    NA NA    
+ 9 SRR2584863 CP000… 2.10e6 NA    ACAGC… ACAGCC…    56 NA     TRUE      2  0.667
+10 SRR2584863 CP000… 2.33e6 NA    AT     ATT       167 NA     TRUE      7  1    
+# … with 791 more rows, and 19 more variables: DP <dbl>, VDB <dbl>, RPB <dbl>,
+#   MQB <dbl>, BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>,
+#   HOB <lgl>, AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>,
+#   gt_PL <dbl>, gt_GT <dbl>, gt_GT_alleles <chr>, POLPROB <dbl>
 ~~~
 {: .output}
 
@@ -438,33 +759,39 @@ variants %>%
 > line to the above code to only show those columns.
 >
 >> ## Solution
+>>
 >> 
 >> ~~~
 >> variants %>%
 >>  mutate(POLPROB = 1 - 10 ^ -(QUAL/10)) %>%
->>  select(sample_id, POS, QUAL, POLPROB) %>%
->>  head
+>>  select(sample_id, POS, QUAL, POLPROB)
 >> ~~~
 >> {: .language-r}
 >> 
 >> 
 >> 
 >> ~~~
->> # A tibble: 6 × 4
->>   sample_id     POS  QUAL POLPROB
->>   <chr>       <dbl> <dbl>   <dbl>
->> 1 SRR2584863   9972    91    1.00
->> 2 SRR2584863 263235    85    1.00
->> 3 SRR2584863 281923   217    1   
->> 4 SRR2584863 433359    64    1.00
->> 5 SRR2584863 473901   228    1   
->> 6 SRR2584863 648692   210    1   
+>> # A tibble: 801 × 4
+>>    sample_id      POS  QUAL POLPROB
+>>    <chr>        <dbl> <dbl>   <dbl>
+>>  1 SRR2584863    9972    91    1.00
+>>  2 SRR2584863  263235    85    1.00
+>>  3 SRR2584863  281923   217    1   
+>>  4 SRR2584863  433359    64    1.00
+>>  5 SRR2584863  473901   228    1   
+>>  6 SRR2584863  648692   210    1   
+>>  7 SRR2584863 1331794   178    1   
+>>  8 SRR2584863 1733343   225    1   
+>>  9 SRR2584863 2103887    56    1.00
+>> 10 SRR2584863 2333538   167    1   
+>> # … with 791 more rows
 >> ~~~
 >> {: .output}
+>>
 > {: .solution}
 {: .challenge}
 
-### Split-apply-combine data analysis and the summarize() function
+### group_by() and  summarize() functions
 
 Many data analysis tasks can be approached using the "split-apply-combine"
 paradigm: split the data into groups, apply some analysis to each group, and
@@ -511,7 +838,7 @@ called `tally()`:
 
 ~~~
 variants %>%
-  group_by(sample_id) %>%
+  group_by(ALT) %>%
   tally()
 ~~~
 {: .language-r}
@@ -519,35 +846,78 @@ variants %>%
 
 
 ~~~
-# A tibble: 3 × 2
-  sample_id      n
-  <chr>      <int>
-1 SRR2584863    25
-2 SRR2584866   766
-3 SRR2589044    10
+# A tibble: 57 × 2
+   ALT                                                          n
+   <chr>                                                    <int>
+ 1 A                                                          211
+ 2 AC                                                           2
+ 3 ACAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAG                         1
+ 4 ACAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAG     1
+ 5 ACCCCC                                                       2
+ 6 ACCCCCCCC                                                    2
+ 7 AGCGCGCGCG                                                   1
+ 8 AGG                                                          1
+ 9 AGGGGG                                                       2
+10 AGGGGGG                                                      2
+# … with 47 more rows
 ~~~
 {: .output}
 
-To show that there are many ways to acheive the same results, there is another way to appraoch this, which bypasses `group_by()` using the function `count()`:
+To show that there are many ways to achieve the same results, there is another way to approach this, which bypasses `group_by()` using the function `count()`:
 
 
 ~~~
 variants %>%
-  count(sample_id)
+  count(ALT)
 ~~~
 {: .language-r}
 
 
 
 ~~~
-# A tibble: 3 × 2
-  sample_id      n
-  <chr>      <int>
-1 SRR2584863    25
-2 SRR2584866   766
-3 SRR2589044    10
+# A tibble: 57 × 2
+   ALT                                                          n
+   <chr>                                                    <int>
+ 1 A                                                          211
+ 2 AC                                                           2
+ 3 ACAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAG                         1
+ 4 ACAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAG     1
+ 5 ACCCCC                                                       2
+ 6 ACCCCCCCC                                                    2
+ 7 AGCGCGCGCG                                                   1
+ 8 AGG                                                          1
+ 9 AGGGGG                                                       2
+10 AGGGGGG                                                      2
+# … with 47 more rows
 ~~~
 {: .output}
+
+> ## Challenge
+>
+> * How many mutations are found in each sample?
+>
+>> ## Solution
+>>
+>> 
+>> ~~~
+>> variants %>%
+>>   count(sample_id)
+>> ~~~
+>> {: .language-r}
+>> 
+>> 
+>> 
+>> ~~~
+>> # A tibble: 3 × 2
+>>   sample_id      n
+>>   <chr>      <int>
+>> 1 SRR2584863    25
+>> 2 SRR2584866   766
+>> 3 SRR2589044    10
+>> ~~~
+>> {: .output}
+> {: .solution}
+{: .challenge}
 
 We can also apply many other functions to individual columns to get other
 summary statistics. For example,we can use built-in functions like `mean()`,
@@ -559,42 +929,93 @@ conscious decision on how to deal with it. When dealing with simple statistics
 like the mean, the easiest way to ignore `NA` (the missing data) is
 to use `na.rm = TRUE` (`rm` stands for remove).
 
-So to view the highest filtered depth (`DP`) for each sample:
+So to view the mean, median, maximum, and minimum filtered depth (`DP`) for each sample:
 
 
 ~~~
 variants %>%
   group_by(sample_id) %>%
-  summarize(max(DP))
+  summarize(
+    mean_DP = mean(DP),
+    median_DP = median(DP),
+    min_DP = min(DP),
+    max_DP = max(DP))
 ~~~
 {: .language-r}
 
 
 
 ~~~
-# A tibble: 3 × 2
-  sample_id  `max(DP)`
-  <chr>          <dbl>
-1 SRR2584863        20
-2 SRR2584866        79
-3 SRR2589044        16
+# A tibble: 3 × 5
+  sample_id  mean_DP median_DP min_DP max_DP
+  <chr>        <dbl>     <dbl>  <dbl>  <dbl>
+1 SRR2584863    10.4      10        2     20
+2 SRR2584866    10.6      10        2     79
+3 SRR2589044     9.3       9.5      3     16
 ~~~
 {: .output}
 
-<!-- You can group by multiple columns too. For example, we might want to  -->
-<!-- know if ...  -->
+### Reshaping data frames
 
-<!-- ```{r, purl = FALSE} -->
+It can sometimes be useful to transform the "long" tidy format, into the wide format. This transformation can be done with the `pivot_wider()` function provided by the `tidyr` package (also part of the `tidyverse`).
 
-<!-- ``` -->
+`pivot_wider()` takes a data frame as the first argument, and two arguments: the column name that will become the columns  and the column name that will become the cells in the wide data.
 
-<!-- You can also summarize multiple variables at the same time. Let's -->
-<!-- count how many samples we have in each group using the `n()` function: -->
 
-<!-- ```{r, purl = FALSE} -->
+~~~
+variants_wide <- variants %>%
+  group_by(sample_id, CHROM) %>%
+  summarize(mean_DP = mean(DP)) %>%
+  pivot_wider(names_from = sample_id, values_from = mean_DP)
+~~~
+{: .language-r}
 
-<!-- ``` -->
 
-[Handy dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 
-[Much of this lesson was copied or adapted from Jeff Hollister's materials](http://usepa.github.io/introR/2015/01/14/03-Clean/)
+~~~
+`summarise()` has grouped output by 'sample_id'. You can override using the `.groups` argument.
+~~~
+{: .output}
+
+
+
+~~~
+variants_wide
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 1 × 4
+  CHROM      SRR2584863 SRR2584866 SRR2589044
+  <chr>           <dbl>      <dbl>      <dbl>
+1 CP000819.1       10.4       10.6        9.3
+~~~
+{: .output}
+
+The opposite operation of `pivot_wider()` is taken care by `pivot_longer()`. We specify the names of the new columns, and here add `-CHROM` as this column shouldn't be affected by the reshaping:
+
+
+~~~
+variants_wide %>%
+  pivot_longer(-CHROM, names_to = "sample_id", values_to = "mean_DP")
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 3 × 3
+  CHROM      sample_id  mean_DP
+  <chr>      <chr>        <dbl>
+1 CP000819.1 SRR2584863    10.4
+2 CP000819.1 SRR2584866    10.6
+3 CP000819.1 SRR2589044     9.3
+~~~
+{: .output}
+### Resources
+
+* [Handy dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
+
+* [Much of this lesson was copied or adapted from Jeff Hollister's materials](http://usepa.github.io/introR/2015/01/14/03-Clean/)
