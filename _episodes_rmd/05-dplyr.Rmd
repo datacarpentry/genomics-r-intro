@@ -1,5 +1,5 @@
 ---
-title: "Aggregating and Analyzing Data with dplyr"
+title: "Data Wrangling and Analyses with Tidyverse"
 teaching: 40
 exercises: 15
 questions: How can I manipulate data frames without repeating myself?
@@ -23,7 +23,7 @@ source: Rmd
 
 ```{r, include = FALSE}
 source("../bin/chunk-options.R")
-knitr_fig_path("04-")
+knitr_fig_path("05-")
 ```
 
 ```{r, include = FALSE, echo = FALSE, eval = TRUE, purl = FALSE}
