@@ -20,7 +20,7 @@ source: Rmd
 source("../bin/chunk-options.R")
 
 # TODO: This needs to be updated when the episode number is finalized
-knitr_fig_path("XX-")
+knitr_fig_path("04-")
 ```
 
 <!-- example of rendered lesson https://datacarpentry.org/genomics-r-intro/02-r-basics/index.html -->
