@@ -101,12 +101,12 @@ standalone software.
 
 ## Log on to RStudio Server
 
-Open a web browser and enter the IP address of your instance
+Open a web browser and enter the URL you used to log in at the terminal
 (provided by your instructors), followed by
-`:8787`. For example, if your IP address was 123.45.67.89 your URL would be
+`:8787`. For example, if your URL was ec2.12.2.45.678.compute-1.amazonaws.com, you should enter:
 
 ```
-http://123.45.67.89:8787
+http://ec2.12.2.45.678.compute-1.amazonaws.com:8787
 ```
 
 > ## Tip: Make sure there are no spaces before or after your URL or
@@ -203,7 +203,7 @@ environment:
   of any plots generated. In "Packages" you will see what packages are actively
   loaded, or you can attach installed packages. "Help" will display help files
   for R functions and packages. "Viewer" will allow you to view local web
-  content (e.g. HTML outputs). 
+  content (e.g. HTML outputs).
 
 >## Tip: Uploads and downloads in the cloud
 > In the "Files" tab you can select a file and download it from your cloud
@@ -429,14 +429,14 @@ the `help.search()` function.
 > parentheses.
 >
 > - Chi-Squared test
-> - Student-t test
+> - Student t-test
 > - mixed linear model
 >
 >> ## Solution
 >>   While your search results may return several tests, we list a few you might
 >>   find:
 >> - Chi-Squared test: `stats::Chisquare`
->> - Student-t test: `stats::TDist`
+>> - Student t-test: `stats::t.test`
 >> - mixed linear model: `stats::lm.glm`
 > {: .solution}
 {: .challenge}
