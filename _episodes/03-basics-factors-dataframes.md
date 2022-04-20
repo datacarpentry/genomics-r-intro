@@ -702,9 +702,12 @@ where we are taking a range).
 >>
 >> 
 >> ~~~
->> Error: attempt to use zero-length variable name
+>> [1] "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863"
+>> [6] "SRR2584863"
 >> ~~~
->> {: .error}
+>> {: .output}
+>>
+>> i.
 >> 
 >> ~~~
 >> head(variants)
