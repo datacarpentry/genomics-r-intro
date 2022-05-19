@@ -3,7 +3,7 @@ title: Producing Reports With knitr
 teaching: 60
 exercises: 15
 questions:
-- "How can I integrate software and reports?"
+- "How can I integrate analyses and reports?"
 objectives:
 - "Value of reproducible reports"
 - "Basics of Markdown"
@@ -12,15 +12,15 @@ objectives:
 - "Inline R code"
 - "Other output formats"
 keypoints:
-- "Mix reporting written in R Markdown with software written in R."
-- "Specify chunk options to control formatting."
-- "Use `knitr` to convert these documents into PDF and other formats."
+- "Keep reporting and R software together in one document using R Markdown."
+- "Control formatting using chunk options."
+- "`knitr` can convert R Markdown documents to PDF and other formats."
 source: Rmd
 ---
 
 ```{r chunk_options, include=FALSE}
 source("../bin/chunk-options.R")
-knitr_fig_path("06-")
+knitr_fig_path("07-")
 ```
 
 
@@ -355,7 +355,7 @@ I'm very particular about rounding in such situations. I may want
 
 The
 [`myround`](https://github.com/kbroman/broman/blob/master/R/myround.R)
-function in my [R/broman](https://github.com/kbroman) package handles
+function in the [broman](https://github.com/kbroman/broman) package handles
 this.
 
 > ## Challenge
@@ -387,8 +387,7 @@ of the file.
 - [Knitr in a knutshell tutorial](http://kbroman.org/knitr_knutshell)
 - [Dynamic Documents with R and knitr](http://www.amazon.com/exec/obidos/ASIN/1482203537/7210-20) (book)
 - [R Markdown documentation](http://rmarkdown.rstudio.com)
-- [R Markdown cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
+- [R Markdown cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf) (PDF)
 * [Getting started with R Markdown](https://www.rstudio.com/resources/webinars/getting-started-with-r-markdown/)
 * [Reproducible Reporting](https://www.rstudio.com/resources/webinars/reproducible-reporting/)
-* [The Ecosystem of R Markdown](https://www.rstudio.com/resources/webinars/the-ecosystem-of-r-markdown/)
 * [Introducing Bookdown](https://www.rstudio.com/resources/webinars/introducing-bookdown/)
