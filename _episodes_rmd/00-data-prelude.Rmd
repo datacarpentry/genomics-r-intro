@@ -8,13 +8,11 @@ questions:
 objectives:
 - "Know what the example dataset represents"
 - "Know the concepts of how VCF files are generated"
-
 keypoints:
-- "R is a powerful, popular open-source scripting language"
-- "You can customize the layout of RStudio, and use the project feature to manage
-  the files and packages used in your analysis"
-- "RStudio allows you to run R in an easy-to-use interface and makes
-  it easy to find help"
+- "The dataset comes from a real world experiment in E. coli."
+- "Publicly available FASTQ files can be downloaded from NCBI SRA."
+- "Several steps are taken outside of R/RStudio to create VCF files from FASTQ files."
+- "VCF files store variant calls in a special format."
 source: Rmd
 ---
 
@@ -25,36 +23,36 @@ knitr_fig_path("01-")
 
 ## Preface
 
-The Intro to R and RStudio for Genomics is a part of the Genomics Data Carpentry lessons. In this lesson we will learn the necessary skill sets for R and RStudio and apply them directly to a real next-generation sequencing (NGS) data in the variant calling format (VCF) file type. Previous Genomics Data Carpentry lessons teach learners how to generate a VCF file from FASTQ files downloaded from NCBI Sequence Read Archive (SRA), so we won't cover that here. Instead, in this episode we will give a brief overview of the data and a what VCF file types are for those who wish to teach the Intro to R and RStudio for Genomics lesson independently of the Genomics Data Carpentry lessons. 
+The Intro to R and RStudio for Genomics is a part of the Genomics Data Carpentry lessons. In this lesson we will learn the necessary skill sets for R and RStudio and apply them directly to a real next-generation sequencing (NGS) data in the variant calling format (VCF) file type. Previous Genomics Data Carpentry lessons teach learners how to generate a VCF file from FASTQ files downloaded from NCBI Sequence Read Archive (SRA), so we won't cover that here. Instead, in this episode we will give a brief overview of the data and a what VCF file types are for those who wish to teach the Intro to R and RStudio for Genomics lesson independently of the Genomics Data Carpentry lessons.
 
 This dataset was selected for several reasons, including:
 
-* Simple, but iconic NGS-problem: Examine a population where we want to characterize changes in sequence *a priori*   
-* Dataset publicly available - in this case through the NCBI SRA (http://www.ncbi.nlm.nih.gov/sra)  
+* Simple, but iconic NGS-problem: Examine a population where we want to characterize changes in sequence *a priori*
+* Dataset publicly available - in this case through the NCBI SRA (http://www.ncbi.nlm.nih.gov/sra)
 
 
-# Introduction to the dataset  
+# Introduction to the dataset
 
-Microbes are ideal organisms for exploring 'Long-term Evolution Experiments' (LTEEs) - thousands of generations can be generated and stored in a way that would be virtually impossible for more complex eukaryotic systems. In [Tenaillon et al 2016](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4988878/), 12 populations of *Escherichia coli* were propagated for more than 50,000 generations in a glucose-limited minimal medium. This medium was supplemented with citrate which *E. coli* cannot metabolize in the aerobic conditions of the experiment. Sequencing of the populations at regular time points reveals that spontaneous citrate-using mutants (Cit+) appeared in a population of *E.coli* (designated Ara-3) at around 31,000 generations. It should be noted that spontaneous Cit+ mutants are extraordinarily rare - inability to metabolize citrate is one of the defining characters of the *E. coli* species. Eventually, Cit+ mutants became the dominant population as the experimental growth medium contained a high concentration of citrate relative to glucose. Around the same time that this mutation emerged, another phenotype become prominent in the Ara-3 population. Many *E. coli* began to develop excessive numbers of mutations, meaning they became hypermutable. 
+Microbes are ideal organisms for exploring 'Long-term Evolution Experiments' (LTEEs) - thousands of generations can be generated and stored in a way that would be virtually impossible for more complex eukaryotic systems. In [Tenaillon et al 2016](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4988878/), 12 populations of *Escherichia coli* were propagated for more than 50,000 generations in a glucose-limited minimal medium. This medium was supplemented with citrate which *E. coli* cannot metabolize in the aerobic conditions of the experiment. Sequencing of the populations at regular time points reveals that spontaneous citrate-using mutants (Cit+) appeared in a population of *E.coli* (designated Ara-3) at around 31,000 generations. It should be noted that spontaneous Cit+ mutants are extraordinarily rare - inability to metabolize citrate is one of the defining characters of the *E. coli* species. Eventually, Cit+ mutants became the dominant population as the experimental growth medium contained a high concentration of citrate relative to glucose. Around the same time that this mutation emerged, another phenotype become prominent in the Ara-3 population. Many *E. coli* began to develop excessive numbers of mutations, meaning they became hypermutable.
 
-Strains from generation 0 to generation 50,000 were sequenced, including ones that were both Cit+ and Cit- and hypermutable in later generations.  
+Strains from generation 0 to generation 50,000 were sequenced, including ones that were both Cit+ and Cit- and hypermutable in later generations.
 
-For the purposes of this workshop we're going to be working with 3 of the sequence reads from this experiment. 
+For the purposes of this workshop we're going to be working with 3 of the sequence reads from this experiment.
 
 | SRA Run Number | Clone | Generation | Cit  | Hypermutable | Read Length | Sequencing Depth |
-| -------------- | ----- | ---------- | ---- | ----- |-------|--------| 
+| -------------- | ----- | ---------- | ---- | ----- |-------|--------|
 | SRR2589044 | REL2181A | 5,000 | Unknown | None |  150 | 60.2 |
 | SRR2584863 | REL7179B | 15,000 | Unknown | None |  150 | 88 |
 | SRR2584866 | REL11365 | 50,000 | Cit+ | plus |  150 | 138.3 |
 
-We want to be able to look at differences in mutation rates between hypermutable and non-hypermutable strains. We also want to analyze the sequences to figure out what changes occurred in genomes to make the strains Cit+. Ultimately, we will use R to answer the questions:  
+We want to be able to look at differences in mutation rates between hypermutable and non-hypermutable strains. We also want to analyze the sequences to figure out what changes occurred in genomes to make the strains Cit+. Ultimately, we will use R to answer the questions:
 
-- How many base pair changes are there between the Cit+ and Cit- strains?  
-- What are the base pair changes between strains?  
+- How many base pair changes are there between the Cit+ and Cit- strains?
+- What are the base pair changes between strains?
 
 ## How VCF files are generated
 
-Publicly accessible sequencing files in FASTQ formats can be downloaded from NCBI SRA. However, at FASTQ files contain unaligned sequences of varying quality, and requires clean up and alignment steps for variants to be called from the reference genome. 
+Publicly accessible sequencing files in FASTQ formats can be downloaded from NCBI SRA. However, at FASTQ files contain unaligned sequences of varying quality, and requires clean up and alignment steps for variants to be called from the reference genome.
 
 Five steps are taken to transform FASTQ files to variant calls contained in VCF files and at each step, specialized non-R based bioinformatics tools that are used:
 
@@ -64,7 +62,7 @@ Five steps are taken to transform FASTQ files to variant calls contained in VCF 
 
 ## How variant calls are stored in VCF files
 
-VCF files contain variants that were called against a reference genome. These files are slightly more complicated than regular tables you can open using programs like Excel and contain two sections: header and records. 
+VCF files contain variants that were called against a reference genome. These files are slightly more complicated than regular tables you can open using programs like Excel and contain two sections: header and records.
 
 Below you will see the header (which describes the format), the time and date the file was created, the version of bcftools that was used, the command line parameters used, and some additional information:
 
@@ -99,7 +97,7 @@ Below you will see the header (which describes the format), the time and date th
 ##bcftools_callCommand=call --ploidy 1 -m -v -o results/bcf/SRR2584866_variants.vcf results/bcf/SRR2584866_raw.bcf; Date=Tue Oct  9 18:48:10 2018
 ```
 
-Followed by information on each of the variations observed: 
+Followed by information on each of the variations observed:
 
 ```
 #CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  results/bam/SRR2584866.aligned.sorted.bam
@@ -117,45 +115,45 @@ CP000819.1      62118   .       A       G       225     .       DP=19;VDB=0.4149
 CP000819.1      64042   .       G       A       225     .       DP=18;VDB=0.451328;SGB=-0.689466;MQSB=1;MQ0F=0;AC=1;AN=1;DP4=0,0,7,9;MQ=60      GT:PL
 ```
 
-The first few columns represent the information we have about a predicted variation. 
+The first few columns represent the information we have about a predicted variation.
 
 | column | info |
 | ------- | ---------- |
-| CHROM | contig location where the variation occurs | 
-| POS | position within the contig where the variation occurs | 
-| ID | a `.` until we add annotation information | 
-| REF | reference genotype (forward strand) | 
-| ALT | sample genotype (forward strand) | 
+| CHROM | contig location where the variation occurs |
+| POS | position within the contig where the variation occurs |
+| ID | a `.` until we add annotation information |
+| REF | reference genotype (forward strand) |
+| ALT | sample genotype (forward strand) |
 | QUAL | Phred-scaled probability that the observed variant exists at this site (higher is better) |
-| FILTER | a `.` if no quality filters have been applied, PASS if a filter is passed, or the name of the filters this variant failed | 
+| FILTER | a `.` if no quality filters have been applied, PASS if a filter is passed, or the name of the filters this variant failed |
 
 In an ideal world, the information in the `QUAL` column would be all we needed to filter out bad variant calls.
-However, in reality we need to filter on multiple other metrics. 
+However, in reality we need to filter on multiple other metrics.
 
-The last two columns contain the genotypes and can be tricky to decode. 
+The last two columns contain the genotypes and can be tricky to decode.
 
 | column | info |
 | ------- | ---------- |
-| FORMAT | lists in order the metrics presented in the final column | 
-| results | lists the values associated with those metrics in order | 
+| FORMAT | lists in order the metrics presented in the final column |
+| results | lists the values associated with those metrics in order |
 
-For our file, the metrics presented are GT:PL:GQ. 
+For our file, the metrics presented are GT:PL:GQ.
 
-| metric | definition | 
+| metric | definition |
 | ------- | ---------- |
 | AD, DP | the depth per allele by sample and coverage |
 | GT | the genotype for the sample at this loci. For a diploid organism, the GT field indicates the two alleles carried by the sample, encoded by a 0 for the REF allele, 1 for the first ALT allele, 2 for the second ALT allele, etc. A 0/0 means homozygous reference, 0/1 is heterozygous, and 1/1 is homozygous for the alternate allele. |
 | PL | the likelihoods of the given genotypes |
-| GQ | the Phred-scaled confidence for the genotype | 
+| GQ | the Phred-scaled confidence for the genotype |
 
 For more information on VCF files visit The Broad Institute's [VCF guide](https://gatk.broadinstitute.org/hc/en-us/articles/360035531692-VCF-Variant-Call-Format).
 
-## References  
+## References
 Tenaillon O, Barrick JE, Ribeck N, Deatherage DE, Blanchard JL, Dasgupta A, Wu GC, Wielgoss S, Cruveiller S, Médigue C, Schneider D, Lenski RE.
-Tempo and mode of genome 
-evolution in a 50,000-generation experiment (2016) Nature. 536(7615): 165–170.  
-[Paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4988878/), [Supplemental materials](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4988878/#)  
-Data on NCBI SRA: [https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=SRP064605](https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=SRP064605)  
+Tempo and mode of genome
+evolution in a 50,000-generation experiment (2016) Nature. 536(7615): 165–170.
+[Paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4988878/), [Supplemental materials](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4988878/#)
+Data on NCBI SRA: [https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=SRP064605](https://trace.ncbi.nlm.nih.gov/Traces/sra/?study=SRP064605)
 Data on EMBL-EBI ENA: [https://www.ebi.ac.uk/ena/data/view/PRJNA295606](https://www.ebi.ac.uk/ena/data/view/PRJNA295606)
 
 This episode was adapted from the Data Carpentry Genomic lessons:
