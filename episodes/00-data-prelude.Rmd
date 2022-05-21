@@ -57,7 +57,7 @@ Publicly accessible sequencing files in FASTQ formats can be downloaded from NCB
 Five steps are taken to transform FASTQ files to variant calls contained in VCF files and at each step, specialized non-R based bioinformatics tools that are used:
 
 <center>
-<img src="../fig/variant_calling_workflow.png" alt="variant calling workflow. Sequence reads (FASTQ files), Quality control (FASTQ files), Alignment to Genome (SAM/BAM files), Alighment cleanup (BAM file ready for variant calling), Variant Calling (VCF file)" style="width: 250px;"/>
+<img src="../fig/variant_calling_workflow.png" alt="variant calling workflow. Sequence reads (FASTQ files), Quality control (FASTQ files), Alignment to Genome (SAM/BAM files), Alignment cleanup (BAM file ready for variant calling), Variant Calling (VCF file)" style="width: 250px;"/>
 </center>
 
 ## How variant calls are stored in VCF files
