@@ -297,6 +297,16 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 
 <img src="../fig/rmd-05-add-axis-labels-1.png" title="plot of chunk add-axis-labels" alt="plot of chunk add-axis-labels" width="612" style="display: block; margin: auto;" />
 
+Now the figure is complete and ready to be exported and saved to a file. This can be achieved easily using [`ggsave()`](https://ggplot2.tidyverse.org/reference/ggsave.html), which can write, by default, the most recent generated figure into different formats (e.g., `jpeg`, `png`, `pdf`) according to the file extension. So, for example, to create a pdf version of the above figure with a dimension of $6\times4$ inches:
+
+
+~~~
+ggsave ("depth.pdf", width = 6, height = 4)
+~~~
+{: .language-r}
+
+If we check the current working directory, there should be a newly created file called `depth.pdf` with the above plot.
+
 > ## Challenge
 >
 > Use what you just learned to create a scatter plot of mapping quality (`MQ`) over
@@ -471,5 +481,5 @@ The [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package p
 
 ## More **`ggplot2`** Plots
 
-**`ggplot2`** offers many more informative and beautiful plots of interest for biologists (although not covered in this lesson), such as [`geom_tile`](https://ggplot2.tidyverse.org/reference/geom_tile.html) for heatmaps, [`geom_jitter`](https://ggplot2.tidyverse.org/reference/geom_jitter.html) for stripcharts, and [`geom_violin`](https://ggplot2.tidyverse.org/reference/geom_violin.html) for violin plots that are worth exploring.
+**`ggplot2`** offers many more informative and beautiful plots of interest for biologists (although not covered in this lesson), such as [`geom_tile()`](https://ggplot2.tidyverse.org/reference/geom_tile.html) for heatmaps, [`geom_jitter()`](https://ggplot2.tidyverse.org/reference/geom_jitter.html) for stripcharts, and [`geom_violin()`](https://ggplot2.tidyverse.org/reference/geom_violin.html) for violin plots that are worth exploring.
 
