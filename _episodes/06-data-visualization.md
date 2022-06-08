@@ -467,3 +467,9 @@ The [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package p
 > * Try using a different color palette (see
 >   http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
 {: .challenge}
+
+
+## More **`ggplot2`** Plots
+
+**`ggplot2`** offers many more informative and beautiful plots of interest for biologists (although not covered in this lesson), such as [`geom_tile`](https://ggplot2.tidyverse.org/reference/geom_tile.html) for heatmaps, [`geom_jitter`](https://ggplot2.tidyverse.org/reference/geom_jitter.html) for stripcharts, and [`geom_violin`](https://ggplot2.tidyverse.org/reference/geom_violin.html) for violin plots that are worth exploring.
+
