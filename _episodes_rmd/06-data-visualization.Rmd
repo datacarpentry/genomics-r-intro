@@ -96,11 +96,11 @@ ggplot(data = variants, aes(x = POS, y = DP))
   lines, bars). **`ggplot2`** offers many different geoms; we will use some
   common ones today, including:
 
-      * `geom_point()` for scatter plots, dot plots, etc.
-      * `geom_boxplot()` for, well, boxplots!
-      * `geom_line()` for trend lines, time series, etc.
+      * [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) for scatter plots, dot plots, etc.
+      * [`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html) for, well, boxplots!
+      * [`geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html) for trend lines, time series, etc.
 
-To add a geom to the plot use the `+` operator. Because we have two continuous variables, let's use `geom_point()` (i.e., a scatter plot) first:
+To add a geom to the plot use the `+` operator. Because we have two continuous variables, let's use [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) (i.e., a scatter plot) first:
 
 ```{r first-ggplot, purl=FALSE}
 ggplot(data = variants, aes(x = POS, y = DP)) +
@@ -120,8 +120,8 @@ coverage_plot +
 
 **Notes**
 
-- Anything you put in the `ggplot()` function can be seen by any geom layers that you add (i.e., these are universal plot settings). This includes the x- and y-axis mapping you set up in `aes()`.
-- You can also specify mappings for a given geom independently of the mappings defined globally in the `ggplot()` function.
+- Anything you put in the [`ggplot()`](https://ggplot2.tidyverse.org/reference/ggplot.html) function can be seen by any geom layers that you add (i.e., these are universal plot settings). This includes the x- and y-axis mapping you set up in [`aes()`](https://ggplot2.tidyverse.org/reference/aes.html).
+- You can also specify mappings for a given geom independently of the mappings defined globally in the [`ggplot()`](https://ggplot2.tidyverse.org/reference/ggplot.html) function.
 - The `+` sign used to add new layers must be placed at the end of the line containing the *previous* layer. If, instead, the `+` sign is added at the beginning of the line containing the new layer, **`ggplot2`** will not add the new layer and will return an error message.
 
 ```{r, ggplot-with-plus-position, eval=FALSE, purl=FALSE}
@@ -169,14 +169,14 @@ Notice that we can change the geom layer and colors will be still determined by 
 
 ```{r color-by-sample-2, purl=FALSE}
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
-  geom_jitter(alpha = 0.5)
+  geom_point(alpha = 0.5)
 ```
 
 To make our plot more readable, we can add axis labels:
 
 ```{r add-axis-labels, purl=FALSE}
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
-  geom_jitter(alpha = 0.5) +
+  geom_point(alpha = 0.5) +
   labs(x = "Base Pair Position",
        y = "Read Depth (DP)")
 ```
@@ -187,7 +187,7 @@ Now the figure is complete and ready to be exported and saved to a file. This ca
 ggsave ("depth.pdf", width = 6, height = 4)
 ```
 
-If we check the current working directory, there should be a newly created file called `depth.pdf` with the above plot.
+If we check the *current working directory*, there should be a newly created file called `depth.pdf` with the above plot.
 
 > ## Challenge
 >
@@ -227,7 +227,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
  facet_grid(sample_id ~ .)
 ```
 
-Usually plots with white background look more readable when printed.  We can set the background to white using the function `theme_bw()`. Additionally, you can remove the grid:
+Usually plots with white background look more readable when printed.  We can set the background to white using the function [`theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html). Additionally, you can remove the grid:
 
 ```{r facet-plot-white-bg, purl=FALSE}
 ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
@@ -258,7 +258,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
 
 ## Barplots
 
-We can create barplots using the `geom_bar` geom. Let's make a barplot showing the number of variants for each sample that are indels.
+We can create barplots using the [`geom_bar`](https://ggplot2.tidyverse.org/reference/geom_bar.html) geom. Let's make a barplot showing the number of variants for each sample that are indels.
 
 ```{r barplot, purl=FALSE}
 ggplot(data = variants, aes(x = INDEL, fill = sample_id)) +
@@ -283,7 +283,7 @@ ggplot(data = variants, aes(x = INDEL, fill = sample_id)) +
 
 ## Density
 
-We can create density plots using the `geom_density` geom that shows the distribution of of a variable in the dataset. Let's plot the distribution of `DP`
+We can create density plots using the [`geom_density`](https://ggplot2.tidyverse.org/reference/geom_density.html) geom that shows the distribution of of a variable in the dataset. Let's plot the distribution of `DP`
 
 ```{r density, purl=FALSE}
 ggplot(data = variants, aes(x = DP)) +
@@ -293,7 +293,7 @@ ggplot(data = variants, aes(x = DP)) +
 This plot tells us that the most of frequent `DP` (read depth) for the variants is about 10 reads.
 
 > ## Challenge
-> Use `geom_density` to plot the distribution of `DP` with a different fill for each sample. Use a white background for the plot.
+> Use [`geom_density`](https://ggplot2.tidyverse.org/reference/geom_density.html) to plot the distribution of `DP` with a different fill for each sample. Use a white background for the plot.
 >
 >> ## Solution
 >> ```{r density-challenge, purl=FALSE}
@@ -307,7 +307,7 @@ This plot tells us that the most of frequent `DP` (read depth) for the variants 
 
 ## **`ggplot2`** themes
 
-In addition to `theme_bw()`, which changes the plot background to white, **`ggplot2`** comes with several other themes which can be useful to quickly change the look of your visualization. The complete list of themes is available at <https://ggplot2.tidyverse.org/reference/ggtheme.html>. `theme_minimal()` and `theme_light()` are popular, and `theme_void()` can be useful as a starting point to create a new hand-crafted theme.
+In addition to [`theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html), which changes the plot background to white, **`ggplot2`** comes with several other themes which can be useful to quickly change the look of your visualization. The complete list of themes is available at <https://ggplot2.tidyverse.org/reference/ggtheme.html>. `theme_minimal()` and `theme_light()` are popular, and `theme_void()` can be useful as a starting point to create a new hand-crafted theme.
 
 The [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package provides a wide variety of options (including an Excel 2003 theme). The [**`ggplot2`** extensions website](https://exts.ggplot2.tidyverse.org/) provides a list of packages that extend the capabilities of **`ggplot2`**, including additional themes.
 
@@ -327,5 +327,8 @@ The [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package p
 
 ## More **`ggplot2`** Plots
 
-**`ggplot2`** offers many more informative and beautiful plots of interest for biologists (although not covered in this lesson), such as [`geom_tile()`](https://ggplot2.tidyverse.org/reference/geom_tile.html) for heatmaps, [`geom_jitter()`](https://ggplot2.tidyverse.org/reference/geom_jitter.html) for stripcharts, and [`geom_violin()`](https://ggplot2.tidyverse.org/reference/geom_violin.html) for violin plots that are worth exploring.
+**`ggplot2`** offers many more informative and beautiful plots (`geoms`) of interest for biologists (although not covered in this lesson) that are worth exploring, such as
 
+ - [`geom_tile()`](https://ggplot2.tidyverse.org/reference/geom_tile.html), for heatmaps,
+ - [`geom_jitter()`](https://ggplot2.tidyverse.org/reference/geom_jitter.html), for strip charts, and
+ - [`geom_violin()`](https://ggplot2.tidyverse.org/reference/geom_violin.html), for violin plots
