@@ -332,3 +332,10 @@ The [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package p
  - [`geom_tile()`](https://ggplot2.tidyverse.org/reference/geom_tile.html), for heatmaps,
  - [`geom_jitter()`](https://ggplot2.tidyverse.org/reference/geom_jitter.html), for strip charts, and
  - [`geom_violin()`](https://ggplot2.tidyverse.org/reference/geom_violin.html), for violin plots
+
+## Resources
+
+ - [ggplot2: Elegant Graphics for Data Analysis](https://www.amazon.com/gp/product/331924275X/) ([online version](https://ggplot2-book.org/))
+ - [The Grammar of Graphics (Statistics and Computing)](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/)
+ - [Data Visualization: A Practical Introduction](https://www.amazon.com/gp/product/0691181624/) ([online version](https://socviz.co/))
+ - [The R Graph Gallery](https://r-graph-gallery.com/) ([the book](https://bookdown.org/content/b298e479-b1ab-49fa-b83d-a57c2b034d49/))
