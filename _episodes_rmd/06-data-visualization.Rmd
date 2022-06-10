@@ -43,7 +43,7 @@ variants = read.csv("https://raw.githubusercontent.com/naupaka/vcfr-for-data-car
 if **`tidyverse`** is not already installed, then we need to install first. If it is already installed, then we can skip the following step
 
 ```{r echo=TRUE, eval=FALSE}
-# Installing the tidyverse pacakge, which also include ggplot2
+# Installing the tidyverse package, which also include ggplot2
 install.packages("tidyverse")
 ```
 
