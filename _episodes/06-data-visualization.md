@@ -9,7 +9,7 @@ objectives:
 - Choose the correct aesthetics and alter the geom parameters for a scatter plot,
   histogram, or box plot.
 - Layer multiple geometries in a single plot.
-- Customize plot scales, titles, subtitles, themes, fonts, layout, and orientation.
+- Customize plot scales, titles, themes, and fonts.
 - Apply a facet to a plot.
 - Apply additional ggplot2-compatible plotting libraries.
 - Save a ggplot to a file.
@@ -34,7 +34,7 @@ questions:
 
 ## Installing `tidyverse`
 
-if **`tidyverse`** is not already installed, then we need to install first. If it is already installed, then we can skip the following step
+If **`tidyverse`** is not already installed, then we need to install first. If it is already installed, then we can skip the following step
 
 
 ~~~
@@ -297,6 +297,20 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 
 <img src="../fig/rmd-05-add-axis-labels-1.png" title="plot of chunk add-axis-labels" alt="plot of chunk add-axis-labels" width="612" style="display: block; margin: auto;" />
 
+To add a *main* title to the plot, we use [`ggtitle()`](https://ggplot2.tidyverse.org/reference/labs.html):
+
+
+~~~
+ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
+  geom_point(alpha = 0.5) +
+  labs(x = "Base Pair Position",
+       y = "Read Depth (DP)") +
+  ggtitle("Read Depth vs. Position")
+~~~
+{: .language-r}
+
+<img src="../fig/rmd-05-add-main-title-1.png" title="plot of chunk add-main-title" alt="plot of chunk add-main-title" width="612" style="display: block; margin: auto;" />
+
 Now the figure is complete and ready to be exported and saved to a file. This can be achieved easily using [`ggsave()`](https://ggplot2.tidyverse.org/reference/ggsave.html), which can write, by default, the most recent generated figure into different formats (e.g., `jpeg`, `png`, `pdf`) according to the file extension. So, for example, to create a pdf version of the above figure with a dimension of $6\times4$ inches:
 
 
@@ -326,6 +340,21 @@ If we check the *current working directory*, there should be a newly created fil
 > > <img src="../fig/rmd-05-scatter-challenge-1.png" title="plot of chunk scatter-challenge" alt="plot of chunk scatter-challenge" width="612" style="display: block; margin: auto;" />
 > {: .solution}
 {: .challenge}
+
+To further customize the plot, we can change the default font format:
+
+
+~~~
+ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
+  geom_point(alpha = 0.5) +
+  labs(x = "Base Pair Position",
+       y = "Read Depth (DP)") +
+  ggtitle("Read Depth vs. Position") +
+  theme(text = element_text(family = "Bookman"))
+~~~
+{: .language-r}
+
+<img src="../fig/rmd-05-change-font-family-1.png" title="plot of chunk change-font-family" alt="plot of chunk change-font-family" width="612" style="display: block; margin: auto;" />
 
 ## Faceting
 
