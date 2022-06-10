@@ -34,6 +34,8 @@ questions:
 
 **`ggplot2`** belongs to the [**`tidyverse`** framework](https://www.tidyverse.org/). Therefore, we will start with loading the package **`tidyverse`**.
 
+## Installing `tidyverse`
+
 if **`tidyverse`** is not already installed, then we need to install first. If it is already installed, then we can skip the following step
 
 
@@ -79,7 +81,7 @@ library(tidyverse)
 
 As we can see from above output **`ggplot2`** has been already loaded along with other packages as part of the **`tidyverse`** framework.
 
-Loading the dataset
+## Loading the dataset
 
 
 ~~~
