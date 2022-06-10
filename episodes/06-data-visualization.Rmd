@@ -95,10 +95,9 @@ ggplot(data = variants, aes(x = POS, y = DP))
 - add 'geoms' – graphical representations of the data in the plot (points,
   lines, bars). **`ggplot2`** offers many different geoms; we will use some
   common ones today, including:
-
-      * [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) for scatter plots, dot plots, etc.
-      * [`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html) for, well, boxplots!
-      * [`geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html) for trend lines, time series, etc.
+  * [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) for scatter plots, dot plots, etc.
+  * [`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html) for, well, boxplots!
+  * [`geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html) for trend lines, time series, etc.
 
 To add a geom to the plot use the `+` operator. Because we have two continuous variables, let's use [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) (i.e., a scatter plot) first:
 
