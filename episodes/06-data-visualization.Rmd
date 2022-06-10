@@ -7,7 +7,7 @@ objectives:
 - Choose the correct aesthetics and alter the geom parameters for a scatter plot,
   histogram, or box plot.
 - Layer multiple geometries in a single plot.
-- Customize plot scales, titles, subtitles, themes, fonts, layout, and orientation.
+- Customize plot scales, titles, themes, and fonts.
 - Apply a facet to a plot.
 - Apply additional ggplot2-compatible plotting libraries.
 - Save a ggplot to a file.
@@ -40,7 +40,7 @@ variants = read.csv("https://raw.githubusercontent.com/naupaka/vcfr-for-data-car
 
 ## Installing `tidyverse`
 
-if **`tidyverse`** is not already installed, then we need to install first. If it is already installed, then we can skip the following step
+If **`tidyverse`** is not already installed, then we need to install first. If it is already installed, then we can skip the following step
 
 ```{r echo=TRUE, eval=FALSE}
 # Installing the tidyverse package, which also include ggplot2
@@ -185,6 +185,16 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
        y = "Read Depth (DP)")
 ```
 
+To add a *main* title to the plot, we use [`ggtitle()`](https://ggplot2.tidyverse.org/reference/labs.html):
+
+```{r add-main-title, purl=FALSE}
+ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
+  geom_point(alpha = 0.5) +
+  labs(x = "Base Pair Position",
+       y = "Read Depth (DP)") +
+  ggtitle("Read Depth vs. Position")
+```  
+
 Now the figure is complete and ready to be exported and saved to a file. This can be achieved easily using [`ggsave()`](https://ggplot2.tidyverse.org/reference/ggsave.html), which can write, by default, the most recent generated figure into different formats (e.g., `jpeg`, `png`, `pdf`) according to the file extension. So, for example, to create a pdf version of the above figure with a dimension of $6\times4$ inches:
 
 ```{r save-to-file, purl=FALSE}
@@ -208,6 +218,17 @@ If we check the *current working directory*, there should be a newly created fil
 > > ```
 > {: .solution}
 {: .challenge}
+
+To further customize the plot, we can change the default font format:
+
+```{r change-font-family, purl=FALSE}
+ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
+  geom_point(alpha = 0.5) +
+  labs(x = "Base Pair Position",
+       y = "Read Depth (DP)") +
+  ggtitle("Read Depth vs. Position") +
+  theme(text = element_text(family = "Bookman"))
+```  
 
 ## Faceting
 
