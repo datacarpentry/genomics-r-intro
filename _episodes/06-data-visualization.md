@@ -474,8 +474,7 @@ The [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package p
 >
 > * See if you can change the size or shape of the plotting symbol.
 > * Can you find a way to change the name of the legend? What about its labels?
-> * Try using a different color palette (see
->   http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
+> * Try using a different color palette (see the [Cookbook for R](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
 {: .challenge}
 
 
