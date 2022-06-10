@@ -463,13 +463,13 @@ This plot tells us that the most of frequent `DP` (read depth) for the variants 
 
 In addition to [`theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html), which changes the plot background to white, **`ggplot2`** comes with several other themes which can be useful to quickly change the look of your visualization. The complete list of themes is available at <https://ggplot2.tidyverse.org/reference/ggtheme.html>. `theme_minimal()` and `theme_light()` are popular, and `theme_void()` can be useful as a starting point to create a new hand-crafted theme.
 
-The [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package provides a wide variety of options (including the [old](https://jrnold.github.io/ggthemes/reference/theme_excel.html) and [new](https://jrnold.github.io/ggthemes/reference/theme_excel_new.html) Microsoft Excel). The [**`ggplot2`** extensions website](https://exts.ggplot2.tidyverse.org/) provides a list of packages that extend the capabilities of **`ggplot2`**, including additional themes.
+The [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package provides a wide variety of options (including Microsoft Excel, [old](https://jrnold.github.io/ggthemes/reference/theme_excel.html) and [new](https://jrnold.github.io/ggthemes/reference/theme_excel_new.html)). The [**`ggplot2`** extensions website](https://exts.ggplot2.tidyverse.org/) provides a list of packages that extend the capabilities of **`ggplot2`**, including additional themes.
 
 > ## Challenge
 >
 > With all of this information in hand, please take another five minutes to
 > either improve one of the plots generated in this exercise or create a
-> beautiful graph of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
+> beautiful graph of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf)
 > for inspiration. Here are some ideas:
 >
 > * See if you can change the size or shape of the plotting symbol.
