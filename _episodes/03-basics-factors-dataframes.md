@@ -1379,17 +1379,6 @@ Finally, let's check the first few lines of the `Ecoli_metadata` data
 frame:
 
 
-~~~
-Error in download.file("https://de.cyverse.org/dl/d/17FAE062-2673-417B-8544-77CC46974A37/Ecoli_metadata.xlsx", : cannot open URL 'https://de.cyverse.org/dl/d/17FAE062-2673-417B-8544-77CC46974A37/Ecoli_metadata.xlsx'
-~~~
-{: .error}
-
-
-
-~~~
-Error: `path` does not exist: 'Ecoli_metadata.xlsx'
-~~~
-{: .error}
 
 
 ~~~
@@ -1400,9 +1389,17 @@ head(Ecoli_metadata)
 
 
 ~~~
-Error in head(Ecoli_metadata): object 'Ecoli_metadata' not found
+# A tibble: 6 × 7
+  sample   generation clade   strain cit     run       genome_size
+  <chr>         <dbl> <chr>   <chr>  <chr>   <chr>           <dbl>
+1 REL606            0 NA      REL606 unknown <NA>             4.62
+2 REL1166A       2000 unknown REL606 unknown SRR098028        4.63
+3 ZDB409         5000 unknown REL606 unknown SRR098281        4.6 
+4 ZDB429        10000 UC      REL606 unknown SRR098282        4.59
+5 ZDB446        15000 UC      REL606 unknown SRR098283        4.66
+6 ZDB458        20000 (C1,C2) REL606 unknown SRR098284        4.63
 ~~~
-{: .error}
+{: .output}
 
 The type of this object is 'tibble', a type of data
 frame we will talk more about in the 'dplyr' section. If you needed
@@ -1438,9 +1435,9 @@ a true R data frame you could coerce with `as.data.frame()`.
 >> 
 >> 
 >> ~~~
->> Error in eval(expr, envir, enclos): object 'Ecoli_metadata' not found
+>> [1] 30  7
 >> ~~~
->> {: .error}
+>> {: .output}
 >> 
 >> 
 >> 
@@ -1452,9 +1449,9 @@ a true R data frame you could coerce with `as.data.frame()`.
 >> 
 >> 
 >> ~~~
->> Error in is.factor(x): object 'Ecoli_metadata' not found
+>> [1] "minus"   "plus"    "unknown"
 >> ~~~
->> {: .error}
+>> {: .output}
 >> 
 >> 
 >> 
@@ -1466,9 +1463,11 @@ a true R data frame you could coerce with `as.data.frame()`.
 >> 
 >> 
 >> ~~~
->> Error in is.factor(x): object 'Ecoli_metadata' not found
+>> 
+>>   minus    plus unknown 
+>>       9       9      12 
 >> ~~~
->> {: .error}
+>> {: .output}
 >> 
 >> 
 >> 
@@ -1480,9 +1479,12 @@ a true R data frame you could coerce with `as.data.frame()`.
 >> 
 >> 
 >> ~~~
->> Error in eval(expr, envir, enclos): object 'Ecoli_metadata' not found
+>> # A tibble: 1 × 1
+>>   genome_size
+>>         <dbl>
+>> 1        4.62
 >> ~~~
->> {: .error}
+>> {: .output}
 >> 
 >> 
 >> 
@@ -1494,50 +1496,17 @@ a true R data frame you could coerce with `as.data.frame()`.
 >> 
 >> 
 >> ~~~
->> Error in median(Ecoli_metadata$genome_size): object 'Ecoli_metadata' not found
+>> [1] 4.625
 >> ~~~
->> {: .error}
+>> {: .output}
 >> 
 >> 
 >> 
 >> ~~~
 >> colnames(Ecoli_metadata)[colnames(Ecoli_metadata) == "sample"] <- "sample_id"
->> ~~~
->> {: .language-r}
->> 
->> 
->> 
->> ~~~
->> Error in colnames(Ecoli_metadata)[colnames(Ecoli_metadata) == "sample"] <- "sample_id": object 'Ecoli_metadata' not found
->> ~~~
->> {: .error}
->> 
->> 
->> 
->> ~~~
 >> Ecoli_metadata$genome_size_bp <- Ecoli_metadata$genome_size * 1000000
->> ~~~
->> {: .language-r}
->> 
->> 
->> 
->> ~~~
->> Error in eval(expr, envir, enclos): object 'Ecoli_metadata' not found
->> ~~~
->> {: .error}
->> 
->> 
->> 
->> ~~~
 >> write.csv(Ecoli_metadata, file = "exercise_solution.csv")
 >> ~~~
 >> {: .language-r}
->> 
->> 
->> 
->> ~~~
->> Error in is.data.frame(x): object 'Ecoli_metadata' not found
->> ~~~
->> {: .error}
 > {: .solution}
 {: .challenge}

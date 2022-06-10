@@ -38,7 +38,7 @@ if **`tidyverse`** is not already installed, then we need to install first. If i
 
 
 ~~~
-# Installing the tidyverse pacakge, which also include ggplot2
+# Installing the tidyverse package, which also include ggplot2
 install.packages("tidyverse")
 ~~~
 {: .language-r}
