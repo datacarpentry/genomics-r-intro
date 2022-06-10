@@ -309,7 +309,7 @@ This plot tells us that the most of frequent `DP` (read depth) for the variants 
 
 In addition to [`theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html), which changes the plot background to white, **`ggplot2`** comes with several other themes which can be useful to quickly change the look of your visualization. The complete list of themes is available at <https://ggplot2.tidyverse.org/reference/ggtheme.html>. `theme_minimal()` and `theme_light()` are popular, and `theme_void()` can be useful as a starting point to create a new hand-crafted theme.
 
-The [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package provides a wide variety of options (including an Excel 2003 theme). The [**`ggplot2`** extensions website](https://exts.ggplot2.tidyverse.org/) provides a list of packages that extend the capabilities of **`ggplot2`**, including additional themes.
+The [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package provides a wide variety of options (including the [old](https://jrnold.github.io/ggthemes/reference/theme_excel.html) and [new](https://jrnold.github.io/ggthemes/reference/theme_excel_new.html) Microsoft Excel). The [**`ggplot2`** extensions website](https://exts.ggplot2.tidyverse.org/) provides a list of packages that extend the capabilities of **`ggplot2`**, including additional themes.
 
 > ## Challenge
 >
