@@ -18,13 +18,18 @@ keypoints:
 - ggplot2 provides a flexiable and readable grammar to build plots
 source: Rmd
 questions:
-- Why ggplot2?
-- How to produce publication-quality plots?
+- What is ggplot2?
+- What is mapping, and what is aesthetics?
+- What is the process of creating a publication-quality plots with ggplot in R?
 ---
 
 ```{r, include=FALSE}
 source("../bin/chunk-options.R")
 knitr_fig_path("05-")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(printr)
 ```
 
 ```{r, echo = FALSE, eval = TRUE, purl = FALSE}
@@ -34,17 +39,26 @@ knitr_fig_path("05-")
 variants = read.csv("https://raw.githubusercontent.com/naupaka/vcfr-for-data-carpentry-draft/main/output/combined_tidy_vcf.csv")
 ```
 
-## Plotting with **`ggplot2`**
+## Introduction to **`ggplot2`**
 
-**`ggplot2`** is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties. Therefore, we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatter plot. This helps in creating publication quality plots with minimal amounts of adjustments and tweaking. **`ggplot2`** belongs to the [**`tidyverse`** framework](https://www.tidyverse.org/). Therefore, we will start with loading the package **`tidyverse`**.
+<img src="https://ggplot2.tidyverse.org/logo.png" align="right">
+
+**`ggplot2`** is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties. Therefore, we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatter plot. This helps in creating publication-quality plots with minimal amounts of adjustments and tweaking.
+
+The **gg** in “**ggplot**” stands for “**G**rammar of **G**raphics,” which is an elegant yet powerful way to describe the making of scientific plots. In short, the grammar of graphics breaks down every plot into a few components, namely, a dataset, a set of geoms (visual marks that represent the data points), and a coordinate system. You can imagine this is a grammar that gives unique names to each component appearing in a plot and conveys specific information about data. With **ggplot**, graphics are built step by step by adding new elements.
+
+The idea of **mapping** is crucial in **ggplot**. One familiar example is to *map* the value of one variable in a dataset to $x$ and the other to $y$. However, we often encounter datasets that include multiple (more than two) variables. In this case, **ggplot** allows you to *map* those other variables to visual marks such as **color** and **shape** (**aesthetics** or `aes`). One thing you may want to remember is the difference between **discrete** and **continuous** variables. Some aesthetics, such as the shape of dots, do not accept continuous variables. If forced to do so, R will give an error. This is easy to understand; we cannot create a continuum of shapes for a variable, unlike, say, color.
+
+**Tip:** when having doubts about whether a variable is [continuous or discrete](https://en.wikipedia.org/wiki/Continuous_or_discrete_variable), a quick way to check is to use the [`summary()`](https://www.geeksforgeeks.org/get-summary-of-results-produced-by-functions-in-r-programming-summary-function/) function. Continuous variables have descriptive statistics but not the discrete variables.
 
 ## Installing `tidyverse`
 
-If **`tidyverse`** is not already installed, then we need to install first. If it is already installed, then we can skip the following step
+<img src="https://tidyverse.tidyverse.org/logo.png" align="right">
 
-```{r echo=TRUE, eval=FALSE}
-# Installing the tidyverse package, which also include ggplot2
-install.packages("tidyverse")
+**`ggplot2`** belongs to the [**`tidyverse`** framework](https://www.tidyverse.org/). Therefore, we will start with loading the package **`tidyverse`**. If **`tidyverse`** is not already installed, then we need to install first. If it is already installed, then we can skip the following step:
+
+```{r install-tidyverse, echo=TRUE, eval=FALSE}
+install.packages("tidyverse") # Installing tidyverse package, includes ggplot2 and other packages such as dplyr, readr, tidyr
 ```
 
 Now, let's load the `tidyverse` package:
@@ -63,8 +77,14 @@ variants = read_csv("https://raw.githubusercontent.com/naupaka/vcfr-for-data-car
 
 Explore the *structure* (types of columns and number of rows) of the dataset using [dplyr](https://dplyr.tidyverse.org/index.html)'s [`glimpse()`](https://dplyr.tidyverse.org/reference/glimpse.html) (for more info, see the [Data Wrangling and Analyses with Tidyverse](https://datacarpentry.org/genomics-r-intro/05-dplyr/) episode)
 
-```{r}
+```{r glimpse-at-the-data}
 glimpse(variants) # Show a snapshot of the rows and columns
+```
+
+Alternatively, we can display the first a few rows (vertically) of the table using [`head()`](https://www.geeksforgeeks.org/get-the-first-parts-of-a-data-set-in-r-programming-head-function/):
+
+```{r head-of-the-data}
+head(variants)
 ```
 
 ```{r, echo = FALSE, eval = TRUE, purl = FALSE}
