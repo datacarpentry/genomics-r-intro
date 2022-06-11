@@ -20,26 +20,38 @@ keypoints:
 - ggplot2 provides a flexiable and readable grammar to build plots
 source: Rmd
 questions:
-- Why ggplot2?
-- How to produce publication-quality plots?
+- What is ggplot2?
+- What is mapping, and what is aesthetics?
+- What is the process of creating a publication-quality plots with ggplot in R?
 ---
 
 
 
 
 
-## Plotting with **`ggplot2`**
 
-**`ggplot2`** is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties. Therefore, we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatter plot. This helps in creating publication quality plots with minimal amounts of adjustments and tweaking. **`ggplot2`** belongs to the [**`tidyverse`** framework](https://www.tidyverse.org/). Therefore, we will start with loading the package **`tidyverse`**.
+
+## Introduction to **`ggplot2`**
+
+<img src="https://ggplot2.tidyverse.org/logo.png" align="right">
+
+**`ggplot2`** is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties. Therefore, we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatter plot. This helps in creating publication-quality plots with minimal amounts of adjustments and tweaking.
+
+The **gg** in “**ggplot**” stands for “**G**rammar of **G**raphics,” which is an elegant yet powerful way to describe the making of scientific plots. In short, the grammar of graphics breaks down every plot into a few components, namely, a dataset, a set of geoms (visual marks that represent the data points), and a coordinate system. You can imagine this is a grammar that gives unique names to each component appearing in a plot and conveys specific information about data. With **ggplot**, graphics are built step by step by adding new elements.
+
+The idea of **mapping** is crucial in **ggplot**. One familiar example is to *map* the value of one variable in a dataset to $x$ and the other to $y$. However, we often encounter datasets that include multiple (more than two) variables. In this case, **ggplot** allows you to *map* those other variables to visual marks such as **color** and **shape** (**aesthetics** or `aes`). One thing you may want to remember is the difference between **discrete** and **continuous** variables. Some aesthetics, such as the shape of dots, do not accept continuous variables. If forced to do so, R will give an error. This is easy to understand; we cannot create a continuum of shapes for a variable, unlike, say, color.
+
+**Tip:** when having doubts about whether a variable is [continuous or discrete](https://en.wikipedia.org/wiki/Continuous_or_discrete_variable), a quick way to check is to use the [`summary()`](https://www.geeksforgeeks.org/get-summary-of-results-produced-by-functions-in-r-programming-summary-function/) function. Continuous variables have descriptive statistics but not the discrete variables.
 
 ## Installing `tidyverse`
 
-If **`tidyverse`** is not already installed, then we need to install first. If it is already installed, then we can skip the following step
+<img src="https://tidyverse.tidyverse.org/logo.png" align="right">
+
+**`ggplot2`** belongs to the [**`tidyverse`** framework](https://www.tidyverse.org/). Therefore, we will start with loading the package **`tidyverse`**. If **`tidyverse`** is not already installed, then we need to install first. If it is already installed, then we can skip the following step:
 
 
 ~~~
-# Installing the tidyverse package, which also include ggplot2
-install.packages("tidyverse")
+install.packages("tidyverse") # Installing tidyverse package, includes ggplot2 and other packages such as dplyr, readr, tidyr
 ~~~
 {: .language-r}
 
@@ -146,6 +158,25 @@ $ gt_GT         <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,�
 $ gt_GT_alleles <chr> "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "AC…
 ~~~
 {: .output}
+
+Alternatively, we can display the first a few rows (vertically) of the table using [`head()`](https://www.geeksforgeeks.org/get-the-first-parts-of-a-data-set-in-r-programming-head-function/):
+
+
+~~~
+head(variants)
+~~~
+{: .language-r}
+
+
+
+|sample_id  |CHROM      |    POS|ID |REF      |ALT       | QUAL|FILTER |INDEL | IDV| IMF| DP|       VDB| RPB| MQB| BQB|     MQSB|       SGB|     MQ0F|ICB |HOB | AC| AN|DP4     | MQ|Indiv                                                              | gt_PL| gt_GT|gt_GT_alleles |
+|:----------|:----------|------:|:--|:--------|:---------|----:|:------|:-----|---:|---:|--:|---------:|---:|---:|---:|--------:|---------:|--------:|:---|:---|--:|--:|:-------|--:|:------------------------------------------------------------------|-----:|-----:|:-------------|
+|SRR2584863 |CP000819.1 |   9972|NA |T        |G         |   91|NA     |FALSE |  NA|  NA|  4| 0.0257451|  NA|  NA|  NA|       NA| -0.556411| 0.000000|NA  |NA  |  1|  1|0,0,0,4 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |  1210|     1|G             |
+|SRR2584863 |CP000819.1 | 263235|NA |G        |T         |   85|NA     |FALSE |  NA|  NA|  6| 0.0961330|   1|   1|   1|       NA| -0.590765| 0.166667|NA  |NA  |  1|  1|0,1,0,5 | 33|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |  1120|     1|T             |
+|SRR2584863 |CP000819.1 | 281923|NA |G        |T         |  217|NA     |FALSE |  NA|  NA| 10| 0.7740830|  NA|  NA|  NA| 0.974597| -0.662043| 0.000000|NA  |NA  |  1|  1|0,0,4,5 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |  2470|     1|T             |
+|SRR2584863 |CP000819.1 | 433359|NA |CTTTTTTT |CTTTTTTTT |   64|NA     |TRUE  |  12| 1.0| 12| 0.4777040|  NA|  NA|  NA| 1.000000| -0.676189| 0.000000|NA  |NA  |  1|  1|0,1,3,8 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |   910|     1|CTTTTTTTT     |
+|SRR2584863 |CP000819.1 | 473901|NA |CCGC     |CCGCGC    |  228|NA     |TRUE  |   9| 0.9| 10| 0.6595050|  NA|  NA|  NA| 0.916482| -0.662043| 0.000000|NA  |NA  |  1|  1|1,0,2,7 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |  2550|     1|CCGCGC        |
+|SRR2584863 |CP000819.1 | 648692|NA |C        |T         |  210|NA     |FALSE |  NA|  NA| 10| 0.2680140|  NA|  NA|  NA| 0.916482| -0.670168| 0.000000|NA  |NA  |  1|  1|0,0,7,3 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |  2400|     1|T             |
 
 
 
