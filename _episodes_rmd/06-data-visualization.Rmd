@@ -262,7 +262,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
  facet_grid(. ~ sample_id)
 ```
 
-This looks okay, but it would be easier to read if the plot facets were stacked vertically rather than horizontally. The `facet_grid` geometry allows you to explicitly specify how you want your plots to be arranged via formula notation (`rows ~ columns`; a `.` can be used as a placeholder that indicates only one row or column).
+This looks okay, but it would be easier to read if the plot facets were stacked vertically rather than horizontally. The `facet_grid` geometry allows you to explicitly specify how you want your plots to be arranged via formula notation (`rows ~ columns`; the dot (`.`) indicates every other variable in the data i.e., no faceting on that side of the formula).
 
 ```{r second-facet, purl=FALSE}
 ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
