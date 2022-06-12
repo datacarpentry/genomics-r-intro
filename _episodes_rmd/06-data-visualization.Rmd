@@ -53,8 +53,6 @@ The idea of **mapping** is crucial in **ggplot**. One familiar example is to *ma
 
 ## Installing `tidyverse`
 
-<img src="https://tidyverse.tidyverse.org/logo.png" align="right">
-
 **`ggplot2`** belongs to the [**`tidyverse`** framework](https://www.tidyverse.org/). Therefore, we will start with loading the package **`tidyverse`**. If **`tidyverse`** is not already installed, then we need to install first. If it is already installed, then we can skip the following step:
 
 ```{r install-tidyverse, echo=TRUE, eval=FALSE}
