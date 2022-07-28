@@ -158,6 +158,21 @@ variants <- read.csv("/home/dcuser/r_data/combined_tidy_vcf.csv")
 variants <- read.csv("https://ndownloader.figshare.com/files/14632895")
 ```
 
+## View the structure of the data.
+We will use  head() and tail() functions to display first and last 6 rows respectively.
+The functions are important in giving us an idea of our data structure.
+```{r, echo = FALSE, eval = TRUE, purl = FALSE}
+## returns first 6 rows of the data
+head(variants)
+
+## returns last 6 rows of the data
+tail(variants)
+
+## Determining the rows and columns of the data
+dim(variants)
+```
+
+
 One of the first things you should notice is that in the Environment window,
 you have the `variants` object, listed as 801 obs. (observations/rows)
 of 29 variables (columns). Double-clicking on the name of the object will open
