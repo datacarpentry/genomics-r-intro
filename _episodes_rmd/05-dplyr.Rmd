@@ -26,12 +26,6 @@ source("../bin/chunk-options.R")
 knitr_fig_path("05-")
 ```
 
-```{r, include = FALSE, echo = FALSE, eval = TRUE, purl = FALSE}
-## silently read in CSV file from data folder
-library(tidyverse)
-variants <- read_csv("../data/combined_tidy_vcf.csv")
-```
-
 Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations.
 
 Luckily, the [`dplyr`](https://cran.r-project.org/package=dplyr)
@@ -57,14 +51,14 @@ packages give you access to more functions. You need to install a package and
 then load it to be able to use it.
 
 ```{r, eval = FALSE, purl = FALSE}
-install.packages("dplyr") ## install
+install.packages("tidyverse") ## install
 ```
 
 You might get asked to choose a CRAN mirror -- this is asking you to
 choose a site to download the package from. The choice doesn't matter too much; I'd recommend choosing the RStudio mirror.
 
 ```{r, message = FALSE, purl = FALSE}
-library("dplyr")          ## load
+library("tidyverse")          ## load
 ```
 
 You only need to install a package once per computer, but you need to load it
@@ -87,6 +81,16 @@ memory and thus the amount of data you can work with is limited by available
 memory. The database connections essentially remove that limitation in that you
 can have a database that is over 100s of GB, conduct queries on it directly and pull
 back just what you need for analysis in R.
+
+### Loading .csv files in tidy style
+
+The tidyverse provides its own unique way of loading .csv files in to R using `read_csv()`, which is similar to `read.csv()`. `read_csv()` allows users to load in their data faster, use tibbles instead of data.frames, doesn't create row names, and allows you to access non-standard variable names (ie. variables that start with numbers of contain spaces). In short, it's a much friendlier way of loading in potentially messy data.
+
+Now let's load our vcf .csv file using `read_csv()`:
+
+```{r, include = FALSE, echo = FALSE, eval = TRUE, purl = FALSE}
+variants <- read_csv("../data/combined_tidy_vcf.csv") 
+```
 
 ### Taking a quick look at data frames
 
