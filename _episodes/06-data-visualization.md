@@ -64,23 +64,11 @@ library(tidyverse)
 
 
 ~~~
-── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-~~~
-{: .output}
-
-
-
-~~~
-✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-✔ tibble  3.1.7     ✔ dplyr   1.0.9
-✔ tidyr   1.2.0     ✔ stringr 1.4.0
-✔ readr   2.1.2     ✔ forcats 0.5.1
-~~~
-{: .output}
-
-
-
-~~~
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+✔ tibble  3.1.8      ✔ dplyr   1.0.10
+✔ tidyr   1.2.0      ✔ stringr 1.4.1 
+✔ readr   2.1.2      ✔ forcats 0.5.2 
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
@@ -223,7 +211,7 @@ ggplot(data = variants, aes(x = POS, y = DP)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-first-ggplot-1.png" title="plot of chunk first-ggplot" alt="plot of chunk first-ggplot" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-first-ggplot-1.png" alt="plot of chunk first-ggplot" width="612" style="display: block; margin: auto;" />
 
 The `+` in the **`ggplot2`** package is particularly useful because it allows you to modify existing `ggplot` objects. This means you can easily set up plot templates and conveniently explore different types of plots, so the above plot can also be generated with code like this:
 
@@ -267,7 +255,7 @@ ggplot(data = variants, aes(x = POS, y = DP)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-create-ggplot-object-1.png" title="plot of chunk create-ggplot-object" alt="plot of chunk create-ggplot-object" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-create-ggplot-object-1.png" alt="plot of chunk create-ggplot-object" width="612" style="display: block; margin: auto;" />
 
 Then, we start modifying this plot to extract more information from it. For instance, we can add transparency (`alpha`) to avoid over-plotting:
 
@@ -278,7 +266,7 @@ ggplot(data = variants, aes(x = POS, y = DP)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-adding-transparency-1.png" title="plot of chunk adding-transparency" alt="plot of chunk adding-transparency" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-adding-transparency-1.png" alt="plot of chunk adding-transparency" width="612" style="display: block; margin: auto;" />
 
 We can also add colors for all the points:
 
@@ -289,7 +277,7 @@ ggplot(data = variants, aes(x = POS, y = DP)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-adding-colors-1.png" title="plot of chunk adding-colors" alt="plot of chunk adding-colors" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-adding-colors-1.png" alt="plot of chunk adding-colors" width="612" style="display: block; margin: auto;" />
 
 Or to color each species in the plot differently, you could use a vector as an input to the argument **color**. **`ggplot2`** will provide a different color corresponding to different values in the vector. Here is an example where we color with **`sample_id`**:
 
@@ -300,7 +288,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-color-by-sample-1-1.png" title="plot of chunk color-by-sample-1" alt="plot of chunk color-by-sample-1" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-color-by-sample-1-1.png" alt="plot of chunk color-by-sample-1" width="612" style="display: block; margin: auto;" />
 
 Notice that we can change the geom layer and colors will be still determined by **`sample_id`**
 
@@ -311,7 +299,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-color-by-sample-2-1.png" title="plot of chunk color-by-sample-2" alt="plot of chunk color-by-sample-2" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-color-by-sample-2-1.png" alt="plot of chunk color-by-sample-2" width="612" style="display: block; margin: auto;" />
 
 To make our plot more readable, we can add axis labels:
 
@@ -324,7 +312,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-add-axis-labels-1.png" title="plot of chunk add-axis-labels" alt="plot of chunk add-axis-labels" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-add-axis-labels-1.png" alt="plot of chunk add-axis-labels" width="612" style="display: block; margin: auto;" />
 
 To add a *main* title to the plot, we use [`ggtitle()`](https://ggplot2.tidyverse.org/reference/labs.html):
 
@@ -338,7 +326,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-add-main-title-1.png" title="plot of chunk add-main-title" alt="plot of chunk add-main-title" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-add-main-title-1.png" alt="plot of chunk add-main-title" width="612" style="display: block; margin: auto;" />
 
 Now the figure is complete and ready to be exported and saved to a file. This can be achieved easily using [`ggsave()`](https://ggplot2.tidyverse.org/reference/ggsave.html), which can write, by default, the most recent generated figure into different formats (e.g., `jpeg`, `png`, `pdf`) according to the file extension. So, for example, to create a pdf version of the above figure with a dimension of $6\times4$ inches:
 
@@ -366,7 +354,7 @@ If we check the *current working directory*, there should be a newly created fil
 > > ~~~
 > > {: .language-r}
 > > 
-> > <img src="../fig/rmd-05-scatter-challenge-1.png" title="plot of chunk scatter-challenge" alt="plot of chunk scatter-challenge" width="612" style="display: block; margin: auto;" />
+> > <img src="../fig/rmd-05-scatter-challenge-1.png" alt="plot of chunk scatter-challenge" width="612" style="display: block; margin: auto;" />
 > {: .solution}
 {: .challenge}
 
@@ -383,7 +371,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-change-font-family-1.png" title="plot of chunk change-font-family" alt="plot of chunk change-font-family" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-change-font-family-1.png" alt="plot of chunk change-font-family" width="612" style="display: block; margin: auto;" />
 
 ## Faceting
 
@@ -399,7 +387,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-first-facet-1.png" title="plot of chunk first-facet" alt="plot of chunk first-facet" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-first-facet-1.png" alt="plot of chunk first-facet" width="612" style="display: block; margin: auto;" />
 
 This looks okay, but it would be easier to read if the plot facets were stacked vertically rather than horizontally. The `facet_grid` geometry allows you to explicitly specify how you want your plots to be arranged via formula notation (`rows ~ columns`; the dot (`.`) indicates every other variable in the data i.e., no faceting on that side of the formula).
 
@@ -413,7 +401,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-second-facet-1.png" title="plot of chunk second-facet" alt="plot of chunk second-facet" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-second-facet-1.png" alt="plot of chunk second-facet" width="612" style="display: block; margin: auto;" />
 
 Usually plots with white background look more readable when printed.  We can set the background to white using the function [`theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html). Additionally, you can remove the grid:
 
@@ -429,7 +417,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-facet-plot-white-bg-1.png" title="plot of chunk facet-plot-white-bg" alt="plot of chunk facet-plot-white-bg" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-facet-plot-white-bg-1.png" alt="plot of chunk facet-plot-white-bg" width="612" style="display: block; margin: auto;" />
 
 > ## Challenge
 >
@@ -448,7 +436,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
 > > ~~~
 > > {: .language-r}
 > > 
-> > <img src="../fig/rmd-05-scatter-challenge-2-1.png" title="plot of chunk scatter-challenge-2" alt="plot of chunk scatter-challenge-2" width="612" style="display: block; margin: auto;" />
+> > <img src="../fig/rmd-05-scatter-challenge-2-1.png" alt="plot of chunk scatter-challenge-2" width="612" style="display: block; margin: auto;" />
 > {: .solution}
 {: .challenge}
 
@@ -464,7 +452,7 @@ ggplot(data = variants, aes(x = INDEL, fill = sample_id)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-barplot-1.png" title="plot of chunk barplot" alt="plot of chunk barplot" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-barplot-1.png" alt="plot of chunk barplot" width="612" style="display: block; margin: auto;" />
 
 > ## Challenge
 > Since we already have the sample_id labels on the individual plot facets, we don't need the
@@ -480,7 +468,7 @@ ggplot(data = variants, aes(x = INDEL, fill = sample_id)) +
 >> ~~~
 >> {: .language-r}
 >> 
->> <img src="../fig/rmd-05-barplot-challenge-1.png" title="plot of chunk barplot-challenge" alt="plot of chunk barplot-challenge" width="612" style="display: block; margin: auto;" />
+>> <img src="../fig/rmd-05-barplot-challenge-1.png" alt="plot of chunk barplot-challenge" width="612" style="display: block; margin: auto;" />
 > {: .solution}
 {: .challenge}
 
@@ -496,7 +484,7 @@ ggplot(data = variants, aes(x = DP)) +
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-05-density-1.png" title="plot of chunk density" alt="plot of chunk density" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-05-density-1.png" alt="plot of chunk density" width="612" style="display: block; margin: auto;" />
 
 This plot tells us that the most of frequent `DP` (read depth) for the variants is about 10 reads.
 
@@ -512,7 +500,7 @@ This plot tells us that the most of frequent `DP` (read depth) for the variants 
 >> ~~~
 >> {: .language-r}
 >> 
->> <img src="../fig/rmd-05-density-challenge-1.png" title="plot of chunk density-challenge" alt="plot of chunk density-challenge" width="612" style="display: block; margin: auto;" />
+>> <img src="../fig/rmd-05-density-challenge-1.png" alt="plot of chunk density-challenge" width="612" style="display: block; margin: auto;" />
 > {: .solution}
 {: .challenge}
 

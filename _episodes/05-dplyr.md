@@ -172,22 +172,22 @@ select(variants, -CHROM)
 
 ~~~
 # A tibble: 801 × 28
-   sample_id      POS ID    REF      ALT    QUAL FILTER INDEL   IDV    IMF    DP
-   <chr>        <dbl> <lgl> <chr>    <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl> <dbl>
- 1 SRR2584863    9972 NA    T        G        91 NA     FALSE    NA NA         4
- 2 SRR2584863  263235 NA    G        T        85 NA     FALSE    NA NA         6
- 3 SRR2584863  281923 NA    G        T       217 NA     FALSE    NA NA        10
- 4 SRR2584863  433359 NA    CTTTTTTT CTTT…    64 NA     TRUE     12  1        12
- 5 SRR2584863  473901 NA    CCGC     CCGC…   228 NA     TRUE      9  0.9      10
- 6 SRR2584863  648692 NA    C        T       210 NA     FALSE    NA NA        10
- 7 SRR2584863 1331794 NA    C        A       178 NA     FALSE    NA NA         8
- 8 SRR2584863 1733343 NA    G        A       225 NA     FALSE    NA NA        11
- 9 SRR2584863 2103887 NA    ACAGCCA… ACAG…    56 NA     TRUE      2  0.667     3
-10 SRR2584863 2333538 NA    AT       ATT     167 NA     TRUE      7  1         7
-# … with 791 more rows, and 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
-#   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
-#   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
-#   gt_GT <dbl>, gt_GT_alleles <chr>
+   sampl…¹    POS ID    REF   ALT    QUAL FILTER INDEL   IDV    IMF    DP    VDB
+   <chr>    <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl> <dbl>  <dbl>
+ 1 SRR258… 9.97e3 NA    T     G        91 NA     FALSE    NA NA         4 0.0257
+ 2 SRR258… 2.63e5 NA    G     T        85 NA     FALSE    NA NA         6 0.0961
+ 3 SRR258… 2.82e5 NA    G     T       217 NA     FALSE    NA NA        10 0.774 
+ 4 SRR258… 4.33e5 NA    CTTT… CTTT…    64 NA     TRUE     12  1        12 0.478 
+ 5 SRR258… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9  0.9      10 0.660 
+ 6 SRR258… 6.49e5 NA    C     T       210 NA     FALSE    NA NA        10 0.268 
+ 7 SRR258… 1.33e6 NA    C     A       178 NA     FALSE    NA NA         8 0.624 
+ 8 SRR258… 1.73e6 NA    G     A       225 NA     FALSE    NA NA        11 0.992 
+ 9 SRR258… 2.10e6 NA    ACAG… ACAG…    56 NA     TRUE      2  0.667     3 0.902 
+10 SRR258… 2.33e6 NA    AT    ATT     167 NA     TRUE      7  1         7 0.568 
+# … with 791 more rows, 16 more variables: RPB <dbl>, MQB <dbl>, BQB <dbl>,
+#   MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>, AC <dbl>,
+#   AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>, gt_GT <dbl>,
+#   gt_GT_alleles <chr>, and abbreviated variable name ¹​sample_id
 ~~~
 {: .output}
 
@@ -267,22 +267,22 @@ filter(variants, sample_id == "SRR2584863")
 
 ~~~
 # A tibble: 25 × 29
-   sample_id  CHROM        POS ID    REF   ALT    QUAL FILTER INDEL   IDV    IMF
-   <chr>      <chr>      <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl>
- 1 SRR2584863 CP000819… 9.97e3 NA    T     G        91 NA     FALSE    NA NA    
- 2 SRR2584863 CP000819… 2.63e5 NA    G     T        85 NA     FALSE    NA NA    
- 3 SRR2584863 CP000819… 2.82e5 NA    G     T       217 NA     FALSE    NA NA    
- 4 SRR2584863 CP000819… 4.33e5 NA    CTTT… CTTT…    64 NA     TRUE     12  1    
- 5 SRR2584863 CP000819… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9  0.9  
- 6 SRR2584863 CP000819… 6.49e5 NA    C     T       210 NA     FALSE    NA NA    
- 7 SRR2584863 CP000819… 1.33e6 NA    C     A       178 NA     FALSE    NA NA    
- 8 SRR2584863 CP000819… 1.73e6 NA    G     A       225 NA     FALSE    NA NA    
- 9 SRR2584863 CP000819… 2.10e6 NA    ACAG… ACAG…    56 NA     TRUE      2  0.667
-10 SRR2584863 CP000819… 2.33e6 NA    AT    ATT     167 NA     TRUE      7  1    
-# … with 15 more rows, and 18 more variables: DP <dbl>, VDB <dbl>, RPB <dbl>,
-#   MQB <dbl>, BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>,
-#   HOB <lgl>, AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>,
-#   gt_PL <dbl>, gt_GT <dbl>, gt_GT_alleles <chr>
+   sample…¹ CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV    IMF    DP
+   <chr>    <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl> <dbl>
+ 1 SRR2584… CP00… 9.97e3 NA    T     G        91 NA     FALSE    NA NA         4
+ 2 SRR2584… CP00… 2.63e5 NA    G     T        85 NA     FALSE    NA NA         6
+ 3 SRR2584… CP00… 2.82e5 NA    G     T       217 NA     FALSE    NA NA        10
+ 4 SRR2584… CP00… 4.33e5 NA    CTTT… CTTT…    64 NA     TRUE     12  1        12
+ 5 SRR2584… CP00… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9  0.9      10
+ 6 SRR2584… CP00… 6.49e5 NA    C     T       210 NA     FALSE    NA NA        10
+ 7 SRR2584… CP00… 1.33e6 NA    C     A       178 NA     FALSE    NA NA         8
+ 8 SRR2584… CP00… 1.73e6 NA    G     A       225 NA     FALSE    NA NA        11
+ 9 SRR2584… CP00… 2.10e6 NA    ACAG… ACAG…    56 NA     TRUE      2  0.667     3
+10 SRR2584… CP00… 2.33e6 NA    AT    ATT     167 NA     TRUE      7  1         7
+# … with 15 more rows, 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
+#   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
+#   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
+#   gt_GT <dbl>, gt_GT_alleles <chr>, and abbreviated variable name ¹​sample_id
 ~~~
 {: .output}
 
@@ -465,22 +465,22 @@ filter(variants, sample_id == "SRR2584863", (INDEL | QUAL >= 100))
 
 ~~~
 # A tibble: 22 × 29
-   sample_id  CHROM        POS ID    REF   ALT    QUAL FILTER INDEL   IDV    IMF
-   <chr>      <chr>      <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl>
- 1 SRR2584863 CP000819… 2.82e5 NA    G     T       217 NA     FALSE    NA NA    
- 2 SRR2584863 CP000819… 4.33e5 NA    CTTT… CTTT…    64 NA     TRUE     12  1    
- 3 SRR2584863 CP000819… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9  0.9  
- 4 SRR2584863 CP000819… 6.49e5 NA    C     T       210 NA     FALSE    NA NA    
- 5 SRR2584863 CP000819… 1.33e6 NA    C     A       178 NA     FALSE    NA NA    
- 6 SRR2584863 CP000819… 1.73e6 NA    G     A       225 NA     FALSE    NA NA    
- 7 SRR2584863 CP000819… 2.10e6 NA    ACAG… ACAG…    56 NA     TRUE      2  0.667
- 8 SRR2584863 CP000819… 2.33e6 NA    AT    ATT     167 NA     TRUE      7  1    
- 9 SRR2584863 CP000819… 2.41e6 NA    A     C       104 NA     FALSE    NA NA    
-10 SRR2584863 CP000819… 2.45e6 NA    A     C       225 NA     FALSE    NA NA    
-# … with 12 more rows, and 18 more variables: DP <dbl>, VDB <dbl>, RPB <dbl>,
-#   MQB <dbl>, BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>,
-#   HOB <lgl>, AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>,
-#   gt_PL <dbl>, gt_GT <dbl>, gt_GT_alleles <chr>
+   sample…¹ CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV    IMF    DP
+   <chr>    <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl> <dbl>
+ 1 SRR2584… CP00… 2.82e5 NA    G     T       217 NA     FALSE    NA NA        10
+ 2 SRR2584… CP00… 4.33e5 NA    CTTT… CTTT…    64 NA     TRUE     12  1        12
+ 3 SRR2584… CP00… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9  0.9      10
+ 4 SRR2584… CP00… 6.49e5 NA    C     T       210 NA     FALSE    NA NA        10
+ 5 SRR2584… CP00… 1.33e6 NA    C     A       178 NA     FALSE    NA NA         8
+ 6 SRR2584… CP00… 1.73e6 NA    G     A       225 NA     FALSE    NA NA        11
+ 7 SRR2584… CP00… 2.10e6 NA    ACAG… ACAG…    56 NA     TRUE      2  0.667     3
+ 8 SRR2584… CP00… 2.33e6 NA    AT    ATT     167 NA     TRUE      7  1         7
+ 9 SRR2584… CP00… 2.41e6 NA    A     C       104 NA     FALSE    NA NA         9
+10 SRR2584… CP00… 2.45e6 NA    A     C       225 NA     FALSE    NA NA        20
+# … with 12 more rows, 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
+#   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
+#   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
+#   gt_GT <dbl>, gt_GT_alleles <chr>, and abbreviated variable name ¹​sample_id
 ~~~
 {: .output}
 
@@ -734,22 +734,23 @@ variants %>%
 
 ~~~
 # A tibble: 801 × 30
-   sample_id  CHROM        POS ID    REF   ALT    QUAL FILTER INDEL   IDV    IMF
-   <chr>      <chr>      <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl>
- 1 SRR2584863 CP000819… 9.97e3 NA    T     G        91 NA     FALSE    NA NA    
- 2 SRR2584863 CP000819… 2.63e5 NA    G     T        85 NA     FALSE    NA NA    
- 3 SRR2584863 CP000819… 2.82e5 NA    G     T       217 NA     FALSE    NA NA    
- 4 SRR2584863 CP000819… 4.33e5 NA    CTTT… CTTT…    64 NA     TRUE     12  1    
- 5 SRR2584863 CP000819… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9  0.9  
- 6 SRR2584863 CP000819… 6.49e5 NA    C     T       210 NA     FALSE    NA NA    
- 7 SRR2584863 CP000819… 1.33e6 NA    C     A       178 NA     FALSE    NA NA    
- 8 SRR2584863 CP000819… 1.73e6 NA    G     A       225 NA     FALSE    NA NA    
- 9 SRR2584863 CP000819… 2.10e6 NA    ACAG… ACAG…    56 NA     TRUE      2  0.667
-10 SRR2584863 CP000819… 2.33e6 NA    AT    ATT     167 NA     TRUE      7  1    
-# … with 791 more rows, and 19 more variables: DP <dbl>, VDB <dbl>, RPB <dbl>,
-#   MQB <dbl>, BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>,
-#   HOB <lgl>, AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>,
-#   gt_PL <dbl>, gt_GT <dbl>, gt_GT_alleles <chr>, POLPROB <dbl>
+   sample…¹ CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV    IMF    DP
+   <chr>    <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl> <dbl>
+ 1 SRR2584… CP00… 9.97e3 NA    T     G        91 NA     FALSE    NA NA         4
+ 2 SRR2584… CP00… 2.63e5 NA    G     T        85 NA     FALSE    NA NA         6
+ 3 SRR2584… CP00… 2.82e5 NA    G     T       217 NA     FALSE    NA NA        10
+ 4 SRR2584… CP00… 4.33e5 NA    CTTT… CTTT…    64 NA     TRUE     12  1        12
+ 5 SRR2584… CP00… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9  0.9      10
+ 6 SRR2584… CP00… 6.49e5 NA    C     T       210 NA     FALSE    NA NA        10
+ 7 SRR2584… CP00… 1.33e6 NA    C     A       178 NA     FALSE    NA NA         8
+ 8 SRR2584… CP00… 1.73e6 NA    G     A       225 NA     FALSE    NA NA        11
+ 9 SRR2584… CP00… 2.10e6 NA    ACAG… ACAG…    56 NA     TRUE      2  0.667     3
+10 SRR2584… CP00… 2.33e6 NA    AT    ATT     167 NA     TRUE      7  1         7
+# … with 791 more rows, 18 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
+#   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
+#   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
+#   gt_GT <dbl>, gt_GT_alleles <chr>, POLPROB <dbl>, and abbreviated variable
+#   name ¹​sample_id
 ~~~
 {: .output}
 

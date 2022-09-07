@@ -458,7 +458,7 @@ plot(factor_snps)
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-03-unnamed-chunk-14-1.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-03-unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14" width="612" style="display: block; margin: auto;" />
 
 This isn't a particularly pretty example of a plot but it works. We'll be
 learning much more about creating nice, publication-quality graphics later in
@@ -497,7 +497,7 @@ plot(ordered_factor_snps)
 ~~~
 {: .language-r}
 
-<img src="../fig/rmd-03-unnamed-chunk-16-1.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" width="612" style="display: block; margin: auto;" />
+<img src="../fig/rmd-03-unnamed-chunk-16-1.png" alt="plot of chunk unnamed-chunk-16" width="612" style="display: block; margin: auto;" />
 
 Factors come in handy in many places when using R. Even using more
 sophisticated plotting packages such as ggplot2 will sometimes require you
