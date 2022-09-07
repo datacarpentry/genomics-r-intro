@@ -28,7 +28,7 @@ source: Rmd
 
 ```{r, include = FALSE}
 source("../bin/chunk-options.R")
-knitr_fig_path("01-")
+knitr_fig_path("00-")
 ```
 
 ## Getting ready to use R for the first time

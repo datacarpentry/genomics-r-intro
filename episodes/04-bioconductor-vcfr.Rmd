@@ -18,8 +18,6 @@ source: Rmd
 
 ```{r chunk_options, include=FALSE}
 source("../bin/chunk-options.R")
-
-# TODO: This needs to be updated when the episode number is finalized
 knitr_fig_path("04-")
 ```
 
