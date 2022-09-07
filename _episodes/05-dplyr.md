@@ -25,8 +25,6 @@ source: Rmd
 
 
 
-
-
 Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations.
 
 Luckily, the [`dplyr`](https://cran.r-project.org/package=dplyr)
@@ -53,7 +51,8 @@ then load it to be able to use it.
 
 
 ~~~
-install.packages("dplyr") ## install
+install.packages("dplyr") ## installs dplyr package
+install.packages("readr") ## install readr pacakge
 ~~~
 {: .language-r}
 
@@ -62,7 +61,8 @@ choose a site to download the package from. The choice doesn't matter too much; 
 
 
 ~~~
-library("dplyr")          ## load
+library("dplyr")          ## loads in dplyr package to use
+library("readr")          ## load in readr package to use
 ~~~
 {: .language-r}
 
@@ -86,6 +86,14 @@ memory and thus the amount of data you can work with is limited by available
 memory. The database connections essentially remove that limitation in that you
 can have a database that is over 100s of GB, conduct queries on it directly and pull
 back just what you need for analysis in R.
+
+### Loading .csv files in tidy style
+
+The Tidyverse's `readr` package provides its own unique way of loading .csv files in to R using `read_csv()`, which is similar to `read.csv()`. `read_csv()` allows users to load in their data faster, doesn't create row names, and allows you to access non-standard variable names (ie. variables that start with numbers of contain spaces), and outputs your data on the R console in a tidier way. In short, it's a much friendlier way of loading in potentially messy data.
+
+Now let's load our vcf .csv file using `read_csv()`:
+
+
 
 ### Taking a quick look at data frames
 
@@ -974,10 +982,9 @@ variants_wide <- variants %>%
 
 
 ~~~
-`summarise()` has grouped output by 'sample_id'. You can override using the
-`.groups` argument.
+Error in pivot_wider(., names_from = sample_id, values_from = mean_DP): could not find function "pivot_wider"
 ~~~
-{: .output}
+{: .error}
 
 
 
@@ -989,12 +996,9 @@ variants_wide
 
 
 ~~~
-# A tibble: 1 × 4
-  CHROM      SRR2584863 SRR2584866 SRR2589044
-  <chr>           <dbl>      <dbl>      <dbl>
-1 CP000819.1       10.4       10.6        9.3
+Error in eval(expr, envir, enclos): object 'variants_wide' not found
 ~~~
-{: .output}
+{: .error}
 
 The opposite operation of `pivot_wider()` is taken care by `pivot_longer()`. We specify the names of the new columns, and here add `-CHROM` as this column shouldn't be affected by the reshaping:
 
@@ -1008,14 +1012,9 @@ variants_wide %>%
 
 
 ~~~
-# A tibble: 3 × 3
-  CHROM      sample_id  mean_DP
-  <chr>      <chr>        <dbl>
-1 CP000819.1 SRR2584863    10.4
-2 CP000819.1 SRR2584866    10.6
-3 CP000819.1 SRR2589044     9.3
+Error in pivot_longer(., -CHROM, names_to = "sample_id", values_to = "mean_DP"): could not find function "pivot_longer"
 ~~~
-{: .output}
+{: .error}
 ### Resources
 
 * [Handy dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
