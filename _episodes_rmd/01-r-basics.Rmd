@@ -28,7 +28,7 @@ source: Rmd
 
 ```{r, include = FALSE}
 source("../bin/chunk-options.R")
-knitr_fig_path("02-")
+knitr_fig_path("01-")
 ```
 
 ## "The fantastic world of R awaits you" OR "Nobody wants to learn how to use R"
