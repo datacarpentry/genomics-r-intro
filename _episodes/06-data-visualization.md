@@ -33,7 +33,7 @@ questions:
 
 ## Introduction to **`ggplot2`**
 
-<img src="https://ggplot2.tidyverse.org/logo.png" align="right">
+<img src="https://ggplot2.tidyverse.org/logo.png" align="right" alt="Line plot enclosed in hexagon shape with ggplot2 typed beneath and www.rstudio.com at the bottom.">
 
 **`ggplot2`** is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties. Therefore, we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatter plot. This helps in creating publication-quality plots with minimal amounts of adjustments and tweaking.
 
@@ -65,10 +65,10 @@ library(tidyverse)
 
 ~~~
 ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.3.6      ✔ purrr   0.3.4 
+✔ ggplot2 3.3.6      ✔ purrr   0.3.5 
 ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-✔ tidyr   1.2.0      ✔ stringr 1.4.1 
-✔ readr   2.1.2      ✔ forcats 0.5.2 
+✔ tidyr   1.2.1      ✔ stringr 1.4.1 
+✔ readr   2.1.3      ✔ forcats 0.5.2 
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
@@ -93,6 +93,7 @@ Rows: 801 Columns: 29
 Delimiter: ","
 chr  (7): sample_id, CHROM, REF, ALT, DP4, Indiv, gt_GT_alleles
 dbl (16): POS, QUAL, IDV, IMF, DP, VDB, RPB, MQB, BQB, MQSB, SGB, MQ0F, AC, ...
+num  (1): gt_PL
 lgl  (5): ID, FILTER, INDEL, ICB, HOB
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
