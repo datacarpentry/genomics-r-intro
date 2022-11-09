@@ -178,7 +178,7 @@ filter(variants, !is.na(IDV))
 #   filter(variants, sample_id == "SRR2584863" & QUAL >= 100)
 filter(variants, sample_id == "SRR2584863", QUAL >= 100)
 # using `|` logical operator
-filter(variants, sample_id == "SRR2584863", (INDEL | QUAL >= 100))
+filter(variants, sample_id == "SRR2584863", (MQ >= 50 | QUAL >= 100))
 ```
 
 > ## Challenge
