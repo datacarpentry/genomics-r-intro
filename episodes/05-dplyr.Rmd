@@ -184,12 +184,12 @@ filter(variants, sample_id == "SRR2584863", (MQ >= 50 | QUAL >= 100))
 > ## Challenge
 >
 > Select all the mutations that occurred between the positions 1e6 (one million)
-> and 2e6 (included) that are not indels and have QUAL greater than 200.
+> and 2e6 (inclusive) that have a QUAL greater than 200, and exclude INDEL mutations.
 >
 >> ## Solution
 >>
 >> ```{r}
->> filter(variants, POS >= 1e6 & POS <= 2e6, !INDEL, QUAL > 200)
+>> filter(variants, POS >= 1e6 & POS <= 2e6, QUAL > 200, !INDEL)
 >> ```
 > {: .solution}
 {: .challenge}
