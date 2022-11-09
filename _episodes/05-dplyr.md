@@ -231,13 +231,17 @@ select(variants, ends_with("B"))
 >
 > Create a table that contains all the columns with the letter "i" and column "POS",
 > without columns "Indiv" and "FILTER".
-> Hint: look at the help function `ends_with()` we've just covered.
+> Hint: look at for a function called `contains()`, which can be found in the help documentation for ends with we just covered (`?ends_with`). Note that contains() is not case sensistive.
 >
 >> ## Solution
 >>
 >> 
 >> ~~~
->> select(variants, contains("i"), -Indiv, -FILTER, POS)
+>> # First, we select "POS" and all columns with letter "i". This will contain columns Indiv and FILTER. 
+>> variants_subset <- select(variants, POS, contains("i"))
+>> # Next, we remove columns Indiv and FILTER
+>> variants_result <- select(variants_subset, -Indiv, -FILTER)
+>> variants_result
 >> ~~~
 >> {: .language-r}
 >> 
@@ -245,18 +249,49 @@ select(variants, ends_with("B"))
 >> 
 >> ~~~
 >> # A tibble: 801 × 7
->>    sample_id  ID    INDEL   IDV    IMF ICB       POS
->>    <chr>      <lgl> <lgl> <dbl>  <dbl> <lgl>   <dbl>
->>  1 SRR2584863 NA    FALSE    NA NA     NA       9972
->>  2 SRR2584863 NA    FALSE    NA NA     NA     263235
->>  3 SRR2584863 NA    FALSE    NA NA     NA     281923
->>  4 SRR2584863 NA    TRUE     12  1     NA     433359
->>  5 SRR2584863 NA    TRUE      9  0.9   NA     473901
->>  6 SRR2584863 NA    FALSE    NA NA     NA     648692
->>  7 SRR2584863 NA    FALSE    NA NA     NA    1331794
->>  8 SRR2584863 NA    FALSE    NA NA     NA    1733343
->>  9 SRR2584863 NA    TRUE      2  0.667 NA    2103887
->> 10 SRR2584863 NA    TRUE      7  1     NA    2333538
+>>        POS sample_id  ID    INDEL   IDV    IMF ICB  
+>>      <dbl> <chr>      <lgl> <lgl> <dbl>  <dbl> <lgl>
+>>  1    9972 SRR2584863 NA    FALSE    NA NA     NA   
+>>  2  263235 SRR2584863 NA    FALSE    NA NA     NA   
+>>  3  281923 SRR2584863 NA    FALSE    NA NA     NA   
+>>  4  433359 SRR2584863 NA    TRUE     12  1     NA   
+>>  5  473901 SRR2584863 NA    TRUE      9  0.9   NA   
+>>  6  648692 SRR2584863 NA    FALSE    NA NA     NA   
+>>  7 1331794 SRR2584863 NA    FALSE    NA NA     NA   
+>>  8 1733343 SRR2584863 NA    FALSE    NA NA     NA   
+>>  9 2103887 SRR2584863 NA    TRUE      2  0.667 NA   
+>> 10 2333538 SRR2584863 NA    TRUE      7  1     NA   
+>> # … with 791 more rows
+>> ~~~
+>> {: .output}
+>
+> We can also get to `variants_result` in one line of code:
+>
+>> ## Alternative solution
+>>
+>> 
+>> ~~~
+>> variants_result <- select(variants, POS, contains("i"), -Indiv, -FILTER)
+>> variants_result
+>> ~~~
+>> {: .language-r}
+>> 
+>> 
+>> 
+>> ~~~
+>> # A tibble: 801 × 7
+>>        POS sample_id  ID    INDEL   IDV    IMF ICB  
+>>      <dbl> <chr>      <lgl> <lgl> <dbl>  <dbl> <lgl>
+>>  1    9972 SRR2584863 NA    FALSE    NA NA     NA   
+>>  2  263235 SRR2584863 NA    FALSE    NA NA     NA   
+>>  3  281923 SRR2584863 NA    FALSE    NA NA     NA   
+>>  4  433359 SRR2584863 NA    TRUE     12  1     NA   
+>>  5  473901 SRR2584863 NA    TRUE      9  0.9   NA   
+>>  6  648692 SRR2584863 NA    FALSE    NA NA     NA   
+>>  7 1331794 SRR2584863 NA    FALSE    NA NA     NA   
+>>  8 1733343 SRR2584863 NA    FALSE    NA NA     NA   
+>>  9 2103887 SRR2584863 NA    TRUE      2  0.667 NA   
+>> 10 2333538 SRR2584863 NA    TRUE      7  1     NA   
 >> # … with 791 more rows
 >> ~~~
 >> {: .output}

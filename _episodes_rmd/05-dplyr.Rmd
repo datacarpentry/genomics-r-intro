@@ -129,12 +129,25 @@ select(variants, ends_with("B"))
 >
 > Create a table that contains all the columns with the letter "i" and column "POS",
 > without columns "Indiv" and "FILTER".
-> Hint: look at the help function `ends_with()` we've just covered.
+> Hint: look at for a function called `contains()`, which can be found in the help documentation for ends with we just covered (`?ends_with`). Note that contains() is not case sensistive.
 >
 >> ## Solution
 >>
 >> ```{r}
->> select(variants, contains("i"), -Indiv, -FILTER, POS)
+>> # First, we select "POS" and all columns with letter "i". This will contain columns Indiv and FILTER. 
+>> variants_subset <- select(variants, POS, contains("i"))
+>> # Next, we remove columns Indiv and FILTER
+>> variants_result <- select(variants_subset, -Indiv, -FILTER)
+>> variants_result
+>> ```
+>
+> We can also get to `variants_result` in one line of code:
+>
+>> ## Alternative solution
+>>
+>> ```{r}
+>> variants_result <- select(variants, POS, contains("i"), -Indiv, -FILTER)
+>> variants_result
 >> ```
 > {: .solution}
 {: .challenge}
