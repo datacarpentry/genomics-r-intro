@@ -49,7 +49,7 @@ To check if this worked (and also so you can make a note of the version for repr
 BiocManager::version()
 ```
 
-# Second, install the vcfR package from Bioconductor using `BiocManager`
+## Second, install the vcfR package from Bioconductor using `BiocManager`
 
 ```{r install-vcfR, eval = FALSE}
 # install the vcfR package from bioconductor using BiocManager::install()
