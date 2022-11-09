@@ -322,18 +322,41 @@ variants %>%
 Many data analysis tasks can be approached using the "split-apply-combine"
 paradigm: split the data into groups, apply some analysis to each group, and
 then combine the results. `dplyr` makes this very easy through the use of the
-`group_by()` function, which splits the data into groups. When the data is
-grouped in this way `summarize()` can be used to collapse each group into
-a single-row summary. `summarize()` does this by applying an aggregating
-or summary function to each group. For example, if we wanted to group
-by sample_id and find the number of rows of data for each
-sample, we would do:
+`group_by()` function, which splits the data into groups. 
+
+We can use `group_by()` to tally the number of mutations detected in each sample 
+using the function `tally()`:
 
 ```{r, purl = FALSE, message = FALSE}
 variants %>%
   group_by(sample_id) %>%
-  summarize(n())
+  tally()
 ```
+
+Since counting or tallying values is a common use case for `group_by()`, an alternative function was created to bypasses `group_by()` using the function `count()`:
+
+```{r, purl = FALSE, message = FALSE}
+variants %>%
+  count(sample_id)
+```
+
+> ## Challenge
+>
+> * How many mutations are INDELs?
+>
+>> ## Solution
+>>
+>> ```{r}
+>> variants %>%
+>>   count(INDEL)
+>> ```
+> {: .solution}
+{: .challenge}
+
+
+When the data is grouped, `summarize()` can be used to collapse each group into
+a single-row summary. `summarize()` does this by applying an aggregating
+or summary function to each group. 
 
 It can be a bit tricky at first, but we can imagine physically splitting the data
 frame by groups and applying a certain function to summarize the data.
@@ -344,34 +367,7 @@ frame by groups and applying a certain function to summarize the data.
 ^[The figure was adapted from the Software Carpentry lesson, [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)]
 
 Here the summary function used was `n()` to find the count for each
-group. Since this is a quite a common operation, there is a simpler method
-called `tally()`:
-
-```{r, purl = FALSE, message = FALSE}
-variants %>%
-  group_by(ALT) %>%
-  tally()
-```
-
-To show that there are many ways to achieve the same results, there is another way to approach this, which bypasses `group_by()` using the function `count()`:
-
-```{r, purl = FALSE, message = FALSE}
-variants %>%
-  count(ALT)
-```
-
-> ## Challenge
->
-> * How many mutations are found in each sample?
->
->> ## Solution
->>
->> ```{r}
->> variants %>%
->>   count(sample_id)
->> ```
-> {: .solution}
-{: .challenge}
+group, which is yet another way to count or tally groups.  
 
 We can also apply many other functions to individual columns to get other
 summary statistics. For example,we can use built-in functions like `mean()`,
