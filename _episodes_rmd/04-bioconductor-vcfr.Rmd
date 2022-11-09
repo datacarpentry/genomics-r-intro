@@ -21,8 +21,6 @@ source("../bin/chunk-options.R")
 knitr_fig_path("04-")
 ```
 
-<!-- example of rendered lesson https://datacarpentry.org/genomics-r-intro/02-r-basics/index.html -->
-
 ## Installing packages from somewhere else besides CRAN?
 
 In some cases, you may want to use a specialized package that is not hosted on [CRAN](https://cran.r-project.org/) (the Comprehensive R Archive Network). This may be because the package is so new that it hasn't yet been submitted to CRAN, or it could be that it is on a focal topic that has an alternative repository. One major example of an alternative repository source is [Bioconductor](https://bioconductor.org/), which has a mission of "promot[ing] the statistical analysis and comprehension of current and emerging high-throughput biological assays." This means that many if not all of the packages available on Bioconductor are focused on the analysis of biological data, and that it can be a great place to look for tools to help you analyze your -omics datasets!
