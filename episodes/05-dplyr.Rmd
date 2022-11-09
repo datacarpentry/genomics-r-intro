@@ -158,17 +158,27 @@ To choose rows, use `filter()`:
 filter(variants, sample_id == "SRR2584863")
 ```
 
-`filter()` will keep all the rows that match the conditions that are provided. Here are a few examples:
+`filter()` will keep all the rows that match the conditions that are provided. 
+Here are a few examples:
 
 ```{r}
 # rows for which the reference genome has T or G
 filter(variants, REF %in% c("T", "G"))
-# rows with QUAL values greater than or equal to 100
-filter(variants, QUAL >= 100)
 # rows that have TRUE in the column INDEL
 filter(variants, INDEL)
 # rows that don't have missing data in the IDV column
 filter(variants, !is.na(IDV))
+```
+
+We have a column titled "QUAL". This is a Phred-scaled confidence
+score that a polymorphism exists at this position given the sequencing
+data. Lower QUAL scores indicate low probability of a polymorphism
+existing at that site. `filter()` can be useful for selecting mutations that 
+have a QUAL score above a certain threshold:
+
+```{r}
+# rows with QUAL values greater than or equal to 100
+filter(variants, QUAL >= 100)
 ```
 
 `filter()` allows you to combine multiple conditions. You can separate them using a `,` as arguments to the function, they will be combined using the `&` (AND) logical operator. If you need to use the `|` (OR) logical operator, you can specify it explicitly:
@@ -185,6 +195,8 @@ filter(variants, sample_id == "SRR2584863", (MQ >= 50 | QUAL >= 100))
 >
 > Select all the mutations that occurred between the positions 1e6 (one million)
 > and 2e6 (inclusive) that have a QUAL greater than 200, and exclude INDEL mutations.
+> Hint: to flip logical values such as TRUE to a FALSE, we can use to negation symbol
+> "!". (eg. !TRUE == FALSE).
 >
 >> ## Solution
 >>
@@ -258,14 +270,14 @@ SRR2584863_variants %>% slice(10:25)
 > Starting with the `variants` data frame, use pipes to subset the data
 > to include only observations from SRR2584863 sample,
 > where the filtered depth (DP) is at least 10.
-> Shwoing only 5th through 11th rows of columns `REF`, `ALT`, and `POS`.
+> Showing only 5th through 11th rows of columns `REF`, `ALT`, and `POS`.
 >
 >> ## Solution
 >> ```{r}
 >>  variants %>%
 >>  filter(sample_id == "SRR2584863" & DP >= 10) %>%
 >>  slice(5:11) %>%
->>  select(REF, ALT, POS)
+>>  select(sample_id, DP, REF, ALT, POS)
 >> ```
 > {: .solution}
 {: .challenge}
@@ -276,15 +288,12 @@ Frequently you'll want to create new columns based on the values in existing
 columns, for example to do unit conversions or find the ratio of values in two
 columns. For this we'll use the `dplyr` function `mutate()`.
 
-We have a column titled "QUAL". This is a Phred-scaled confidence
-score that a polymorphism exists at this position given the sequencing
-data. Lower QUAL scores indicate low probability of a polymorphism
-existing at that site. We can convert the confidence value QUAL
-to a probability value according to the formula:
+For example, we can convert the polymorphism confidence value QUAL to a 
+probability value according to the formula:
 
 Probability = 1- 10 ^ -(QUAL/10)
 
-Let's add a column (`POLPROB`) to our `variants` data frame that shows
+We can use `mutate` to add a column (`POLPROB`) to our `variants` data frame that shows
 the probability of a polymorphism at that site given the data.
 
 ```{r, purl = FALSE}
