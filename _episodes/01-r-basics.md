@@ -1002,6 +1002,7 @@ c("ACTN3","APOA5") %in% snp_genes
 {: .challenge}
 
 > ## Review Exercise 3
+> 
 > Make the following change to the `snp_genes` vector:
 > 
 > Hint: Your vector should look like this in 'Environment':
