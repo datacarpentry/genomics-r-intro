@@ -592,7 +592,7 @@ In the square brackets you place the name of the vector followed by the comparis
 
 Finally, there are a few other common retrieve or replace operations you may
 want to know about. First, you can check to see if any of the values of your
-vector are missing (i.e. are `NA`). Missing data will get a more detailed treatment later,
+vector are missing (i.e. are `NA`, that stands for `not avaliable`). Missing data will get a more detailed treatment later,
 but the `is.NA()` function will return a logical vector, with TRUE for any NA
 value:
 
