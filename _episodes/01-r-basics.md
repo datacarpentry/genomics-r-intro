@@ -557,17 +557,17 @@ we place the index (e.g. a number) in that bracket as follows:
 
 
 ~~~
-# get the 3rd value in the snp_genes vector
-snp_genes[3]
+# get the 3rd value in the snp vector
+snp[3]
 ~~~
 {: .language-r}
 
 
 
 ~~~
-[1] "AR"
+Error in eval(expr, envir, enclos): object 'snp' not found
 ~~~
-{: .output}
+{: .error}
 
 In R, every item your vector is indexed, starting from the first item (1)
 through to the final number of items in your vector. You can also retrieve a
@@ -575,18 +575,18 @@ range of numbers:
 
 
 ~~~
-# get the 1st through 3rd value in the snp_genes vector
+# get the 1st through 3rd value in the snp vector
 
-snp_genes[1:3]
+snp[1:3]
 ~~~
 {: .language-r}
 
 
 
 ~~~
-[1] "OXTR"  "ACTN3" "AR"   
+Error in eval(expr, envir, enclos): object 'snp' not found
 ~~~
-{: .output}
+{: .error}
 
 If you want to retrieve several (but not necessarily sequential) items from
 a vector, you pass a **vector of indices**; a vector that has the numbered
@@ -594,18 +594,18 @@ positions you wish to retrieve.
 
 
 ~~~
-# get the 1st, 3rd, and 4th value in the snp_genes vector
+# get the 1st, 3rd, and 4th value in the snp vector
 
-snp_genes[c(1, 3, 4)]
+snp[c(1, 3, 4)]
 ~~~
 {: .language-r}
 
 
 
 ~~~
-[1] "OXTR"  "AR"    "OPRM1"
+Error in eval(expr, envir, enclos): object 'snp' not found
 ~~~
-{: .output}
+{: .error}
 
 There are additional (and perhaps less commonly used) ways of subsetting a
 vector (see [these
@@ -614,18 +614,18 @@ Also, several of these subsetting expressions can be combined:
 
 
 ~~~
-# get the 1st through the 3rd value, and 4th value in the snp_genes vector
+# get the 1st through the 3rd value, and 4th value in the snp vector
 # yes, this is a little silly in a vector of only 4 values.
-snp_genes[c(1:3,4)]
+snp[c(1:3,4)]
 ~~~
 {: .language-r}
 
 
 
 ~~~
-[1] "OXTR"  "ACTN3" "AR"    "OPRM1"
+Error in eval(expr, envir, enclos): object 'snp' not found
 ~~~
-{: .output}
+{: .error}
 
 ## Adding to, removing, or replacing values in existing vectors
 
@@ -634,7 +634,7 @@ so, you can use the `c()` function again to add your new value:
 
 
 ~~~
-# add the gene 'CYP1A1' and 'APOA5' to our list of snp genes
+# add the gene "CYP1A1" and "APOA5" to our list of snp genes
 # this overwrites our existing vector
 snp_genes <- c(snp_genes, "CYP1A1", "APOA5")
 ~~~
