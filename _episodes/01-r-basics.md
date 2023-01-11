@@ -704,6 +704,7 @@ snp_genes
 {: .output}
 
 > ## Exercise: Examining and subsetting vectors
+> 
 > Answer the following questions to test your knowledge of vectors
 >
 > Which of the following are true of vectors in R?
