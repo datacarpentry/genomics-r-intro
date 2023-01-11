@@ -52,7 +52,9 @@ then load it to be able to use it.
 
 ```{r, eval = FALSE, purl = FALSE}
 install.packages("dplyr") ## installs dplyr package
-install.packages("readr") ## install readr pacakge
+install.packages("tidyr") ## installs tidyr package
+install.packages("ggplot2") ## installs ggplot2 package
+install.packages("readr") ## install readr package
 ```
 
 You might get asked to choose a CRAN mirror -- this is asking you to
@@ -60,11 +62,22 @@ choose a site to download the package from. The choice doesn't matter too much; 
 
 ```{r, message = FALSE, purl = FALSE}
 library("dplyr")          ## loads in dplyr package to use
+library("tidyr")          ## loads in tidyr package to use
+library("ggplot2")          ## loads in ggplot2 package to use
 library("readr")          ## load in readr package to use
 ```
 
 You only need to install a package once per computer, but you need to load it
 every time you open a new R session and want to use that package.
+
+> ## Tip: Installing packages
+> It may be temping to install the `tidyverse` packages, as it contains many
+> useful collection of packages for this lesson and beyond. However, when 
+> teaching or following this lesson, we advise that participants install 
+> `dplyr`, `readr`, `ggplot2`, and `tidyr` individually as shown above. 
+> Otherwise, a substaial amount of the lesson will be spend waiting for the 
+> installation to complete.
+{: .callout}
 
 ## What is dplyr?
 
@@ -225,7 +238,7 @@ variants %>%
   select(REF, ALT, DP)
 ```
 
-In the above code, we use the pipe to send the `variants` dataset first through
+In the above code, we use the pipe to send the `variants` data set first through
 `filter()`, to keep rows where `sample_id` matches a particular sample, and then through `select()` to
 keep only the `REF`, `ALT`, and `DP` columns. Since `%>%` takes
 the object on its left and passes it as the first argument to the function on
@@ -302,7 +315,7 @@ variants %>%
 ```
 
 > ## Exercise
-> There are a lot of columns in our dataset, so let's just look at the
+> There are a lot of columns in our data set, so let's just look at the
 > `sample_id`, `POS`, `QUAL`, and `POLPROB` columns for now. Add a
 > line to the above code to only show those columns.
 >
@@ -365,9 +378,6 @@ frame by groups and applying a certain function to summarize the data.
 <img src="../fig/split_apply_combine.png" alt="rstudio default session" style="width: 500px;"/>
 </center>
 ^[The figure was adapted from the Software Carpentry lesson, [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)]
-
-Here the summary function used was `n()` to find the count for each
-group, which is yet another way to count or tally groups.  
 
 We can also apply many other functions to individual columns to get other
 summary statistics. For example,we can use built-in functions like `mean()`,
