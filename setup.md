@@ -6,7 +6,7 @@ root: .
 
 # Overview
 
-This workshop is designed to be run using RStudio Server on pre-imaged Amazon Web Services (AWS) instances. All of the software and data used in the workshop are hosted on an Amazon Machine Image (AMI). Please follow the instructions below to prepare your computer for the workshop:
+This workshop is designed to be run using RStudio Server on pre-imaged Amazon Web Services (AWS) instances. All of the software and data used in the workshop are hosted on an Amazon Machine Image (AMI). Please follow the instructions below to prepare your computer for the workshop, instructors - see  **Instructor tips** below.
 
 - Option A (AWS)
 
@@ -44,3 +44,7 @@ Please read the FigShare page linked below for information about the data and ac
 ## R and RStudio
 
 • R and RStudio are separate downloads and installations. R is the underlying statistical computing environment, but using R alone is no fun. RStudio is a graphical integrated development environment (IDE) that makes using R much easier and more interactive. You need to install R before you install RStudio. After installing both programs, you will need to install a specific R package within RStudio. Follow the instructions below for your operating system, and then follow the instructions for installing ggplot2. Additionally, we will also be using the dplyr package for R, although installation of this will be covered during the lesson.
+
+## Instructor Tips
+
+1. When you are provided a list of AWS instances, create a read-only spreadsheet (perhaps a Google doc) with a link for your learners to click so they may access their assigned instance. Your URL to the instance IP should include the ':8787' so that the URL points to a web-accessible page learners can see the RStudio session at. Instructors will need write access to assign instances to individual learners.. 
