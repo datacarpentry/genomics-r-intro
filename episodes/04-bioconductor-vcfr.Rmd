@@ -105,11 +105,10 @@ vcf files in R.
 
 > ## Challenge
 >
-> Add code chunks to
+> - Use the `BiocManager::available()` function to see what packages are available matching a search term.
+> - Use the [biocViews](https://bioconductor.org/packages/release/BiocViews.html#___Software) interface to search for packages of interest.
 >
-> - Install the `BiocManager` package
-> - Use that package's `install()` function to install `vcfR`
-> - Browse the Bioconductor website to find a second package, and install it 
+> You may or may not want to try installing the package, since not all dependencies always install easily. However, this will at least let you see what is available. 
 {: .challenge}
 
 ## Resources
