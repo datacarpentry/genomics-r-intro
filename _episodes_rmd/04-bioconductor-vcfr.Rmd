@@ -111,6 +111,12 @@ vcf files in R.
 > You may or may not want to try installing the package, since not all dependencies always install easily. However, this will at least let you see what is available. 
 {: .challenge}
 
+> ## Tip: Refreshing the RStudio package view after installing
+>
+> If you install a package from Bioconductor, you may need to refresh the RStudio package view to see it in your list. You can do this by clicking the "Refresh" button in the Packages pane of RStudio.
+>
+{: .callout}
+
 ## Resources
 
 - [Bioconductor](https://bioconductor.org/)
