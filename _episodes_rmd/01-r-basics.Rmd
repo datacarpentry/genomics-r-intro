@@ -417,8 +417,8 @@ the name of the vector followed by square brackets. In those square brackets
 we place the index (e.g. a number) in that bracket as follows:
 
 ```{r, purl = FALSE}
-# get the 3rd value in the snp_genes vector
-snp_genes[3]
+# get the 3rd value in the snp vector
+snp[3]
 ```
 
 In R, every item your vector is indexed, starting from the first item (1)
@@ -426,9 +426,9 @@ through to the final number of items in your vector. You can also retrieve a
 range of numbers:
 
 ```{r, purl = FALSE}
-# get the 1st through 3rd value in the snp_genes vector
+# get the 1st through 3rd value in the snp vector
 
-snp_genes[1:3]
+snp[1:3]
 ```
 
 If you want to retrieve several (but not necessarily sequential) items from
@@ -436,9 +436,9 @@ a vector, you pass a **vector of indices**; a vector that has the numbered
 positions you wish to retrieve.
 
 ```{r, purl = FALSE}
-# get the 1st, 3rd, and 4th value in the snp_genes vector
+# get the 1st, 3rd, and 4th value in the snp vector
 
-snp_genes[c(1, 3, 4)]
+snp[c(1, 3, 4)]
 ```
 
 There are additional (and perhaps less commonly used) ways of subsetting a
@@ -447,9 +447,9 @@ examples](https://thomasleeper.com/Rcourse/Tutorials/vectorindexing.html)).
 Also, several of these subsetting expressions can be combined:
 
 ```{r, purl = FALSE}
-# get the 1st through the 3rd value, and 4th value in the snp_genes vector
+# get the 1st through the 3rd value, and 4th value in the snp vector
 # yes, this is a little silly in a vector of only 4 values.
-snp_genes[c(1:3,4)]
+snp[c(1:3,4)]
 ```
 
 ## Adding to, removing, or replacing values in existing vectors
@@ -458,7 +458,7 @@ Once you have an existing vector, you may want to add a new item to it. To do
 so, you can use the `c()` function again to add your new value:
 
 ```{r, purl = FALSE}
-# add the gene 'CYP1A1' and 'APOA5' to our list of snp genes
+# add the gene "CYP1A1" and "APOA5" to our list of snp genes
 # this overwrites our existing vector
 snp_genes <- c(snp_genes, "CYP1A1", "APOA5")
 ```
