@@ -620,7 +620,7 @@ c("ACTN3","APOA5") %in% snp_genes
 
 > ## Review Exercise 1
 >
-> What data types/modes are the following vectors?
+> What data modes are the following vectors?
 >    a. `snps`  
 >    b. `snp_chromosomes`  
 >    c. `snp_positions`  
@@ -628,9 +628,9 @@ c("ACTN3","APOA5") %in% snp_genes
 >> ## Solution
 >> 
 >> ```{r, purl = FALSE}
->> typeof(snps)
->> typeof(snp_chromosomes)
->> typeof(snp_positions)
+>> mode(snps)
+>> mode(snp_chromosomes)
+>> mode(snp_positions)
 >> ```
 > {: .solution}
 {: .challenge}
