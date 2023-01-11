@@ -58,11 +58,17 @@ BiocManager::version()
 
 ## Second, install the vcfR package from Bioconductor using `BiocManager`
 
+> ## Head's Up: Installing vcfR may take a while due to numerous dependencies
+>
+> Just be aware that installing packages that have many dependencies can take a while.
+>
+{: .callout}
+
 ```{r install-vcfR, eval = FALSE}
 # install the vcfR package from bioconductor using BiocManager::install()
 BiocManager::install("vcfR")
 ```
-You may need to also allow it to install some dependencies or update installed packages in order to successfully complete the process.
+Depending on your particular system, you may need to also allow it to install some dependencies or update installed packages in order to successfully complete the process.
 
 > ## Note: Installing packages from Bioconductor vs from CRAN 
 > Some packages begin by being available only on Bioconductor, and then later
