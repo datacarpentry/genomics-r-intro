@@ -691,7 +691,7 @@ We can also explicitly rename or add a value to our index using double bracket n
 
 
 ~~~
-snp_genes[7]<- "APOA5"
+snp_genes[6]<- "APOA5"
 snp_genes
 ~~~
 {: .language-r}
@@ -699,11 +699,9 @@ snp_genes
 
 
 ~~~
-[1] "OXTR"   "ACTN3"  "AR"     "OPRM1"  "CYP1A1" NA       "APOA5" 
+[1] "OXTR"   "ACTN3"  "AR"     "OPRM1"  "CYP1A1" "APOA5" 
 ~~~
 {: .output}
-
-Notice in the operation above that R inserts an `NA` value to extend our vector so that the gene "APOA5" is an index 7. This may be a good or not-so-good thing depending on how you use this.
 
 > ## Exercise: Examining and subsetting vectors
 > Answer the following questions to test your knowledge of vectors
@@ -867,7 +865,7 @@ is.na(snp_genes)
 
 
 ~~~
-[1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+[1] FALSE FALSE FALSE FALSE FALSE FALSE
 ~~~
 {: .output}
 
@@ -1026,7 +1024,7 @@ c("ACTN3","APOA5") %in% snp_genes
 >> 
 >> 
 >> ~~~
->> [1] "OXTR"  "ACTN3" "AR"    "OPRM1" NA      "APOA5" NA      NA     
+>> [1] "OXTR"  "ACTN3" "AR"    "OPRM1" "APOA5" NA      NA     
 >> ~~~
 >> {: .output}
 > {: .solution}
@@ -1111,7 +1109,7 @@ str(snp_data)
 
 ~~~
 List of 4
- $ genes         : chr [1:8] "OXTR" "ACTN3" "AR" "OPRM1" ...
+ $ genes         : chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" ...
  $ refference_snp: chr [1:5] "rs53576" "rs1815739" "rs6152" "rs1799971" ...
  $ chromosome    : chr [1:5] "3" "11" "X" "6" ...
  $ position      : num [1:5] 8.76e+06 6.66e+07 6.75e+07 1.54e+08 1.17e+08

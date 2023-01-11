@@ -486,11 +486,9 @@ snp_genes
 We can also explicitly rename or add a value to our index using double bracket notation:
 
 ```{r, purl = FALSE}
-snp_genes[7]<- "APOA5"
+snp_genes[6]<- "APOA5"
 snp_genes
 ```
-
-Notice in the operation above that R inserts an `NA` value to extend our vector so that the gene "APOA5" is an index 7. This may be a good or not-so-good thing depending on how you use this.
 
 > ## Exercise: Examining and subsetting vectors
 > Answer the following questions to test your knowledge of vectors
