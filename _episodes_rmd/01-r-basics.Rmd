@@ -406,8 +406,8 @@ Let's create a few more vectors to play around with:
 # Some interesting human SNPs
 # while accuracy is important, typos in the data won't hurt you here
 
-snps <- c('rs53576', 'rs1815739', 'rs6152', 'rs1799971')
-snp_chromosomes <- c('3', '11', 'X', '6')
+snps <- c("rs53576", "rs1815739", "rs6152", "rs1799971")
+snp_chromosomes <- c("3", "11", "X", "6")
 snp_positions <- c(8762685, 66560624, 67545785, 154039662)
 ```
 
@@ -638,14 +638,14 @@ c("ACTN3","APOA5") %in% snp_genes
 > ## Review Exercise 2
 >
 > Add the following values to the specified vectors:
->    a. To the `snps` vector add: 'rs662799'  
+>    a. To the `snps` vector add: "rs662799"  
 >    b. To the `snp_chromosomes` vector add: 11  
 >    c. To the `snp_positions` vector add: 	116792991  
 > 
 >> ## Solution
 >> 
 >> ```{r, purl = FALSE}
->> snps <- c(snps, 'rs662799')
+>> snps <- c(snps, "rs662799")
 >> snps
 >> snp_chromosomes <- c(snp_chromosomes, "11") # did you use quotes?
 >> snp_chromosomes
