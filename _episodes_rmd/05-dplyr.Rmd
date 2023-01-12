@@ -71,7 +71,7 @@ You only need to install a package once per computer, but you need to load it
 every time you open a new R session and want to use that package.
 
 > ## Tip: Installing packages
-> It may be temping to install the `tidyverse` packages, as it contains many
+> It may be temping to install the `tidyverse` package, as it contains many
 > useful collection of packages for this lesson and beyond. However, when 
 > teaching or following this lesson, we advise that participants install 
 > `dplyr`, `readr`, `ggplot2`, and `tidyr` individually as shown above. 
