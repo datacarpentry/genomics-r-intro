@@ -52,7 +52,9 @@ then load it to be able to use it.
 
 ~~~
 install.packages("dplyr") ## installs dplyr package
-install.packages("readr") ## install readr pacakge
+install.packages("tidyr") ## installs tidyr package
+install.packages("ggplot2") ## installs ggplot2 package
+install.packages("readr") ## install readr package
 ~~~
 {: .language-r}
 
@@ -62,12 +64,23 @@ choose a site to download the package from. The choice doesn't matter too much; 
 
 ~~~
 library("dplyr")          ## loads in dplyr package to use
+library("tidyr")          ## loads in tidyr package to use
+library("ggplot2")          ## loads in ggplot2 package to use
 library("readr")          ## load in readr package to use
 ~~~
 {: .language-r}
 
 You only need to install a package once per computer, but you need to load it
 every time you open a new R session and want to use that package.
+
+> ## Tip: Installing packages
+> It may be temping to install the `tidyverse` package, as it contains many
+> useful collection of packages for this lesson and beyond. However, when 
+> teaching or following this lesson, we advise that participants install 
+> `dplyr`, `readr`, `ggplot2`, and `tidyr` individually as shown above. 
+> Otherwise, a substaial amount of the lesson will be spend waiting for the 
+> installation to complete.
+{: .callout}
 
 ## What is dplyr?
 
@@ -329,7 +342,8 @@ filter(variants, sample_id == "SRR2584863")
 ~~~
 {: .output}
 
-`filter()` will keep all the rows that match the conditions that are provided. Here are a few examples:
+`filter()` will keep all the rows that match the conditions that are provided. 
+Here are a few examples:
 
 
 ~~~
@@ -355,37 +369,6 @@ filter(variants, REF %in% c("T", "G"))
  9 SRR25848… CP00… 1.06e4 NA    G     A     225   NA     FALSE    NA    NA    11
 10 SRR25848… CP00… 6.40e4 NA    G     A     225   NA     FALSE    NA    NA    18
 # … with 330 more rows, and 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
-#   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
-#   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
-#   gt_GT <dbl>, gt_GT_alleles <chr>
-~~~
-{: .output}
-
-
-
-~~~
-# rows with QUAL values greater than or equal to 100
-filter(variants, QUAL >= 100)
-~~~
-{: .language-r}
-
-
-
-~~~
-# A tibble: 666 × 29
-   sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
-   <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
- 1 SRR25848… CP00… 2.82e5 NA    G     T       217 NA     FALSE    NA  NA      10
- 2 SRR25848… CP00… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9   0.9    10
- 3 SRR25848… CP00… 6.49e5 NA    C     T       210 NA     FALSE    NA  NA      10
- 4 SRR25848… CP00… 1.33e6 NA    C     A       178 NA     FALSE    NA  NA       8
- 5 SRR25848… CP00… 1.73e6 NA    G     A       225 NA     FALSE    NA  NA      11
- 6 SRR25848… CP00… 2.33e6 NA    AT    ATT     167 NA     TRUE      7   1       7
- 7 SRR25848… CP00… 2.41e6 NA    A     C       104 NA     FALSE    NA  NA       9
- 8 SRR25848… CP00… 2.45e6 NA    A     C       225 NA     FALSE    NA  NA      20
- 9 SRR25848… CP00… 2.67e6 NA    A     T       225 NA     FALSE    NA  NA      19
-10 SRR25848… CP00… 3.00e6 NA    G     A       225 NA     FALSE    NA  NA      15
-# … with 656 more rows, and 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
 #   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
 #   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
 #   gt_GT <dbl>, gt_GT_alleles <chr>
@@ -454,6 +437,42 @@ filter(variants, !is.na(IDV))
 ~~~
 {: .output}
 
+We have a column titled "QUAL". This is a Phred-scaled confidence
+score that a polymorphism exists at this position given the sequencing
+data. Lower QUAL scores indicate low probability of a polymorphism
+existing at that site. `filter()` can be useful for selecting mutations that 
+have a QUAL score above a certain threshold:
+
+
+~~~
+# rows with QUAL values greater than or equal to 100
+filter(variants, QUAL >= 100)
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 666 × 29
+   sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
+   <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
+ 1 SRR25848… CP00… 2.82e5 NA    G     T       217 NA     FALSE    NA  NA      10
+ 2 SRR25848… CP00… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9   0.9    10
+ 3 SRR25848… CP00… 6.49e5 NA    C     T       210 NA     FALSE    NA  NA      10
+ 4 SRR25848… CP00… 1.33e6 NA    C     A       178 NA     FALSE    NA  NA       8
+ 5 SRR25848… CP00… 1.73e6 NA    G     A       225 NA     FALSE    NA  NA      11
+ 6 SRR25848… CP00… 2.33e6 NA    AT    ATT     167 NA     TRUE      7   1       7
+ 7 SRR25848… CP00… 2.41e6 NA    A     C       104 NA     FALSE    NA  NA       9
+ 8 SRR25848… CP00… 2.45e6 NA    A     C       225 NA     FALSE    NA  NA      20
+ 9 SRR25848… CP00… 2.67e6 NA    A     T       225 NA     FALSE    NA  NA      19
+10 SRR25848… CP00… 3.00e6 NA    G     A       225 NA     FALSE    NA  NA      15
+# … with 656 more rows, and 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
+#   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
+#   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
+#   gt_GT <dbl>, gt_GT_alleles <chr>
+~~~
+{: .output}
+
 `filter()` allows you to combine multiple conditions. You can separate them using a `,` as arguments to the function, they will be combined using the `&` (AND) logical operator. If you need to use the `|` (OR) logical operator, you can specify it explicitly:
 
 
@@ -500,27 +519,27 @@ filter(variants, sample_id == "SRR2584863", QUAL >= 100)
 
 ~~~
 # using `|` logical operator
-filter(variants, sample_id == "SRR2584863", (INDEL | QUAL >= 100))
+filter(variants, sample_id == "SRR2584863", (MQ >= 50 | QUAL >= 100))
 ~~~
 {: .language-r}
 
 
 
 ~~~
-# A tibble: 22 × 29
+# A tibble: 23 × 29
    sample…¹ CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV    IMF    DP
    <chr>    <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl> <dbl>
- 1 SRR2584… CP00… 2.82e5 NA    G     T       217 NA     FALSE    NA NA        10
- 2 SRR2584… CP00… 4.33e5 NA    CTTT… CTTT…    64 NA     TRUE     12  1        12
- 3 SRR2584… CP00… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9  0.9      10
- 4 SRR2584… CP00… 6.49e5 NA    C     T       210 NA     FALSE    NA NA        10
- 5 SRR2584… CP00… 1.33e6 NA    C     A       178 NA     FALSE    NA NA         8
- 6 SRR2584… CP00… 1.73e6 NA    G     A       225 NA     FALSE    NA NA        11
- 7 SRR2584… CP00… 2.10e6 NA    ACAG… ACAG…    56 NA     TRUE      2  0.667     3
- 8 SRR2584… CP00… 2.33e6 NA    AT    ATT     167 NA     TRUE      7  1         7
- 9 SRR2584… CP00… 2.41e6 NA    A     C       104 NA     FALSE    NA NA         9
-10 SRR2584… CP00… 2.45e6 NA    A     C       225 NA     FALSE    NA NA        20
-# … with 12 more rows, 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
+ 1 SRR2584… CP00… 9.97e3 NA    T     G        91 NA     FALSE    NA NA         4
+ 2 SRR2584… CP00… 2.82e5 NA    G     T       217 NA     FALSE    NA NA        10
+ 3 SRR2584… CP00… 4.33e5 NA    CTTT… CTTT…    64 NA     TRUE     12  1        12
+ 4 SRR2584… CP00… 4.74e5 NA    CCGC  CCGC…   228 NA     TRUE      9  0.9      10
+ 5 SRR2584… CP00… 6.49e5 NA    C     T       210 NA     FALSE    NA NA        10
+ 6 SRR2584… CP00… 1.33e6 NA    C     A       178 NA     FALSE    NA NA         8
+ 7 SRR2584… CP00… 1.73e6 NA    G     A       225 NA     FALSE    NA NA        11
+ 8 SRR2584… CP00… 2.10e6 NA    ACAG… ACAG…    56 NA     TRUE      2  0.667     3
+ 9 SRR2584… CP00… 2.33e6 NA    AT    ATT     167 NA     TRUE      7  1         7
+10 SRR2584… CP00… 2.41e6 NA    A     C       104 NA     FALSE    NA NA         9
+# … with 13 more rows, 17 more variables: VDB <dbl>, RPB <dbl>, MQB <dbl>,
 #   BQB <dbl>, MQSB <dbl>, SGB <dbl>, MQ0F <dbl>, ICB <lgl>, HOB <lgl>,
 #   AC <dbl>, AN <dbl>, DP4 <chr>, MQ <dbl>, Indiv <chr>, gt_PL <dbl>,
 #   gt_GT <dbl>, gt_GT_alleles <chr>, and abbreviated variable name ¹​sample_id
@@ -530,13 +549,15 @@ filter(variants, sample_id == "SRR2584863", (INDEL | QUAL >= 100))
 > ## Challenge
 >
 > Select all the mutations that occurred between the positions 1e6 (one million)
-> and 2e6 (included) that are not indels and have QUAL greater than 200.
+> and 2e6 (inclusive) that have a QUAL greater than 200, and exclude INDEL mutations.
+> Hint: to flip logical values such as TRUE to a FALSE, we can use to negation symbol
+> "!". (eg. !TRUE == FALSE).
 >
 >> ## Solution
 >>
 >> 
 >> ~~~
->> filter(variants, POS >= 1e6 & POS <= 2e6, !INDEL, QUAL > 200)
+>> filter(variants, POS >= 1e6 & POS <= 2e6, QUAL > 200, !INDEL)
 >> ~~~
 >> {: .language-r}
 >> 
@@ -606,7 +627,7 @@ variants %>%
 ~~~
 {: .output}
 
-In the above code, we use the pipe to send the `variants` dataset first through
+In the above code, we use the pipe to send the `variants` data set first through
 `filter()`, to keep rows where `sample_id` matches a particular sample, and then through `select()` to
 keep only the `REF`, `ALT`, and `DP` columns. Since `%>%` takes
 the object on its left and passes it as the first argument to the function on
@@ -719,7 +740,7 @@ SRR2584863_variants %>% slice(10:25)
 > Starting with the `variants` data frame, use pipes to subset the data
 > to include only observations from SRR2584863 sample,
 > where the filtered depth (DP) is at least 10.
-> Shwoing only 5th through 11th rows of columns `REF`, `ALT`, and `POS`.
+> Showing only 5th through 11th rows of columns `REF`, `ALT`, and `POS`.
 >
 >> ## Solution
 >> 
@@ -727,23 +748,23 @@ SRR2584863_variants %>% slice(10:25)
 >>  variants %>%
 >>  filter(sample_id == "SRR2584863" & DP >= 10) %>%
 >>  slice(5:11) %>%
->>  select(REF, ALT, POS)
+>>  select(sample_id, DP, REF, ALT, POS)
 >> ~~~
 >> {: .language-r}
 >> 
 >> 
 >> 
 >> ~~~
->> # A tibble: 7 × 3
->>   REF   ALT       POS
->>   <chr> <chr>   <dbl>
->> 1 G     A     1733343
->> 2 A     C     2446984
->> 3 G     T     2618472
->> 4 A     T     2665639
->> 5 G     A     2999330
->> 6 A     C     3339313
->> 7 C     A     3401754
+>> # A tibble: 7 × 5
+>>   sample_id     DP REF   ALT       POS
+>>   <chr>      <dbl> <chr> <chr>   <dbl>
+>> 1 SRR2584863    11 G     A     1733343
+>> 2 SRR2584863    20 A     C     2446984
+>> 3 SRR2584863    12 G     T     2618472
+>> 4 SRR2584863    19 A     T     2665639
+>> 5 SRR2584863    15 G     A     2999330
+>> 6 SRR2584863    10 A     C     3339313
+>> 7 SRR2584863    14 C     A     3401754
 >> ~~~
 >> {: .output}
 > {: .solution}
@@ -755,15 +776,12 @@ Frequently you'll want to create new columns based on the values in existing
 columns, for example to do unit conversions or find the ratio of values in two
 columns. For this we'll use the `dplyr` function `mutate()`.
 
-We have a column titled "QUAL". This is a Phred-scaled confidence
-score that a polymorphism exists at this position given the sequencing
-data. Lower QUAL scores indicate low probability of a polymorphism
-existing at that site. We can convert the confidence value QUAL
-to a probability value according to the formula:
+For example, we can convert the polymorphism confidence value QUAL to a 
+probability value according to the formula:
 
 Probability = 1- 10 ^ -(QUAL/10)
 
-Let's add a column (`POLPROB`) to our `variants` data frame that shows
+We can use `mutate` to add a column (`POLPROB`) to our `variants` data frame that shows
 the probability of a polymorphism at that site given the data.
 
 
@@ -798,7 +816,7 @@ variants %>%
 {: .output}
 
 > ## Exercise
-> There are a lot of columns in our dataset, so let's just look at the
+> There are a lot of columns in our data set, so let's just look at the
 > `sample_id`, `POS`, `QUAL`, and `POLPROB` columns for now. Add a
 > line to the above code to only show those columns.
 >
@@ -840,18 +858,16 @@ variants %>%
 Many data analysis tasks can be approached using the "split-apply-combine"
 paradigm: split the data into groups, apply some analysis to each group, and
 then combine the results. `dplyr` makes this very easy through the use of the
-`group_by()` function, which splits the data into groups. When the data is
-grouped in this way `summarize()` can be used to collapse each group into
-a single-row summary. `summarize()` does this by applying an aggregating
-or summary function to each group. For example, if we wanted to group
-by sample_id and find the number of rows of data for each
-sample, we would do:
+`group_by()` function, which splits the data into groups. 
+
+We can use `group_by()` to tally the number of mutations detected in each sample 
+using the function `tally()`:
 
 
 ~~~
 variants %>%
   group_by(sample_id) %>%
-  summarize(n())
+  tally()
 ~~~
 {: .language-r}
 
@@ -859,13 +875,65 @@ variants %>%
 
 ~~~
 # A tibble: 3 × 2
-  sample_id  `n()`
+  sample_id      n
   <chr>      <int>
 1 SRR2584863    25
 2 SRR2584866   766
 3 SRR2589044    10
 ~~~
 {: .output}
+
+Since counting or tallying values is a common use case for `group_by()`, an alternative function was created to bypasses `group_by()` using the function `count()`:
+
+
+~~~
+variants %>%
+  count(sample_id)
+~~~
+{: .language-r}
+
+
+
+~~~
+# A tibble: 3 × 2
+  sample_id      n
+  <chr>      <int>
+1 SRR2584863    25
+2 SRR2584866   766
+3 SRR2589044    10
+~~~
+{: .output}
+
+> ## Challenge
+>
+> * How many mutations are INDELs?
+>
+>> ## Solution
+>>
+>> 
+>> ~~~
+>> variants %>%
+>>   count(INDEL)
+>> ~~~
+>> {: .language-r}
+>> 
+>> 
+>> 
+>> ~~~
+>> # A tibble: 2 × 2
+>>   INDEL     n
+>>   <lgl> <int>
+>> 1 FALSE   700
+>> 2 TRUE    101
+>> ~~~
+>> {: .output}
+> {: .solution}
+{: .challenge}
+
+
+When the data is grouped, `summarize()` can be used to collapse each group into
+a single-row summary. `summarize()` does this by applying an aggregating
+or summary function to each group. 
 
 It can be a bit tricky at first, but we can imagine physically splitting the data
 frame by groups and applying a certain function to summarize the data.
@@ -874,94 +942,6 @@ frame by groups and applying a certain function to summarize the data.
 <img src="../fig/split_apply_combine.png" alt="rstudio default session" style="width: 500px;"/>
 </center>
 ^[The figure was adapted from the Software Carpentry lesson, [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)]
-
-Here the summary function used was `n()` to find the count for each
-group. Since this is a quite a common operation, there is a simpler method
-called `tally()`:
-
-
-~~~
-variants %>%
-  group_by(ALT) %>%
-  tally()
-~~~
-{: .language-r}
-
-
-
-~~~
-# A tibble: 57 × 2
-   ALT                                                          n
-   <chr>                                                    <int>
- 1 A                                                          211
- 2 AC                                                           2
- 3 ACAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAG                         1
- 4 ACAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAG     1
- 5 ACCCCC                                                       2
- 6 ACCCCCCCC                                                    2
- 7 AGCGCGCGCG                                                   1
- 8 AGG                                                          1
- 9 AGGGGG                                                       2
-10 AGGGGGG                                                      2
-# … with 47 more rows
-~~~
-{: .output}
-
-To show that there are many ways to achieve the same results, there is another way to approach this, which bypasses `group_by()` using the function `count()`:
-
-
-~~~
-variants %>%
-  count(ALT)
-~~~
-{: .language-r}
-
-
-
-~~~
-# A tibble: 57 × 2
-   ALT                                                          n
-   <chr>                                                    <int>
- 1 A                                                          211
- 2 AC                                                           2
- 3 ACAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAG                         1
- 4 ACAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAGCCAG     1
- 5 ACCCCC                                                       2
- 6 ACCCCCCCC                                                    2
- 7 AGCGCGCGCG                                                   1
- 8 AGG                                                          1
- 9 AGGGGG                                                       2
-10 AGGGGGG                                                      2
-# … with 47 more rows
-~~~
-{: .output}
-
-> ## Challenge
->
-> * How many mutations are found in each sample?
->
->> ## Solution
->>
->> 
->> ~~~
->> variants %>%
->>   count(sample_id)
->> ~~~
->> {: .language-r}
->> 
->> 
->> 
->> ~~~
->> # A tibble: 3 × 2
->>   sample_id      n
->>   <chr>      <int>
->> 1 SRR2584863    25
->> 2 SRR2584866   766
->> 3 SRR2589044    10
->> ~~~
->> {: .output}
-> {: .solution}
-{: .challenge}
 
 We can also apply many other functions to individual columns to get other
 summary statistics. For example,we can use built-in functions like `mean()`,
@@ -1017,9 +997,10 @@ variants_wide <- variants %>%
 
 
 ~~~
-Error in pivot_wider(., names_from = sample_id, values_from = mean_DP): could not find function "pivot_wider"
+`summarise()` has grouped output by 'sample_id'. You can override using the
+`.groups` argument.
 ~~~
-{: .error}
+{: .output}
 
 
 
@@ -1031,9 +1012,12 @@ variants_wide
 
 
 ~~~
-Error in eval(expr, envir, enclos): object 'variants_wide' not found
+# A tibble: 1 × 4
+  CHROM      SRR2584863 SRR2584866 SRR2589044
+  <chr>           <dbl>      <dbl>      <dbl>
+1 CP000819.1       10.4       10.6        9.3
 ~~~
-{: .error}
+{: .output}
 
 The opposite operation of `pivot_wider()` is taken care by `pivot_longer()`. We specify the names of the new columns, and here add `-CHROM` as this column shouldn't be affected by the reshaping:
 
@@ -1047,9 +1031,14 @@ variants_wide %>%
 
 
 ~~~
-Error in pivot_longer(., -CHROM, names_to = "sample_id", values_to = "mean_DP"): could not find function "pivot_longer"
+# A tibble: 3 × 3
+  CHROM      sample_id  mean_DP
+  <chr>      <chr>        <dbl>
+1 CP000819.1 SRR2584863    10.4
+2 CP000819.1 SRR2584866    10.6
+3 CP000819.1 SRR2589044     9.3
 ~~~
-{: .error}
+{: .output}
 ### Resources
 
 * [Handy dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
