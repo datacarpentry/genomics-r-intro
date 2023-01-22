@@ -21,18 +21,9 @@ source("../bin/chunk-options.R")
 knitr_fig_path("04-")
 ```
 
-## Packages in R -- what are they and why do we use them?
-
-Packages are simply collections of functions and/or data that can be used to extend the capabilities of R beyond the core functionality that comes with it by default. There are useful R packages available that span all types of statistical analysis, data visualization, and more. So far we have been using packages that are included in the base installation of R (this is what comes with R 'out of the box'). However, there are many more packages available for R, and we will learn how to install and use them in this lesson. The main place that R packages are installed from is a website called [CRAN](https://cran.r-project.org/) (the Comprehensive R Archive Network). Many thousands of R packages are available there, and when you use the built-in R function `install.packages()`, it will look for a CRAN repository to install from. So, for example, to install [tidyverse](https://www.tidyverse.org) packages such as `dplyr` and `ggplot2` (which you'll do in the next few lessons), you would use the following command:
-
-```{r, eval = FALSE, purl = FALSE}
-# install a package from CRAN
-install.packages("dplyr")
-```
-
 ## Installing packages from somewhere else besides CRAN?
 
-However, not all R packages are available on CRAN. For bioinformatics-related packages in particular, there is another repository that has many powerful packages that you can install. It is called [Bioconductor](https://bioconductor.org/) and it is a repository specifically focused on bioinformatics packages. [Bioconductor](https://bioconductor.org/) has a mission of "promot[ing] the statistical analysis and comprehension of current and emerging high-throughput biological assays." This means that many if not all of the packages available on Bioconductor are focused on the analysis of biological data, and that it can be a great place to look for tools to help you analyze your -omics datasets!
+So far we have told you about using packages that are included in the base installation of R (this is what comes with R 'out of the box'), and packages that you can install from [CRAN](https://cran.r-project.org/) (the Comprehensive R Archive Network), which is the primary place many people look for supplemental R packages to install. However, not all R packages are available on CRAN. For bioinformatics-related packages in particular, there is another repository that has many powerful packages that you can install. It is called [Bioconductor](https://bioconductor.org/) and it is a repository specifically focused on bioinformatics packages. [Bioconductor](https://bioconductor.org/) has a mission of "promot[ing] the statistical analysis and comprehension of current and emerging high-throughput biological assays." This means that many if not all of the packages available on Bioconductor are focused on the analysis of biological data, and that it can be a great place to look for tools to help you analyze your -omics datasets!
 
 ## So how do I use it?
 
