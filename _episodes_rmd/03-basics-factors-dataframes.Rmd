@@ -353,6 +353,24 @@ Factors come in handy in many places when using R. Even using more
 sophisticated plotting packages such as ggplot2 will sometimes require you
 to understand how to manipulate factors.
 
+> ## Tip: Packages in R -- what are they and why do we use them?
+>
+> Packages are simply collections of functions and/or data that can be used to extend the
+> capabilities of R beyond the core functionality that comes with it by default. There are
+> useful R packages available that span all types of statistical analysis, data visualization,
+> and more. The main place that R packages are installed from is a website called
+> [CRAN](https://cran.r-project.org/) (the Comprehensive R Archive Network). Many thousands
+> of R packages are available there, and when you use the built-in R function `install.packages()`,
+> it will look for a CRAN repository to install from. So, for example, to install
+> [tidyverse](https://www.tidyverse.org) packages such as `dplyr` and `ggplot2`
+> (which you'll do in the next few lessons), you would use the following command:
+>
+> ```{r}
+> # install a package from CRAN
+> install.packages("ggplot2")
+> ```
+{: .callout}
+
 ## Subsetting data frames
 
 Next, we are going to talk about how you can get specific values from data frames, and where necessary, change the mode of a column of values.
