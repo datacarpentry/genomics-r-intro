@@ -52,7 +52,9 @@ then load it to be able to use it.
 
 ```{r, eval = FALSE, purl = FALSE}
 install.packages("dplyr") ## installs dplyr package
-install.packages("readr") ## install readr pacakge
+install.packages("tidyr") ## installs tidyr package
+install.packages("ggplot2") ## installs ggplot2 package
+install.packages("readr") ## install readr package
 ```
 
 You might get asked to choose a CRAN mirror -- this is asking you to
@@ -60,11 +62,22 @@ choose a site to download the package from. The choice doesn't matter too much; 
 
 ```{r, message = FALSE, purl = FALSE}
 library("dplyr")          ## loads in dplyr package to use
+library("tidyr")          ## loads in tidyr package to use
+library("ggplot2")          ## loads in ggplot2 package to use
 library("readr")          ## load in readr package to use
 ```
 
 You only need to install a package once per computer, but you need to load it
 every time you open a new R session and want to use that package.
+
+> ## Tip: Installing packages
+> It may be temping to install the `tidyverse` package, as it contains many
+> useful collection of packages for this lesson and beyond. However, when 
+> teaching or following this lesson, we advise that participants install 
+> `dplyr`, `readr`, `ggplot2`, and `tidyr` individually as shown above. 
+> Otherwise, a substaial amount of the lesson will be spend waiting for the 
+> installation to complete.
+{: .callout}
 
 ## What is dplyr?
 
@@ -158,17 +171,27 @@ To choose rows, use `filter()`:
 filter(variants, sample_id == "SRR2584863")
 ```
 
-`filter()` will keep all the rows that match the conditions that are provided. Here are a few examples:
+`filter()` will keep all the rows that match the conditions that are provided. 
+Here are a few examples:
 
 ```{r}
 # rows for which the reference genome has T or G
 filter(variants, REF %in% c("T", "G"))
-# rows with QUAL values greater than or equal to 100
-filter(variants, QUAL >= 100)
 # rows that have TRUE in the column INDEL
 filter(variants, INDEL)
 # rows that don't have missing data in the IDV column
 filter(variants, !is.na(IDV))
+```
+
+We have a column titled "QUAL". This is a Phred-scaled confidence
+score that a polymorphism exists at this position given the sequencing
+data. Lower QUAL scores indicate low probability of a polymorphism
+existing at that site. `filter()` can be useful for selecting mutations that 
+have a QUAL score above a certain threshold:
+
+```{r}
+# rows with QUAL values greater than or equal to 100
+filter(variants, QUAL >= 100)
 ```
 
 `filter()` allows you to combine multiple conditions. You can separate them using a `,` as arguments to the function, they will be combined using the `&` (AND) logical operator. If you need to use the `|` (OR) logical operator, you can specify it explicitly:
@@ -178,18 +201,20 @@ filter(variants, !is.na(IDV))
 #   filter(variants, sample_id == "SRR2584863" & QUAL >= 100)
 filter(variants, sample_id == "SRR2584863", QUAL >= 100)
 # using `|` logical operator
-filter(variants, sample_id == "SRR2584863", (INDEL | QUAL >= 100))
+filter(variants, sample_id == "SRR2584863", (MQ >= 50 | QUAL >= 100))
 ```
 
 > ## Challenge
 >
 > Select all the mutations that occurred between the positions 1e6 (one million)
-> and 2e6 (included) that are not indels and have QUAL greater than 200.
+> and 2e6 (inclusive) that have a QUAL greater than 200, and exclude INDEL mutations.
+> Hint: to flip logical values such as TRUE to a FALSE, we can use to negation symbol
+> "!". (eg. !TRUE == FALSE).
 >
 >> ## Solution
 >>
 >> ```{r}
->> filter(variants, POS >= 1e6 & POS <= 2e6, !INDEL, QUAL > 200)
+>> filter(variants, POS >= 1e6 & POS <= 2e6, QUAL > 200, !INDEL)
 >> ```
 > {: .solution}
 {: .challenge}
@@ -213,7 +238,7 @@ variants %>%
   select(REF, ALT, DP)
 ```
 
-In the above code, we use the pipe to send the `variants` dataset first through
+In the above code, we use the pipe to send the `variants` data set first through
 `filter()`, to keep rows where `sample_id` matches a particular sample, and then through `select()` to
 keep only the `REF`, `ALT`, and `DP` columns. Since `%>%` takes
 the object on its left and passes it as the first argument to the function on
@@ -258,14 +283,14 @@ SRR2584863_variants %>% slice(10:25)
 > Starting with the `variants` data frame, use pipes to subset the data
 > to include only observations from SRR2584863 sample,
 > where the filtered depth (DP) is at least 10.
-> Shwoing only 5th through 11th rows of columns `REF`, `ALT`, and `POS`.
+> Showing only 5th through 11th rows of columns `REF`, `ALT`, and `POS`.
 >
 >> ## Solution
 >> ```{r}
 >>  variants %>%
 >>  filter(sample_id == "SRR2584863" & DP >= 10) %>%
 >>  slice(5:11) %>%
->>  select(REF, ALT, POS)
+>>  select(sample_id, DP, REF, ALT, POS)
 >> ```
 > {: .solution}
 {: .challenge}
@@ -276,15 +301,12 @@ Frequently you'll want to create new columns based on the values in existing
 columns, for example to do unit conversions or find the ratio of values in two
 columns. For this we'll use the `dplyr` function `mutate()`.
 
-We have a column titled "QUAL". This is a Phred-scaled confidence
-score that a polymorphism exists at this position given the sequencing
-data. Lower QUAL scores indicate low probability of a polymorphism
-existing at that site. We can convert the confidence value QUAL
-to a probability value according to the formula:
+For example, we can convert the polymorphism confidence value QUAL to a 
+probability value according to the formula:
 
 Probability = 1- 10 ^ -(QUAL/10)
 
-Let's add a column (`POLPROB`) to our `variants` data frame that shows
+We can use `mutate` to add a column (`POLPROB`) to our `variants` data frame that shows
 the probability of a polymorphism at that site given the data.
 
 ```{r, purl = FALSE}
@@ -293,7 +315,7 @@ variants %>%
 ```
 
 > ## Exercise
-> There are a lot of columns in our dataset, so let's just look at the
+> There are a lot of columns in our data set, so let's just look at the
 > `sample_id`, `POS`, `QUAL`, and `POLPROB` columns for now. Add a
 > line to the above code to only show those columns.
 >
@@ -313,18 +335,41 @@ variants %>%
 Many data analysis tasks can be approached using the "split-apply-combine"
 paradigm: split the data into groups, apply some analysis to each group, and
 then combine the results. `dplyr` makes this very easy through the use of the
-`group_by()` function, which splits the data into groups. When the data is
-grouped in this way `summarize()` can be used to collapse each group into
-a single-row summary. `summarize()` does this by applying an aggregating
-or summary function to each group. For example, if we wanted to group
-by sample_id and find the number of rows of data for each
-sample, we would do:
+`group_by()` function, which splits the data into groups. 
+
+We can use `group_by()` to tally the number of mutations detected in each sample 
+using the function `tally()`:
 
 ```{r, purl = FALSE, message = FALSE}
 variants %>%
   group_by(sample_id) %>%
-  summarize(n())
+  tally()
 ```
+
+Since counting or tallying values is a common use case for `group_by()`, an alternative function was created to bypasses `group_by()` using the function `count()`:
+
+```{r, purl = FALSE, message = FALSE}
+variants %>%
+  count(sample_id)
+```
+
+> ## Challenge
+>
+> * How many mutations are INDELs?
+>
+>> ## Solution
+>>
+>> ```{r}
+>> variants %>%
+>>   count(INDEL)
+>> ```
+> {: .solution}
+{: .challenge}
+
+
+When the data is grouped, `summarize()` can be used to collapse each group into
+a single-row summary. `summarize()` does this by applying an aggregating
+or summary function to each group. 
 
 It can be a bit tricky at first, but we can imagine physically splitting the data
 frame by groups and applying a certain function to summarize the data.
@@ -333,36 +378,6 @@ frame by groups and applying a certain function to summarize the data.
 <img src="../fig/split_apply_combine.png" alt="rstudio default session" style="width: 500px;"/>
 </center>
 ^[The figure was adapted from the Software Carpentry lesson, [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/13-dplyr/)]
-
-Here the summary function used was `n()` to find the count for each
-group. Since this is a quite a common operation, there is a simpler method
-called `tally()`:
-
-```{r, purl = FALSE, message = FALSE}
-variants %>%
-  group_by(ALT) %>%
-  tally()
-```
-
-To show that there are many ways to achieve the same results, there is another way to approach this, which bypasses `group_by()` using the function `count()`:
-
-```{r, purl = FALSE, message = FALSE}
-variants %>%
-  count(ALT)
-```
-
-> ## Challenge
->
-> * How many mutations are found in each sample?
->
->> ## Solution
->>
->> ```{r}
->> variants %>%
->>   count(sample_id)
->> ```
-> {: .solution}
-{: .challenge}
 
 We can also apply many other functions to individual columns to get other
 summary statistics. For example,we can use built-in functions like `mean()`,
