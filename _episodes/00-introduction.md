@@ -108,8 +108,8 @@ Open a web browser and enter the URL you used to log in at the terminal
 http://ec2.12.2.45.678.compute-1.amazonaws.com:8787
 ```
 
-> ## Tip: Make sure there are no spaces before or after your URL or
-> your web browser may interpret it as a search query.
+> ## Tip: Make sure there are no spaces before or after your URL.
+> If your URL has spaces, your web browser may interpret it as a search query.
 {: .callout}
 
 You should now be looking at a page that will allow you to login to the RStudio
