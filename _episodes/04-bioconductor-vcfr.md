@@ -9,28 +9,26 @@ questions:
 objectives:
 - "Describe what the Bioconductor repository is and what it is used for"
 - "Describe how Bioconductor differs from CRAN"
-- "Search Bioconductor for relevent packages"
+- "Search Bioconductor for relevant packages"
 - "Install a package from Bioconductor"
 keypoints:
 - "Bioconductor is an alternative package repository for bioinformatics packages."
 - "Installing packages from Bioconductor requires a new method, since it is not compatible with the `install.packages()` function used for CRAN."
-- "Check Bioconductor to see if there is a package relevent to your analysis before writing code yourself."
+- "Check Bioconductor to see if there is a package relevant to your analysis before writing code yourself."
 source: Rmd
 ---
 
 
 
-<!-- example of rendered lesson https://datacarpentry.org/genomics-r-intro/02-r-basics/index.html -->
-
 ## Installing packages from somewhere else besides CRAN?
 
-In some cases, you may want to use a specialized package that is not hosted on [CRAN](https://cran.r-project.org/) (the Comprehensive R Archive Network). This may be because the package is so new that it hasn't yet been submitted to CRAN, or it could be that it is on a focal topic that has an alternative repository. One major example of an alternative repository source is [Bioconductor](https://bioconductor.org/), which has a mission of "promot[ing] the statistical analysis and comprehension of current and emerging high-throughput biological assays." This means that many if not all of the packages available on Bioconductor are focused on the analysis of biological data, and that it can be a great place to look for tools to help you analyze your -omics datasets!
+So far we have told you about using packages that are included in the base installation of R (this is what comes with R 'out of the box'), and packages that you can install from [CRAN](https://cran.r-project.org/) (the Comprehensive R Archive Network), which is the primary place many people look for supplemental R packages to install. However, not all R packages are available on CRAN. For bioinformatics-related packages in particular, there is another repository that has many powerful packages that you can install. It is called [Bioconductor](https://bioconductor.org/) and it is a repository specifically focused on bioinformatics packages. [Bioconductor](https://bioconductor.org/) has a mission of "promot[ing] the statistical analysis and comprehension of current and emerging high-throughput biological assays." This means that many if not all of the packages available on Bioconductor are focused on the analysis of biological data, and that it can be a great place to look for tools to help you analyze your -omics datasets!
 
 ## So how do I use it?
 
 Since access to the [Bioconductor](https://bioconductor.org/) repository is not built in to base R 'out of the box', there are a couple steps needed to install packages from this alternative source. We will work through the steps (only 2!) to install a package to help with the VCF analysis we are working on, but you can use the same approach to install any of the many thousands of available packages.
 
-![screenshot of bioconductor homepage](fig/bioconductor_website_screenshot.jpg)
+![screenshot of bioconductor homepage](../fig/bioconductor_website_screenshot.jpg)
 
 ## First, install the `BiocManager` package
 
@@ -52,7 +50,13 @@ BiocManager::version()
 ~~~
 {: .language-r}
 
-# Second, install the vcfR package from Bioconductor using `BiocManager`
+## Second, install the vcfR package from Bioconductor using `BiocManager`
+
+> ## Head's Up: Installing vcfR may take a while due to numerous dependencies
+>
+> Just be aware that installing packages that have many dependencies can take a while.
+>
+{: .callout}
 
 
 ~~~
@@ -60,7 +64,7 @@ BiocManager::version()
 BiocManager::install("vcfR")
 ~~~
 {: .language-r}
-You may need to also allow it to install some dependencies or update installed packages in order to successfully complete the process.
+Depending on your particular system, you may need to also allow it to install some dependencies or update installed packages in order to successfully complete the process.
 
 > ## Note: Installing packages from Bioconductor vs from CRAN 
 > Some packages begin by being available only on Bioconductor, and then later
@@ -79,7 +83,7 @@ You may need to also allow it to install some dependencies or update installed p
 {: .callout}
 
 
-# Search for Bioconductor packages based on your analysis needs
+## Search for Bioconductor packages based on your analysis needs
 
 While we are only focusing in this workshop on VCF analyses, there are hundreds or thousands of different types of data and analyses that bioinformaticians may want to work with. Sometimes you may get a new dataset and not know exactly where to start with analyzing or visualizing it. The Bioconductor package search view can be a great way to browse through the packages that are available.
 
@@ -103,12 +107,17 @@ vcf files in R.
 
 > ## Challenge
 >
-> Add code chunks to
+> - Use the `BiocManager::available()` function to see what packages are available matching a search term.
+> - Use the [biocViews](https://bioconductor.org/packages/release/BiocViews.html#___Software) interface to search for packages of interest.
 >
-> - Install the `BiocManager` package
-> - Use that package's `install()` function to install `vcfR`
-> - Browse the Bioconductor website to find a second package, and install it 
+> You may or may not want to try installing the package, since not all dependencies always install easily. However, this will at least let you see what is available. 
 {: .challenge}
+
+> ## Tip: Refreshing the RStudio package view after installing
+>
+> If you install a package from Bioconductor, you may need to refresh the RStudio package view to see it in your list. You can do this by clicking the "Refresh" button in the Packages pane of RStudio.
+>
+{: .callout}
 
 ## Resources
 
