@@ -376,9 +376,12 @@ of the file.
 > Creating .pdf documents may require installation of some extra software. If
 > required this is detailed in an error message.
 >
-> Tex for windows is available [here](http://miktex.org/2.9/setup).
+> To install the required software to knit your report to a PDF, you can run the following code:
 >
-> Tex for mac is available [here](http://tug.org/mactex).
+> ```
+> install.packages('tinytex')
+> tinytex::install_tinytex()
+> ```
 {: .callout}
 
 
