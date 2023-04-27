@@ -1,0 +1,104 @@
+{
+  "contributors": [
+    {
+      "type": "Editor",
+      "name": "Yuka Takemon",
+      "orcid": "0000-0002-3538-4409"
+    },
+    {
+      "type": "Editor",
+      "name": "Jason Williams",
+      "orcid": "0000-0003-3049-2010"
+    },
+    {
+      "type": "Editor",
+      "name": "Krzysztof Poterlowicz",
+      "orcid": "0000-0001-6173-5674"
+    },
+    {
+      "type": "Editor",
+      "name": "Naupaka Zimmerman",
+      "orcid": "0000-0003-2168-6390"
+    }
+  ],
+  "creators": [
+    {
+      "name": "Jason Williams",
+      "orcid": "0000-0003-3049-2010"
+    },
+    {
+      "name": "Naupaka Zimmerman",
+      "orcid": "0000-0003-2168-6390"
+    },
+    {
+      "name": "Ahmed Moustafa"
+    },
+    {
+      "name": "Yuka Takemon",
+      "orcid": "0000-0002-3538-4409"
+    },
+    {
+      "name": "Janani Ravi"
+    },
+    {
+      "name": "Krzysztof Poterlowicz",
+      "orcid": "0000-0001-6173-5674"
+    },
+    {
+      "name": "Sarah LR Stevens",
+      "orcid": "0000-0002-7040-548X"
+    },
+    {
+      "name": "Julian Stanley",
+      "orcid": "0000-0002-9193-3791"
+    },
+    {
+      "name": "LiNk-NY"
+    },
+    {
+      "name": "adityabandla",
+      "orcid": "0000-0002-3487-8052"
+    },
+    {
+      "name": "Carolyn Koehn",
+      "orcid": "0000-0001-9189-5396"
+    },
+    {
+      "name": "Haidy Giratallah"
+    },
+    {
+      "name": "Katrin Leinweber",
+      "orcid": "0000-0001-5135-5758"
+    },
+    {
+      "name": "Maneesha Sane"
+    },
+    {
+      "name": "Mark Fernandes"
+    },
+    {
+      "name": "Michael C. Saul",
+      "orcid": "0000-0002-4916-8619"
+    },
+    {
+      "name": "Rayna M Harris",
+      "orcid": "0000-0002-7943-5650"
+    },
+    {
+      "name": "Sam Nooij",
+      "orcid": "0000-0001-5892-5637"
+    },
+    {
+      "name": "Tomás Di Domenico"
+    },
+    {
+      "name": "Tuck-Voon How"
+    },
+    {
+      "name": "brynnelliott"
+    }
+  ],
+  "license": {
+    "id": "CC-BY-4.0"
+  }
+}
