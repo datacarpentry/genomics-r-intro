@@ -1,99 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-intro00-introduction.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/00-introduction.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-intro01-r-basics.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/01-r-basics.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-intro02-data-prelude.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/02-data-prelude.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-intro03-basics-factors-dataframes.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/03-basics-factors-dataframes.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-intro04-bioconductor-vcfr.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/04-bioconductor-vcfr.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-intro05-dplyr.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/05-dplyr.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-intro06-data-visualization.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/06-data-visualization.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-intro07-knitr-markdown.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/07-knitr-markdown.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-intro08-r-help.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/08-r-help.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-intro404.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/404.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introCODE_OF_CONDUCT.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introLICENSE.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introdiscuss.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/aio.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introindex.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/discuss.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/00-introduction.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/images.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/01-r-basics.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/index.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/02-data-prelude.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/00-introduction.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/03-basics-factors-dataframes.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/01-r-basics.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/04-bioconductor-vcfr.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/02-data-prelude.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/05-dplyr.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/03-basics-factors-dataframes.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/06-data-visualization.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/04-bioconductor-vcfr.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/07-knitr-markdown.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/05-dplyr.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/08-r-help.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/06-data-visualization.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/404.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/07-knitr-markdown.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/CODE_OF_CONDUCT.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/08-r-help.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/LICENSE.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/404.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/discuss.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/index.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/profiles.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/aio.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introinstructor/reference.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/discuss.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introprofiles.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/images.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/genomics-r-introreference.html</loc>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/genomics-r-intro/reference.html</loc>
   </url>
 </urlset>
