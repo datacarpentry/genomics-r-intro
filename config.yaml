@@ -66,8 +66,7 @@ episodes:
 - 04-bioconductor-vcfr.Rmd
 - 05-dplyr.Rmd
 - 06-data-visualization.Rmd
-- 07-knitr-markdown.Rmd
-- 08-r-help.Rmd
+- 07-r-help.Rmd
 
 # Information for Learners
 learners: 
