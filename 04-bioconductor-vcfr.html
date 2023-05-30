@@ -184,7 +184,7 @@
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        Using packages from Bioconductor
+        5. Using packages from Bioconductor
         </span>
       </button>
     </div><!--/div.accordion-header-->
@@ -372,13 +372,13 @@ number.</p>
 </section><section id="second-install-the-vcfr-package-from-bioconductor-using-biocmanager"><h2 class="section-heading">Second, install the vcfR package from Bioconductor using
 <code>BiocManager</code><a class="anchor" aria-label="anchor" href="#second-install-the-vcfr-package-from-bioconductor-using-biocmanager"></a>
 </h2>
-<hr class="half-width"><div id="callout1" class="callout callout">
+<hr class="half-width"><div id="heads-up-installing-vcfr-may-take-a-while-due-to-numerous-dependencies" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="heads-up-installing-vcfr-may-take-a-while-due-to-numerous-dependencies" class="callout-inner">
 <h3 class="callout-title">Head’s Up: Installing vcfR may take a while
-due to numerous dependencies<a class="anchor" aria-label="anchor" href="#callout1"></a>
+due to numerous dependencies<a class="anchor" aria-label="anchor" href="#heads-up-installing-vcfr-may-take-a-while-due-to-numerous-dependencies"></a>
 </h3>
 <div class="callout-content">
 <p>Just be aware that installing packages that have many dependencies
@@ -396,13 +396,13 @@ can take a while.</p>
 <p>Depending on your particular system, you may need to also allow it to
 install some dependencies or update installed packages in order to
 successfully complete the process.</p>
-<div id="callout2" class="callout callout">
+<div id="note-installing-packages-from-bioconductor-vs-from-cran" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="note-installing-packages-from-bioconductor-vs-from-cran" class="callout-inner">
 <h3 class="callout-title">Note: Installing packages from Bioconductor vs
-from CRAN<a class="anchor" aria-label="anchor" href="#callout2"></a>
+from CRAN<a class="anchor" aria-label="anchor" href="#note-installing-packages-from-bioconductor-vs-from-cran"></a>
 </h3>
 <div class="callout-content">
 <p>Some packages begin by being available only on Bioconductor, and then
@@ -430,13 +430,13 @@ bioinformaticians may want to work with. Sometimes you may get a new
 dataset and not know exactly where to start with analyzing or
 visualizing it. The Bioconductor package search view can be a great way
 to browse through the packages that are available.</p>
-<figure><img src="fig/bioconductor_search.jpg" alt="screenshot of bioconductor search" class="figure mx-auto d-block"></figure><div id="callout3" class="callout callout">
+<figure><img src="fig/bioconductor_search.jpg" alt="screenshot of bioconductor search" class="figure mx-auto d-block"></figure><div id="tip-searching-for-packages-on-the-bioconductor-website" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-searching-for-packages-on-the-bioconductor-website" class="callout-inner">
 <h3 class="callout-title">Tip: Searching for packages on the
-Bioconductor website<a class="anchor" aria-label="anchor" href="#callout3"></a>
+Bioconductor website<a class="anchor" aria-label="anchor" href="#tip-searching-for-packages-on-the-bioconductor-website"></a>
 </h3>
 <div class="callout-content">
 <p>There are several thousand packages available through the
@@ -451,12 +451,12 @@ used in a particular instance. The authors of <code>vcfR</code> have <a href="ht
 some of them</a>. One of those packages that <a href="https://bioconductor.org/packages/release/bioc/html/VariantAnnotation.html" class="external-link">is
 available from Bioconductor</a> is called <code>VariantAnnotation</code>
 and may also be of interest to those working with vcf files in R.</p>
-<div id="discussion1" class="callout discussion">
+<div id="challenge" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
 <div id="challenge" class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#discussion1"></a>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge"></a>
 </h3>
 <div class="callout-content">
 <ul><li>Use the <code>BiocManager::available()</code> function to see what
@@ -469,13 +469,13 @@ see what is available.</p>
 </div>
 </div>
 </div>
-<div id="callout4" class="callout callout">
+<div id="tip-refreshing-the-rstudio-package-view-after-installing" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-refreshing-the-rstudio-package-view-after-installing" class="callout-inner">
 <h3 class="callout-title">Tip: Refreshing the RStudio package view after
-installing<a class="anchor" aria-label="anchor" href="#callout4"></a>
+installing<a class="anchor" aria-label="anchor" href="#tip-refreshing-the-rstudio-package-view-after-installing"></a>
 </h3>
 <div class="callout-content">
 <p>If you install a package from Bioconductor, you may need to refresh
@@ -538,9 +538,9 @@ analysis before writing code yourself.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.16" class="external-link">sandpaper (0.11.16)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.2" class="external-link">sandpaper (0.12.2)</a>,
         <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.2.16" class="external-link">varnish (0.2.16)</a>.</p>
+      and <a href="https://github.com/carpentries/varnish/tree/0.2.17" class="external-link">varnish (0.2.17)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -562,7 +562,7 @@ analysis before writing code yourself.</li>
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/04-bioconductor-vcfr.html",
   "dateCreated": "2018-03-12",
   "dateModified": "2023-05-01",
-  "datePublished": "2023-05-16"
+  "datePublished": "2023-05-30"
 }
 
   </script><script>

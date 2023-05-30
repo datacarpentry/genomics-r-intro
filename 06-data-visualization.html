@@ -202,7 +202,7 @@
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        Data Visualization with ggplot2
+        7. Data Visualization with ggplot2
         </span>
       </button>
     </div><!--/div.accordion-header-->
@@ -871,12 +871,12 @@ create a pdf version of the above figure with a dimension of <span class="math i
 <p>If we check the <em>current working directory</em>, there should be a
 newly created file called <code>depth.pdf</code> with the above
 plot.</p>
-<div id="challenge1" class="callout challenge">
+<div id="challenge" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge" class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge"></a>
 </h3>
 <div class="callout-content">
 <p>Use what you just learned to create a scatter plot of mapping quality
@@ -970,12 +970,12 @@ Additionally, you can remove the grid:</p>
 <span>  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme</span><span class="op">(</span>panel.grid <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre>
 </div>
-<figure><img src="fig/06-data-visualization-rendered-facet-plot-white-bg-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div id="challenge2" class="callout challenge">
+<figure><img src="fig/06-data-visualization-rendered-facet-plot-white-bg-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div id="challenge-1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-1" class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge2"></a>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge-1"></a>
 </h3>
 <div class="callout-content">
 <p>Use what you just learned to create a scatter plot of PHRED scaled
@@ -1021,12 +1021,12 @@ sample that are indels.</p>
 <span>  <span class="fu">geom_bar</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">facet_grid</span><span class="op">(</span><span class="va">sample_id</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span></span></code></pre>
 </div>
-<figure><img src="fig/06-data-visualization-rendered-barplot-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div id="challenge3" class="callout challenge">
+<figure><img src="fig/06-data-visualization-rendered-barplot-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div id="challenge-2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-2" class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge3"></a>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge-2"></a>
 </h3>
 <div class="callout-content">
 <p>Since we already have the sample_id labels on the individual plot
@@ -1071,12 +1071,12 @@ plot the distribution of <code>DP</code></p>
 </div>
 <figure><img src="fig/06-data-visualization-rendered-density-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>This plot tells us that the most of frequent <code>DP</code> (read
 depth) for the variants is about 10 reads.</p>
-<div id="challenge4" class="callout challenge">
+<div id="challenge-3" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-3" class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge4"></a>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge-3"></a>
 </h3>
 <div class="callout-content">
 <p>Use <a href="https://ggplot2.tidyverse.org/reference/geom_density.html" class="external-link"><code>geom_density</code></a>
@@ -1125,12 +1125,12 @@ The <a href="https://exts.ggplot2.tidyverse.org/" class="external-link"><strong>
 extensions website</a> provides a list of packages that extend the
 capabilities of <strong><code>ggplot2</code></strong>, including
 additional themes.</p>
-<div id="discussion1" class="callout discussion">
+<div id="challenge-4" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
 <div id="challenge-4" class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#discussion1"></a>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge-4"></a>
 </h3>
 <div class="callout-content">
 <p>With all of this information in hand, please take another five
@@ -1217,9 +1217,9 @@ plots</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.16" class="external-link">sandpaper (0.11.16)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.2" class="external-link">sandpaper (0.12.2)</a>,
         <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.2.16" class="external-link">varnish (0.2.16)</a>.</p>
+      and <a href="https://github.com/carpentries/varnish/tree/0.2.17" class="external-link">varnish (0.2.17)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1241,7 +1241,7 @@ plots</li>
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/06-data-visualization.html",
   "dateCreated": "2018-03-12",
   "dateModified": "2023-05-01",
-  "datePublished": "2023-05-16"
+  "datePublished": "2023-05-30"
 }
 
   </script><script>

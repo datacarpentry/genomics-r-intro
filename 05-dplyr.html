@@ -193,7 +193,7 @@
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        Data Wrangling and Analyses with Tidyverse
+        6. Data Wrangling and Analyses with Tidyverse
         </span>
       </button>
     </div><!--/div.accordion-header-->
@@ -364,12 +364,12 @@ too much; I’d recommend choosing the RStudio mirror.</p>
 <p>You only need to install a package once per computer, but you need to
 load it every time you open a new R session and want to use that
 package.</p>
-<div id="callout1" class="callout callout">
+<div id="tip-installing-packages" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-installing-packages" class="callout-inner">
-<h3 class="callout-title">Tip: Installing packages<a class="anchor" aria-label="anchor" href="#callout1"></a>
+<h3 class="callout-title">Tip: Installing packages<a class="anchor" aria-label="anchor" href="#tip-installing-packages"></a>
 </h3>
 <div class="callout-content">
 <p>It may be temping to install the <code>tidyverse</code> package, as
@@ -550,12 +550,12 @@ wanted to select columns that end with the letter “B”:</p>
 10 0.568     NA    NA    NA  1.01  -0.617 NA    NA   
 # ℹ 791 more rows</code></pre>
 </div>
-<div id="challenge1" class="callout challenge">
+<div id="challenge" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge" class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge"></a>
 </h3>
 <div class="callout-content">
 <p>Create a table that contains all the columns with the letter “i” and
@@ -573,7 +573,7 @@ Note that contains() is not case sensistive.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -607,12 +607,12 @@ Note that contains() is not case sensistive.</p>
 </div>
 </div>
 </div>
-<div id="challenge2" class="callout challenge">
+<div id="challenge" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge" class="callout-inner">
-<h3 class="callout-title">Challenge<em> (continued)</em><a class="anchor" aria-label="anchor" href="#challenge2"></a>
+<h3 class="callout-title">Challenge<em> (continued)</em><a class="anchor" aria-label="anchor" href="#challenge"></a>
 </h3>
 <div class="callout-content">
 <p>We can also get to <code>variants_result</code> in one line of
@@ -627,7 +627,7 @@ code:</p>
   Alternative solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -877,12 +877,12 @@ you can specify it explicitly:</p>
 #   AN &lt;dbl&gt;, DP4 &lt;chr&gt;, MQ &lt;dbl&gt;, Indiv &lt;chr&gt;, gt_PL &lt;dbl&gt;, gt_GT &lt;dbl&gt;,
 #   gt_GT_alleles &lt;chr&gt;</code></pre>
 </div>
-<div id="challenge3" class="callout challenge">
+<div id="challenge-1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-1" class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge3"></a>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge-1"></a>
 </h3>
 <div class="callout-content">
 <p>Select all the mutations that occurred between the positions 1e6 (one
@@ -899,7 +899,7 @@ FALSE, we can use to negation symbol “!”. (eg. !TRUE == FALSE).</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1079,12 +1079,12 @@ users to specify a range to view:</p>
 15 TGG   T        10
 16 A     C         9</code></pre>
 </div>
-<div id="challenge4" class="callout challenge">
+<div id="exercise-pipe-and-filter" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-pipe-and-filter" class="callout-inner">
-<h3 class="callout-title">Exercise: Pipe and filter<a class="anchor" aria-label="anchor" href="#challenge4"></a>
+<h3 class="callout-title">Exercise: Pipe and filter<a class="anchor" aria-label="anchor" href="#exercise-pipe-and-filter"></a>
 </h3>
 <div class="callout-content">
 <p>Starting with the <code>variants</code> data frame, use pipes to
@@ -1102,7 +1102,7 @@ where the filtered depth (DP) is at least 10. Showing only 5th through
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb39">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1173,12 +1173,12 @@ polymorphism at that site given the data.</p>
 #   AN &lt;dbl&gt;, DP4 &lt;chr&gt;, MQ &lt;dbl&gt;, Indiv &lt;chr&gt;, gt_PL &lt;dbl&gt;, gt_GT &lt;dbl&gt;,
 #   gt_GT_alleles &lt;chr&gt;, POLPROB &lt;dbl&gt;</code></pre>
 </div>
-<div id="challenge5" class="callout challenge">
+<div id="exercise" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#challenge5"></a>
+<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise"></a>
 </h3>
 <div class="callout-content">
 <p>There are a lot of columns in our data set, so let’s just look at the
@@ -1195,7 +1195,7 @@ only show those columns.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb43">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1275,12 +1275,12 @@ detected in each sample using the function <code>tally()</code>:</p>
 2 SRR2584866   766
 3 SRR2589044    10</code></pre>
 </div>
-<div id="challenge6" class="callout challenge">
+<div id="challenge-2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-2" class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge6"></a>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge-2"></a>
 </h3>
 <div class="callout-content">
 <ul><li>How many mutations are INDELs?</li>
@@ -1294,7 +1294,7 @@ detected in each sample using the function <code>tally()</code>:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb49">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1323,7 +1323,9 @@ group.</p>
 <p>It can be a bit tricky at first, but we can imagine physically
 splitting the data frame by groups and applying a certain function to
 summarize the data.</p>
-<figure><img src="fig/split_apply_combine.png" alt="rstudio default session" style="width: 500px;" class="figure mx-auto d-block"></figure><p><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<center>
+<img src="fig/split_apply_combine.png" alt="rstudio default session" style="width: 500px;" class="figure"></center>
+<p><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <p>We can also apply many other functions to individual columns to get
 other summary statistics. For example,we can use built-in functions like
 <code>mean()</code>, <code>median()</code>, <code>min()</code>, and
@@ -1485,9 +1487,9 @@ Reproducible Scientific Analysis</a><a href="#fnref1" class="footnote-back">↩�
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.16" class="external-link">sandpaper (0.11.16)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.2" class="external-link">sandpaper (0.12.2)</a>,
         <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.2.16" class="external-link">varnish (0.2.16)</a>.</p>
+      and <a href="https://github.com/carpentries/varnish/tree/0.2.17" class="external-link">varnish (0.2.17)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1509,7 +1511,7 @@ Reproducible Scientific Analysis</a><a href="#fnref1" class="footnote-back">↩�
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/05-dplyr.html",
   "dateCreated": "2018-03-12",
   "dateModified": "2023-05-01",
-  "datePublished": "2023-05-16"
+  "datePublished": "2023-05-30"
 }
 
   </script><script>

@@ -174,7 +174,7 @@
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        R Basics continued - factors and data frames
+        4. R Basics continued - factors and data frames
         </span>
       </button>
     </div><!--/div.accordion-header-->
@@ -371,12 +371,12 @@ course, as the data get larger our human ability to keep track will
 start to fail (and yes, it can fail for small data sets too). R will
 help you to examine your data so that you can have greater confidence in
 your analysis, and its reproducibility.</p>
-<div id="callout1" class="callout callout">
+<div id="tip-keeping-you-raw-data-separate" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-keeping-you-raw-data-separate" class="callout-inner">
-<h3 class="callout-title">Tip: Keeping you raw data separate<a class="anchor" aria-label="anchor" href="#callout1"></a>
+<h3 class="callout-title">Tip: Keeping you raw data separate<a class="anchor" aria-label="anchor" href="#tip-keeping-you-raw-data-separate"></a>
 </h3>
 <div class="callout-content">
 <p>When you work with data in R, you are not changing the original file
@@ -396,13 +396,13 @@ we will focus on using the tools every R installation comes with (so
 called “base” R) to import a comma-delimited file containing the results
 of our variant calling workflow. We will need to load the sheet using a
 function called <code>read.csv()</code>.</p>
-<div id="challenge1" class="callout challenge">
+<div id="exercise-review-the-arguments-of-the-read.csv-function" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-review-the-arguments-of-the-read.csv-function" class="callout-inner">
 <h3 class="callout-title">Exercise: Review the arguments of the
-<code>read.csv()</code> function<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+<code>read.csv()</code> function<a class="anchor" aria-label="anchor" href="#exercise-review-the-arguments-of-the-read.csv-function"></a>
 </h3>
 <div class="callout-content">
 <p><strong>Before using the <code>read.csv()</code> function, use R’s
@@ -430,7 +430,7 @@ numbers used commas for decimal separation (i.e. 1,00)?</p></li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: upper-alpha"><li><p>The <code>read.csv()</code> function has the argument ‘header’
 set to TRUE by default, this means the function always assumes the first
@@ -722,13 +722,13 @@ in our factor are all “A”s.</p>
 </div>
 <p>As you can imagine, this is already useful when you want to generate
 a tally.</p>
-<div id="callout2" class="callout callout">
+<div id="tip-treating-objects-as-categories-without-changing-their-mode" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-treating-objects-as-categories-without-changing-their-mode" class="callout-inner">
 <h3 class="callout-title">Tip: treating objects as categories without
-changing their mode<a class="anchor" aria-label="anchor" href="#callout2"></a>
+changing their mode<a class="anchor" aria-label="anchor" href="#tip-treating-objects-as-categories-without-changing-their-mode"></a>
 </h3>
 <div class="callout-content">
 <p>You don’t have to make an object a factor to get the benefits of
@@ -791,13 +791,13 @@ levels.</li>
 <figure><img src="../fig/03-basics-factors-dataframes-rendered-unnamed-chunk-16-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>Factors come in handy in many places when using R. Even using more
 sophisticated plotting packages such as ggplot2 will sometimes require
 you to understand how to manipulate factors.</p>
-<div id="callout3" class="callout callout">
+<div id="tip-packages-in-r-what-are-they-and-why-do-we-use-them" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-packages-in-r-what-are-they-and-why-do-we-use-them" class="callout-inner">
 <h3 class="callout-title">Tip: Packages in R – what are they and why do
-we use them?<a class="anchor" aria-label="anchor" href="#callout3"></a>
+we use them?<a class="anchor" aria-label="anchor" href="#tip-packages-in-r-what-are-they-and-why-do-we-use-them"></a>
 </h3>
 <div class="callout-content">
 <p>Packages are simply collections of functions and/or data that can be
@@ -838,12 +838,12 @@ values.</p>
 once again use <code>[]</code> (bracket) notation, but we will specify
 more than one value (except in some cases where we are taking a
 range).</p>
-<div id="challenge2" class="callout challenge">
+<div id="exercise-subsetting-a-data-frame" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-subsetting-a-data-frame" class="callout-inner">
-<h3 class="callout-title">Exercise: Subsetting a data frame<a class="anchor" aria-label="anchor" href="#challenge2"></a>
+<h3 class="callout-title">Exercise: Subsetting a data frame<a class="anchor" aria-label="anchor" href="#exercise-subsetting-a-data-frame"></a>
 </h3>
 <div class="callout-content">
 <p><strong>Try the following indices and functions and try to figure out
@@ -870,7 +870,7 @@ what they return</strong></p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: lower-alpha"><li>
 </li></ol><div class="codewrapper sourceCode" id="cb26">
@@ -1267,13 +1267,13 @@ to a new object name:</p>
 </div>
 </section><section id="coercing-values-in-data-frames"><h2 class="section-heading">Coercing values in data frames<a class="anchor" aria-label="anchor" href="#coercing-values-in-data-frames"></a>
 </h2>
-<hr class="half-width"><div id="callout4" class="callout callout">
+<hr class="half-width"><div id="tip-coercion-isnt-limited-to-data-frames" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-coercion-isnt-limited-to-data-frames" class="callout-inner">
 <h3 class="callout-title">Tip: coercion isn’t limited to data
-frames<a class="anchor" aria-label="anchor" href="#callout4"></a>
+frames<a class="anchor" aria-label="anchor" href="#tip-coercion-isnt-limited-to-data-frames"></a>
 </h3>
 <div class="callout-content">
 <p>While we are going to address coercion in the context of data frames
@@ -1500,13 +1500,13 @@ tried to create a vector with multiple data types, R chose one type
 through implicit coercion.</li>
 <li>Check the structure (<code>str()</code>) of your data frames before
 working with them!</li>
-</ul><div id="callout5" class="callout callout">
+</ul><div id="tip-coercion-isnt-limited-to-data-frames-1" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-coercion-isnt-limited-to-data-frames-1" class="callout-inner">
 <h3 class="callout-title">Tip: coercion isn’t limited to data
-frames<a class="anchor" aria-label="anchor" href="#callout5"></a>
+frames<a class="anchor" aria-label="anchor" href="#tip-coercion-isnt-limited-to-data-frames-1"></a>
 </h3>
 <div class="callout-content">
 <p>Prior to R 4.0 when importing a data frame using any one of the
@@ -1560,12 +1560,12 @@ function:</p>
 </h3>
 <pre class="output" tabindex="0"><code>[1] 2 2 2 2 2 2</code></pre>
 </div>
-<div id="challenge3" class="callout challenge">
+<div id="exercise" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#challenge3"></a>
+<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise"></a>
 </h3>
 <div class="callout-content">
 <p>The <code>order()</code> function lists values in increasing order by
@@ -1582,7 +1582,7 @@ filtered depth (“DP”).</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb81">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1695,13 +1695,13 @@ to adjust. Click the <kbd>Import</kbd> button to import the data.</p>
 <p>The type of this object is ‘tibble’, a type of data frame we will
 talk more about in the ‘dplyr’ section. If you needed a true R data
 frame you could coerce with <code>as.data.frame()</code>.</p>
-<div id="challenge4" class="callout challenge">
+<div id="exercise-putting-it-all-together---data-frames" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-putting-it-all-together---data-frames" class="callout-inner">
 <h3 class="callout-title">Exercise: Putting it all together - data
-frames<a class="anchor" aria-label="anchor" href="#challenge4"></a>
+frames<a class="anchor" aria-label="anchor" href="#exercise-putting-it-all-together---data-frames"></a>
 </h3>
 <div class="callout-content">
 <p><strong>Using the <code>Ecoli_metadata</code> data frame created
@@ -1732,7 +1732,7 @@ genome_size multiplied by 1,000,000</p></li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb88">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1855,9 +1855,9 @@ by the community</li>
         <p>Materials licensed under <a href="../LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.16" class="external-link">sandpaper (0.11.16)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.2" class="external-link">sandpaper (0.12.2)</a>,
         <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.2.16" class="external-link">varnish (0.2.16)</a>.</p>
+      and <a href="https://github.com/carpentries/varnish/tree/0.2.17" class="external-link">varnish (0.2.17)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1879,7 +1879,7 @@ by the community</li>
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/instructor/03-basics-factors-dataframes.html",
   "dateCreated": "2018-03-12",
   "dateModified": "2023-05-01",
-  "datePublished": "2023-05-16"
+  "datePublished": "2023-05-30"
 }
 
   </script><script>
