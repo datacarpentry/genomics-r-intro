@@ -12,7 +12,6 @@ source: Rmd
 - Be able to use arithmetic operators on R objects
 - Be able to retrieve (subset), name, or replace, values from a vector
 - Be able to use logical operators in a subsetting operation
-- Understand that lists can hold data of more than one mode and can be indexed
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -52,7 +51,7 @@ below.
 
 **Here are some R skills we will *not* cover in these lessons**
 
-- How to create and work with R matrices and R lists
+- How to create and work with R matrices
 - How to create and work with loops and conditional statements, and the "apply"
   family of functions (which are super useful, read more [here](https://www.r-bloggers.com/r-tutorial-on-the-apply-family-of-functions/))
 - How to do basic string manipulations (e.g. finding patterns in text using grep, replacing text)
@@ -81,7 +80,7 @@ need this technical knowledge.
   and applications for R
 - [Programming in R Software Carpentry lesson](https://software-carpentry.org/lessons/):
   There are several Software Carpentry lessons in R to choose from
-  
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -140,9 +139,9 @@ status/warning/error messages (usually in red).
 
 In the 'Environment' window you will also get a table:
 
-| Values              |                                                                                                                                                                                                                                             | 
+| Values              |                                                                                                                                                                                                                                             |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| a                   | 1                                                                                                                                                                                                                                           | 
+| a                   | 1                                                                                                                                                                                                                                           |
 
 The 'Environment' window allows you to keep track of the objects you have
 created in R.
@@ -265,11 +264,11 @@ We will get to the "length" property later in the lesson. The **"mode" property*
 **corresponds to the type of data an object represents**. The most common modes
 you will encounter in R are:
 
-| Mode (abbreviation) | Type of data                                                                                                                                                                                                                                | 
+| Mode (abbreviation) | Type of data                                                                                                                                                                                                                                |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Numeric (num)       | Numbers such floating point/decimals (1.0, 0.5, 3.14), there are also more specific numeric types (dbl - Double, int - Integer). These differences are not relevant for most beginners and pertain to how these values are stored in memory | 
-| Character (chr)     | A sequence of letters/numbers in single '' or double " " quotes                                                                                                                                                                             | 
-| Logical             | Boolean values - TRUE or FALSE                                                                                                                                                                                                              | 
+| Numeric (num)       | Numbers such floating point/decimals (1.0, 0.5, 3.14), there are also more specific numeric types (dbl - Double, int - Integer). These differences are not relevant for most beginners and pertain to how these values are stored in memory |
+| Character (chr)     | A sequence of letters/numbers in single '' or double " " quotes                                                                                                                                                                             |
+| Logical             | Boolean values - TRUE or FALSE                                                                                                                                                                                                              |
 
 There are a few other modes (i.e. "complex", "raw" etc.) but these
 are the three we will work with in this lesson.
@@ -380,15 +379,15 @@ appropriately manipulate that object. For example, objects of the numeric modes
 can be added, multiplied, divided, etc. R provides several mathematical
 (arithmetic) operators including:
 
-| Operator            | Description                                                                                                                                                                                                                                 | 
+| Operator            | Description                                                                                                                                                                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| \+                   | addition                                                                                                                                                                                                                                    | 
-| \-                   | subtraction                                                                                                                                                                                                                                 | 
-| \*                   | multiplication                                                                                                                                                                                                                              | 
-| /                   | division                                                                                                                                                                                                                                    | 
-| ^ or \*\*             | exponentiation                                                                                                                                                                                                                              | 
-| a%/%b               | integer division (division where the remainder is discarded)                                                                                                                                                                                | 
-| a%%b                | modulus (returns the remainder after division)                                                                                                                                                                                              | 
+| \+                   | addition                                                                                                                                                                                                                                    |
+| \-                   | subtraction                                                                                                                                                                                                                                 |
+| \*                   | multiplication                                                                                                                                                                                                                              |
+| /                   | division                                                                                                                                                                                                                                    |
+| ^ or \*\*             | exponentiation                                                                                                                                                                                                                              |
+| a%/%b               | integer division (division where the remainder is discarded)                                                                                                                                                                                |
+| a%%b                | modulus (returns the remainder after division)                                                                                                                                                                                              |
 
 These can be used with literal numbers:
 
@@ -681,17 +680,17 @@ snp_positions[snp_positions > 100000000]
 
 In the square brackets you place the name of the vector followed by the comparison operator and (in this case) a numeric value. Some of the most common logical operators you will use in R are:
 
-| Operator            | Description                                                                                                                                                                                                                                 | 
+| Operator            | Description                                                                                                                                                                                                                                 |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| \<                   | less than                                                                                                                                                                                                                                   | 
-| \<=                  | less than or equal to                                                                                                                                                                                                                       | 
-| \>                   | greater than                                                                                                                                                                                                                                | 
-| \>=                  | greater than or equal to                                                                                                                                                                                                                    | 
-| \==                  | exactly equal to                                                                                                                                                                                                                            | 
-| !=                  | not equal to                                                                                                                                                                                                                                | 
-| !x                  | not x                                                                                                                                                                                                                                       | 
-| a | b               | a or b                                                                                                                                                                                                                                      | 
-| a \& b               | a and b                                                                                                                                                                                                                                     | 
+| \<                   | less than                                                                                                                                                                                                                                   |
+| \<=                  | less than or equal to                                                                                                                                                                                                                       |
+| \>                   | greater than                                                                                                                                                                                                                                |
+| \>=                  | greater than or equal to                                                                                                                                                                                                                    |
+| \==                  | exactly equal to                                                                                                                                                                                                                            |
+| !=                  | not equal to                                                                                                                                                                                                                                |
+| !x                  | not x                                                                                                                                                                                                                                       |
+| a | b               | a or b                                                                                                                                                                                                                                      |
+| a \& b               | a and b                                                                                                                                                                                                                                     |
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -778,7 +777,7 @@ value:
 
 
 ```r
-# current value of 'snp_genes': 
+# current value of 'snp_genes':
 # chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
 
 is.na(snp_genes)
@@ -980,7 +979,9 @@ typeof(combined)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Bonus material: Lists
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Lists
 
 Lists are quite useful in R, but we won't be using them in the genomics lessons.
 That said, you may come across lists in the way that some bioinformatics
@@ -1040,6 +1041,7 @@ snp_data$position[1]
 ```{.output}
 [1] 8762685
 ```
+:::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
@@ -1048,5 +1050,3 @@ snp_data$position[1]
 - Working with vectors effectively prepares you for understanding how data are organized in R.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
