@@ -1,5 +1,3 @@
-![Build and Deploy Website](https://github.com/datacarpentry/genomics-r-intro/workflows/Build%20and%20Deploy%20Website/badge.svg)
-
 # Intro to R and RStudio for Genomics
 
 Lesson in development.
