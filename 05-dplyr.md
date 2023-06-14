@@ -959,7 +959,7 @@ variants_wide %>%
 
 ### Resources
 
-- [Handy dplyr cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
+- [Handy dplyr cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf)
 
 - [Much of this lesson was copied or adapted from Jeff Hollister's materials](https://usepa.github.io/introR/2015/01/14/03-Clean/)
 
