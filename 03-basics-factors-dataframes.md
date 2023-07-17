@@ -499,9 +499,9 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 
-- Installing ggplot2 ...                        OK [linked from cache in 5e-04s]
+- Installing ggplot2 ...                        OK [linked from cache in 0.00039s]
 
-Successfully installed 1 package in 9.9 milliseconds.
+Successfully installed 1 package in 7.3 milliseconds.
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
