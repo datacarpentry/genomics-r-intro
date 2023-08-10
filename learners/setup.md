@@ -20,6 +20,14 @@ Machine Image (AMI). Please follow the instructions below to prepare your comput
 
 This lesson requires a working spreadsheet program. If you don't have a spreadsheet program already, you can use LibreOffice. It's a free, open source spreadsheet program.  Directions to install are included for each Windows, Mac OS X, and Linux systems below. For Windows, you will also need to install Git Bash, PuTTY, or the Ubuntu Subsystem.
 
+:::::::::::::::::::::::::::::::::::::::: {.empty-div style="margin-bottom: 50px"}
+
+
+<!-- This div is intentionally empty to allow the solution to float alone-->
+
+
+::::::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::  solution
 
 ## Windows
@@ -107,6 +115,14 @@ We have installed software using [miniconda](https://docs.conda.io/en/latest/min
 
 ### Miniconda3
 
+:::::::::::::::::::::::::::::::::::::::: {.empty-div style="margin-bottom: 50px"}
+
+
+<!-- This div is intentionally empty to allow the solution to float alone-->
+
+
+::::::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::  solution
 
 ## MacOS
@@ -124,6 +140,14 @@ Then, follow the instructions that you are prompted with on the screen to instal
 :::::::::::::::::::::::::
 
 ### FastQC
+
+:::::::::::::::::::::::::::::::::::::::: {.empty-div style="margin-bottom: 50px"}
+
+
+<!-- This div is intentionally empty to allow the solution to float alone-->
+
+
+::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::  solution
 
@@ -171,6 +195,14 @@ $ fastqc -h
 
 ### Trimmomatic
 
+:::::::::::::::::::::::::::::::::::::::: {.empty-div style="margin-bottom: 50px"}
+
+
+<!-- This div is intentionally empty to allow the solution to float alone-->
+
+
+::::::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::  solution
 
 ## MacOS
@@ -211,6 +243,14 @@ $ ls ~/src/Trimmomatic-0.38/adapters/
 $ java -jar ~/src/Trimmomatic-0.38/trimmomatic-0.38.jar
 ```
 
+:::::::::::::::::::::::::::::::::::::::: {.empty-div style="margin-bottom: 50px"}
+
+
+<!-- This div is intentionally empty to allow the solution to float alone-->
+
+
+::::::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::  solution
 
 ## Simplify the Invocation, or to Test your installation if you installed with miniconda3:
@@ -232,6 +272,14 @@ $ trimmomatic
 :::::::::::::::::::::::::
 
 ### BWA
+
+:::::::::::::::::::::::::::::::::::::::: {.empty-div style="margin-bottom: 50px"}
+
+
+<!-- This div is intentionally empty to allow the solution to float alone-->
+
+
+::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::  solution
 
@@ -264,6 +312,14 @@ $ bwa
 ```
 
 ### SAMtools
+
+:::::::::::::::::::::::::::::::::::::::: {.empty-div style="margin-bottom: 50px"}
+
+
+<!-- This div is intentionally empty to allow the solution to float alone-->
+
+
+::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::  solution
 
@@ -310,6 +366,14 @@ $ samtools
 ```
 
 ### BCFtools
+
+:::::::::::::::::::::::::::::::::::::::: {.empty-div style="margin-bottom: 50px"}
+
+
+<!-- This div is intentionally empty to allow the solution to float alone-->
+
+
+::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::  solution
 
