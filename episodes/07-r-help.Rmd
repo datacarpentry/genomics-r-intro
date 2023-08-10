@@ -45,7 +45,7 @@ a popular online forum.
 
 ## Tip: Asking for help using online forums:
 
-- When searching for R help, look for answers with the [r](https://stackoverflow.com/questions/tagged/r) tag.
+- When searching for R help, look for [answers with the 'r' tag](https://stackoverflow.com/questions/tagged/r).
 - Get an account; not required to view answers but to required to post
 - Put in effort to check thoroughly before you post a question; folks get
   annoyed if you ask a very common question that has been answered multiple
