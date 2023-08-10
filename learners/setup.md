@@ -184,15 +184,13 @@ We need to set it ourselves.
 $ chmod +x ~/bin/fastqc
 ```
 
+:::::::::::::::::::::::::
 
 **Test your installation by running:**
 
 ```bash
 $ fastqc -h
 ```
-
-:::::::::::::::::::::::::
-
 
 ### Trimmomatic
 
@@ -235,15 +233,13 @@ Illumina specific adapter sequences.
 $ ls ~/src/Trimmomatic-0.38/adapters/
 ```
 
+:::::::::::::::::::::::::
 
 **Test your installation by running:** (assuming things are installed in ~/src)
 
 ```bash
 $ java -jar ~/src/Trimmomatic-0.38/trimmomatic-0.38.jar
 ```
-
-:::::::::::::::::::::::::
-
 
 :::::::::::::::::::::::::::::::::::::::: {.empty-div style="margin-bottom: 50px"}
 
@@ -265,13 +261,13 @@ $ echo 'java -jar ~/src/Trimmomatic-0.36/trimmomatic-0.36.jar $@' >> ~/bin/trimm
 $ chmod +x ~/bin/trimmomatic
 ```
 
-Test your script by running:
+:::::::::::::::::::::::::
+
+**Test your script by running:**
 
 ```bash
 $ trimmomatic
 ```
-
-:::::::::::::::::::::::::
 
 ### BWA
 
@@ -304,15 +300,13 @@ $ make
 $ export PATH=~/src/bwa-0.7.17:$PATH
 ```
 
+:::::::::::::::::::::::::
 
 **Test your installation by running:**
 
 ```bash
 $ bwa
 ```
-
-:::::::::::::::::::::::::
-
 
 ### SAMtools
 
@@ -359,15 +353,13 @@ $ echo export `PATH=~/src/samtools-1.9:$PATH` >> ~/.bashrc
 $ source ~/.bashrc
 ```
 
+:::::::::::::::::::::::::
 
 **Test your installation by running:**
 
 ```bash
 $ samtools
 ```
-
-:::::::::::::::::::::::::
-
 
 ### BCFtools
 
@@ -406,15 +398,13 @@ $ echo export `PATH=~/src/bcftools-1.8:$PATH` >> ~/.bashrc
 $ source ~/.bashrc
 ```
 
+:::::::::::::::::::::::::
 
 **Test your installation by running:**
 
 ```bash
 $ bcftools
 ```
-
-:::::::::::::::::::::::::
-
 
 ### IGV
 
