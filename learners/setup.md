@@ -187,11 +187,12 @@ $ chmod +x ~/bin/fastqc
 
 **Test your installation by running:**
 
-:::::::::::::::::::::::::
-
 ```bash
 $ fastqc -h
 ```
+
+:::::::::::::::::::::::::
+
 
 ### Trimmomatic
 
@@ -237,11 +238,12 @@ $ ls ~/src/Trimmomatic-0.38/adapters/
 
 **Test your installation by running:** (assuming things are installed in ~/src)
 
-:::::::::::::::::::::::::
-
 ```bash
 $ java -jar ~/src/Trimmomatic-0.38/trimmomatic-0.38.jar
 ```
+
+:::::::::::::::::::::::::
+
 
 :::::::::::::::::::::::::::::::::::::::: {.empty-div style="margin-bottom: 50px"}
 
@@ -305,11 +307,12 @@ $ export PATH=~/src/bwa-0.7.17:$PATH
 
 **Test your installation by running:**
 
-:::::::::::::::::::::::::
-
 ```bash
 $ bwa
 ```
+
+:::::::::::::::::::::::::
+
 
 ### SAMtools
 
@@ -359,11 +362,12 @@ $ source ~/.bashrc
 
 **Test your installation by running:**
 
-:::::::::::::::::::::::::
-
 ```bash
 $ samtools
 ```
+
+:::::::::::::::::::::::::
+
 
 ### BCFtools
 
@@ -405,11 +409,12 @@ $ source ~/.bashrc
 
 **Test your installation by running:**
 
-:::::::::::::::::::::::::
-
 ```bash
 $ bcftools
 ```
+
+:::::::::::::::::::::::::
+
 
 ### IGV
 
