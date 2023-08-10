@@ -4,9 +4,9 @@ title: Setup
 
 This lesson is an additional lesson to [the genomics workshop](https://datacarpentry.org/genomics-workshop/). Below, is a detailed setup instructions for the main workshop which can also be found on [the main setup page](https://datacarpentry.org/genomics-workshop/setup.html). If you are only here for the Intro to R and RStudio for Genomics lesson, and do not wish to work on the cloud, you can go for option B below where you will only need to [download the data files](https://figshare.com/articles/Data_Carpentry_Genomics_beta_2_0/7726454) to your local working directory where you will create the r-project in.
 
-# Genomics workshop setup directions
+## Genomics workshop setup directions
 
-# Overview
+## Overview
 
 This workshop is designed to be run on pre-imaged Amazon Web Services (AWS)
 instances. With the exception of a spreadsheet program, all of the software and data used in the workshop are hosted on an Amazon
