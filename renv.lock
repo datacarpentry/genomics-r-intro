@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.3.0",
+    "Version": "4.3.1",
     "Repositories": [
       {
         "Name": "carpentries",
@@ -294,13 +294,14 @@
       "Version": "5.0.1",
       "Source": "Repository",
       "Repository": "https://carpentries.r-universe.dev",
+      "RemoteType": "repository",
       "RemoteUrl": "https://github.com/jeroen/curl",
       "RemoteRef": "v5.0.1",
       "RemoteSha": "ffd6536ef3732b924e141afbc6d2fd5a85a58f18",
       "Requirements": [
         "R"
       ],
-      "Hash": "2118af9cb164c8d2dddc7b89eaf732d9"
+      "Hash": "771ee5b6b9166e2baaa68e77fa11977b"
     },
     "data.table": {
       "Package": "data.table",
@@ -849,12 +850,6 @@
       "Version": "0.12",
       "Source": "Repository",
       "Repository": "RSPM",
-      "RemoteType": "standard",
-      "RemotePkgRef": "mime",
-      "RemoteRef": "mime",
-      "RemoteRepos": "https://cran.rstudio.com",
-      "RemotePkgPlatform": "source",
-      "RemoteSha": "0.12",
       "Requirements": [
         "tools"
       ],
@@ -907,7 +902,7 @@
       "Package": "openssl",
       "Version": "2.0.6",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "https://carpentries.r-universe.dev",
       "Requirements": [
         "askpass"
       ],
