@@ -20,7 +20,7 @@ Machine Image (AMI). Please follow the instructions below to prepare your comput
 
 This lesson requires a working spreadsheet program. If you don't have a spreadsheet program already, you can use LibreOffice. It's a free, open source spreadsheet program.  Directions to install are included for each Windows, Mac OS X, and Linux systems below. For Windows, you will also need to install Git Bash, PuTTY, or the Ubuntu Subsystem.
 
-:::::::::::::::  solution
+::::::::::::::::  spoiler
 
 ## Windows
 
@@ -47,19 +47,24 @@ This lesson requires a working spreadsheet program. If you don't have a spreadsh
     - Quit command prompt by typing `exit` then pressing [Enter]
 - An **alternative option** is to install PuTTY by going to the [the installation page](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html). For most newer computers, click on putty-64bit-X.XX-installer.msi to download the 64-bit version. If you have an older laptop, you may need to get the 32-bit version putty-X.XX-installer.msi. If you aren't sure whether you need the 64 or 32 bit version, you can check your laptop version by following [the instructions here](https://support.microsoft.com/en-us/help/15056/windows-32-64-bit-faq). Once the installer is downloaded, double click on it, and PuTTY should install.
 - **Another alternative option** is to use the Ubuntu Subsystem for Windows. This option is only available for Windows 10 - detailed [instructions are available here](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
-  
+
+:::::::::::::::::::::::::
+
+::::::::::::::::  spoiler
 
 ## Mac OS X
 
 - Install LibreOffice by going to [the installation page](https://www.libreoffice.org/download/libreoffice-fresh/). The version for Mac should automatically be selected. Click Download Version X.X.X (whichever is the most recent version). You will go to a page that asks about a donation, but you don't need to make one. Your download should begin automatically.
 - Once the installer is downloaded, double click on it and LibreOffice should install.
-  
+
+:::::::::::::::::::::::::
+
+::::::::::::::::  spoiler
 
 ## Linux
 
 - Install LibreOffice by going to [the installation page](https://www.libreoffice.org/download/libreoffice-fresh/). The version for Linux should automatically be selected. Click Download Version X.X.X (whichever is the most recent version). You will go to a page that asks about a donation, but you don't need to make one. Your download should begin automatically.
 - Once the installer is downloaded, double click on it and LibreOffice should install.
-  
 
 :::::::::::::::::::::::::
 
@@ -107,7 +112,7 @@ We have installed software using [miniconda](https://docs.conda.io/en/latest/min
 
 ### Miniconda3
 
-:::::::::::::::  solution
+::::::::::::::::  spoiler
 
 ## MacOS
 
@@ -120,12 +125,12 @@ $ bash Miniconda3-latest-MacOSX-x86_64.sh
 
 Then, follow the instructions that you are prompted with on the screen to install Miniconda3.
 
-
 :::::::::::::::::::::::::
+
 
 ### FastQC
 
-:::::::::::::::  solution
+::::::::::::::::  spoiler
 
 ## MacOS
 
@@ -135,7 +140,7 @@ To install FastQC, type:
 $ conda install -c bioconda fastqc=0.11.7=5
 ```
 
-## FastQC Source Code Installation
+### FastQC Source Code Installation
 
 If you prefer to install from source, follow the directions below:
 
@@ -160,10 +165,9 @@ We need to set it ourselves.
 $ chmod +x ~/bin/fastqc
 ```
 
+:::::::::::::::::::::::::
 
 **Test your installation by running:**
-
-:::::::::::::::::::::::::
 
 ```bash
 $ fastqc -h
@@ -171,7 +175,7 @@ $ fastqc -h
 
 ### Trimmomatic
 
-:::::::::::::::  solution
+::::::::::::::::  spoiler
 
 ## MacOS
 
@@ -189,6 +193,7 @@ $ curl -O http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmom
 $ unzip Trimmomatic-0.38.zip
 ```
 
+
 The program can be invoked via:
 
 ```
@@ -202,16 +207,15 @@ Illumina specific adapter sequences.
 $ ls ~/src/Trimmomatic-0.38/adapters/
 ```
 
+:::::::::::::::::::::::::
 
 **Test your installation by running:** (assuming things are installed in ~/src)
-
-:::::::::::::::::::::::::
 
 ```bash
 $ java -jar ~/src/Trimmomatic-0.38/trimmomatic-0.38.jar
 ```
 
-:::::::::::::::  solution
+::::::::::::::::  spoiler
 
 ## Simplify the Invocation, or to Test your installation if you installed with miniconda3:
 
@@ -233,7 +237,7 @@ $ trimmomatic
 
 ### BWA
 
-:::::::::::::::  solution
+::::::::::::::::  spoiler
 
 ## MacOS
 
@@ -254,10 +258,9 @@ $ make
 $ export PATH=~/src/bwa-0.7.17:$PATH
 ```
 
+:::::::::::::::::::::::::
 
 **Test your installation by running:**
-
-:::::::::::::::::::::::::
 
 ```bash
 $ bwa
@@ -265,7 +268,7 @@ $ bwa
 
 ### SAMtools
 
-:::::::::::::::  solution
+::::::::::::::::  spoiler
 
 ## MacOS
 
@@ -300,10 +303,9 @@ $ echo export `PATH=~/src/samtools-1.9:$PATH` >> ~/.bashrc
 $ source ~/.bashrc
 ```
 
+:::::::::::::::::::::::::
 
 **Test your installation by running:**
-
-:::::::::::::::::::::::::
 
 ```bash
 $ samtools
@@ -311,7 +313,7 @@ $ samtools
 
 ### BCFtools
 
-:::::::::::::::  solution
+::::::::::::::::  spoiler
 
 ## MacOS
 
@@ -338,10 +340,9 @@ $ echo export `PATH=~/src/bcftools-1.8:$PATH` >> ~/.bashrc
 $ source ~/.bashrc
 ```
 
+:::::::::::::::::::::::::
 
 **Test your installation by running:**
-
-:::::::::::::::::::::::::
 
 ```bash
 $ bcftools
