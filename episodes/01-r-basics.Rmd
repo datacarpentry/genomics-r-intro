@@ -448,7 +448,7 @@ we place the index (e.g. a number) in that bracket as follows:
 
 ```{r, purl=FALSE}
 # get the 3rd value in the snp vector
-snp[3]
+snps[3]
 ```
 
 In R, every item your vector is indexed, starting from the first item (1)
@@ -458,7 +458,7 @@ range of numbers:
 ```{r, purl=FALSE}
 # get the 1st through 3rd value in the snp vector
 
-snp[1:3]
+snps[1:3]
 ```
 
 If you want to retrieve several (but not necessarily sequential) items from
@@ -468,7 +468,7 @@ positions you wish to retrieve.
 ```{r, purl=FALSE}
 # get the 1st, 3rd, and 4th value in the snp vector
 
-snp[c(1, 3, 4)]
+snps[c(1, 3, 4)]
 ```
 
 There are additional (and perhaps less commonly used) ways of subsetting a
@@ -479,7 +479,7 @@ Also, several of these subsetting expressions can be combined:
 ```{r, purl=FALSE}
 # get the 1st through the 3rd value, and 4th value in the snp vector
 # yes, this is a little silly in a vector of only 4 values.
-snp[c(1:3,4)]
+snps[c(1:3,4)]
 ```
 
 ## Adding to, removing, or replacing values in existing vectors
