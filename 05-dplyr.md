@@ -961,7 +961,7 @@ variants_wide %>%
 
 - [Handy dplyr cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf)
 
-- [Much of this lesson was copied or adapted from Jeff Hollister's materials](https://usepa.github.io/introR/2015/01/14/03-Clean/)
+- [Much of this lesson was copied or adapted from Jeff Hollister's materials](https://github.com/USEPA/workshops/blob/main/r/2015/introR/rmd_posts/2015-01-14-03-Clean.Rmd)
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
