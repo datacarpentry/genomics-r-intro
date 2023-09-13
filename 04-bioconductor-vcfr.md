@@ -77,9 +77,9 @@ move to CRAN. `vcfR` is one such package, which originally was only available
 from Bioconductor, but is currently available from CRAN. The other thing to
 know is that `BiocManager::install()` will also install packages from CRAN (it
 is a wrapper around `install.packages()` that adds some extra features). There
-are other benefits to using `BiocManager::install()` for Bioconductor
-packages, many of which are outlined
-[here](https://www.bioconductor.org/install/). In short, Bioconductor packages
+are [other benefits to using `BiocManager::install()` for Bioconductor
+packages](https://www.bioconductor.org/install/).
+In short, Bioconductor packages
 have a release cycle that is different from CRAN and the `install()` function
 is aware of that difference, so it helps to keep package versions in line with
 one another in a way that doesn't generally happen with the base R

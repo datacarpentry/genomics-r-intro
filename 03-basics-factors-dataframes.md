@@ -497,7 +497,7 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 8.1 milliseconds.
+Successfully installed 1 package in 7.5 milliseconds.
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -1155,7 +1155,7 @@ to know.
 
 There are lots of arithmetic functions you may want to apply to your data
 frame, covering those would be a course in itself (there is some starting
-material [here](https://swcarpentry.github.io/r-novice-inflammation/15-supp-loops-in-depth/)). Our lessons will cover some additional summary statistical functions in
+material in [the _Loops in R_ episode of one of the Software Carpentry lessons](https://swcarpentry.github.io/r-novice-inflammation/15-supp-loops-in-depth.html)). Our lessons will cover some additional summary statistical functions in
 a subsequent lesson, but overall we will focus on data cleaning and
 visualization.
 
