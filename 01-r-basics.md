@@ -521,11 +521,11 @@ we place the index (e.g. a number) in that bracket as follows:
 
 ```r
 # get the 3rd value in the snp vector
-snp[3]
+snps[3]
 ```
 
-```{.error}
-Error in eval(expr, envir, enclos): object 'snp' not found
+```{.output}
+[1] "rs6152"
 ```
 
 In R, every item your vector is indexed, starting from the first item (1)
@@ -536,11 +536,11 @@ range of numbers:
 ```r
 # get the 1st through 3rd value in the snp vector
 
-snp[1:3]
+snps[1:3]
 ```
 
-```{.error}
-Error in eval(expr, envir, enclos): object 'snp' not found
+```{.output}
+[1] "rs53576"   "rs1815739" "rs6152"   
 ```
 
 If you want to retrieve several (but not necessarily sequential) items from
@@ -551,11 +551,11 @@ positions you wish to retrieve.
 ```r
 # get the 1st, 3rd, and 4th value in the snp vector
 
-snp[c(1, 3, 4)]
+snps[c(1, 3, 4)]
 ```
 
-```{.error}
-Error in eval(expr, envir, enclos): object 'snp' not found
+```{.output}
+[1] "rs53576"   "rs6152"    "rs1799971"
 ```
 
 There are additional (and perhaps less commonly used) ways of subsetting a
@@ -567,11 +567,11 @@ Also, several of these subsetting expressions can be combined:
 ```r
 # get the 1st through the 3rd value, and 4th value in the snp vector
 # yes, this is a little silly in a vector of only 4 values.
-snp[c(1:3,4)]
+snps[c(1:3,4)]
 ```
 
-```{.error}
-Error in eval(expr, envir, enclos): object 'snp' not found
+```{.output}
+[1] "rs53576"   "rs1815739" "rs6152"    "rs1799971"
 ```
 
 ## Adding to, removing, or replacing values in existing vectors
