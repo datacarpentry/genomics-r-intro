@@ -193,7 +193,7 @@ Notice that we can change the geom layer and colors will be still determined by 
 
 ```{r color-by-sample-2, purl=FALSE}
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
-  geom_point(alpha = 0.5)
+  geom_line(alpha = 0.5)
 ```
 
 To make our plot more readable, we can add axis labels:
