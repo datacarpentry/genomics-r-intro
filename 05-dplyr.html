@@ -285,7 +285,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Data Wrangling and Analyses with Tidyverse</h1>
-        <p> Last updated on 2023-09-13 | 
+        <p> Last updated on 2023-10-11 | 
         
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/05-dplyr.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -1370,6 +1370,31 @@ easiest way to ignore <code>NA</code> (the missing data) is to use
 2 SRR2584866    10.6      10        2     79
 3 SRR2589044     9.3       9.5      3     16</code></pre>
 </div>
+<div id="grouped-data-frames-in-tidyverse" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="grouped-data-frames-in-tidyverse" class="callout-inner">
+<h3 class="callout-title">Grouped Data Frames in Tidyverse<a class="anchor" aria-label="anchor" href="#grouped-data-frames-in-tidyverse"></a>
+</h3>
+<div class="callout-content">
+<p>When you group a data frame with <code>group_by()</code>, you get a
+grouped data frame. This is a special type of data frame that has all
+the properties of a regular data frame but also has an additional
+attribute that describes the grouping structure. The primary advantage
+of a grouped data frame is that it allows you to work with each group of
+observations as if they were a separate data frame.</p>
+<p>Operations like <code>summarise()</code> and <code>mutate()</code>
+will be applied to each group separately. This is particularly useful
+when you want to perform calculations on subsets of your data.</p>
+<p>To remove the grouping structure from a grouped data frame, you can
+use the <code>ungroup()</code> function. This will return a regular data
+frame.</p>
+<p>For more details, refer to the <a href="https://dplyr.tidyverse.org/articles/grouping.html" class="external-link">dplyr
+documentation on grouping</a>.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="section level3">
 <h3 id="reshaping-data-frames">Reshaping data frames<a class="anchor" aria-label="anchor" href="#reshaping-data-frames"></a></h3>
@@ -1525,8 +1550,8 @@ Reproducible Scientific Analysis</a><a href="#fnref1" class="footnote-back">â†©ï
   "url": "https://datacarpentry.github.io/genomics-r-intro/05-dplyr.html",
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/05-dplyr.html",
   "dateCreated": "2018-03-12",
-  "dateModified": "2023-09-13",
-  "datePublished": "2023-10-10"
+  "dateModified": "2023-10-11",
+  "datePublished": "2023-10-11"
 }
 
   </script><script>

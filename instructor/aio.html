@@ -688,7 +688,7 @@ in the Console pane?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>You will get the same output you did as when you ran
 <code>getwd()</code> from the source. You can run any command in the
@@ -787,7 +787,7 @@ about your assumed purpose.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ul>
 <li>
@@ -941,7 +941,7 @@ inside the function’s parentheses.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>While your search results may return several tests, we list a few you
 might find:</p>
@@ -2917,7 +2917,7 @@ numbers used commas for decimal separation (i.e. 1,00)?</p></li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: upper-alpha">
 <li><p>The <code>read.csv()</code> function has the argument ‘header’
@@ -3372,7 +3372,7 @@ what they return</strong></p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: lower-alpha"><li>
 </li></ol>
@@ -4104,7 +4104,7 @@ filtered depth (“DP”).</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb81">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4258,7 +4258,7 @@ genome_size multiplied by 1,000,000</p></li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb88">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4593,7 +4593,7 @@ analysis before writing code yourself.</li>
 </div>
 </section></section><section id="aio-05-dplyr"><p>Content from <a href="05-dplyr.html">Data Wrangling and Analyses with Tidyverse</a></p>
 <hr>
-<p> Last updated on 2023-09-13 | 
+<p> Last updated on 2023-10-11 | 
         
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/05-dplyr.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 55 minutes </p>
@@ -5688,6 +5688,31 @@ easiest way to ignore <code>NA</code> (the missing data) is to use
 1 SRR2584863    10.4      10        2     20
 2 SRR2584866    10.6      10        2     79
 3 SRR2589044     9.3       9.5      3     16</code></pre>
+</div>
+<div id="grouped-data-frames-in-tidyverse" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="grouped-data-frames-in-tidyverse" class="callout-inner">
+<h3 class="callout-title">Grouped Data Frames in Tidyverse<a class="anchor" aria-label="anchor" href="#grouped-data-frames-in-tidyverse"></a>
+</h3>
+<div class="callout-content">
+<p>When you group a data frame with <code>group_by()</code>, you get a
+grouped data frame. This is a special type of data frame that has all
+the properties of a regular data frame but also has an additional
+attribute that describes the grouping structure. The primary advantage
+of a grouped data frame is that it allows you to work with each group of
+observations as if they were a separate data frame.</p>
+<p>Operations like <code>summarise()</code> and <code>mutate()</code>
+will be applied to each group separately. This is particularly useful
+when you want to perform calculations on subsets of your data.</p>
+<p>To remove the grouping structure from a grouped data frame, you can
+use the <code>ungroup()</code> function. This will return a regular data
+frame.</p>
+<p>For more details, refer to the <a href="https://dplyr.tidyverse.org/articles/grouping.html" class="external-link">dplyr
+documentation on grouping</a>.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="section level3">
@@ -7041,8 +7066,8 @@ resources on how to search effectively</li>
   "url": "https://datacarpentry.github.io/genomics-r-intro/instructor/aio.html",
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/instructor/aio.html",
   "dateCreated": "2018-03-12",
-  "dateModified": "2023-10-10",
-  "datePublished": "2023-10-10"
+  "dateModified": "2023-10-11",
+  "datePublished": "2023-10-11"
 }
 
   </script><script>
