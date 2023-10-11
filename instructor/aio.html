@@ -5817,7 +5817,7 @@ Reproducible Scientific Analysis</a><a href="#fnref1" class="footnote-back">â†©ï
 </ol>
 </div></section><section id="aio-06-data-visualization"><p>Content from <a href="06-data-visualization.html">Data Visualization with ggplot2</a></p>
 <hr>
-<p> Last updated on 2023-09-13 | 
+<p> Last updated on 2023-10-11 | 
         
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/06-data-visualization.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 90 minutes </p>
@@ -6532,7 +6532,7 @@ each sample.</p>
 <span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span> <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Base Pair Position"</span>,</span>
 <span>      y <span class="op">=</span> <span class="st">"Mapping Quality (MQ)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span> <span class="fu">facet_grid</span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">sample_id</span><span class="op">)</span></span></code></pre>
+<span> <span class="fu">facet_grid</span><span class="op">(</span><span class="op">~</span> <span class="va">sample_id</span><span class="op">)</span></span></code></pre>
 </div>
 <figure><img src="../fig/06-data-visualization-rendered-first-facet-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>This looks okay, but it would be easier to read if the plot facets
 were stacked vertically rather than horizontally. The
@@ -6744,7 +6744,7 @@ cheat sheet</a> for inspiration. Here are some ideas:</p>
 <li>Can you find a way to change the name of the legend? What about its
 labels?</li>
 <li>Try using a different color palette (see the <a href="https://www.cookbook-r.com/Graphs/Colors_(ggplot2)/" class="external-link">Cookbook for
-R</a>.</li>
+R</a>).</li>
 </ul>
 </div>
 </div>
