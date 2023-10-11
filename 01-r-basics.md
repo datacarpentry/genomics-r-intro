@@ -689,7 +689,7 @@ In the square brackets you place the name of the vector followed by the comparis
 | \==                  | exactly equal to                                                                                                                                                                                                                            |
 | !=                  | not equal to                                                                                                                                                                                                                                |
 | !x                  | not x                                                                                                                                                                                                                                       |
-| a | b               | a or b                                                                                                                                                                                                                                      |
+| a \| b               | a or b                                                                                                                                                                                                                                      |
 | a \& b               | a and b                                                                                                                                                                                                                                     |
 
 :::::::::::::::::::::::::::::::::::::::::  callout
