@@ -276,7 +276,7 @@ Notice that we can change the geom layer and colors will be still determined by 
 
 ```r
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
-  geom_point(alpha = 0.5)
+  geom_line(alpha = 0.5)
 ```
 
 <img src="fig/06-data-visualization-rendered-color-by-sample-2-1.png" style="display: block; margin: auto;" />
