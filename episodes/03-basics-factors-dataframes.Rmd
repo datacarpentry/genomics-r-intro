@@ -618,11 +618,11 @@ snp_chromosomes_2
 ```
 
 Trouble can really start when we try to coerce a factor. For example, when we
-try to coerce the `sample_id` column in our data frame into a numeric mode
+try to coerce the `factor_snps` vector into a numeric mode
 look at the result:
 
 ```{r, purl=FALSE}
-as.numeric(variants$sample_id)
+as.numeric(factor_snps)
 ```
 
 Strangely, it works! Almost. Instead of giving an error message, R returns
