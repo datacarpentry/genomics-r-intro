@@ -365,7 +365,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
  geom_point() +
  labs(x = "Base Pair Position",
       y = "Mapping Quality (MQ)") +
- facet_grid(. ~ sample_id)
+ facet_grid(~ sample_id)
 ```
 
 <img src="fig/06-data-visualization-rendered-first-facet-1.png" style="display: block; margin: auto;" />
@@ -517,7 +517,7 @@ for inspiration. Here are some ideas:
 
 - See if you can change the size or shape of the plotting symbol.
 - Can you find a way to change the name of the legend? What about its labels?
-- Try using a different color palette (see the [Cookbook for R](https://www.cookbook-r.com/Graphs/Colors_\(ggplot2\)/).
+- Try using a different color palette (see the [Cookbook for R](https://www.cookbook-r.com/Graphs/Colors_\(ggplot2\)/)).
   
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
