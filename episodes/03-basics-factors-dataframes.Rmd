@@ -70,7 +70,7 @@ in your analysis, and its reproducibility.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Tip: Keeping you raw data separate
+## Tip: Keep your raw data separate
 
 When you work with data in R, you are not changing the original file you
 loaded that data from. This is different than (for example) working with
