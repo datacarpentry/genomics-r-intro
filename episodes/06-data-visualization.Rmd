@@ -58,19 +58,19 @@ The idea of **mapping** is crucial in **ggplot**. One familiar example is to *ma
 
 First, we need to install the `ggplot2` package.
 
-```{r install-tidyverse, echo=TRUE, eval=FALSE}
+```{r install-ggplot2, echo=TRUE, eval=FALSE}
 install.packages("ggplot2")
 ```
 
 Now, let's load the `ggplot2` package:
 
-```{r load-tidyverse}
+```{r load-ggplot2}
 library(ggplot2)
 ```
 
 We will also use some of the other tidyverse packages we used in the last episode, so we need to load them as well.
 
-```{r load-tidyverse}
+```{r load-other-pkgs}
 library(readr)
 library(dplyr)
 ```
