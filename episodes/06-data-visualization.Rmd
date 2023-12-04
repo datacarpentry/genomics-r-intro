@@ -68,7 +68,7 @@ Now, let's load the `ggplot2` package:
 library(ggplot2)
 ```
 
-We will also re-use some of the other tidyverse packages we used in the last episode, so we need to load them as well.
+We will also use some of the other tidyverse packages we used in the last episode, so we need to load them as well.
 
 ```{r load-tidyverse}
 library(readr)
