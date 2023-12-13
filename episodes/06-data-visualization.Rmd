@@ -45,7 +45,8 @@ variants = read.csv("https://raw.githubusercontent.com/naupaka/vcfr-for-data-car
 
 <img src="https://ggplot2.tidyverse.org/logo.png" align="right" alt="Line plot enclosed in hexagon shape with ggplot2 typed beneath and www.rstudio.com at the bottom.">
 
-**`ggplot2`** is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties. Therefore, we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatter plot. This helps in creating publication-quality plots with minimal amounts of adjustments and tweaking.
+**`ggplot2`** is a plotting package, part of the tidyverse,
+that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties. Therefore, we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatter plot. This helps in creating publication-quality plots with minimal amounts of adjustments and tweaking.
 
 The **gg** in "**ggplot**" stands for "**G**rammar of **G**raphics," which is an elegant yet powerful way to describe the making of scientific plots. In short, the grammar of graphics breaks down every plot into a few components, namely, a dataset, a set of geoms (visual marks that represent the data points), and a coordinate system. You can imagine this is a grammar that gives unique names to each component appearing in a plot and conveys specific information about data. With **ggplot**, graphics are built step by step by adding new elements.
 
@@ -55,17 +56,26 @@ The idea of **mapping** is crucial in **ggplot**. One familiar example is to *ma
 
 ## Installing `tidyverse`
 
-**`ggplot2`** belongs to the [**`tidyverse`** framework](https://www.tidyverse.org/). Therefore, we will start with loading the package **`tidyverse`**. If **`tidyverse`** is not already installed, then we need to install first. If it is already installed, then we can skip the following step:
+First, we need to install the `ggplot2` package.
 
-```{r install-tidyverse, echo=TRUE, eval=FALSE}
-install.packages("tidyverse") # Installing tidyverse package, includes ggplot2 and other packages such as dplyr, readr, tidyr
+```{r install-ggplot2, echo=TRUE, eval=FALSE}
+install.packages("ggplot2")
 ```
 
-Now, let's load the `tidyverse` package:
+Now, let's load the `ggplot2` package:
 
-```{r load-tidyverse}
-library(tidyverse)
+```{r load-ggplot2}
+library(ggplot2)
 ```
+
+We will also use some of the other tidyverse packages we used in the last episode, so we need to load them as well.
+
+```{r load-other-pkgs}
+library(readr)
+library(dplyr)
+```
+
+
 
 As we can see from above output **`ggplot2`** has been already loaded along with other packages as part of the **`tidyverse`** framework.
 
