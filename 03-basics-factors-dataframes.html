@@ -460,6 +460,28 @@ is needed to test some data cleaning steps you are applying.</p></li>
 help documentation in R. There are many arguments that exist, but which
 we wont have time to cover. Look here to get familiar with functions you
 use frequently, you may be surprised at what you find they can do.</p>
+<div id="tip-why-does-read.csv-open-the-documentations-to-read.table" class="callout callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="tip-why-does-read.csv-open-the-documentations-to-read.table" class="callout-inner">
+<h3 class="callout-title">Tip: Why does ?read.csv open the
+documentations to read.table?<a class="anchor" aria-label="anchor" href="#tip-why-does-read.csv-open-the-documentations-to-read.table"></a>
+</h3>
+<div class="callout-content">
+<p>The reason for this is because <code>read.csv</code> is actually a
+short cut for <code>read.table("file.csv", sep = ",")</code>. You can
+see in the help documentation that there are several additional
+variations of <code>read.table</code>, such as <code>read.csv2</code> to
+read tables separated by <code>;</code> and <code>read.delim</code> to
+read in tables separated by <code>\t</code> (tabs). If you know how your
+table is separated, you can use one of the provided short cuts, but case
+you run into an unconventional separator you are now equipt with the
+knowledge to define it in the <code>sep =</code> arugument of
+<code>read.table</code>!</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
