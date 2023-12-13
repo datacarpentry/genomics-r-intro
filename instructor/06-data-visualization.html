@@ -868,7 +868,8 @@ determined by <strong><code>sample_id</code></strong></p>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Base Pair Position"</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Read Depth (DP)"</span><span class="op">)</span></span></code></pre>
 </div>
-<figure><img src="../fig/06-data-visualization-rendered-add-axis-labels-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>To add a <em>main</em> title to the plot, we use <a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link"><code>ggtitle()</code></a>:</p>
+<figure><img src="../fig/06-data-visualization-rendered-add-axis-labels-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>To add a <em>main</em> title to the plot, we use <a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">the title
+argument for the <code>labs()</code> function</a>:</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -876,8 +877,8 @@ determined by <strong><code>sample_id</code></strong></p>
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">variants</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">POS</span>, y <span class="op">=</span> <span class="va">DP</span>, color <span class="op">=</span> <span class="va">sample_id</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Base Pair Position"</span>,</span>
-<span>       y <span class="op">=</span> <span class="st">"Read Depth (DP)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Read Depth vs. Position"</span><span class="op">)</span></span></code></pre>
+<span>       y <span class="op">=</span> <span class="st">"Read Depth (DP)"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"Read Depth vs. Position"</span><span class="op">)</span></span></code></pre>
 </div>
 <figure><img src="../fig/06-data-visualization-rendered-add-main-title-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>Now the figure is complete and ready to be exported and saved to a
 file. This can be achieved easily using <a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link"><code>ggsave()</code></a>,
@@ -914,7 +915,7 @@ labels.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -938,8 +939,8 @@ format:</p>
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">variants</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">POS</span>, y <span class="op">=</span> <span class="va">DP</span>, color <span class="op">=</span> <span class="va">sample_id</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Base Pair Position"</span>,</span>
-<span>       y <span class="op">=</span> <span class="st">"Read Depth (DP)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Read Depth vs. Position"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>       y <span class="op">=</span> <span class="st">"Read Depth (DP)"</span>,</span>
+<span>       title <span class="op">=</span> <span class="st">"Read Depth vs. Position"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme</span><span class="op">(</span>text <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Bookman"</span><span class="op">)</span><span class="op">)</span></span></code></pre>
 </div>
 <figure><img src="../fig/06-data-visualization-rendered-change-font-family-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure></section><section id="faceting"><h2 class="section-heading">Faceting<a class="anchor" aria-label="anchor" href="#faceting"></a>
@@ -1011,7 +1012,7 @@ relevant axis labels.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1060,7 +1061,7 @@ remove the legend from the plot.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1107,7 +1108,7 @@ each sample. Use a white background for the plot.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
