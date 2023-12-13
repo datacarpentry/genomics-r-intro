@@ -69,7 +69,7 @@ in your analysis, and its reproducibility.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
-## Tip: Keeping you raw data separate
+## Tip: Keep your raw data separate
 
 When you work with data in R, you are not changing the original file you
 loaded that data from. This is different than (for example) working with
@@ -497,7 +497,7 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 6.1 milliseconds.
+Successfully installed 1 package in 5.8 milliseconds.
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
