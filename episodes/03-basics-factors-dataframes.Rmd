@@ -142,6 +142,20 @@ have time to cover. Look here to get familiar with functions you use
 frequently, you may be surprised at what you find they can do.
 
 
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Tip: Why does ?read.csv open the documentations to read.table?
+
+The reason for this is because `read.csv` is actually a short cut 
+for `read.table("file.csv", sep = ",")`. You can see in the help 
+documentation that there are several additional variations of 
+`read.table`, such as `read.csv2` to read tables separated by `;` 
+and `read.delim` to read in tables separated by `\t` (tabs). If you know how your table is separated, you can use one of the provided short cuts, 
+but case you run into an unconventional separator you are now equipt with the knowledge to define it in the `sep = ` arugument of `read.table`!
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 :::::::::::::::::::::::::
 
