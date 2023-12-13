@@ -342,7 +342,7 @@ system is root `/`, but on Windows it is likely `C:\`. This is one of several
 ways you might cause a script to break because a file path is configured
 differently than your script anticipates. R packages like ['here'](https://cran.r-project.org/package=here)
 and ['file.path'](https://www.rdocumentation.org/packages/base/versions/3.4.3/topics/file.path)
-allow you to specify file paths is a way that is more operating system
+allow you to specify file paths in a way that is more operating system
 independent. See Jenny Bryan's [blog post](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/) for this
 and other R tips.
 
