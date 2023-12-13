@@ -590,7 +590,7 @@ to the `filter()` and `select()` functions any more.
 
 Some may find it helpful to read the pipe like the word "then". For instance,
 in the above example, we took the data frame `variants`, *then* we `filter`ed
-for rows where `sample_id` was SRR2584863, *then* we `select`ed the `REF`, `ALT`, and `DP` columns, *then* we showed only the first six rows.
+for rows where `sample_id` was SRR2584863, *then* we `select`ed the `REF`, `ALT`, and `DP` columns.
 The **`dplyr`** functions by themselves are somewhat simple,
 but by combining them into linear workflows with the pipe, we can accomplish
 more complex manipulations of data frames.
