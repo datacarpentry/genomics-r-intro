@@ -35,10 +35,8 @@ library(printr)
 ```
 
 ```{r, echo=FALSE, eval=TRUE, purl=FALSE}
-## silently read in CSV file from FigShare
-
-# variants <- read.csv("https://ndownloader.figshare.com/files/14632895")
-variants = read.csv("https://raw.githubusercontent.com/naupaka/vcfr-for-data-carpentry-draft/main/output/combined_tidy_vcf.csv")
+## silently read in CSV file
+variants <- read.csv("https://raw.githubusercontent.com/datacarpentry/genomics-r-intro/main/episodes/data/combined_tidy_vcf.csv")
 ```
 
 ## Introduction to **`ggplot2`**
