@@ -103,18 +103,18 @@ in R.
 
 **To create an object you need:**
 
-- a name (e.g. 'a')
+- a name (e.g. 'first_value')
 - a value (e.g. '1')
 - the assignment operator ('\<-')
 
 In your script, "**genomics\_r\_basics.R**", using the R assignment operator '\<-',
-assign '1' to the object 'a' as shown. Remember to leave a comment in the line
+assign '1' to the object 'first_value' as shown. Remember to leave a comment in the line
 above (using the '#') to explain what you are doing:
 
 ```{r, purl=FALSE}
-# this line creates the object 'a' and assigns it the value '1'
+# this line creates the object 'first_value' and assigns it the value '1'
 
-a <- 1
+first_value <- 1
 ```
 
 Next, run this line of code in your script. You can run a line of code
@@ -130,7 +130,7 @@ and then hit <KBD>Run</KBD> or use the shortcut key combo listed above.
 In the RStudio 'Console' you should see:
 
 ```output
-a <- 1
+first_value <- 1
 >
 ```
 
@@ -141,7 +141,7 @@ In the 'Environment' window you will also get a table:
 
 | Values              |                                                                                                                                                                                                                                             |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| a                   | 1                                                                                                                                                                                                                                           |
+| first_value         | 1                                                                                                                                                                                                                                           |
 
 The 'Environment' window allows you to keep track of the objects you have
 created in R.
