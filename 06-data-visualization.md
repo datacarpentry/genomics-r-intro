@@ -99,6 +99,7 @@ variants = read_csv("https://raw.githubusercontent.com/naupaka/vcfr-for-data-car
 ```
 
 ```{.output}
+`curl` package not installed, falling back to using `url()`
 Rows: 801 Columns: 29
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
