@@ -435,28 +435,13 @@ has been already loaded along with other packages as part of the
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">variants</span> <span class="op">=</span> <span class="fu">read_csv</span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/naupaka/vcfr-for-data-carpentry-draft/main/output/combined_tidy_vcf.csv"</span><span class="op">)</span></span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>`curl` package not installed, falling back to using `url()`
-Rows: 801 Columns: 29
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (7): sample_id, CHROM, REF, ALT, DP4, Indiv, gt_GT_alleles
-dbl (16): POS, QUAL, IDV, IMF, DP, VDB, RPB, MQB, BQB, MQSB, SGB, MQ0F, AC, ...
-num  (1): gt_PL
-lgl  (5): ID, FILTER, INDEL, ICB, HOB
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<code class="sourceCode R"><span><span class="va">variants</span> <span class="op">&lt;-</span> <span class="fu">read.csv</span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/datacarpentry/genomics-r-intro/main/episodes/data/combined_tidy_vcf.csv"</span><span class="op">)</span></span></code></pre>
 </div>
 <p>Explore the <em>structure</em> (types of columns and number of rows)
 of the dataset using <a href="https://dplyr.tidyverse.org/index.html" class="external-link">dplyr</a>’s <a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link"><code>glimpse()</code></a>
 (for more info, see the <a href="https://datacarpentry.org/genomics-r-intro/05-dplyr/" class="external-link">Data
 Wrangling and Analyses with Tidyverse</a> episode)</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -469,16 +454,16 @@ Wrangling and Analyses with Tidyverse</a> episode)</p>
 Columns: 29
 $ sample_id     &lt;chr&gt; "SRR2584863", "SRR2584863", "SRR2584863", "SRR2584863", …
 $ CHROM         &lt;chr&gt; "CP000819.1", "CP000819.1", "CP000819.1", "CP000819.1", …
-$ POS           &lt;dbl&gt; 9972, 263235, 281923, 433359, 473901, 648692, 1331794, 1…
+$ POS           &lt;int&gt; 9972, 263235, 281923, 433359, 473901, 648692, 1331794, 1…
 $ ID            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 $ REF           &lt;chr&gt; "T", "G", "G", "CTTTTTTT", "CCGC", "C", "C", "G", "ACAGC…
 $ ALT           &lt;chr&gt; "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "AC…
 $ QUAL          &lt;dbl&gt; 91.0000, 85.0000, 217.0000, 64.0000, 228.0000, 210.0000,…
 $ FILTER        &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 $ INDEL         &lt;lgl&gt; FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TR…
-$ IDV           &lt;dbl&gt; NA, NA, NA, 12, 9, NA, NA, NA, 2, 7, NA, NA, NA, NA, NA,…
+$ IDV           &lt;int&gt; NA, NA, NA, 12, 9, NA, NA, NA, 2, 7, NA, NA, NA, NA, NA,…
 $ IMF           &lt;dbl&gt; NA, NA, NA, 1.000000, 0.900000, NA, NA, NA, 0.666667, 1.…
-$ DP            &lt;dbl&gt; 4, 6, 10, 12, 10, 10, 8, 11, 3, 7, 9, 20, 12, 19, 15, 10…
+$ DP            &lt;int&gt; 4, 6, 10, 12, 10, 10, 8, 11, 3, 7, 9, 20, 12, 19, 15, 10…
 $ VDB           &lt;dbl&gt; 0.0257451, 0.0961330, 0.7740830, 0.4777040, 0.6595050, 0…
 $ RPB           &lt;dbl&gt; NA, 1.000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.900802, …
 $ MQB           &lt;dbl&gt; NA, 1.0000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.1501340…
@@ -488,18 +473,18 @@ $ SGB           &lt;dbl&gt; -0.556411, -0.590765, -0.662043, -0.676189, -0.66204
 $ MQ0F          &lt;dbl&gt; 0.000000, 0.166667, 0.000000, 0.000000, 0.000000, 0.0000…
 $ ICB           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 $ HOB           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-$ AC            &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
-$ AN            &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ AC            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ AN            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
 $ DP4           &lt;chr&gt; "0,0,0,4", "0,1,0,5", "0,0,4,5", "0,1,3,8", "1,0,2,7", "…
-$ MQ            &lt;dbl&gt; 60, 33, 60, 60, 60, 60, 60, 60, 60, 60, 25, 60, 10, 60, …
+$ MQ            &lt;int&gt; 60, 33, 60, 60, 60, 60, 60, 60, 60, 60, 25, 60, 10, 60, …
 $ Indiv         &lt;chr&gt; "/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned…
-$ gt_PL         &lt;dbl&gt; 1210, 1120, 2470, 910, 2550, 2400, 2080, 2550, 11128, 19…
-$ gt_GT         &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ gt_PL         &lt;chr&gt; "121,0", "112,0", "247,0", "91,0", "255,0", "240,0", "20…
+$ gt_GT         &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
 $ gt_GT_alleles &lt;chr&gt; "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "AC…</code></pre>
 </div>
 <p>Alternatively, we can display the first a few rows (vertically) of
 the table using <a href="https://www.geeksforgeeks.org/get-the-first-parts-of-a-data-set-in-r-programming-head-function/" class="external-link"><code>head()</code></a>:</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -531,7 +516,7 @@ the table using <a href="https://www.geeksforgeeks.org/get-the-first-parts-of-a-
 <th align="left">DP4</th>
 <th align="right">MQ</th>
 <th align="left">Indiv</th>
-<th align="right">gt_PL</th>
+<th align="left">gt_PL</th>
 <th align="right">gt_GT</th>
 <th align="left">gt_GT_alleles</th>
 </tr></thead><tbody><tr class="odd"><td align="left">SRR2584863</td>
@@ -560,7 +545,7 @@ the table using <a href="https://www.geeksforgeeks.org/get-the-first-parts-of-a-
 <td align="left">0,0,0,4</td>
 <td align="right">60</td>
 <td align="left">/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam</td>
-<td align="right">1210</td>
+<td align="left">121,0</td>
 <td align="right">1</td>
 <td align="left">G</td>
 </tr><tr class="even"><td align="left">SRR2584863</td>
@@ -589,7 +574,7 @@ the table using <a href="https://www.geeksforgeeks.org/get-the-first-parts-of-a-
 <td align="left">0,1,0,5</td>
 <td align="right">33</td>
 <td align="left">/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam</td>
-<td align="right">1120</td>
+<td align="left">112,0</td>
 <td align="right">1</td>
 <td align="left">T</td>
 </tr><tr class="odd"><td align="left">SRR2584863</td>
@@ -618,7 +603,7 @@ the table using <a href="https://www.geeksforgeeks.org/get-the-first-parts-of-a-
 <td align="left">0,0,4,5</td>
 <td align="right">60</td>
 <td align="left">/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam</td>
-<td align="right">2470</td>
+<td align="left">247,0</td>
 <td align="right">1</td>
 <td align="left">T</td>
 </tr><tr class="even"><td align="left">SRR2584863</td>
@@ -647,7 +632,7 @@ the table using <a href="https://www.geeksforgeeks.org/get-the-first-parts-of-a-
 <td align="left">0,1,3,8</td>
 <td align="right">60</td>
 <td align="left">/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam</td>
-<td align="right">910</td>
+<td align="left">91,0</td>
 <td align="right">1</td>
 <td align="left">CTTTTTTTT</td>
 </tr><tr class="odd"><td align="left">SRR2584863</td>
@@ -676,7 +661,7 @@ the table using <a href="https://www.geeksforgeeks.org/get-the-first-parts-of-a-
 <td align="left">1,0,2,7</td>
 <td align="right">60</td>
 <td align="left">/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam</td>
-<td align="right">2550</td>
+<td align="left">255,0</td>
 <td align="right">1</td>
 <td align="left">CCGCGC</td>
 </tr><tr class="even"><td align="left">SRR2584863</td>
@@ -705,7 +690,7 @@ the table using <a href="https://www.geeksforgeeks.org/get-the-first-parts-of-a-
 <td align="left">0,0,7,3</td>
 <td align="right">60</td>
 <td align="left">/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam</td>
-<td align="right">2400</td>
+<td align="left">240,0</td>
 <td align="right">1</td>
 <td align="left">T</td>
 </tr></tbody></table><p><strong><code>ggplot2</code></strong> functions like data in the
@@ -719,14 +704,14 @@ extensive flexibility and customization of plots, and more equally
 important the readability of the code.</p>
 <p>To build a ggplot, we will use the following basic template that can
 be used for different types of plots:</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>)) <span class="sc">+</span>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>()</span></code></pre>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>)) <span class="sc">+</span>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>()</span></code></pre>
 </div>
 <ul><li>use the <code>ggplot()</code> function and bind the plot to a
 specific data frame using the <code>data</code> argument</li>
-</ul><div class="codewrapper sourceCode" id="cb13">
+</ul><div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -736,7 +721,7 @@ specific data frame using the <code>data</code> argument</li>
 by selecting the variables to be plotted and specifying how to present
 them in the graph, e.g. as x and y positions or characteristics such as
 size, shape, color, etc.</li>
-</ul><div class="codewrapper sourceCode" id="cb14">
+</ul><div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -758,7 +743,7 @@ for trend lines, time series, etc.</li>
 </ul><p>To add a geom to the plot use the <code>+</code> operator. Because we
 have two continuous variables, let’s use <a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link"><code>geom_point()</code></a>
 (i.e., a scatter plot) first:</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -770,7 +755,7 @@ package is particularly useful because it allows you to modify existing
 <code>ggplot</code> objects. This means you can easily set up plot
 templates and conveniently explore different types of plots, so the
 above plot can also be generated with code like this:</p>
-<div class="codewrapper sourceCode" id="cb16">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -779,7 +764,7 @@ above plot can also be generated with code like this:</p>
 <span></span>
 <span><span class="co"># Draw the plot</span></span>
 <span><span class="va">coverage_plot</span> <span class="op">+</span></span>
-<span>    <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
 <p><strong>Notes</strong></p>
 <ul><li>Anything you put in the <a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link"><code>ggplot()</code></a>
@@ -794,7 +779,7 @@ end of the line containing the <em>previous</em> layer. If, instead, the
 <code>+</code> sign is added at the beginning of the line containing the
 new layer, <strong><code>ggplot2</code></strong> will not add the new
 layer and will return an error message.</li>
-</ul><div class="codewrapper sourceCode" id="cb17">
+</ul><div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -811,7 +796,7 @@ layer and will return an error message.</li>
 <hr class="half-width"><p>Building plots with <strong><code>ggplot2</code></strong> is
 typically an iterative process. We start by defining the dataset we’ll
 use, lay out the axes, and choose a geom:</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -821,15 +806,15 @@ use, lay out the axes, and choose a geom:</p>
 <figure><img src="../fig/06-data-visualization-rendered-create-ggplot-object-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>Then, we start modifying this plot to extract more information from
 it. For instance, we can add transparency (<code>alpha</code>) to avoid
 over-plotting:</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">variants</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">POS</span>, y <span class="op">=</span> <span class="va">DP</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre>
+<span>  <span class="fu">geom_point</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre>
 </div>
 <figure><img src="../fig/06-data-visualization-rendered-adding-transparency-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>We can also add colors for all the points:</p>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -841,7 +826,7 @@ vector as an input to the argument <strong>color</strong>.
 <strong><code>ggplot2</code></strong> will provide a different color
 corresponding to different values in the vector. Here is an example
 where we color with <strong><code>sample_id</code></strong>:</p>
-<div class="codewrapper sourceCode" id="cb21">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -850,7 +835,7 @@ where we color with <strong><code>sample_id</code></strong>:</p>
 </div>
 <figure><img src="../fig/06-data-visualization-rendered-color-by-sample-1-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>Notice that we can change the geom layer and colors will be still
 determined by <strong><code>sample_id</code></strong></p>
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -858,7 +843,7 @@ determined by <strong><code>sample_id</code></strong></p>
 <span>  <span class="fu">geom_line</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre>
 </div>
 <figure><img src="../fig/06-data-visualization-rendered-color-by-sample-2-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>To make our plot more readable, we can add axis labels:</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -869,7 +854,7 @@ determined by <strong><code>sample_id</code></strong></p>
 </div>
 <figure><img src="../fig/06-data-visualization-rendered-add-axis-labels-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>To add a <em>main</em> title to the plot, we use <a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">the title
 argument for the <code>labs()</code> function</a>:</p>
-<div class="codewrapper sourceCode" id="cb24">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -885,7 +870,7 @@ which can write, by default, the most recent generated figure into
 different formats (e.g., <code>jpeg</code>, <code>png</code>,
 <code>pdf</code>) according to the file extension. So, for example, to
 create a pdf version of the above figure with a dimension of <span class="math inline">\(6\times4\)</span> inches:</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -914,9 +899,9 @@ labels.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb26">
+<div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -931,7 +916,7 @@ labels.</p>
 </div>
 <p>To further customize the plot, we can change the default font
 format:</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -949,7 +934,7 @@ format:</p>
 plots (panels) based on a factor (variable) included in the dataset. We
 will use it to split our mapping quality plot into three panels, one for
 each sample.</p>
-<div class="codewrapper sourceCode" id="cb28">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -966,7 +951,7 @@ you want your plots to be arranged via formula notation
 (<code>rows ~ columns</code>; the dot (<code>.</code>) indicates every
 other variable in the data i.e., no faceting on that side of the
 formula).</p>
-<div class="codewrapper sourceCode" id="cb29">
+<div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -979,7 +964,7 @@ formula).</p>
 <figure><img src="../fig/06-data-visualization-rendered-second-facet-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>Usually plots with white background look more readable when printed.
 We can set the background to white using the function <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link"><code>theme_bw()</code></a>.
 Additionally, you can remove the grid:</p>
-<div class="codewrapper sourceCode" id="cb30">
+<div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1011,9 +996,9 @@ relevant axis labels.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb31">
+<div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1032,7 +1017,7 @@ relevant axis labels.</p>
 <hr class="half-width"><p>We can create barplots using the <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link"><code>geom_bar</code></a>
 geom. Let’s make a barplot showing the number of variants for each
 sample that are indels.</p>
-<div class="codewrapper sourceCode" id="cb32">
+<div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1060,9 +1045,9 @@ remove the legend from the plot.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb33">
+<div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1079,7 +1064,7 @@ remove the legend from the plot.</p>
 <hr class="half-width"><p>We can create density plots using the <a href="https://ggplot2.tidyverse.org/reference/geom_density.html" class="external-link"><code>geom_density</code></a>
 geom that shows the distribution of of a variable in the dataset. Let’s
 plot the distribution of <code>DP</code></p>
-<div class="codewrapper sourceCode" id="cb34">
+<div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1107,9 +1092,9 @@ each sample. Use a white background for the plot.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb35">
+<div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1197,8 +1182,7 @@ book</a>)</li>
 </h3>
 <div class="callout-content">
 <ul><li>ggplot2 is a powerful tool for high-quality plots</li>
-<li>ggplot2 provides a flexiable and readable grammar to build
-plots</li>
+<li>ggplot2 provides a flexible and readable grammar to build plots</li>
 </ul></div>
 </div>
 </div>
