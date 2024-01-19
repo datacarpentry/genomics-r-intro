@@ -73,14 +73,12 @@ library(readr)
 library(dplyr)
 ```
 
-
-
 As we can see from above output **`ggplot2`** has been already loaded along with other packages as part of the **`tidyverse`** framework.
 
 ## Loading the dataset
 
 ```{r load-the-dataset, echo=TRUE, eval=TRUE}
-variants = read_csv("https://raw.githubusercontent.com/naupaka/vcfr-for-data-carpentry-draft/main/output/combined_tidy_vcf.csv")
+variants <- read.csv("https://raw.githubusercontent.com/datacarpentry/genomics-r-intro/main/episodes/data/combined_tidy_vcf.csv")
 ```
 
 Explore the *structure* (types of columns and number of rows) of the dataset using [dplyr](https://dplyr.tidyverse.org/index.html)'s [`glimpse()`](https://dplyr.tidyverse.org/reference/glimpse.html) (for more info, see the [Data Wrangling and Analyses with Tidyverse](https://datacarpentry.org/genomics-r-intro/05-dplyr/) episode)
@@ -93,13 +91,6 @@ Alternatively, we can display the first a few rows (vertically) of the table usi
 
 ```{r head-of-the-data}
 head(variants)
-```
-
-```{r, echo=FALSE, eval=TRUE, purl=FALSE}
-## silently read in CSV file from FigShare
-
-# variants <- read.csv("https://ndownloader.figshare.com/files/14632895")
-# variants = read.csv("https://raw.githubusercontent.com/naupaka/vcfr-for-data-carpentry-draft/main/output/combined_tidy_vcf.csv")
 ```
 
 **`ggplot2`** functions like data in the **long** format, i.e., a column for every dimension (variable), and a row for every observation. Well-structured data will save you time when making figures with **`ggplot2`**
@@ -147,7 +138,7 @@ coverage_plot <- ggplot(data = variants, aes(x = POS, y = DP))
 
 # Draw the plot
 coverage_plot +
-    geom_point()
+  geom_point()
 ```
 
 **Notes**
@@ -179,7 +170,7 @@ Then, we start modifying this plot to extract more information from it. For inst
 
 ```{r adding-transparency, purl=FALSE}
 ggplot(data = variants, aes(x = POS, y = DP)) +
-    geom_point(alpha = 0.5)
+  geom_point(alpha = 0.5)
 ```
 
 We can also add colors for all the points:
@@ -426,7 +417,7 @@ for inspiration. Here are some ideas:
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
 - ggplot2 is a powerful tool for high-quality plots
-- ggplot2 provides a flexiable and readable grammar to build plots
+- ggplot2 provides a flexible and readable grammar to build plots
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
