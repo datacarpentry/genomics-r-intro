@@ -203,7 +203,9 @@ Here are some important details about naming objects in R.
 
 There are a few more suggestions about naming and style you may want to learn
 more about as you write more R code. There are several "style guides" that
-have advice, and one to start with is the [tidyverse R style guide](https://style.tidyverse.org/index.html).
+have advice. One of the more widely used is the [tidyverse R style guide](https://style.tidyverse.org/index.html),
+but there is also a [Google R style guide](https://google.github.io/styleguide/Rguide.html), and
+[Jean Fan's R style guide](https://jef.works/R-style-guide/), among others.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
