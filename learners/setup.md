@@ -49,6 +49,6 @@ Follow the CRAN instructions for your [Linux Distribution](https://cran.r-projec
 
 
 
-## Installing RStduio
+## Installing RStudio
 
 The RStudio integrated development environment (IDE) is a popular way to use R. We will cover what RStudio is in the lesson. All operating systems can go to the Posit LLC [download pages](https://posit.co/download/rstudio-desktop/) to download the appropriate version for their operating system. In most cases, the Posit website will detect your operating system and suggest the correct download. This same page will link to alternatives.
