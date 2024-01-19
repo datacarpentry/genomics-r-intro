@@ -87,29 +87,13 @@ The following objects are masked from 'package:base':
     intersect, setdiff, setequal, union
 ```
 
-
-
 As we can see from above output **`ggplot2`** has been already loaded along with other packages as part of the **`tidyverse`** framework.
 
 ## Loading the dataset
 
 
 ```r
-variants = read_csv("https://raw.githubusercontent.com/naupaka/vcfr-for-data-carpentry-draft/main/output/combined_tidy_vcf.csv")
-```
-
-```{.output}
-`curl` package not installed, falling back to using `url()`
-Rows: 801 Columns: 29
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (7): sample_id, CHROM, REF, ALT, DP4, Indiv, gt_GT_alleles
-dbl (16): POS, QUAL, IDV, IMF, DP, VDB, RPB, MQB, BQB, MQSB, SGB, MQ0F, AC, ...
-num  (1): gt_PL
-lgl  (5): ID, FILTER, INDEL, ICB, HOB
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+variants <- read.csv("https://raw.githubusercontent.com/datacarpentry/genomics-r-intro/main/episodes/data/combined_tidy_vcf.csv")
 ```
 
 Explore the *structure* (types of columns and number of rows) of the dataset using [dplyr](https://dplyr.tidyverse.org/index.html)'s [`glimpse()`](https://dplyr.tidyverse.org/reference/glimpse.html) (for more info, see the [Data Wrangling and Analyses with Tidyverse](https://datacarpentry.org/genomics-r-intro/05-dplyr/) episode)
@@ -124,16 +108,16 @@ Rows: 801
 Columns: 29
 $ sample_id     <chr> "SRR2584863", "SRR2584863", "SRR2584863", "SRR2584863", …
 $ CHROM         <chr> "CP000819.1", "CP000819.1", "CP000819.1", "CP000819.1", …
-$ POS           <dbl> 9972, 263235, 281923, 433359, 473901, 648692, 1331794, 1…
+$ POS           <int> 9972, 263235, 281923, 433359, 473901, 648692, 1331794, 1…
 $ ID            <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 $ REF           <chr> "T", "G", "G", "CTTTTTTT", "CCGC", "C", "C", "G", "ACAGC…
 $ ALT           <chr> "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "AC…
 $ QUAL          <dbl> 91.0000, 85.0000, 217.0000, 64.0000, 228.0000, 210.0000,…
 $ FILTER        <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 $ INDEL         <lgl> FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TR…
-$ IDV           <dbl> NA, NA, NA, 12, 9, NA, NA, NA, 2, 7, NA, NA, NA, NA, NA,…
+$ IDV           <int> NA, NA, NA, 12, 9, NA, NA, NA, 2, 7, NA, NA, NA, NA, NA,…
 $ IMF           <dbl> NA, NA, NA, 1.000000, 0.900000, NA, NA, NA, 0.666667, 1.…
-$ DP            <dbl> 4, 6, 10, 12, 10, 10, 8, 11, 3, 7, 9, 20, 12, 19, 15, 10…
+$ DP            <int> 4, 6, 10, 12, 10, 10, 8, 11, 3, 7, 9, 20, 12, 19, 15, 10…
 $ VDB           <dbl> 0.0257451, 0.0961330, 0.7740830, 0.4777040, 0.6595050, 0…
 $ RPB           <dbl> NA, 1.000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.900802, …
 $ MQB           <dbl> NA, 1.0000000, NA, NA, NA, NA, NA, NA, NA, NA, 0.1501340…
@@ -143,13 +127,13 @@ $ SGB           <dbl> -0.556411, -0.590765, -0.662043, -0.676189, -0.662043, -�
 $ MQ0F          <dbl> 0.000000, 0.166667, 0.000000, 0.000000, 0.000000, 0.0000…
 $ ICB           <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
 $ HOB           <lgl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-$ AC            <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
-$ AN            <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ AC            <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ AN            <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
 $ DP4           <chr> "0,0,0,4", "0,1,0,5", "0,0,4,5", "0,1,3,8", "1,0,2,7", "…
-$ MQ            <dbl> 60, 33, 60, 60, 60, 60, 60, 60, 60, 60, 25, 60, 10, 60, …
+$ MQ            <int> 60, 33, 60, 60, 60, 60, 60, 60, 60, 60, 25, 60, 10, 60, …
 $ Indiv         <chr> "/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned…
-$ gt_PL         <dbl> 1210, 1120, 2470, 910, 2550, 2400, 2080, 2550, 11128, 19…
-$ gt_GT         <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ gt_PL         <chr> "121,0", "112,0", "247,0", "91,0", "255,0", "240,0", "20…
+$ gt_GT         <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
 $ gt_GT_alleles <chr> "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "AC…
 ```
 
@@ -162,16 +146,14 @@ head(variants)
 
 
 
-|sample_id  |CHROM      |    POS|ID |REF      |ALT       | QUAL|FILTER |INDEL | IDV| IMF| DP|       VDB| RPB| MQB| BQB|     MQSB|       SGB|     MQ0F|ICB |HOB | AC| AN|DP4     | MQ|Indiv                                                              | gt_PL| gt_GT|gt_GT_alleles |
-|:----------|:----------|------:|:--|:--------|:---------|----:|:------|:-----|---:|---:|--:|---------:|---:|---:|---:|--------:|---------:|--------:|:---|:---|--:|--:|:-------|--:|:------------------------------------------------------------------|-----:|-----:|:-------------|
-|SRR2584863 |CP000819.1 |   9972|NA |T        |G         |   91|NA     |FALSE |  NA|  NA|  4| 0.0257451|  NA|  NA|  NA|       NA| -0.556411| 0.000000|NA  |NA  |  1|  1|0,0,0,4 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |  1210|     1|G             |
-|SRR2584863 |CP000819.1 | 263235|NA |G        |T         |   85|NA     |FALSE |  NA|  NA|  6| 0.0961330|   1|   1|   1|       NA| -0.590765| 0.166667|NA  |NA  |  1|  1|0,1,0,5 | 33|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |  1120|     1|T             |
-|SRR2584863 |CP000819.1 | 281923|NA |G        |T         |  217|NA     |FALSE |  NA|  NA| 10| 0.7740830|  NA|  NA|  NA| 0.974597| -0.662043| 0.000000|NA  |NA  |  1|  1|0,0,4,5 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |  2470|     1|T             |
-|SRR2584863 |CP000819.1 | 433359|NA |CTTTTTTT |CTTTTTTTT |   64|NA     |TRUE  |  12| 1.0| 12| 0.4777040|  NA|  NA|  NA| 1.000000| -0.676189| 0.000000|NA  |NA  |  1|  1|0,1,3,8 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |   910|     1|CTTTTTTTT     |
-|SRR2584863 |CP000819.1 | 473901|NA |CCGC     |CCGCGC    |  228|NA     |TRUE  |   9| 0.9| 10| 0.6595050|  NA|  NA|  NA| 0.916482| -0.662043| 0.000000|NA  |NA  |  1|  1|1,0,2,7 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |  2550|     1|CCGCGC        |
-|SRR2584863 |CP000819.1 | 648692|NA |C        |T         |  210|NA     |FALSE |  NA|  NA| 10| 0.2680140|  NA|  NA|  NA| 0.916482| -0.670168| 0.000000|NA  |NA  |  1|  1|0,0,7,3 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |  2400|     1|T             |
-
-
+|sample_id  |CHROM      |    POS|ID |REF      |ALT       | QUAL|FILTER |INDEL | IDV| IMF| DP|       VDB| RPB| MQB| BQB|     MQSB|       SGB|     MQ0F|ICB |HOB | AC| AN|DP4     | MQ|Indiv                                                              |gt_PL | gt_GT|gt_GT_alleles |
+|:----------|:----------|------:|:--|:--------|:---------|----:|:------|:-----|---:|---:|--:|---------:|---:|---:|---:|--------:|---------:|--------:|:---|:---|--:|--:|:-------|--:|:------------------------------------------------------------------|:-----|-----:|:-------------|
+|SRR2584863 |CP000819.1 |   9972|NA |T        |G         |   91|NA     |FALSE |  NA|  NA|  4| 0.0257451|  NA|  NA|  NA|       NA| -0.556411| 0.000000|NA  |NA  |  1|  1|0,0,0,4 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |121,0 |     1|G             |
+|SRR2584863 |CP000819.1 | 263235|NA |G        |T         |   85|NA     |FALSE |  NA|  NA|  6| 0.0961330|   1|   1|   1|       NA| -0.590765| 0.166667|NA  |NA  |  1|  1|0,1,0,5 | 33|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |112,0 |     1|T             |
+|SRR2584863 |CP000819.1 | 281923|NA |G        |T         |  217|NA     |FALSE |  NA|  NA| 10| 0.7740830|  NA|  NA|  NA| 0.974597| -0.662043| 0.000000|NA  |NA  |  1|  1|0,0,4,5 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |247,0 |     1|T             |
+|SRR2584863 |CP000819.1 | 433359|NA |CTTTTTTT |CTTTTTTTT |   64|NA     |TRUE  |  12| 1.0| 12| 0.4777040|  NA|  NA|  NA| 1.000000| -0.676189| 0.000000|NA  |NA  |  1|  1|0,1,3,8 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |91,0  |     1|CTTTTTTTT     |
+|SRR2584863 |CP000819.1 | 473901|NA |CCGC     |CCGCGC    |  228|NA     |TRUE  |   9| 0.9| 10| 0.6595050|  NA|  NA|  NA| 0.916482| -0.662043| 0.000000|NA  |NA  |  1|  1|1,0,2,7 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |255,0 |     1|CCGCGC        |
+|SRR2584863 |CP000819.1 | 648692|NA |C        |T         |  210|NA     |FALSE |  NA|  NA| 10| 0.2680140|  NA|  NA|  NA| 0.916482| -0.670168| 0.000000|NA  |NA  |  1|  1|0,0,7,3 | 60|/home/dcuser/dc_workshop/results/bam/SRR2584863.aligned.sorted.bam |240,0 |     1|T             |
 
 **`ggplot2`** functions like data in the **long** format, i.e., a column for every dimension (variable), and a row for every observation. Well-structured data will save you time when making figures with **`ggplot2`**
 
@@ -225,7 +207,7 @@ coverage_plot <- ggplot(data = variants, aes(x = POS, y = DP))
 
 # Draw the plot
 coverage_plot +
-    geom_point()
+  geom_point()
 ```
 
 **Notes**
@@ -262,7 +244,7 @@ Then, we start modifying this plot to extract more information from it. For inst
 
 ```r
 ggplot(data = variants, aes(x = POS, y = DP)) +
-    geom_point(alpha = 0.5)
+  geom_point(alpha = 0.5)
 ```
 
 <img src="fig/06-data-visualization-rendered-adding-transparency-1.png" style="display: block; margin: auto;" />
@@ -556,7 +538,7 @@ for inspiration. Here are some ideas:
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
 - ggplot2 is a powerful tool for high-quality plots
-- ggplot2 provides a flexiable and readable grammar to build plots
+- ggplot2 provides a flexible and readable grammar to build plots
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
