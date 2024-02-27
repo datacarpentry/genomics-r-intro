@@ -506,12 +506,12 @@ install.packages("ggplot2")
 
 ```{.output}
 The following package(s) will be installed:
-- ggplot2 [3.4.4]
+- ggplot2 [3.5.0]
 These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/R-4.3/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 5.2 milliseconds.
+Successfully installed 1 package in 5.8 milliseconds.
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
