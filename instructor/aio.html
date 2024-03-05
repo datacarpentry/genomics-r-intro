@@ -334,7 +334,7 @@
         
 <section id="aio-00-introduction"><p>Content from <a href="00-introduction.html">Introducing R and RStudio IDE</a></p>
 <hr>
-<p>Last updated on 2024-02-27 |
+<p>Last updated on 2024-03-05 |
         
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/00-introduction.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 45 minutes</p>
@@ -384,12 +384,12 @@ and <code>args()</code>
 <hr class="half-width">
 <p>In this lesson we will take you through the very first things you
 need to get R working.</p>
-<div id="tip-this-lesson-works-best-on-the-cloud" class="callout callout">
+<div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-this-lesson-works-best-on-the-cloud" class="callout-inner">
-<h3 class="callout-title">Tip: This lesson works best on the cloud<a class="anchor" aria-label="anchor" href="#tip-this-lesson-works-best-on-the-cloud"></a>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-this-lesson-works-best-on-the-cloud">Tip: This lesson works best on the cloud<a class="anchor" aria-label="anchor" href="#tip-this-lesson-works-best-on-the-cloud"></a>
 </h3>
 <div class="callout-content">
 <p>Remember, these lessons assume we are using the pre-configured
@@ -474,13 +474,13 @@ terminal (provided by your instructors), followed by <code>:8787</code>.
 For example, if your URL was ec2.12.2.45.678.compute-1.amazonaws.com,
 you should enter:</p>
 <pre><code>http://ec2.12.2.45.678.compute-1.amazonaws.com:8787</code></pre>
-<div id="tip-make-sure-there-are-no-spaces-before-or-after-your-url." class="callout callout">
+<div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-make-sure-there-are-no-spaces-before-or-after-your-url." class="callout-inner">
-<h3 class="callout-title">Tip: Make sure there are no spaces before or
-after your URL.<a class="anchor" aria-label="anchor" href="#tip-make-sure-there-are-no-spaces-before-or-after-your-url."></a>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-make-sure-there-are-no-spaces-before-or-after-your-url-">Tip: Make sure there are no spaces before or
+after your URL.<a class="anchor" aria-label="anchor" href="#tip-make-sure-there-are-no-spaces-before-or-after-your-url-"></a>
 </h3>
 <div class="callout-content">
 <p>If your URL has spaces, your web browser may interpret it as a search
@@ -522,12 +522,12 @@ see an RStudio project file, <strong>dc_genomics_r.Rproj</strong>. All
 RStudio projects end with the “<strong>.Rproj</strong>” file
 extension.</p></li>
 </ol>
-<div id="tip-make-your-project-more-reproducible-with-renv" class="callout callout">
+<div id="callout3" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-make-your-project-more-reproducible-with-renv" class="callout-inner">
-<h3 class="callout-title">Tip: Make your project more reproducible with
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-make-your-project-more-reproducible-with-renv">Tip: Make your project more reproducible with
 renv<a class="anchor" aria-label="anchor" href="#tip-make-your-project-more-reproducible-with-renv"></a>
 </h3>
 <div class="callout-content">
@@ -598,12 +598,12 @@ installed packages. “Help” will display help files for R functions and
 packages. “Viewer” will allow you to view local web content (e.g. HTML
 outputs).</li>
 </ul>
-<div id="tip-uploads-and-downloads-in-the-cloud" class="callout callout">
+<div id="callout4" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-uploads-and-downloads-in-the-cloud" class="callout-inner">
-<h3 class="callout-title">Tip: Uploads and downloads in the cloud<a class="anchor" aria-label="anchor" href="#tip-uploads-and-downloads-in-the-cloud"></a>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-uploads-and-downloads-in-the-cloud">Tip: Uploads and downloads in the cloud<a class="anchor" aria-label="anchor" href="#tip-uploads-and-downloads-in-the-cloud"></a>
 </h3>
 <div class="callout-content">
 <p>In the “Files” tab you can select a file and download it from your
@@ -618,12 +618,12 @@ between panes you can resize as needed. The most important customization
 options for pane layout are in the <kbd>View</kbd> menu. Other options
 such as font sizes, colors/themes, and more are in the <kbd>Tools</kbd>
 menu under <kbd>Global Options</kbd>.</p>
-<div id="you-are-working-with-r" class="callout callout">
+<div id="callout5" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="you-are-working-with-r" class="callout-inner">
-<h3 class="callout-title">You are working with R<a class="anchor" aria-label="anchor" href="#you-are-working-with-r"></a>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="you-are-working-with-r">You are working with R<a class="anchor" aria-label="anchor" href="#you-are-working-with-r"></a>
 </h3>
 <div class="callout-content">
 <p>Although we won’t be working with R at the terminal, there are lots
@@ -692,7 +692,7 @@ in the Console pane?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>You will get the same output you did as when you ran
 <code>getwd()</code> from the source. You can run any command in the
@@ -734,12 +734,13 @@ you no output. Instead, you see the blank R prompt: <code>&gt;</code>.
 Congratulations! Although it seems small, knowing what your working
 directory is and being able to set your working directory is the first
 step to analyzing your data.</p>
-<div id="tip-never-use-setwd" class="callout callout">
+<div id="callout6" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-never-use-setwd" class="callout-inner">
-<h3 class="callout-title">Tip: Never use<code>setwd()</code><a class="anchor" aria-label="anchor" href="#tip-never-use-setwd"></a>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-never-use-setwd">Tip: Never use <code>setwd()</code>
+<a class="anchor" aria-label="anchor" href="#tip-never-use-setwd"></a>
 </h3>
 <div class="callout-content">
 <p>Wait, what was the last 2 minutes about? Well, setting your working
@@ -789,7 +790,7 @@ about your assumed purpose.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ul>
 <li>
@@ -941,7 +942,7 @@ inside the function’s parentheses.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>While your search results may return several tests, we list a few you
 might find:</p>
@@ -993,7 +994,7 @@ easy to find help</li>
 </div>
 </section></section><section id="aio-01-r-basics"><p>Content from <a href="01-r-basics.html">R Basics</a></p>
 <hr>
-<p>Last updated on 2024-02-27 |
+<p>Last updated on 2024-03-05 |
         
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/01-r-basics.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 80 minutes</p>
@@ -1074,12 +1075,12 @@ cover plot creation, but will do so using the popular plotting package
 <code>ggplot2</code>)</li>
 <li>How to use advanced R statistical functions</li>
 </ul>
-<div id="tip-where-to-learn-more" class="callout callout">
+<div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-where-to-learn-more" class="callout-inner">
-<h3 class="callout-title">Tip: Where to learn more<a class="anchor" aria-label="anchor" href="#tip-where-to-learn-more"></a>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-where-to-learn-more">Tip: Where to learn more<a class="anchor" aria-label="anchor" href="#tip-where-to-learn-more"></a>
 </h3>
 <div class="callout-content">
 <p>The following are good resources for learning more about R. Some of
@@ -1215,7 +1216,7 @@ a diploid human cell</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Here as some possible answers to the challenge:</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -1275,12 +1276,12 @@ guides” that have advice. One of the more widely used is the <a href="https://
 guide</a>, but there is also a <a href="https://google.github.io/styleguide/Rguide.html" class="external-link">Google R style
 guide</a>, and <a href="https://jef.works/R-style-guide/" class="external-link">Jean Fan’s R
 style guide</a>, among others.</p>
-<div id="tip-pay-attention-to-warnings-in-the-script-console" class="callout callout">
+<div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-pay-attention-to-warnings-in-the-script-console" class="callout-inner">
-<h3 class="callout-title">Tip: Pay attention to warnings in the script
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-pay-attention-to-warnings-in-the-script-console">Tip: Pay attention to warnings in the script
 console<a class="anchor" aria-label="anchor" href="#tip-pay-attention-to-warnings-in-the-script-console"></a>
 </h3>
 <div class="callout-content">
@@ -1411,7 +1412,7 @@ before you look at the solution</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1595,7 +1596,7 @@ the <code>round()</code> function can take 2 arguments.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1849,7 +1850,7 @@ vector</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <ol style="list-style-type: upper-alpha">
 <li>False - Vectors have both of these properties<br>
@@ -1940,12 +1941,12 @@ most common logical operators you will use in R are:</p>
 </tr>
 </tbody>
 </table>
-<div id="the-magic-of-programming" class="callout callout">
+<div id="callout3" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="the-magic-of-programming" class="callout-inner">
-<h3 class="callout-title">The magic of programming<a class="anchor" aria-label="anchor" href="#the-magic-of-programming"></a>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="the-magic-of-programming">The magic of programming<a class="anchor" aria-label="anchor" href="#the-magic-of-programming"></a>
 </h3>
 <div class="callout-content">
 <p>The reason why the expression
@@ -2086,7 +2087,7 @@ c. <code>snp_positions</code></p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb65">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2145,7 +2146,7 @@ c. To the <code>snp_positions</code> vector add: 116792991</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6">Show me the solution</h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb71">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2215,7 +2216,7 @@ CYP1A1 and then<br>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7">Show me the solution</h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb77">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2262,7 +2263,7 @@ contains:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8">Show me the solution</h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb79">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2297,7 +2298,7 @@ contains:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
   <h4 class="accordion-header" id="headingSolution9">Show me the solution</h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb81">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2314,12 +2315,12 @@ contains:</p>
 </div>
 </div>
 </div>
-<div id="lists" class="callout callout">
+<div id="callout4" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="lists" class="callout-inner">
-<h3 class="callout-title">Lists<a class="anchor" aria-label="anchor" href="#lists"></a>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="lists">Lists<a class="anchor" aria-label="anchor" href="#lists"></a>
 </h3>
 <div class="callout-content">
 <p>Lists are quite useful in R, but we won’t be using them in the
@@ -2413,7 +2414,7 @@ data are organized in R.</li>
 </div>
 </section></section><section id="aio-02-data-prelude"><p>Content from <a href="02-data-prelude.html">Introduction to the example dataset and file type</a></p>
 <hr>
-<p>Last updated on 2024-02-27 |
+<p>Last updated on 2024-03-05 |
         
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/02-data-prelude.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
@@ -2756,7 +2757,7 @@ from FASTQ files.</li>
 </div>
 </section></section><section id="aio-03-basics-factors-dataframes"><p>Content from <a href="03-basics-factors-dataframes.html">R Basics continued - factors and data frames</a></p>
 <hr>
-<p>Last updated on 2024-02-27 |
+<p>Last updated on 2024-03-05 |
         
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/03-basics-factors-dataframes.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 90 minutes</p>
@@ -2839,12 +2840,12 @@ course, as the data get larger our human ability to keep track will
 start to fail (and yes, it can fail for small data sets too). R will
 help you to examine your data so that you can have greater confidence in
 your analysis, and its reproducibility.</p>
-<div id="tip-keep-your-raw-data-separate" class="callout callout">
+<div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-keep-your-raw-data-separate" class="callout-inner">
-<h3 class="callout-title">Tip: Keep your raw data separate<a class="anchor" aria-label="anchor" href="#tip-keep-your-raw-data-separate"></a>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-keep-your-raw-data-separate">Tip: Keep your raw data separate<a class="anchor" aria-label="anchor" href="#tip-keep-your-raw-data-separate"></a>
 </h3>
 <div class="callout-content">
 <p>When you work with data in R, you are not changing the original file
@@ -2922,13 +2923,13 @@ is needed to test some data cleaning steps you are applying.</p></li>
 help documentation in R. There are many arguments that exist, but which
 we wont have time to cover. Look here to get familiar with functions you
 use frequently, you may be surprised at what you find they can do.</p>
-<div id="tip-why-does-read.csv-open-the-documentations-to-read.table" class="callout callout">
+<div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-why-does-read.csv-open-the-documentations-to-read.table" class="callout-inner">
-<h3 class="callout-title">Tip: Why does ?read.csv open the
-documentations to read.table?<a class="anchor" aria-label="anchor" href="#tip-why-does-read.csv-open-the-documentations-to-read.table"></a>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-why-does-read-csv-open-the-documentations-to-read-table">Tip: Why does ?read.csv open the
+documentations to read.table?<a class="anchor" aria-label="anchor" href="#tip-why-does-read-csv-open-the-documentations-to-read-table"></a>
 </h3>
 <div class="callout-content">
 <p>The reason for this is because <code>read.csv</code> is actually a
@@ -3217,12 +3218,12 @@ in our factor are all “A”s.</p>
 </div>
 <p>As you can imagine, this is already useful when you want to generate
 a tally.</p>
-<div id="tip-treating-objects-as-categories-without-changing-their-mode" class="callout callout">
+<div id="callout3" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-treating-objects-as-categories-without-changing-their-mode" class="callout-inner">
-<h3 class="callout-title">Tip: treating objects as categories without
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-treating-objects-as-categories-without-changing-their-mode">Tip: treating objects as categories without
 changing their mode<a class="anchor" aria-label="anchor" href="#tip-treating-objects-as-categories-without-changing-their-mode"></a>
 </h3>
 <div class="callout-content">
@@ -3289,12 +3290,12 @@ levels.</li>
 <figure><img src="../fig/03-basics-factors-dataframes-rendered-unnamed-chunk-16-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>Factors come in handy in many places when using R. Even using more
 sophisticated plotting packages such as ggplot2 will sometimes require
 you to understand how to manipulate factors.</p>
-<div id="tip-packages-in-r-what-are-they-and-why-do-we-use-them" class="callout callout">
+<div id="callout4" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-packages-in-r-what-are-they-and-why-do-we-use-them" class="callout-inner">
-<h3 class="callout-title">Tip: Packages in R – what are they and why do
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-packages-in-r-what-are-they-and-why-do-we-use-them">Tip: Packages in R – what are they and why do
 we use them?<a class="anchor" aria-label="anchor" href="#tip-packages-in-r-what-are-they-and-why-do-we-use-them"></a>
 </h3>
 <div class="callout-content">
@@ -3325,7 +3326,7 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 5.8 milliseconds.</code></pre>
+Successfully installed 1 package in 5.9 milliseconds.</code></pre>
 </div>
 </div>
 </div>
@@ -3785,12 +3786,12 @@ to a new object name:</p>
 </section><section id="coercing-values-in-data-frames"><h2 class="section-heading">Coercing values in data frames<a class="anchor" aria-label="anchor" href="#coercing-values-in-data-frames"></a>
 </h2>
 <hr class="half-width">
-<div id="tip-coercion-isnt-limited-to-data-frames" class="callout callout">
+<div id="callout5" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-coercion-isnt-limited-to-data-frames" class="callout-inner">
-<h3 class="callout-title">Tip: coercion isn’t limited to data
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-coercion-isnt-limited-to-data-frames">Tip: coercion isn’t limited to data
 frames<a class="anchor" aria-label="anchor" href="#tip-coercion-isnt-limited-to-data-frames"></a>
 </h3>
 <div class="callout-content">
@@ -4003,12 +4004,12 @@ through implicit coercion.</li>
 <li>Check the structure (<code>str()</code>) of your data frames before
 working with them!</li>
 </ul>
-<div id="tip-coercion-isnt-limited-to-data-frames-1" class="callout callout">
+<div id="callout6" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-coercion-isnt-limited-to-data-frames-1" class="callout-inner">
-<h3 class="callout-title">Tip: coercion isn’t limited to data
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-coercion-isnt-limited-to-data-frames-1">Tip: coercion isn’t limited to data
 frames<a class="anchor" aria-label="anchor" href="#tip-coercion-isnt-limited-to-data-frames-1"></a>
 </h3>
 <div class="callout-content">
@@ -4334,7 +4335,7 @@ by the community</li>
 </div>
 </section></section><section id="aio-04-bioconductor-vcfr"><p>Content from <a href="04-bioconductor-vcfr.html">Using packages from Bioconductor</a></p>
 <hr>
-<p>Last updated on 2024-02-27 |
+<p>Last updated on 2024-03-05 |
         
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/04-bioconductor-vcfr.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 13 minutes</p>
@@ -4427,12 +4428,12 @@ number.</p>
 <code>BiocManager</code><a class="anchor" aria-label="anchor" href="#second-install-the-vcfr-package-from-bioconductor-using-biocmanager"></a>
 </h2>
 <hr class="half-width">
-<div id="heads-up-installing-vcfr-may-take-a-while-due-to-numerous-dependencies" class="callout callout">
+<div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="heads-up-installing-vcfr-may-take-a-while-due-to-numerous-dependencies" class="callout-inner">
-<h3 class="callout-title">Head’s Up: Installing vcfR may take a while
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="heads-up-installing-vcfr-may-take-a-while-due-to-numerous-dependencies">Head’s Up: Installing vcfR may take a while
 due to numerous dependencies<a class="anchor" aria-label="anchor" href="#heads-up-installing-vcfr-may-take-a-while-due-to-numerous-dependencies"></a>
 </h3>
 <div class="callout-content">
@@ -4451,12 +4452,12 @@ can take a while.</p>
 <p>Depending on your particular system, you may need to also allow it to
 install some dependencies or update installed packages in order to
 successfully complete the process.</p>
-<div id="note-installing-packages-from-bioconductor-vs-from-cran" class="callout callout">
+<div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="note-installing-packages-from-bioconductor-vs-from-cran" class="callout-inner">
-<h3 class="callout-title">Note: Installing packages from Bioconductor vs
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="note-installing-packages-from-bioconductor-vs-from-cran">Note: Installing packages from Bioconductor vs
 from CRAN<a class="anchor" aria-label="anchor" href="#note-installing-packages-from-bioconductor-vs-from-cran"></a>
 </h3>
 <div class="callout-content">
@@ -4485,12 +4486,12 @@ bioinformaticians may want to work with. Sometimes you may get a new
 dataset and not know exactly where to start with analyzing or
 visualizing it. The Bioconductor package search view can be a great way
 to browse through the packages that are available.</p>
-<figure><img src="../fig/bioconductor_search.jpg" alt="screenshot of bioconductor search" class="figure mx-auto d-block"></figure><div id="tip-searching-for-packages-on-the-bioconductor-website" class="callout callout">
+<figure><img src="../fig/bioconductor_search.jpg" alt="screenshot of bioconductor search" class="figure mx-auto d-block"></figure><div id="callout3" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-searching-for-packages-on-the-bioconductor-website" class="callout-inner">
-<h3 class="callout-title">Tip: Searching for packages on the
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-searching-for-packages-on-the-bioconductor-website">Tip: Searching for packages on the
 Bioconductor website<a class="anchor" aria-label="anchor" href="#tip-searching-for-packages-on-the-bioconductor-website"></a>
 </h3>
 <div class="callout-content">
@@ -4526,12 +4527,12 @@ see what is available.</p>
 </div>
 </div>
 </div>
-<div id="tip-refreshing-the-rstudio-package-view-after-installing" class="callout callout">
+<div id="callout4" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-refreshing-the-rstudio-package-view-after-installing" class="callout-inner">
-<h3 class="callout-title">Tip: Refreshing the RStudio package view after
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-refreshing-the-rstudio-package-view-after-installing">Tip: Refreshing the RStudio package view after
 installing<a class="anchor" aria-label="anchor" href="#tip-refreshing-the-rstudio-package-view-after-installing"></a>
 </h3>
 <div class="callout-content">
@@ -4572,7 +4573,7 @@ analysis before writing code yourself.</li>
 </div>
 </section></section><section id="aio-05-dplyr"><p>Content from <a href="05-dplyr.html">Data Wrangling and Analyses with Tidyverse</a></p>
 <hr>
-<p>Last updated on 2024-02-27 |
+<p>Last updated on 2024-03-05 |
         
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/05-dplyr.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 55 minutes</p>
@@ -4661,12 +4662,12 @@ too much; I’d recommend choosing the RStudio mirror.</p>
 <p>You only need to install a package once per computer, but you need to
 load it every time you open a new R session and want to use that
 package.</p>
-<div id="tip-installing-packages" class="callout callout">
+<div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-installing-packages" class="callout-inner">
-<h3 class="callout-title">Tip: Installing packages<a class="anchor" aria-label="anchor" href="#tip-installing-packages"></a>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-installing-packages">Tip: Installing packages<a class="anchor" aria-label="anchor" href="#tip-installing-packages"></a>
 </h3>
 <div class="callout-content">
 <p>It may be temping to install the <code>tidyverse</code> package, as
@@ -5655,12 +5656,12 @@ easiest way to ignore <code>NA</code> (the missing data) is to use
 2 SRR2584866    10.6      10        2     79
 3 SRR2589044     9.3       9.5      3     16</code></pre>
 </div>
-<div id="grouped-data-frames-in-tidyverse" class="callout callout">
+<div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="grouped-data-frames-in-tidyverse" class="callout-inner">
-<h3 class="callout-title">Grouped Data Frames in Tidyverse<a class="anchor" aria-label="anchor" href="#grouped-data-frames-in-tidyverse"></a>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="grouped-data-frames-in-tidyverse">Grouped Data Frames in Tidyverse<a class="anchor" aria-label="anchor" href="#grouped-data-frames-in-tidyverse"></a>
 </h3>
 <div class="callout-content">
 <p>When you group a data frame with <code>group_by()</code>, you get a
@@ -5783,7 +5784,7 @@ Reproducible Scientific Analysis</a><a href="#fnref1" class="footnote-back">↩�
 </ol>
 </div></section><section id="aio-06-data-visualization"><p>Content from <a href="06-data-visualization.html">Data Visualization with ggplot2</a></p>
 <hr>
-<p>Last updated on 2024-02-27 |
+<p>Last updated on 2024-03-05 |
         
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/06-data-visualization.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 90 minutes</p>
@@ -6245,7 +6246,7 @@ be used for different types of plots:</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>)) <span class="sc">+</span>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>()</span></code></pre>
+<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>)) <span class="sc">+</span>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>()</span></code></pre>
 </div>
 <ul>
 <li>use the <code>ggplot()</code> function and bind the plot to a
@@ -6448,7 +6449,7 @@ labels.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -6547,7 +6548,7 @@ relevant axis labels.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -6598,7 +6599,7 @@ remove the legend from the plot.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb32">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -6647,7 +6648,7 @@ each sample. Use a white background for the plot.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -6754,7 +6755,7 @@ book</a>)</li>
 </div>
 </section></section><section id="aio-07-r-help"><p>Content from <a href="07-r-help.html">Getting help with R</a></p>
 <hr>
-<p>Last updated on 2024-02-27 |
+<p>Last updated on 2024-03-05 |
         
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/07-r-help.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
@@ -6811,12 +6812,12 @@ most popular online community for developers. If you start your question
 “How to do X in R” results from Stack Overflow are usually near the top
 of the list. For <strong>bioinformatics specific questions</strong>, <a href="https://www.biostars.org/" class="external-link">Biostars</a> is a popular online
 forum.</p>
-<div id="tip-asking-for-help-using-online-forums" class="callout callout">
+<div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div id="tip-asking-for-help-using-online-forums" class="callout-inner">
-<h3 class="callout-title">Tip: Asking for help using online forums:<a class="anchor" aria-label="anchor" href="#tip-asking-for-help-using-online-forums"></a>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title" id="tip-asking-for-help-using-online-forums">Tip: Asking for help using online forums:<a class="anchor" aria-label="anchor" href="#tip-asking-for-help-using-online-forums"></a>
 </h3>
 <div class="callout-content">
 <ul>
@@ -7019,8 +7020,8 @@ resources on how to search effectively</li>
   "url": "https://datacarpentry.github.io/genomics-r-intro/instructor/aio.html",
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/instructor/aio.html",
   "dateCreated": "2018-03-12",
-  "dateModified": "2024-02-27",
-  "datePublished": "2024-02-27"
+  "dateModified": "2024-03-05",
+  "datePublished": "2024-03-05"
 }
 
   </script><script>
