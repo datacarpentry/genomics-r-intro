@@ -461,7 +461,22 @@ allows you to more easily:</p>
 analysis project</li>
 <li>Restart work where you left off</li>
 <li>Collaborate, especially if you are using version control such as <a href="https://swcarpentry.github.io/git-novice/" class="external-link">git</a>.</li>
-</ul><ol style="list-style-type: decimal"><li>To create a project, go to the <kbd>File</kbd> menu, and click
+</ul><p>Using an RStudio project also has the key benefit of correctly
+setting your working directory when in an R session. This is important
+because R will look for files in the working directory by default. If
+you don’t set your working directory, you may have to specify the full
+path (the location on your drive) to a file every time you want to read
+or write it. Sometimes people will use <code>setwd()</code> to manually
+set the working directory for a script, but this is not recommended
+because this approach requires the working directory to be set every
+time you run your script, and can cause problems if you share your
+script with others or run it on a different machine. RStudio project
+directories can be moved to a different location on the computer, or
+moved to a different computer, and they will still work correctly
+because the working directory is set relative to the project directory
+(it sets the working directory as the directory with the
+<code>.Rproj</code> file).</p>
+<ol style="list-style-type: decimal"><li>To create a project, go to the <kbd>File</kbd> menu, and click
 <kbd>New Project…</kbd>.</li>
 </ol><figure><img src="../fig/new_project_window.png" alt="rstudio default session" style="width: 600px;" class="figure mx-auto d-block"></figure><ol start="2" style="list-style-type: decimal"><li><p>In the window that opens select <strong>New Directory</strong>,
 then <strong>New Project</strong>. For “Directory name:” enter
