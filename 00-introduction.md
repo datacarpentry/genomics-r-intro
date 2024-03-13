@@ -518,11 +518,12 @@ the `help.search()` function.
 
 Use `help.search()` to find R functions for the following statistical
 functions. Remember to put your search query in quotes inside the function's
-parentheses.
+parentheses. Also note that Google or your favorite search engine is a good
+place to start as well. It can be helpful to include "R" in your search query.
 
 - Chi-Squared test
 - Student t-test
-- mixed linear model
+- linear model
 
 :::::::::::::::  solution
 
@@ -533,7 +534,7 @@ find:
 
 - Chi-Squared test: `stats::Chisquare`
 - Student t-test: `stats::t.test`
-- mixed linear model: `stats::lm.glm`
+- linear model: `stats::lm.glm`
 
 
 
