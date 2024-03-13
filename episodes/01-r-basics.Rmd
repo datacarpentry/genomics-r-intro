@@ -306,14 +306,18 @@ chromosome_name <- 'chr02'
 od_600_value <- 0.47
 chr_position <- '1001701'
 spock <- TRUE
-pilot <- Earhart
+
 ```
+
 
 ```{r, purl=FALSE}
 mode(chromosome_name)
 mode(od_600_value)
 mode(chr_position)
 mode(spock)
+```
+
+```{r, purl=FALSE}
 mode(pilot)
 ```
 
