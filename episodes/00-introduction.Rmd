@@ -496,7 +496,7 @@ parentheses.
 
 - Chi-Squared test
 - Student t-test
-- mixed linear model
+- linear model
 
 :::::::::::::::  solution
 
@@ -507,7 +507,7 @@ find:
 
 - Chi-Squared test: `stats::Chisquare`
 - Student t-test: `stats::t.test`
-- mixed linear model: `stats::lm.glm`
+- linear model: `stats::lm.glm`
 
 
 
