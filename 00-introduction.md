@@ -142,6 +142,16 @@ called an **RStudio Project**. An RStudio project allows you to more easily:
 - Restart work where you left off
 - Collaborate, especially if you are using version control such as [git](https://swcarpentry.github.io/git-novice/).
 
+Using an RStudio project also has the key benefit of correctly setting your working directory when in an R session.
+This is important because R will look for files in the working directory by default.
+If you don't set your working directory, you may have to specify the full path (the location on your drive) to a
+file every time you want to read or write it. Sometimes people will use `setwd()` to manually
+set the working directory for a script, but this is not recommended because this approach requires the working directory to be
+set every time you run your script, and can cause problems if you share your script with others or run it on a different machine.
+RStudio project directories can be moved to a different location on the computer, or moved to a different computer, and they will
+still work correctly because the working directory is set relative to the project directory (it sets the working directory as the directory with
+the `.Rproj` file).
+
 1. To create a project, go to the <kbd>File</kbd> menu, and click <kbd>New Project...</kbd>.
 
 <img src="fig/new_project_window.png" alt="rstudio default session" style="width: 600px;"/>
