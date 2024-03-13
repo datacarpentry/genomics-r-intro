@@ -305,9 +305,7 @@ their modes. Try to guess what the mode will be before you look at the solution
 ## Solution
 
 
-```{.error}
-Error in eval(expr, envir, enclos): object 'Earhart' not found
-```
+
 
 
 ```r
@@ -341,6 +339,7 @@ mode(spock)
 ```{.output}
 [1] "logical"
 ```
+
 
 ```r
 mode(pilot)
