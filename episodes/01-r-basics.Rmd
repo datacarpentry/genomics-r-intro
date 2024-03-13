@@ -665,6 +665,23 @@ the vector you are searching:
 c("ACTN3","APOA5") %in% snp_genes
 ```
 
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Tip: What's the difference between the `%in% and the `==` operators?
+
+The `%in%` operator is used to test if the elements of a vector are
+present in another vector. In the example above, if both "ACTN3" and "APOA5" are in 
+the vector `snp_genes`, then R will return `TRUE TRUE` since they are both present. 
+If "ACTN3" is but "APOA5" is not in `snp_genes`, then R will return `TRUE FALSE`. The `==` operator
+is used to test if two vectors are exactly equal. For example, if you wanted to know if the vector `c(1, 2, 3)`
+was equal to the vector `c(1, 2, 3)`, you could use the `==` operator. One trick people sometimes
+use is to check a single value against a vector with the `==` operator. For example, if you wanted to know
+if the value `1` was in the vector `c(1, 2, 3)`, you could use the expression `1 == c(1, 2, 3)`. This would
+return `TRUE FALSE FALSE` since the value `1` is only in the first position of the vector `c(1, 2, 3)`. Note that
+`c(1, 2) == c(1, 2, 3)` will return an error since the vectors are of different lengths.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Review Exercise 1
