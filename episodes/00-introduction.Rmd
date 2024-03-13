@@ -194,7 +194,7 @@ convention, R scripts end with the file extension **.R**.
 ## Tip: Save your script now
 
 Remember to save your script at this point. Anything can happen during your
-lesson and you don't want to loose your work!
+lesson and you don't want to lose your work!
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
