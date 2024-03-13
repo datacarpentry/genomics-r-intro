@@ -198,6 +198,16 @@ window that opens, name your file **"genomics\_r\_basics"**. The new script
 **genomics\_r\_basics.R** should appear under "files" in the output pane. By
 convention, R scripts end with the file extension **.R**.
 
+
+::::::::::::::::::::::::::::::::::::: callout
+
+## Tip: Save your script now
+
+Remember to save your script at this point. Anything can happen during your
+lesson and you don't want to lose your work!
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Overview and customization of the RStudio layout
 
 Here are the major windows (or panes) of the RStudio
@@ -498,8 +508,8 @@ find:
 - Chi-Squared test: `stats::Chisquare`
 - Student t-test: `stats::t.test`
 - mixed linear model: `stats::lm.glm`
-  
-  
+
+
 
 :::::::::::::::::::::::::
 
@@ -529,5 +539,3 @@ for each of these arguments.
 - RStudio allows you to run R in an easy-to-use interface and makes it easy to find help
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
