@@ -146,11 +146,11 @@ frequently, you may be surprised at what you find they can do.
 
 ## Tip: Why does ?read.csv open the documentations to read.table?
 
-The reason for this is because `read.csv` is actually a short cut 
-for `read.table("file.csv", sep = ",")`. You can see in the help 
-documentation that there are several additional variations of 
-`read.table`, such as `read.csv2` to read tables separated by `;` 
-and `read.delim` to read in tables separated by `\t` (tabs). If you know how your table is separated, you can use one of the provided short cuts, 
+The reason for this is because `read.csv` is actually a short cut
+for `read.table("file.csv", sep = ",")`. You can see in the help
+documentation that there are several additional variations of
+`read.table`, such as `read.csv2` to read tables separated by `;`
+and `read.delim` to read in tables separated by `\t` (tabs). If you know how your table is separated, you can use one of the provided short cuts,
 but case you run into an unconventional separator you are now equipt with the knowledge to define it in the `sep = ` arugument of `read.table`!
 
 
@@ -233,6 +233,43 @@ Ok, thats a lot up unpack! Some things to notice.
 - Each variable (column) has a name (e.g. `sample_id`). This is followed
   by the object mode (e.g. chr, int, etc.). Notice that before each
   variable name there is a `$` - this will be important later.
+
+
+
+  :::::::::::::::::::::::::::::::::::::::  challenge
+
+  ## Exercise: Revisiting modes and classess
+
+  Remeber when we said mode and class are sometimes different? If you do, here
+  is a chance to check. What happens when you try the following?
+
+  1. `mode(variants)`
+  2. `class(variants)`
+
+  :::::::::::::::  solution
+
+  ## Solution
+
+
+
+  ```{r, purl=FALSE}
+  mode(variants)
+  ```
+
+
+
+  ```{r, purl=FALSE}
+  class(variants)
+  ```
+
+  This result makes sense because mode (which deals with how an object is stored)
+  is treated as a **list** in R. A data frame is in some sense a "fancy" list.
+  However, data fames do have some specific properties so they have their own
+  class (**data.frame**) which is useful for functions (and programmers) to know.
+  :::::::::::::::::::::::::
+
+  ::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 ## Introducing Factors
 
@@ -860,5 +897,3 @@ write.csv(Ecoli_metadata, file = "exercise_solution.csv")
 - Base R has many useful functions for manipulating your data, but all of R's capabilities are greatly enhanced by software packages developed by the community
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
