@@ -255,16 +255,42 @@ longer exists.
 Error: object 'gene_name' not found
 ```
 
-## Understanding object data types (modes)
+## Understanding object data types (classes and modes)
 
-In R, **every object has two properties**:
+In R, **every object has several properties**:
 
 - **Length**: How many distinct values are held in that object
 - **Mode**: What is the classification (type) of that object.
+- **Class**: A property assigned to an object that determines how a function
+  will operate on it.
 
 We will get to the "length" property later in the lesson. The **"mode" property**
-**corresponds to the type of data an object represents**. The most common modes
-you will encounter in R are:
+**corresponds to the type of data an object represents** and the **"class" property determines how functions will work with that object.**
+
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Tip: Classess vs. modes
+
+The difference between modes and classes is a bit **confusing** and the subject of
+several [online discussions](https://stackoverflow.com/questions/35445112/what-is-the-difference-between-mode-and-class-in-r).
+Often, these terms are used interchangeably. Do you really need to know
+the difference?
+
+Well, perhaps. This section is important for you to have a better understanding
+of how R works and how to write usable code. However, you might not come across
+a situation where the difference is crucial while you are taking your first steps
+in learning R. However, the overarching concept—**that objects in R have these properties and that you can use functions to check or change them**—is very important!
+
+In this lesson we will mostly stick to **mode** but we will throw in a few
+examples of the `class()` and `typeof()` so you can see some examples of where
+it may make a difference.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+The most common modes you will encounter in R are:
 
 | Mode (abbreviation) | Type of data                                                                                                                                                                                                                                |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -279,9 +305,9 @@ Data types are familiar in many programming languages, but also in natural
 language where we refer to them as the parts of speech, e.g. nouns, verbs,
 adverbs, etc. Once you know if a word - perhaps an unfamiliar one - is a noun,
 you can probably guess you can count it and make it plural if there is more than
-one (e.g. 1 [Tuatara](https://en.wikipedia.org/wiki/Tuatara), or 2 Tuataras). If
+one (e.g., 1 [Tuatara](https://en.wikipedia.org/wiki/Tuatara), or 2 Tuataras). If
 something is a adjective, you can usually change it into an adverb by adding
-"-ly" (e.g. [jejune](https://www.merriam-webster.com/dictionary/jejune) vs.
+"-ly" (e.g., [jejune](https://www.merriam-webster.com/dictionary/jejune) vs.
 jejunely). Depending on the context, you may need to decide if a word is in one
 category or another (e.g "cut" may be a noun when it's on your finger, or a verb
 when you are preparing vegetables). These concepts have important analogies when
@@ -353,6 +379,69 @@ Error in eval(expr, envir, enclos): object 'pilot' not found
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+
+## Exercise: Create objects and check their class using "class"
+
+Using the objects created in the previous challenge, use the `class()` function
+to check their classes.
+
+:::::::::::::::  solution
+
+## Solution
+
+
+
+
+
+```r
+class(chromosome_name)
+```
+
+```{.output}
+[1] "character"
+```
+
+```r
+class(od_600_value)
+```
+
+```{.output}
+[1] "numeric"
+```
+
+```r
+class(chr_position)
+```
+
+```{.output}
+[1] "character"
+```
+
+```r
+class(spock)
+```
+
+```{.output}
+[1] "logical"
+```
+
+
+```r
+class(pilot)
+```
+
+```{.error}
+Error in eval(expr, envir, enclos): object 'pilot' not found
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Notice that in the two challenges, `mode()` and `class()` return the same results. This time...
+
 Notice from the solution that even if a series of numbers is given as a value
 R will consider them to be in the "character" mode if they are enclosed as
 single or double quotes. Also, notice that you cannot take a string of alphanumeric
@@ -367,6 +456,16 @@ called `pilot` that was the **name** "Earhart", we need to enclose
 ```r
 pilot <- "Earhart"
 mode(pilot)
+```
+
+```{.output}
+[1] "character"
+```
+
+
+```r
+pilot <- "Earhart"
+typeof(pilot)
 ```
 
 ```{.output}

@@ -300,6 +300,53 @@ Ok, thats a lot up unpack! Some things to notice.
   by the object mode (e.g. chr, int, etc.). Notice that before each
   variable name there is a `$` - this will be important later.
 
+
+
+  :::::::::::::::::::::::::::::::::::::::  challenge
+
+  ## Exercise: Revisiting modes and classess
+
+  Remeber when we said mode and class are sometimes different? If you do, here
+  is a chance to check. What happens when you try the following?
+
+  1. `mode(variants)`
+  2. `class(variants)`
+
+  :::::::::::::::  solution
+
+  ## Solution
+
+
+
+  
+  ```r
+  mode(variants)
+  ```
+  
+  ```{.output}
+  [1] "list"
+  ```
+
+
+
+  
+  ```r
+  class(variants)
+  ```
+  
+  ```{.output}
+  [1] "data.frame"
+  ```
+
+  This result makes sense because `mode()` (which deals with how an object is stored)
+  tells us that `variants` is treated as a **list** in R. A data frame is in some sense a "fancy" list.
+  However, data fames do have some specific properties beyond that of a basic list, so they have their own
+  class (**data.frame**), which is important for functions (and programmers) to know.
+  :::::::::::::::::::::::::
+
+  ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
 ## Introducing Factors
 
 Factors are the final major data structure we will introduce in our R genomics
@@ -442,7 +489,7 @@ possible SNP we could generate a plot:
 plot(factor_snps)
 ```
 
-<img src="fig/03-basics-factors-dataframes-rendered-unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
+<img src="fig/03-basics-factors-dataframes-rendered-unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
 
 This isn't a particularly pretty example of a plot but it works. We'll be
 learning much more about creating nice, publication-quality graphics later in
@@ -479,7 +526,7 @@ Now we see our plot has be reordered:
 plot(ordered_factor_snps)
 ```
 
-<img src="fig/03-basics-factors-dataframes-rendered-unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
+<img src="fig/03-basics-factors-dataframes-rendered-unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
 
 Factors come in handy in many places when using R. Even using more
 sophisticated plotting packages such as ggplot2 will sometimes require you
@@ -512,7 +559,7 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 5.5 milliseconds.
+Successfully installed 1 package in 5.4 milliseconds.
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -1397,5 +1444,3 @@ write.csv(Ecoli_metadata, file = "exercise_solution.csv")
 - Base R has many useful functions for manipulating your data, but all of R's capabilities are greatly enhanced by software packages developed by the community
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
