@@ -23,9 +23,6 @@ source: Rmd
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-```{r, include=FALSE}
-```
-
 ## "The fantastic world of R awaits you" OR "Nobody wants to learn how to use R"
 
 Before we begin this lesson, we want you to be clear on the goal of the workshop
