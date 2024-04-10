@@ -214,7 +214,7 @@ new data frame using the `data.frame()` function.
 ```{r, purl=FALSE}
 ## put the first three columns of variants into a new data frame called subset
 
-subset<-data.frame(variants[,c(1:3,6)])
+subset <- data.frame(variants[, c(1:3, 6)])
 ```
 
 Now, let's use the `str()` (structure) function to look a little more closely
@@ -263,7 +263,7 @@ single-nuleotide alleles (SNPs). We can use some of the vector indexing skills
 from the last episode.
 
 ```{r, purl=FALSE}
-snps <- c(alt_alleles[alt_alleles=="A"],
+snps <- c(alt_alleles[alt_alleles == "A"],
   alt_alleles[alt_alleles=="T"],
   alt_alleles[alt_alleles=="G"],
   alt_alleles[alt_alleles=="C"])
@@ -442,19 +442,19 @@ l. `variants[variants$REF == "A",]`
 a.
 
 ```{r}
-variants[1,1]
+variants[1, 1]
 ```
 
 b.
 
 ```{r}
-variants[2,4]
+variants[2, 4]
 ```
 
 c.
 
 ```{r}
-variants[801,29]
+variants[801, 29]
 ```
 
 d.
@@ -476,23 +476,23 @@ head(variants[-1, ])
 f.
 
 ```{r}
-variants[1:4,1]
+variants[1:4, 1]
 ```
 
 g.
 
 ```{r}
-variants[1:10,c("REF","ALT")]
+variants[1:10, c("REF", "ALT")]
 ```
 
 h.
 
 ```{r, echo=TRUE, eval=FALSE}
-variants[,c("sample_id")]
+variants[, c("sample_id")]
 ```
 
 ```{r, echo=FALSE, eval=TRUE}
-head(variants[,c("sample_id")])
+head(variants[, c("sample_id")])
 ```
 
 i.
@@ -520,11 +520,11 @@ head(variants$sample_id)
 l.
 
 ```{r, echo=TRUE, eval=FALSE}
-variants[variants$REF == "A",]
+variants[variants$REF == "A", ]
 ```
 
 ```{r, echo=FALSE, eval=TRUE}
-head(variants[variants$REF == "A",])
+head(variants[variants$REF == "A", ])
 ```
 
 :::::::::::::::::::::::::
@@ -547,7 +547,7 @@ them to a new object name:
 ```{r, purl=FALSE}
 # create a new data frame containing only observations from SRR2584863
 
-SRR2584863_variants <- variants[variants$sample_id == "SRR2584863",]
+SRR2584863_variants <- variants[variants$sample_id == "SRR2584863", ]
 
 # check the dimension of the data frame
 
@@ -842,7 +842,7 @@ H) Save the edited Ecoli\_metadata data frame as "exercise\_solution.csv" in you
 dim(Ecoli_metadata)
 levels(as.factor(Ecoli_metadata$cit))
 table(as.factor(Ecoli_metadata$cit))
-Ecoli_metadata[7,7]
+Ecoli_metadata[7, 7]
 median(Ecoli_metadata$genome_size)
 colnames(Ecoli_metadata)[colnames(Ecoli_metadata) == "sample"] <- "sample_id"
 Ecoli_metadata$genome_size_bp <- Ecoli_metadata$genome_size * 1000000
