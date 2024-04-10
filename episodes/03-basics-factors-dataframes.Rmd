@@ -243,8 +243,9 @@ categorical and continuous variables are usually treated differently. Sometimes
 you may want to have data treated as a factor, but in other cases, this may be
 undesirable.
 
-Let's see the value of treating some of which are categorical in nature as
-factors. Let's take a look at just the alternate alleles
+Let's explore the value of treating some vectors that are categorical in nature as
+factors. To do this we'll take a look at just the alternate alleles. We can use the `$` operator 
+to access or extract a column by its name in data frames (or to extract objects within named lists).
 
 ```{r, purl=FALSE}
 ## extract the "ALT" column to a new object
