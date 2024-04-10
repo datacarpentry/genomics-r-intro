@@ -151,7 +151,7 @@ for `read.table("file.csv", sep = ",")`. You can see in the help
 documentation that there are several additional variations of 
 `read.table`, such as `read.csv2` to read tables separated by `;` 
 and `read.delim` to read in tables separated by `\t` (tabs). If you know how your table is separated, you can use one of the provided short cuts, 
-but case you run into an unconventional separator you are now equipt with the knowledge to define it in the `sep = ` arugument of `read.table`!
+but case you run into an unconventional separator you are now equipped with the knowledge to define it in the `sep = ` argument of `read.table`!
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -239,7 +239,7 @@ Ok, thats a lot up unpack! Some things to notice.
 Factors are the final major data structure we will introduce in our R genomics
 lessons. Factors can be thought of as vectors which are specialized for
 categorical data. Given R's specialization for statistics, this make sense since
-categorial and continuous variables are usually treated differently. Sometimes
+categorical and continuous variables are usually treated differently. Sometimes
 you may want to have data treated as a factor, but in other cases, this may be
 undesirable.
 
@@ -259,7 +259,7 @@ head(alt_alleles)
 ```
 
 There are 801 alleles (one for each row). To simplify, lets look at just the
-single-nuleotide alleles (SNPs). We can use some of the vector indexing skills
+single-nucleotide alleles (SNPs). We can use some of the vector indexing skills
 from the last episode.
 
 ```{r, purl=FALSE}
