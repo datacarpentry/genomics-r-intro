@@ -360,7 +360,7 @@ can be added, multiplied, divided, etc. R provides several mathematical
 These can be used with literal numbers:
 
 ```{r, purl=FALSE}
-(1 + (5 ** 0.5))/2
+(1 + (5 ** 0.5)) / 2
 ```
 
 and importantly, can be used on any object that evaluates to (i.e. interpreted
@@ -390,7 +390,7 @@ functions. Hint: remember the `round()` function can take 2 arguments.
 ## Solution
 
 ```{r, purl=FALSE}
-round((1 + sqrt(5))/2, digits = 3)
+round((1 + sqrt(5)) / 2, digits = 3)
 ```
 
 Notice that you can place one function inside of another.
@@ -485,7 +485,7 @@ Also, several of these subsetting expressions can be combined:
 ```{r, purl=FALSE}
 # get the 1st through the 3rd value, and 4th value in the snp vector
 # yes, this is a little silly in a vector of only 4 values.
-snps[c(1:3,4)]
+snps[c(1:3, 4)]
 ```
 
 ## Adding to, removing, or replacing values in existing vectors
@@ -522,7 +522,7 @@ snp_genes
 We can also explicitly rename or add a value to our index using double bracket notation:
 
 ```{r, purl=FALSE}
-snp_genes[6]<- "APOA5"
+snp_genes[6] <- "APOA5"
 snp_genes
 ```
 
