@@ -181,7 +181,7 @@ you have the `variants` object, listed as 801 obs. (observations/rows)
 of 29 variables (columns). Double-clicking on the name of the object will open
 a view of the data in a new tab.
 
-<img src="fig/rstudio_dataframeview.png" alt="rstudio data frame view" style="width: 1000px;"/>
+![RStudio data frame view]("fig/rstudio_dataframeview.png")
 
 ## Summarizing, subsetting, and determining the structure of a data frame.
 
@@ -512,7 +512,7 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 5.2 milliseconds.
+Successfully installed 1 package in 5.5 milliseconds.
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -1263,12 +1263,12 @@ First, in the RStudio menu go to **File**, select **Import Dataset**, and
 choose **From Excel...** (notice there are several other options you can
 explore).
 
-<img src="fig/rstudio_import_menu.png " alt="rstudio import menu" style="width: 600px;"/>
+![RStudio import menu]("fig/rstudio_import_menu.png")
 
 Next, under **File/Url:** click the <KBD>Browse</KBD> button and navigate to the **Ecoli\_metadata.xlsx** file located at `/home/dcuser/dc_sample_data/R`.
 You should now see a preview of the data to be imported:
 
-<img src="fig/rstudio_import_screen.png " alt="rstudio import screen" style="width: 1200px;"/>
+![RStudio import screen]("fig/rstudio_import_screen.png")
 
 Notice that you have the option to change the data type of each variable by
 clicking arrow (drop-down menu) next to each column title. Under **Import
