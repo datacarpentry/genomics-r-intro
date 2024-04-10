@@ -2804,7 +2804,7 @@ from FASTQ files.</li>
 </div>
 </section></section><section id="aio-03-basics-factors-dataframes"><p>Content from <a href="03-basics-factors-dataframes.html">R Basics continued - factors and data frames</a></p>
 <hr>
-<p>Last updated on 2024-04-04 |
+<p>Last updated on 2024-04-10 |
         
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/03-basics-factors-dataframes.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2945,7 +2945,7 @@ numbers used commas for decimal separation (i.e. 1,00)?</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: upper-alpha">
 <li><p>The <code>read.csv()</code> function has the argument ‘header’
@@ -2985,8 +2985,8 @@ variations of <code>read.table</code>, such as <code>read.csv2</code> to
 read tables separated by <code>;</code> and <code>read.delim</code> to
 read in tables separated by <code>\t</code> (tabs). If you know how your
 table is separated, you can use one of the provided short cuts, but case
-you run into an unconventional separator you are now equipt with the
-knowledge to define it in the <code>sep =</code> arugument of
+you run into an unconventional separator you are now equipped with the
+knowledge to define it in the <code>sep =</code> argument of
 <code>read.table</code>!</p>
 </div>
 </div>
@@ -3108,7 +3108,7 @@ function.</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## put the first three columns of variants into a new data frame called subset</span></span>
 <span></span>
-<span><span class="va">subset</span><span class="op">&lt;-</span><span class="fu">data.frame</span><span class="op">(</span><span class="va">variants</span><span class="op">[</span>,<span class="fu">c</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="fl">6</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre>
+<span><span class="va">subset</span> <span class="op">&lt;-</span> <span class="fu">data.frame</span><span class="op">(</span><span class="va">variants</span><span class="op">[</span>, <span class="fu">c</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">6</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre>
 </div>
 <p>Now, let’s use the <code>str()</code> (structure) function to look a
 little more closely at how data frames work:</p>
@@ -3144,11 +3144,14 @@ important later.</li>
 <p>Factors are the final major data structure we will introduce in our R
 genomics lessons. Factors can be thought of as vectors which are
 specialized for categorical data. Given R’s specialization for
-statistics, this make sense since categorial and continuous variables
+statistics, this make sense since categorical and continuous variables
 are usually treated differently. Sometimes you may want to have data
 treated as a factor, but in other cases, this may be undesirable.</p>
-<p>Let’s see the value of treating some of which are categorical in
-nature as factors. Let’s take a look at just the alternate alleles</p>
+<p>Let’s explore the value of treating some vectors that are categorical
+in nature as factors. To do this we’ll take a look at just the alternate
+alleles. We can use the <code>$</code> operator to access or extract a
+column by its name in data frames (or to extract objects within named
+lists).</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3171,13 +3174,13 @@ nature as factors. Let’s take a look at just the alternate alleles</p>
 <pre class="output" tabindex="0"><code>[1] "G"         "T"         "T"         "CTTTTTTTT" "CCGCGC"    "T"        </code></pre>
 </div>
 <p>There are 801 alleles (one for each row). To simplify, lets look at
-just the single-nuleotide alleles (SNPs). We can use some of the vector
+just the single-nucleotide alleles (SNPs). We can use some of the vector
 indexing skills from the last episode.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">snps</span> <span class="op">&lt;-</span> <span class="fu">c</span><span class="op">(</span><span class="va">alt_alleles</span><span class="op">[</span><span class="va">alt_alleles</span><span class="op">==</span><span class="st">"A"</span><span class="op">]</span>,</span>
+<code class="sourceCode R"><span><span class="va">snps</span> <span class="op">&lt;-</span> <span class="fu">c</span><span class="op">(</span><span class="va">alt_alleles</span><span class="op">[</span><span class="va">alt_alleles</span> <span class="op">==</span> <span class="st">"A"</span><span class="op">]</span>,</span>
 <span>  <span class="va">alt_alleles</span><span class="op">[</span><span class="va">alt_alleles</span><span class="op">==</span><span class="st">"T"</span><span class="op">]</span>,</span>
 <span>  <span class="va">alt_alleles</span><span class="op">[</span><span class="va">alt_alleles</span><span class="op">==</span><span class="st">"G"</span><span class="op">]</span>,</span>
 <span>  <span class="va">alt_alleles</span><span class="op">[</span><span class="va">alt_alleles</span><span class="op">==</span><span class="st">"C"</span><span class="op">]</span><span class="op">)</span></span></code></pre>
@@ -3420,7 +3423,7 @@ what they return</strong></p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <ol style="list-style-type: lower-alpha"><li>
 </li></ol>
@@ -3428,7 +3431,7 @@ what they return</strong></p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">]</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3441,7 +3444,7 @@ what they return</strong></p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">4</span><span class="op">]</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">]</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3454,7 +3457,7 @@ what they return</strong></p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span><span class="fl">801</span>,<span class="fl">29</span><span class="op">]</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span><span class="fl">801</span>, <span class="fl">29</span><span class="op">]</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3527,7 +3530,7 @@ what they return</strong></p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>,<span class="fl">1</span><span class="op">]</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">1</span><span class="op">]</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3540,7 +3543,7 @@ what they return</strong></p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fu">c</span><span class="op">(</span><span class="st">"REF"</span>,<span class="st">"ALT"</span><span class="op">)</span><span class="op">]</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fu">c</span><span class="op">(</span><span class="st">"REF"</span>, <span class="st">"ALT"</span><span class="op">)</span><span class="op">]</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3574,7 +3577,7 @@ what they return</strong></p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span>,<span class="fu">c</span><span class="op">(</span><span class="st">"sample_id"</span><span class="op">)</span><span class="op">]</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span>, <span class="fu">c</span><span class="op">(</span><span class="st">"sample_id"</span><span class="op">)</span><span class="op">]</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3682,7 +3685,7 @@ what they return</strong></p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span><span class="va">variants</span><span class="op">$</span><span class="va">REF</span> <span class="op">==</span> <span class="st">"A"</span>,<span class="op">]</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">variants</span><span class="op">[</span><span class="va">variants</span><span class="op">$</span><span class="va">REF</span> <span class="op">==</span> <span class="st">"A"</span>, <span class="op">]</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3750,7 +3753,7 @@ to a new object name:</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create a new data frame containing only observations from SRR2584863</span></span>
 <span></span>
-<span><span class="va">SRR2584863_variants</span> <span class="op">&lt;-</span> <span class="va">variants</span><span class="op">[</span><span class="va">variants</span><span class="op">$</span><span class="va">sample_id</span> <span class="op">==</span> <span class="st">"SRR2584863"</span>,<span class="op">]</span></span>
+<span><span class="va">SRR2584863_variants</span> <span class="op">&lt;-</span> <span class="va">variants</span><span class="op">[</span><span class="va">variants</span><span class="op">$</span><span class="va">sample_id</span> <span class="op">==</span> <span class="st">"SRR2584863"</span>, <span class="op">]</span></span>
 <span></span>
 <span><span class="co"># check the dimension of the data frame</span></span>
 <span></span>
@@ -4132,7 +4135,7 @@ filtered depth (“DP”).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb80">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4284,7 +4287,7 @@ genome_size multiplied by 1,000,000</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb87">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4325,7 +4328,7 @@ genome_size multiplied by 1,000,000</p></li>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Ecoli_metadata</span><span class="op">[</span><span class="fl">7</span>,<span class="fl">7</span><span class="op">]</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">Ecoli_metadata</span><span class="op">[</span><span class="fl">7</span>, <span class="fl">7</span><span class="op">]</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -7062,8 +7065,8 @@ resources on how to search effectively</li>
   "url": "https://datacarpentry.github.io/genomics-r-intro/aio.html",
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/aio.html",
   "dateCreated": "2018-03-12",
-  "dateModified": "2024-04-09",
-  "datePublished": "2024-04-09"
+  "dateModified": "2024-04-10",
+  "datePublished": "2024-04-10"
 }
 
   </script><script>
