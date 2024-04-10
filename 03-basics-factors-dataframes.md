@@ -150,7 +150,7 @@ for `read.table("file.csv", sep = ",")`. You can see in the help
 documentation that there are several additional variations of 
 `read.table`, such as `read.csv2` to read tables separated by `;` 
 and `read.delim` to read in tables separated by `\t` (tabs). If you know how your table is separated, you can use one of the provided short cuts, 
-but case you run into an unconventional separator you are now equipt with the knowledge to define it in the `sep = ` arugument of `read.table`!
+but case you run into an unconventional separator you are now equipped with the knowledge to define it in the `sep = ` argument of `read.table`!
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -271,7 +271,7 @@ new data frame using the `data.frame()` function.
 ```r
 ## put the first three columns of variants into a new data frame called subset
 
-subset<-data.frame(variants[,c(1:3,6)])
+subset <- data.frame(variants[, c(1:3, 6)])
 ```
 
 Now, let's use the `str()` (structure) function to look a little more closely
@@ -305,12 +305,13 @@ Ok, thats a lot up unpack! Some things to notice.
 Factors are the final major data structure we will introduce in our R genomics
 lessons. Factors can be thought of as vectors which are specialized for
 categorical data. Given R's specialization for statistics, this make sense since
-categorial and continuous variables are usually treated differently. Sometimes
+categorical and continuous variables are usually treated differently. Sometimes
 you may want to have data treated as a factor, but in other cases, this may be
 undesirable.
 
-Let's see the value of treating some of which are categorical in nature as
-factors. Let's take a look at just the alternate alleles
+Let's explore the value of treating some vectors that are categorical in nature as
+factors. To do this we'll take a look at just the alternate alleles. We can use the `$` operator 
+to access or extract a column by its name in data frames (or to extract objects within named lists).
 
 
 ```r
@@ -331,12 +332,12 @@ head(alt_alleles)
 ```
 
 There are 801 alleles (one for each row). To simplify, lets look at just the
-single-nuleotide alleles (SNPs). We can use some of the vector indexing skills
+single-nucleotide alleles (SNPs). We can use some of the vector indexing skills
 from the last episode.
 
 
 ```r
-snps <- c(alt_alleles[alt_alleles=="A"],
+snps <- c(alt_alleles[alt_alleles == "A"],
   alt_alleles[alt_alleles=="T"],
   alt_alleles[alt_alleles=="G"],
   alt_alleles[alt_alleles=="C"])
@@ -563,7 +564,7 @@ a.
 
 
 ```r
-variants[1,1]
+variants[1, 1]
 ```
 
 ```{.output}
@@ -574,7 +575,7 @@ b.
 
 
 ```r
-variants[2,4]
+variants[2, 4]
 ```
 
 ```{.output}
@@ -585,7 +586,7 @@ c.
 
 
 ```r
-variants[801,29]
+variants[801, 29]
 ```
 
 ```{.output}
@@ -653,7 +654,7 @@ f.
 
 
 ```r
-variants[1:4,1]
+variants[1:4, 1]
 ```
 
 ```{.output}
@@ -664,7 +665,7 @@ g.
 
 
 ```r
-variants[1:10,c("REF","ALT")]
+variants[1:10, c("REF", "ALT")]
 ```
 
 ```{.output}
@@ -696,7 +697,7 @@ h.
 
 
 ```r
-variants[,c("sample_id")]
+variants[, c("sample_id")]
 ```
 
 
@@ -798,7 +799,7 @@ l.
 
 
 ```r
-variants[variants$REF == "A",]
+variants[variants$REF == "A", ]
 ```
 
 
@@ -861,7 +862,7 @@ them to a new object name:
 ```r
 # create a new data frame containing only observations from SRR2584863
 
-SRR2584863_variants <- variants[variants$sample_id == "SRR2584863",]
+SRR2584863_variants <- variants[variants$sample_id == "SRR2584863", ]
 
 # check the dimension of the data frame
 
@@ -1361,7 +1362,7 @@ table(as.factor(Ecoli_metadata$cit))
 ```
 
 ```r
-Ecoli_metadata[7,7]
+Ecoli_metadata[7, 7]
 ```
 
 ```{.output}
