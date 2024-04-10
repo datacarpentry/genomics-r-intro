@@ -269,7 +269,7 @@ We will get to the "length" property later in the lesson. The **"mode" property*
 
 ## Tip: Classess vs. modes
 
-The difference between modes and classess is a bit **confusing** and the subject of
+The difference between modes and classes is a bit **confusing** and the subject of
 several [online discussions](https://stackoverflow.com/questions/35445112/what-is-the-difference-between-mode-and-class-in-r).
 Often, these terms are used interchangeably. Do you really need to know
 the difference?
@@ -302,7 +302,7 @@ Data types are familiar in many programming languages, but also in natural
 language where we refer to them as the parts of speech, e.g. nouns, verbs,
 adverbs, etc. Once you know if a word - perhaps an unfamiliar one - is a noun,
 you can probably guess you can count it and make it plural if there is more than
-one (e.g, 1 [Tuatara](https://en.wikipedia.org/wiki/Tuatara), or 2 Tuataras). If
+one (e.g., 1 [Tuatara](https://en.wikipedia.org/wiki/Tuatara), or 2 Tuataras). If
 something is a adjective, you can usually change it into an adverb by adding
 "-ly" (e.g., [jejune](https://www.merriam-webster.com/dictionary/jejune) vs.
 jejunely). Depending on the context, you may need to decide if a word is in one
@@ -387,7 +387,7 @@ class(pilot)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Notice that in the two challenges, `mode()` and `class()` return the same results. This time.
+Notice that in the two challenges, `mode()` and `class()` return the same results. This time...
 
 Notice from the solution that even if a series of numbers is given as a value
 R will consider them to be in the "character" mode if they are enclosed as
