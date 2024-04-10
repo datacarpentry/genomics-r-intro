@@ -172,7 +172,7 @@ to use R”</a></li>
 <li><a href="#creating-objects-in-r">Creating objects in R</a></li>
 <li><a href="#naming-objects-in-r">Naming objects in R</a></li>
 <li><a href="#reassigning-object-names-or-deleting-objects">Reassigning object names or deleting objects</a></li>
-<li><a href="#understanding-object-data-types-modes">Understanding object data types (modes)</a></li>
+<li><a href="#understanding-object-data-types-classes-and-modes">Understanding object data types (classes and modes)</a></li>
 <li><a href="#mathematical-and-functional-operations-on-objects">Mathematical and functional operations on objects</a></li>
 <li><a href="#vectors">Vectors</a></li>
 <li><a href="#creating-and-subsetting-vectors">Creating and subsetting vectors</a></li>
@@ -297,7 +297,7 @@ to use R”</a></li>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>R Basics</h1>
-        <p>Last updated on 2024-04-04 |
+        <p>Last updated on 2024-04-10 |
         
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/01-r-basics.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -497,7 +497,7 @@ a diploid human cell</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Here as some possible answers to the challenge:</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -603,19 +603,48 @@ the object no longer exists.</p>
 </h3>
 <pre class="error" tabindex="0"><code>Error: object 'gene_name' not found</code></pre>
 </div>
-</section><section id="understanding-object-data-types-modes"><h2 class="section-heading">Understanding object data types (modes)<a class="anchor" aria-label="anchor" href="#understanding-object-data-types-modes"></a>
+</section><section id="understanding-object-data-types-classes-and-modes"><h2 class="section-heading">Understanding object data types (classes and modes)<a class="anchor" aria-label="anchor" href="#understanding-object-data-types-classes-and-modes"></a>
 </h2>
-<hr class="half-width"><p>In R, <strong>every object has two properties</strong>:</p>
+<hr class="half-width"><p>In R, <strong>every object has several properties</strong>:</p>
 <ul><li>
 <strong>Length</strong>: How many distinct values are held in that
 object</li>
 <li>
 <strong>Mode</strong>: What is the classification (type) of that
 object.</li>
+<li>
+<strong>Class</strong>: A property assigned to an object that
+determines how a function will operate on it.</li>
 </ul><p>We will get to the “length” property later in the lesson. The
 <strong>“mode” property</strong> <strong>corresponds to the type of data
-an object represents</strong>. The most common modes you will encounter
-in R are:</p>
+an object represents</strong> and the <strong>“class” property
+determines how functions will work with that object.</strong></p>
+<div id="tip-classess-vs.-modes" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="tip-classess-vs.-modes" class="callout-inner">
+<h3 class="callout-title">Tip: Classess vs. modes<a class="anchor" aria-label="anchor" href="#tip-classess-vs.-modes"></a>
+</h3>
+<div class="callout-content">
+<p>The difference between modes and classes is a bit
+<strong>confusing</strong> and the subject of several <a href="https://stackoverflow.com/questions/35445112/what-is-the-difference-between-mode-and-class-in-r" class="external-link">online
+discussions</a>. Often, these terms are used interchangeably. Do you
+really need to know the difference?</p>
+<p>Well, perhaps. This section is important for you to have a better
+understanding of how R works and how to write usable code. However, you
+might not come across a situation where the difference is crucial while
+you are taking your first steps in learning R. However, the overarching
+concept—<strong>that objects in R have these properties and that you can
+use functions to check or change them</strong>—is very important!</p>
+<p>In this lesson we will mostly stick to <strong>mode</strong> but we
+will throw in a few examples of the <code>class()</code> and
+<code>typeof()</code> so you can see some examples of where it may make
+a difference.</p>
+</div>
+</div>
+</div>
+<p>The most common modes you will encounter in R are:</p>
 <table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr class="header"><th>Mode (abbreviation)</th>
 <th>Type of data</th>
 </tr></thead><tbody><tr class="odd"><td>Numeric (num)</td>
@@ -633,9 +662,9 @@ are the three we will work with in this lesson.</p>
 natural language where we refer to them as the parts of speech,
 e.g. nouns, verbs, adverbs, etc. Once you know if a word - perhaps an
 unfamiliar one - is a noun, you can probably guess you can count it and
-make it plural if there is more than one (e.g. 1 <a href="https://en.wikipedia.org/wiki/Tuatara" class="external-link">Tuatara</a>, or 2
+make it plural if there is more than one (e.g., 1 <a href="https://en.wikipedia.org/wiki/Tuatara" class="external-link">Tuatara</a>, or 2
 Tuataras). If something is a adjective, you can usually change it into
-an adverb by adding “-ly” (e.g. <a href="https://www.merriam-webster.com/dictionary/jejune" class="external-link">jejune</a> vs.
+an adverb by adding “-ly” (e.g., <a href="https://www.merriam-webster.com/dictionary/jejune" class="external-link">jejune</a> vs.
 jejunely). Depending on the context, you may need to decide if a word is
 in one category or another (e.g “cut” may be a noun when it’s on your
 finger, or a verb when you are preparing vegetables). These concepts
@@ -665,7 +694,7 @@ before you look at the solution</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -726,6 +755,88 @@ before you look at the solution</p>
 </div>
 </div>
 </div>
+<div id="exercise-create-objects-and-check-their-class-using-class" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="exercise-create-objects-and-check-their-class-using-class" class="callout-inner">
+<h3 class="callout-title">Exercise: Create objects and check their class
+using “class”<a class="anchor" aria-label="anchor" href="#exercise-create-objects-and-check-their-class-using-class"></a>
+</h3>
+<div class="callout-content">
+<p>Using the objects created in the previous challenge, use the
+<code>class()</code> function to check their classes.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">class</span><span class="op">(</span><span class="va">chromosome_name</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[1] "character"</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">class</span><span class="op">(</span><span class="va">od_600_value</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[1] "numeric"</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">class</span><span class="op">(</span><span class="va">chr_position</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[1] "character"</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb23">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">class</span><span class="op">(</span><span class="va">spock</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[1] "logical"</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb25">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">class</span><span class="op">(</span><span class="va">pilot</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">ERROR<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="error" tabindex="0"><code>Error in eval(expr, envir, enclos): object 'pilot' not found</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Notice that in the two challenges, <code>mode()</code> and
+<code>class()</code> return the same results. This time…</p>
 <p>Notice from the solution that even if a series of numbers is given as
 a value R will consider them to be in the “character” mode if they are
 enclosed as single or double quotes. Also, notice that you cannot take a
@@ -737,12 +848,24 @@ made. If <code>Earhart</code> did exist, then the mode of
 was originally. If we want to create an object called <code>pilot</code>
 that was the <strong>name</strong> “Earhart”, we need to enclose
 <code>Earhart</code> in quotation marks.</p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pilot</span> <span class="op">&lt;-</span> <span class="st">"Earhart"</span></span>
 <span><span class="fu">mode</span><span class="op">(</span><span class="va">pilot</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[1] "character"</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb29">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pilot</span> <span class="op">&lt;-</span> <span class="st">"Earhart"</span></span>
+<span><span class="fu">typeof</span><span class="op">(</span><span class="va">pilot</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -772,7 +895,7 @@ mathematical (arithmetic) operators including:</p>
 </tr><tr class="odd"><td>a%%b</td>
 <td>modulus (returns the remainder after division)</td>
 </tr></tbody></table><p>These can be used with literal numbers:</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -785,7 +908,7 @@ mathematical (arithmetic) operators including:</p>
 </div>
 <p>and importantly, can be used on any object that evaluates to
 (i.e. interpreted by R) a numeric object:</p>
-<div class="codewrapper sourceCode" id="cb21">
+<div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -814,14 +937,14 @@ the <code>round()</code> function can take 2 arguments.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -846,7 +969,7 @@ create a vector is to use the <code>c()</code> function - the
 “concatenate” or “combine” function. Inside the function you may enter
 one or more values; for multiple values, separate each value with a
 comma:</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -859,7 +982,7 @@ comma:</p>
 <code>mode()</code> and <code>length()</code> functions respectively.
 Another useful function that gives both of these pieces of information
 is the <code>str()</code> (structure) function.</p>
-<div class="codewrapper sourceCode" id="cb26">
+<div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -871,7 +994,7 @@ is the <code>str()</code> (structure) function.</p>
 </h3>
 <pre class="output" tabindex="0"><code>[1] "character"</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb28">
+<div class="codewrapper sourceCode" id="cb40">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -882,7 +1005,7 @@ is the <code>str()</code> (structure) function.</p>
 </h3>
 <pre class="output" tabindex="0"><code>[1] 4</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb30">
+<div class="codewrapper sourceCode" id="cb42">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -900,7 +1023,7 @@ with data frames.</p>
 </section><section id="creating-and-subsetting-vectors"><h2 class="section-heading">Creating and subsetting vectors<a class="anchor" aria-label="anchor" href="#creating-and-subsetting-vectors"></a>
 </h2>
 <hr class="half-width"><p>Let’s create a few more vectors to play around with:</p>
-<div class="codewrapper sourceCode" id="cb32">
+<div class="codewrapper sourceCode" id="cb44">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -916,7 +1039,7 @@ retrieve one or more values from our vector. To do so, we use
 <strong>bracket notation</strong>. We type the name of the vector
 followed by square brackets. In those square brackets we place the index
 (e.g. a number) in that bracket as follows:</p>
-<div class="codewrapper sourceCode" id="cb33">
+<div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -931,7 +1054,7 @@ followed by square brackets. In those square brackets we place the index
 <p>In R, every item your vector is indexed, starting from the first item
 (1) through to the final number of items in your vector. You can also
 retrieve a range of numbers:</p>
-<div class="codewrapper sourceCode" id="cb35">
+<div class="codewrapper sourceCode" id="cb47">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -947,7 +1070,7 @@ retrieve a range of numbers:</p>
 <p>If you want to retrieve several (but not necessarily sequential)
 items from a vector, you pass a <strong>vector of indices</strong>; a
 vector that has the numbered positions you wish to retrieve.</p>
-<div class="codewrapper sourceCode" id="cb37">
+<div class="codewrapper sourceCode" id="cb49">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -964,7 +1087,7 @@ vector that has the numbered positions you wish to retrieve.</p>
 subsetting a vector (see <a href="https://thomasleeper.com/Rcourse/Tutorials/vectorindexing.html" class="external-link">these
 examples</a>). Also, several of these subsetting expressions can be
 combined:</p>
-<div class="codewrapper sourceCode" id="cb39">
+<div class="codewrapper sourceCode" id="cb51">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -982,7 +1105,7 @@ combined:</p>
 <hr class="half-width"><p>Once you have an existing vector, you may want to add a new item to
 it. To do so, you can use the <code>c()</code> function again to add
 your new value:</p>
-<div class="codewrapper sourceCode" id="cb41">
+<div class="codewrapper sourceCode" id="cb53">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -991,7 +1114,7 @@ your new value:</p>
 <span><span class="va">snp_genes</span> <span class="op">&lt;-</span> <span class="fu">c</span><span class="op">(</span><span class="va">snp_genes</span>, <span class="st">"CYP1A1"</span>, <span class="st">"APOA5"</span><span class="op">)</span></span></code></pre>
 </div>
 <p>We can verify that “snp_genes” contains the new gene entry</p>
-<div class="codewrapper sourceCode" id="cb42">
+<div class="codewrapper sourceCode" id="cb54">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1004,7 +1127,7 @@ your new value:</p>
 </div>
 <p>Using a negative index will return a version of a vector with that
 index’s value removed:</p>
-<div class="codewrapper sourceCode" id="cb44">
+<div class="codewrapper sourceCode" id="cb56">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1017,7 +1140,7 @@ index’s value removed:</p>
 </div>
 <p>We can remove that value from our vector by overwriting it with this
 expression:</p>
-<div class="codewrapper sourceCode" id="cb46">
+<div class="codewrapper sourceCode" id="cb58">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1031,7 +1154,7 @@ expression:</p>
 </div>
 <p>We can also explicitly rename or add a value to our index using
 double bracket notation:</p>
-<div class="codewrapper sourceCode" id="cb48">
+<div class="codewrapper sourceCode" id="cb60">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1065,12 +1188,12 @@ vector</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
-  <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <ol style="list-style-type: upper-alpha"><li>False - Vectors have both of these properties<br></li>
 <li>True<br></li>
@@ -1092,7 +1215,7 @@ on a logical evaluation or numerical comparison. For example, let’s say
 we wanted get all of the SNPs in our vector of SNP positions that were
 greater than 100,000,000. We could index using the ‘&gt;’ (greater than)
 logical operator:</p>
-<div class="codewrapper sourceCode" id="cb50">
+<div class="codewrapper sourceCode" id="cb62">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1138,7 +1261,7 @@ most common logical operators you will use in R are:</p>
 <code>snp_positions[snp_positions &gt; 100000000]</code> works can be
 better understood if you examine what the expression “snp_positions &gt;
 100000000” evaluates to:</p>
-<div class="codewrapper sourceCode" id="cb52">
+<div class="codewrapper sourceCode" id="cb64">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1152,7 +1275,7 @@ better understood if you examine what the expression “snp_positions &gt;
 <p>The output above is a logical vector, the 4th element of which is
 TRUE. When you pass a logical vector as an index, R will return the true
 values:</p>
-<div class="codewrapper sourceCode" id="cb54">
+<div class="codewrapper sourceCode" id="cb66">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1176,7 +1299,7 @@ which <strong>index</strong> (1, 2, 3, or 4) in our vector of SNP
 positions was the one that was greater than 100,000,000?</p>
 <p>We can use the <code>which()</code> function to return the indices of
 any item that evaluates as TRUE in our comparison:</p>
-<div class="codewrapper sourceCode" id="cb56">
+<div class="codewrapper sourceCode" id="cb68">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1192,7 +1315,7 @@ any item that evaluates as TRUE in our comparison:</p>
 used when our code is executed. Rather than put in a pre-determined
 value (e.g 100000000) we can use an object that can take on whatever
 value we need. So for example:</p>
-<div class="codewrapper sourceCode" id="cb58">
+<div class="codewrapper sourceCode" id="cb70">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1217,7 +1340,7 @@ values of your vector are missing (i.e. are <code>NA</code>, that stands
 for <code>not avaliable</code>). Missing data will get a more detailed
 treatment later, but the <code>is.NA()</code> function will return a
 logical vector, with TRUE for any NA value:</p>
-<div class="codewrapper sourceCode" id="cb60">
+<div class="codewrapper sourceCode" id="cb72">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1235,7 +1358,7 @@ logical vector, with TRUE for any NA value:</p>
 values) is present a vector. You can do this using the comparison
 operator <code>%in%</code>, which will return TRUE for any value in your
 collection that is in the vector you are searching:</p>
-<div class="codewrapper sourceCode" id="cb62">
+<div class="codewrapper sourceCode" id="cb74">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1294,14 +1417,14 @@ c. <code>snp_positions</code></p>
 </div>
 </div>
 </div>
-<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
-  <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6">Show me the solution</h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb64">
+<div class="codewrapper sourceCode" id="cb76">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1312,7 +1435,7 @@ c. <code>snp_positions</code></p>
 </h3>
 <pre class="output" tabindex="0"><code>[1] "character"</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb66">
+<div class="codewrapper sourceCode" id="cb78">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1323,7 +1446,7 @@ c. <code>snp_positions</code></p>
 </h3>
 <pre class="output" tabindex="0"><code>[1] "character"</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb68">
+<div class="codewrapper sourceCode" id="cb80">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1353,14 +1476,14 @@ c. To the <code>snp_positions</code> vector add: 116792991</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
-  <h4 class="accordion-header" id="headingSolution6">Show me the solution</h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7">Show me the solution</h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb70">
+<div class="codewrapper sourceCode" id="cb82">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1372,7 +1495,7 @@ c. To the <code>snp_positions</code> vector add: 116792991</p>
 </h3>
 <pre class="output" tabindex="0"><code>[1] "rs53576"   "rs1815739" "rs6152"    "rs1799971" "rs662799" </code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb72">
+<div class="codewrapper sourceCode" id="cb84">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1384,7 +1507,7 @@ c. To the <code>snp_positions</code> vector add: 116792991</p>
 </h3>
 <pre class="output" tabindex="0"><code>[1] "3"  "11" "X"  "6"  "11"</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb74">
+<div class="codewrapper sourceCode" id="cb86">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1420,14 +1543,14 @@ CYP1A1 and then<br></li>
 </ol></div>
 </div>
 </div>
-<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution8" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
-  <h4 class="accordion-header" id="headingSolution7">Show me the solution</h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
+  <h4 class="accordion-header" id="headingSolution8">Show me the solution</h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb76">
+<div class="codewrapper sourceCode" id="cb88">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1465,14 +1588,14 @@ contains:</p>
 </ul></div>
 </div>
 </div>
-<div id="accordionSolution8" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution9" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
-  <h4 class="accordion-header" id="headingSolution8">Show me the solution</h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
+  <h4 class="accordion-header" id="headingSolution9">Show me the solution</h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb78">
+<div class="codewrapper sourceCode" id="cb90">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1500,14 +1623,14 @@ contains:</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution9" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution10" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
-  <h4 class="accordion-header" id="headingSolution9">Show me the solution</h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution10" aria-expanded="false" aria-controls="collapseSolution10">
+  <h4 class="accordion-header" id="headingSolution10">Show me the solution</h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
+<div id="collapseSolution10" class="accordion-collapse collapse" data-bs-parent="#accordionSolution10" aria-labelledby="headingSolution10">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb80">
+<div class="codewrapper sourceCode" id="cb92">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1538,7 +1661,7 @@ contain data of more than one mode. Learn more about creating and using
 lists using this <a href="https://r4ds.had.co.nz/vectors.html#lists" class="external-link">nice tutorial</a>. In
 this one example, we will create a named list and show you how to
 retrieve items from the list.</p>
-<div class="codewrapper sourceCode" id="cb82">
+<div class="codewrapper sourceCode" id="cb94">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1567,7 +1690,7 @@ retrieve items from the list.</p>
 </div>
 <p>To get all the values for the <code>position</code> object in the
 list, we use the <code>$</code> notation:</p>
-<div class="codewrapper sourceCode" id="cb84">
+<div class="codewrapper sourceCode" id="cb96">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1582,7 +1705,7 @@ list, we use the <code>$</code> notation:</p>
 </div>
 <p>To get the first value in the <code>position</code> object, use the
 <code>[]</code> notation to index:</p>
-<div class="codewrapper sourceCode" id="cb86">
+<div class="codewrapper sourceCode" id="cb98">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1675,7 +1798,7 @@ data are organized in R.</li>
   "url": "https://datacarpentry.github.io/genomics-r-intro/01-r-basics.html",
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/01-r-basics.html",
   "dateCreated": "2018-03-12",
-  "dateModified": "2024-04-04",
+  "dateModified": "2024-04-10",
   "datePublished": "2024-04-10"
 }
 
