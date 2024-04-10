@@ -234,6 +234,43 @@ Ok, thats a lot up unpack! Some things to notice.
   by the object mode (e.g. chr, int, etc.). Notice that before each
   variable name there is a `$` - this will be important later.
 
+
+
+  :::::::::::::::::::::::::::::::::::::::  challenge
+
+  ## Exercise: Revisiting modes and classess
+
+  Remeber when we said mode and class are sometimes different? If you do, here
+  is a chance to check. What happens when you try the following?
+
+  1. `mode(variants)`
+  2. `class(variants)`
+
+  :::::::::::::::  solution
+
+  ## Solution
+
+
+
+  ```{r, purl=FALSE}
+  mode(variants)
+  ```
+
+
+
+  ```{r, purl=FALSE}
+  class(variants)
+  ```
+
+  This result makes sense because `mode()` (which deals with how an object is stored)
+  tells us that `variants` is treated as a **list** in R. A data frame is in some sense a "fancy" list.
+  However, data fames do have some specific properties beyond that of a basic list, so they have their own
+  class (**data.frame**), which is important for functions (and programmers) to know.
+  :::::::::::::::::::::::::
+
+  ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
 ## Introducing Factors
 
 Factors are the final major data structure we will introduce in our R genomics
@@ -861,5 +898,3 @@ write.csv(Ecoli_metadata, file = "exercise_solution.csv")
 - Base R has many useful functions for manipulating your data, but all of R's capabilities are greatly enhanced by software packages developed by the community
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
