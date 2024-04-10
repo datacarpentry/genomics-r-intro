@@ -254,7 +254,7 @@ Error: object 'gene_name' not found
 
 ## Understanding object data types (classes and modes)
 
-In R, **every objects have several properties**:
+In R, **every object has several properties**:
 
 - **Length**: How many distinct values are held in that object
 - **Mode**: What is the classification (type) of that object.
@@ -262,7 +262,7 @@ In R, **every objects have several properties**:
   will operate on it.
 
 We will get to the "length" property later in the lesson. The **"mode" property**
-**corresponds to the type of data an object represents**. and the **"class" property determines how functions will work with that object.**
+**corresponds to the type of data an object represents** and the **"class" property determines how functions will work with that object.**
 
 
 :::::::::::::::::::::::::::::::::::::::::  callout
