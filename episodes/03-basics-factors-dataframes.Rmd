@@ -262,10 +262,10 @@ Ok, thats a lot up unpack! Some things to notice.
   class(variants)
   ```
 
-  This result makes sense because mode (which deals with how an object is stored)
-  is treated as a **list** in R. A data frame is in some sense a "fancy" list.
-  However, data fames do have some specific properties so they have their own
-  class (**data.frame**) which is useful for functions (and programmers) to know.
+  This result makes sense because `mode()` (which deals with how an object is stored)
+  tells us that `variants` treated as a **list** in R. A data frame is in some sense a "fancy" list.
+  However, data fames do have some specific properties beyond that of a basic list, so they have their own
+  class (**data.frame**), which is important for functions (and programmers) to know.
   :::::::::::::::::::::::::
 
   ::::::::::::::::::::::::::::::::::::::::::::::::::
