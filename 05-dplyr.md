@@ -114,7 +114,7 @@ Now let's load our vcf .csv file using `read_csv()`:
 Similar to `str()`, which comes built into R, `glimpse()` is a `dplyr` function that (as the name suggests) gives a glimpse of the data frame.
 
 
-```{.output}
+```output
 Rows: 801
 Columns: 29
 $ sample_id     <chr> "SRR2584863", "SRR2584863", "SRR2584863", "SRR2584863", …
@@ -159,7 +159,7 @@ To select columns of a data frame, use `select()`. The first argument to this fu
 select(variants, sample_id, REF, ALT, DP)
 ```
 
-```{.output}
+```output
 # A tibble: 801 × 4
    sample_id  REF                              ALT                            DP
    <chr>      <chr>                            <chr>                       <dbl>
@@ -184,7 +184,7 @@ the variable to exclude it.
 select(variants, -CHROM)
 ```
 
-```{.output}
+```output
 # A tibble: 801 × 28
    sample_id      POS ID    REF      ALT    QUAL FILTER INDEL   IDV    IMF    DP
    <chr>        <dbl> <lgl> <chr>    <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl> <dbl>
@@ -211,7 +211,7 @@ select(variants, -CHROM)
 select(variants, ends_with("B"))
 ```
 
-```{.output}
+```output
 # A tibble: 801 × 8
       VDB   RPB   MQB   BQB   MQSB    SGB ICB   HOB  
     <dbl> <dbl> <dbl> <dbl>  <dbl>  <dbl> <lgl> <lgl>
@@ -249,7 +249,7 @@ variants_result <- select(variants_subset, -Indiv, -FILTER)
 variants_result
 ```
 
-```{.output}
+```output
 # A tibble: 801 × 7
        POS sample_id  ID    INDEL   IDV    IMF ICB  
      <dbl> <chr>      <lgl> <lgl> <dbl>  <dbl> <lgl>
@@ -280,7 +280,7 @@ variants_result <- select(variants, POS, contains("i"), -Indiv, -FILTER)
 variants_result
 ```
 
-```{.output}
+```output
 # A tibble: 801 × 7
        POS sample_id  ID    INDEL   IDV    IMF ICB  
      <dbl> <chr>      <lgl> <lgl> <dbl>  <dbl> <lgl>
@@ -308,7 +308,7 @@ To choose rows, use `filter()`:
 filter(variants, sample_id == "SRR2584863")
 ```
 
-```{.output}
+```output
 # A tibble: 25 × 29
    sample_id  CHROM        POS ID    REF   ALT    QUAL FILTER INDEL   IDV    IMF
    <chr>      <chr>      <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl>
@@ -338,7 +338,7 @@ Here are a few examples:
 filter(variants, REF %in% c("T", "G"))
 ```
 
-```{.output}
+```output
 # A tibble: 340 × 29
    sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
    <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
@@ -363,7 +363,7 @@ filter(variants, REF %in% c("T", "G"))
 filter(variants, INDEL)
 ```
 
-```{.output}
+```output
 # A tibble: 101 × 29
    sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
    <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
@@ -388,7 +388,7 @@ filter(variants, INDEL)
 filter(variants, !is.na(IDV))
 ```
 
-```{.output}
+```output
 # A tibble: 101 × 29
    sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
    <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
@@ -420,7 +420,7 @@ have a QUAL score above a certain threshold:
 filter(variants, QUAL >= 100)
 ```
 
-```{.output}
+```output
 # A tibble: 666 × 29
    sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
    <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
@@ -449,7 +449,7 @@ filter(variants, QUAL >= 100)
 filter(variants, sample_id == "SRR2584863", QUAL >= 100)
 ```
 
-```{.output}
+```output
 # A tibble: 19 × 29
    sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
    <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
@@ -482,7 +482,7 @@ filter(variants, sample_id == "SRR2584863", QUAL >= 100)
 filter(variants, sample_id == "SRR2584863", (MQ >= 50 | QUAL >= 100))
 ```
 
-```{.output}
+```output
 # A tibble: 23 × 29
    sample_id  CHROM        POS ID    REF   ALT    QUAL FILTER INDEL   IDV    IMF
    <chr>      <chr>      <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl>
@@ -521,7 +521,7 @@ Hint: to flip logical values such as TRUE to a FALSE, we can use to negation sym
 filter(variants, POS >= 1e6 & POS <= 2e6, QUAL > 200, !INDEL)
 ```
 
-```{.output}
+```output
 # A tibble: 77 × 29
    sample_id CHROM    POS ID    REF   ALT    QUAL FILTER INDEL   IDV   IMF    DP
    <chr>     <chr>  <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl> <dbl> <dbl>
@@ -564,7 +564,7 @@ variants %>%
   select(REF, ALT, DP)
 ```
 
-```{.output}
+```output
 # A tibble: 25 × 3
    REF                              ALT                                       DP
    <chr>                            <chr>                                  <dbl>
@@ -613,7 +613,7 @@ the first six rows to confirm it's what we want:
 SRR2584863_variants
 ```
 
-```{.output}
+```output
 # A tibble: 25 × 3
    REF                              ALT                                       DP
    <chr>                            <chr>                                  <dbl>
@@ -637,7 +637,7 @@ Similar to `head()` and `tail()` functions, we can also look at the first or las
 SRR2584863_variants %>% slice(1:6)
 ```
 
-```{.output}
+```output
 # A tibble: 6 × 3
   REF      ALT          DP
   <chr>    <chr>     <dbl>
@@ -654,7 +654,7 @@ SRR2584863_variants %>% slice(1:6)
 SRR2584863_variants %>% slice(10:25)
 ```
 
-```{.output}
+```output
 # A tibble: 16 × 3
    REF   ALT      DP
    <chr> <chr> <dbl>
@@ -697,7 +697,7 @@ Showing only 5th through 11th rows of columns `REF`, `ALT`, and `POS`.
  select(sample_id, DP, REF, ALT, POS)
 ```
 
-```{.output}
+```output
 # A tibble: 7 × 5
   sample_id     DP REF   ALT       POS
   <chr>      <dbl> <chr> <chr>   <dbl>
@@ -734,7 +734,7 @@ variants %>%
   mutate(POLPROB = 1 - (10 ^ -(QUAL/10)))
 ```
 
-```{.output}
+```output
 # A tibble: 801 × 30
    sample_id  CHROM        POS ID    REF   ALT    QUAL FILTER INDEL   IDV    IMF
    <chr>      <chr>      <dbl> <lgl> <chr> <chr> <dbl> <lgl>  <lgl> <dbl>  <dbl>
@@ -774,7 +774,7 @@ variants %>%
  select(sample_id, POS, QUAL, POLPROB)
 ```
 
-```{.output}
+```output
 # A tibble: 801 × 4
    sample_id      POS  QUAL POLPROB
    <chr>        <dbl> <dbl>   <dbl>
@@ -812,7 +812,7 @@ variants %>%
   tally()
 ```
 
-```{.output}
+```output
 # A tibble: 3 × 2
   sample_id      n
   <chr>      <int>
@@ -829,7 +829,7 @@ variants %>%
   count(sample_id)
 ```
 
-```{.output}
+```output
 # A tibble: 3 × 2
   sample_id      n
   <chr>      <int>
@@ -854,7 +854,7 @@ variants %>%
   count(INDEL)
 ```
 
-```{.output}
+```output
 # A tibble: 2 × 2
   INDEL     n
   <lgl> <int>
@@ -901,7 +901,7 @@ variants %>%
     max_DP = max(DP))
 ```
 
-```{.output}
+```output
 # A tibble: 3 × 5
   sample_id  mean_DP median_DP min_DP max_DP
   <chr>        <dbl>     <dbl>  <dbl>  <dbl>
@@ -935,7 +935,7 @@ variants_wide <- variants %>%
   pivot_wider(names_from = sample_id, values_from = mean_DP)
 ```
 
-```{.output}
+```output
 `summarise()` has grouped output by 'sample_id'. You can override using the
 `.groups` argument.
 ```
@@ -944,7 +944,7 @@ variants_wide <- variants %>%
 variants_wide
 ```
 
-```{.output}
+```output
 # A tibble: 1 × 4
   CHROM      SRR2584863 SRR2584866 SRR2589044
   <chr>           <dbl>      <dbl>      <dbl>
@@ -959,7 +959,7 @@ variants_wide %>%
   pivot_longer(-CHROM, names_to = "sample_id", values_to = "mean_DP")
 ```
 
-```{.output}
+```output
 # A tibble: 3 × 3
   CHROM      sample_id  mean_DP
   <chr>      <chr>        <dbl>

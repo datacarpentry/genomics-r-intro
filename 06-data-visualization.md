@@ -70,18 +70,18 @@ library(readr)
 library(dplyr)
 ```
 
-```{.output}
+```output
 
 Attaching package: 'dplyr'
 ```
 
-```{.output}
+```output
 The following objects are masked from 'package:stats':
 
     filter, lag
 ```
 
-```{.output}
+```output
 The following objects are masked from 'package:base':
 
     intersect, setdiff, setequal, union
@@ -103,7 +103,7 @@ Explore the *structure* (types of columns and number of rows) of the dataset usi
 glimpse(variants) # Show a snapshot of the rows and columns
 ```
 
-```{.output}
+```output
 Rows: 801
 Columns: 29
 $ sample_id     <chr> "SRR2584863", "SRR2584863", "SRR2584863", "SRR2584863", …

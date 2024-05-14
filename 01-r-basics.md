@@ -338,7 +338,7 @@ their modes. Try to guess what the mode will be before you look at the solution
 mode(chromosome_name)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -346,7 +346,7 @@ mode(chromosome_name)
 mode(od_600_value)
 ```
 
-```{.output}
+```output
 [1] "numeric"
 ```
 
@@ -354,7 +354,7 @@ mode(od_600_value)
 mode(chr_position)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -362,7 +362,7 @@ mode(chr_position)
 mode(spock)
 ```
 
-```{.output}
+```output
 [1] "logical"
 ```
 
@@ -371,7 +371,7 @@ mode(spock)
 mode(pilot)
 ```
 
-```{.error}
+```error
 Error in eval(expr, envir, enclos): object 'pilot' not found
 ```
 
@@ -399,7 +399,7 @@ to check their classes.
 class(chromosome_name)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -407,7 +407,7 @@ class(chromosome_name)
 class(od_600_value)
 ```
 
-```{.output}
+```output
 [1] "numeric"
 ```
 
@@ -415,7 +415,7 @@ class(od_600_value)
 class(chr_position)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -423,7 +423,7 @@ class(chr_position)
 class(spock)
 ```
 
-```{.output}
+```output
 [1] "logical"
 ```
 
@@ -432,7 +432,7 @@ class(spock)
 class(pilot)
 ```
 
-```{.error}
+```error
 Error in eval(expr, envir, enclos): object 'pilot' not found
 ```
 
@@ -458,7 +458,7 @@ pilot <- "Earhart"
 mode(pilot)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -468,7 +468,7 @@ pilot <- "Earhart"
 typeof(pilot)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -496,7 +496,7 @@ These can be used with literal numbers:
 (1 + (5 ** 0.5))/2
 ```
 
-```{.output}
+```output
 [1] 1.618034
 ```
 
@@ -512,7 +512,7 @@ by R) a numeric object:
 human_chr_number * 2
 ```
 
-```{.output}
+```output
 [1] 46
 ```
 
@@ -534,7 +534,7 @@ functions. Hint: remember the `round()` function can take 2 arguments.
 round((1 + sqrt(5))/2, digits = 3)
 ```
 
-```{.output}
+```output
 [1] 1.618
 ```
 
@@ -574,7 +574,7 @@ Another useful function that gives both of these pieces of information is the
 mode(snp_genes)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -582,7 +582,7 @@ mode(snp_genes)
 length(snp_genes)
 ```
 
-```{.output}
+```output
 [1] 4
 ```
 
@@ -590,7 +590,7 @@ length(snp_genes)
 str(snp_genes)
 ```
 
-```{.output}
+```output
  chr [1:4] "OXTR" "ACTN3" "AR" "OPRM1"
 ```
 
@@ -624,7 +624,7 @@ we place the index (e.g. a number) in that bracket as follows:
 snps[3]
 ```
 
-```{.output}
+```output
 [1] "rs6152"
 ```
 
@@ -639,7 +639,7 @@ range of numbers:
 snps[1:3]
 ```
 
-```{.output}
+```output
 [1] "rs53576"   "rs1815739" "rs6152"   
 ```
 
@@ -654,7 +654,7 @@ positions you wish to retrieve.
 snps[c(1, 3, 4)]
 ```
 
-```{.output}
+```output
 [1] "rs53576"   "rs6152"    "rs1799971"
 ```
 
@@ -670,7 +670,7 @@ Also, several of these subsetting expressions can be combined:
 snps[c(1:3,4)]
 ```
 
-```{.output}
+```output
 [1] "rs53576"   "rs1815739" "rs6152"    "rs1799971"
 ```
 
@@ -693,7 +693,7 @@ We can verify that "snp\_genes" contains the new gene entry
 snp_genes
 ```
 
-```{.output}
+```output
 [1] "OXTR"   "ACTN3"  "AR"     "OPRM1"  "CYP1A1" "APOA5" 
 ```
 
@@ -705,7 +705,7 @@ value removed:
 snp_genes[-6]
 ```
 
-```{.output}
+```output
 [1] "OXTR"   "ACTN3"  "AR"     "OPRM1"  "CYP1A1"
 ```
 
@@ -717,7 +717,7 @@ snp_genes <- snp_genes[-6]
 snp_genes
 ```
 
-```{.output}
+```output
 [1] "OXTR"   "ACTN3"  "AR"     "OPRM1"  "CYP1A1"
 ```
 
@@ -729,7 +729,7 @@ snp_genes[6]<- "APOA5"
 snp_genes
 ```
 
-```{.output}
+```output
 [1] "OXTR"   "ACTN3"  "AR"     "OPRM1"  "CYP1A1" "APOA5" 
 ```
 
@@ -774,7 +774,7 @@ There is one last set of cool subsetting capabilities we want to introduce. It i
 snp_positions[snp_positions > 100000000]
 ```
 
-```{.output}
+```output
 [1] 154039662
 ```
 
@@ -805,7 +805,7 @@ evaluates to:
 snp_positions > 100000000
 ```
 
-```{.output}
+```output
 [1] FALSE FALSE FALSE  TRUE
 ```
 
@@ -817,7 +817,7 @@ you pass a logical vector as an index, R will return the true values:
 snp_positions[c(FALSE, FALSE, FALSE, TRUE)]
 ```
 
-```{.output}
+```output
 [1] 154039662
 ```
 
@@ -840,7 +840,7 @@ evaluates as TRUE in our comparison:
 which(snp_positions > 100000000)
 ```
 
-```{.output}
+```output
 [1] 4
 ```
 
@@ -857,7 +857,7 @@ snp_marker_cutoff <- 100000000
 snp_positions[snp_positions > snp_marker_cutoff]
 ```
 
-```{.output}
+```output
 [1] 154039662
 ```
 
@@ -883,7 +883,7 @@ value:
 is.na(snp_genes)
 ```
 
-```{.output}
+```output
 [1] FALSE FALSE FALSE FALSE FALSE FALSE
 ```
 
@@ -903,7 +903,7 @@ the vector you are searching:
 c("ACTN3","APOA5") %in% snp_genes
 ```
 
-```{.output}
+```output
 [1] TRUE TRUE
 ```
 
@@ -942,7 +942,7 @@ c. `snp_positions`
 mode(snps)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -950,7 +950,7 @@ mode(snps)
 mode(snp_chromosomes)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -958,7 +958,7 @@ mode(snp_chromosomes)
 mode(snp_positions)
 ```
 
-```{.output}
+```output
 [1] "numeric"
 ```
 
@@ -985,7 +985,7 @@ snps <- c(snps, "rs662799")
 snps
 ```
 
-```{.output}
+```output
 [1] "rs53576"   "rs1815739" "rs6152"    "rs1799971" "rs662799" 
 ```
 
@@ -994,7 +994,7 @@ snp_chromosomes <- c(snp_chromosomes, "11") # did you use quotes?
 snp_chromosomes
 ```
 
-```{.output}
+```output
 [1] "3"  "11" "X"  "6"  "11"
 ```
 
@@ -1003,7 +1003,7 @@ snp_positions <- c(snp_positions, 116792991)
 snp_positions
 ```
 
-```{.output}
+```output
 [1]   8762685  66560624  67545785 154039662 116792991
 ```
 
@@ -1036,7 +1036,7 @@ snp_genes <- c(snp_genes, NA, NA)
 snp_genes
 ```
 
-```{.output}
+```output
 [1] "OXTR"  "ACTN3" "AR"    "OPRM1" "APOA5" NA      NA     
 ```
 
@@ -1065,7 +1065,7 @@ combined <- c(snp_genes[1], snps[1], snp_chromosomes[1], snp_positions[1])
 combined
 ```
 
-```{.output}
+```output
 [1] "OXTR"    "rs53576" "3"       "8762685"
 ```
 
@@ -1088,7 +1088,7 @@ What type of data is `combined`?
 typeof(combined)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -1125,7 +1125,7 @@ snp_data <- list(genes = snp_genes,
 str(snp_data)
 ```
 
-```{.output}
+```output
 List of 4
  $ genes         : chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" ...
  $ refference_snp: chr [1:5] "rs53576" "rs1815739" "rs6152" "rs1799971" ...
@@ -1142,7 +1142,7 @@ To get all the values for the `position` object in the list, we use the `$` nota
 snp_data$position
 ```
 
-```{.output}
+```output
 [1]   8762685  66560624  67545785 154039662 116792991
 ```
 
@@ -1155,7 +1155,7 @@ To get the first value in the `position` object, use the `[]` notation to index:
 snp_data$position[1]
 ```
 
-```{.output}
+```output
 [1] 8762685
 ```
 :::::::::::::::::::::::::::::::::::::::::

@@ -198,7 +198,7 @@ frame. Let's examine what each of these functions can tell us:
 summary(variants)
 ```
 
-```{.output}
+```output
   sample_id            CHROM                POS             ID         
  Length:801         Length:801         Min.   :   1521   Mode:logical  
  Class :character   Class :character   1st Qu.:1115970   NA's:801      
@@ -284,7 +284,7 @@ at how data frames work:
 str(subset)
 ```
 
-```{.output}
+```output
 'data.frame':	801 obs. of  4 variables:
  $ sample_id: chr  "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863" ...
  $ CHROM    : chr  "CP000819.1" "CP000819.1" "CP000819.1" "CP000819.1" ...
@@ -323,7 +323,7 @@ Ok, thats a lot up unpack! Some things to notice.
   mode(variants)
   ```
   
-  ```{.output}
+  ```output
   [1] "list"
   ```
 
@@ -334,7 +334,7 @@ Ok, thats a lot up unpack! Some things to notice.
   class(variants)
   ```
   
-  ```{.output}
+  ```output
   [1] "data.frame"
   ```
 
@@ -374,7 +374,7 @@ Let's look at the first few items in our factor using `head()`:
 head(alt_alleles)
 ```
 
-```{.output}
+```output
 [1] "G"         "T"         "T"         "CTTTTTTTT" "CCGCGC"    "T"        
 ```
 
@@ -401,19 +401,19 @@ now:
 plot(snps)
 ```
 
-```{.warning}
+```warning
 Warning in xy.coords(x, y, xlabel, ylabel, log): NAs introduced by coercion
 ```
 
-```{.warning}
+```warning
 Warning in min(x): no non-missing arguments to min; returning Inf
 ```
 
-```{.warning}
+```warning
 Warning in max(x): no non-missing arguments to max; returning -Inf
 ```
 
-```{.error}
+```error
 Error in plot.window(...): need finite 'ylim' values
 ```
 
@@ -434,7 +434,7 @@ Let's learn a little more about this new type of vector:
 str(factor_snps)
 ```
 
-```{.output}
+```output
  Factor w/ 4 levels "A","C","G","T": 1 1 1 1 1 1 1 1 1 1 ...
 ```
 
@@ -458,7 +458,7 @@ We can see how many items in our vector fall into each category:
 summary(factor_snps)
 ```
 
-```{.output}
+```output
   A   C   G   T 
 211 139 154 203 
 ```
@@ -552,9 +552,9 @@ it will look for a CRAN repository to install from. So, for example, to install
 install.packages("ggplot2")
 ```
 
-```{.output}
+```output
 The following package(s) will be installed:
-- ggplot2 [3.5.0]
+- ggplot2 [3.5.1]
 These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/R-4.3/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
@@ -614,7 +614,7 @@ a.
 variants[1, 1]
 ```
 
-```{.output}
+```output
 [1] "SRR2584863"
 ```
 
@@ -625,7 +625,7 @@ b.
 variants[2, 4]
 ```
 
-```{.output}
+```output
 [1] NA
 ```
 
@@ -636,7 +636,7 @@ c.
 variants[801, 29]
 ```
 
-```{.output}
+```output
 [1] "T"
 ```
 
@@ -647,7 +647,7 @@ d.
 variants[2, ]
 ```
 
-```{.output}
+```output
    sample_id      CHROM    POS ID REF ALT QUAL FILTER INDEL IDV IMF DP      VDB
 2 SRR2584863 CP000819.1 263235 NA   G   T   85     NA FALSE  NA  NA  6 0.096133
   RPB MQB BQB MQSB       SGB     MQ0F ICB HOB AC AN     DP4 MQ
@@ -666,7 +666,7 @@ variants[-1, ]
 ```
 
 
-```{.output}
+```output
    sample_id      CHROM     POS ID      REF       ALT QUAL FILTER INDEL IDV IMF
 2 SRR2584863 CP000819.1  263235 NA        G         T   85     NA FALSE  NA  NA
 3 SRR2584863 CP000819.1  281923 NA        G         T  217     NA FALSE  NA  NA
@@ -704,7 +704,7 @@ f.
 variants[1:4, 1]
 ```
 
-```{.output}
+```output
 [1] "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863"
 ```
 
@@ -715,7 +715,7 @@ g.
 variants[1:10, c("REF", "ALT")]
 ```
 
-```{.output}
+```output
                                 REF
 1                                 T
 2                                 G
@@ -748,7 +748,7 @@ variants[, c("sample_id")]
 ```
 
 
-```{.output}
+```output
 [1] "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863"
 [6] "SRR2584863"
 ```
@@ -760,7 +760,7 @@ i.
 head(variants)
 ```
 
-```{.output}
+```output
    sample_id      CHROM    POS ID      REF       ALT QUAL FILTER INDEL IDV IMF
 1 SRR2584863 CP000819.1   9972 NA        T         G   91     NA FALSE  NA  NA
 2 SRR2584863 CP000819.1 263235 NA        G         T   85     NA FALSE  NA  NA
@@ -798,7 +798,7 @@ j.
 tail(variants)
 ```
 
-```{.output}
+```output
      sample_id      CHROM     POS ID REF ALT QUAL FILTER INDEL IDV IMF DP
 796 SRR2589044 CP000819.1 3444175 NA   G   T  184     NA FALSE  NA  NA  9
 797 SRR2589044 CP000819.1 3481820 NA   A   G  225     NA FALSE  NA  NA 12
@@ -837,7 +837,7 @@ variants$sample_id
 ```
 
 
-```{.output}
+```output
 [1] "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863"
 [6] "SRR2584863"
 ```
@@ -850,7 +850,7 @@ variants[variants$REF == "A", ]
 ```
 
 
-```{.output}
+```output
     sample_id      CHROM     POS ID REF ALT QUAL FILTER INDEL IDV IMF DP
 11 SRR2584863 CP000819.1 2407766 NA   A   C  104     NA FALSE  NA  NA  9
 12 SRR2584863 CP000819.1 2446984 NA   A   C  225     NA FALSE  NA  NA 20
@@ -916,7 +916,7 @@ SRR2584863_variants <- variants[variants$sample_id == "SRR2584863", ]
 dim(SRR2584863_variants)
 ```
 
-```{.output}
+```output
 [1] 25 29
 ```
 
@@ -926,7 +926,7 @@ dim(SRR2584863_variants)
 summary(SRR2584863_variants)
 ```
 
-```{.output}
+```output
   sample_id            CHROM                POS             ID         
  Length:25          Length:25          Min.   :   9972   Mode:logical  
  Class :character   Class :character   1st Qu.:1331794   NA's:25       
@@ -1017,7 +1017,7 @@ snp_chromosomes <- c('3', '11', 'X', '6')
 typeof(snp_chromosomes)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -1031,7 +1031,7 @@ snp_chromosomes_2 <- c(3, 11, 'X', 6)
 typeof(snp_chromosomes_2)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -1039,7 +1039,7 @@ typeof(snp_chromosomes_2)
 snp_chromosomes_2[1]
 ```
 
-```{.output}
+```output
 [1] "3"
 ```
 
@@ -1053,7 +1053,7 @@ snp_positions_2 <- c("8762685", "66560624", "67545785", "154039662")
 typeof(snp_positions_2)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -1061,7 +1061,7 @@ typeof(snp_positions_2)
 snp_positions_2[1]
 ```
 
-```{.output}
+```output
 [1] "8762685"
 ```
 
@@ -1073,7 +1073,7 @@ snp_positions_2 <- as.numeric(snp_positions_2)
 typeof(snp_positions_2)
 ```
 
-```{.output}
+```output
 [1] "double"
 ```
 
@@ -1081,7 +1081,7 @@ typeof(snp_positions_2)
 snp_positions_2[1]
 ```
 
-```{.output}
+```output
 [1] 8762685
 ```
 
@@ -1093,7 +1093,7 @@ using `as.numeric()` on `snp_chromosomes_2`
 snp_chromosomes_2 <- as.numeric(snp_chromosomes_2)
 ```
 
-```{.warning}
+```warning
 Warning: NAs introduced by coercion
 ```
 
@@ -1105,7 +1105,7 @@ data) has been introduced.
 snp_chromosomes_2
 ```
 
-```{.output}
+```output
 [1]  3 11 NA  6
 ```
 
@@ -1118,7 +1118,7 @@ look at the result:
 as.numeric(factor_snps)
 ```
 
-```{.output}
+```output
   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
  [38] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
  [75] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
@@ -1160,7 +1160,7 @@ variants$REF <- as.character(variants$REF)
 typeof(variants$REF)
 ```
 
-```{.output}
+```output
 [1] "character"
 ```
 
@@ -1213,7 +1213,7 @@ reads that support each of the reported variants.
 max(variants$DP)
 ```
 
-```{.output}
+```output
 [1] 79
 ```
 
@@ -1225,7 +1225,7 @@ sorted_by_DP <- variants[order(variants$DP), ]
 head(sorted_by_DP$DP)
 ```
 
-```{.output}
+```output
 [1] 2 2 2 2 2 2
 ```
 
@@ -1247,7 +1247,7 @@ variants with the greatest filtered depth ("DP").
    head(sorted_by_DP$DP)
 ```
 
-```{.output}
+```output
 [1] 79 46 41 29 29 27
 ```
 
@@ -1265,7 +1265,7 @@ colnames(variants)[colnames(variants) == "sample_id"] <- "strain"
 colnames(variants)
 ```
 
-```{.output}
+```output
  [1] "strain"        "CHROM"         "POS"           "ID"           
  [5] "REF"           "ALT"           "QUAL"          "FILTER"       
  [9] "INDEL"         "IDV"           "IMF"           "DP"           
@@ -1339,7 +1339,7 @@ frame:
 head(Ecoli_metadata)
 ```
 
-```{.output}
+```output
 # A tibble: 6 × 7
   sample   generation clade   strain cit     run       genome_size
   <chr>         <dbl> <chr>   <chr>  <chr>   <chr>           <dbl>
@@ -1386,7 +1386,7 @@ H) Save the edited Ecoli\_metadata data frame as "exercise\_solution.csv" in you
 dim(Ecoli_metadata)
 ```
 
-```{.output}
+```output
 [1] 30  7
 ```
 
@@ -1394,7 +1394,7 @@ dim(Ecoli_metadata)
 levels(as.factor(Ecoli_metadata$cit))
 ```
 
-```{.output}
+```output
 [1] "minus"   "plus"    "unknown"
 ```
 
@@ -1402,7 +1402,7 @@ levels(as.factor(Ecoli_metadata$cit))
 table(as.factor(Ecoli_metadata$cit))
 ```
 
-```{.output}
+```output
 
   minus    plus unknown 
       9       9      12 
@@ -1412,7 +1412,7 @@ table(as.factor(Ecoli_metadata$cit))
 Ecoli_metadata[7, 7]
 ```
 
-```{.output}
+```output
 # A tibble: 1 × 1
   genome_size
         <dbl>
@@ -1423,7 +1423,7 @@ Ecoli_metadata[7, 7]
 median(Ecoli_metadata$genome_size)
 ```
 
-```{.output}
+```output
 [1] 4.625
 ```
 

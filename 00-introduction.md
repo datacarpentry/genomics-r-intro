@@ -428,7 +428,7 @@ with a decimal:
 round(3.14)
 ```
 
-```{.output}
+```output
 [1] 3
 ```
 
@@ -455,7 +455,7 @@ You can also see a function's argument using the `args()` function:
 args(round)
 ```
 
-```{.output}
+```output
 function (x, digits = 0) 
 NULL
 ```
@@ -473,7 +473,7 @@ function:
 round(3.14159, digits = 2)
 ```
 
-```{.output}
+```output
 [1] 3.14
 ```
 
@@ -487,7 +487,7 @@ digits is 2.
 round(3.14159, 2)
 ```
 
-```{.output}
+```output
 [1] 3.14
 ```
 
