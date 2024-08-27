@@ -301,10 +301,10 @@ frame.</a></li>
               </div>
             </div>
 
-            <hr class="half-width"><div class="accordion accordion-flush resources" id="accordionFlush12">
+            <hr class="half-width"><div class="accordion accordion-flush lesson-resources" id="accordionFlush12">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingTwelve">
-                  <button class="accordion-button collapsed" id="resources" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwelve" aria-expanded="false" aria-controls="flush-collapseTwelve">
+                  <button class="accordion-button collapsed" id="lesson-resources" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwelve" aria-expanded="false" aria-controls="flush-collapseTwelve">
                     RESOURCES
                   </button>
                 </h2>
@@ -324,7 +324,7 @@ frame.</a></li>
                 </div>
               </div>
             </div>
-            <hr class="half-width resources"><a href="aio.html">See all in one page</a>
+            <hr class="half-width lesson-resources"><a href="aio.html">See all in one page</a>
 
 
             <hr class="d-none d-sm-block d-md-none"><div class="d-grid gap-1">
@@ -406,8 +406,7 @@ data frame)</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="working-with-spreadsheets-tabular-data">Working with spreadsheets (tabular data)<a class="anchor" aria-label="anchor" href="#working-with-spreadsheets-tabular-data"></a>
-<a class="anchor" aria-label="anchor" href="#working-with-spreadsheets-tabular-data"></a></h2>
+<section><h2 class="section-heading" id="working-with-spreadsheets-tabular-data">Working with spreadsheets (tabular data)<a class="anchor" aria-label="anchor" href="#working-with-spreadsheets-tabular-data"></a></h2>
 <hr class="half-width"><p>A substantial amount of the data we work with in genomics will be
 tabular data, this is data arranged in rows and columns - also known as
 spreadsheets. We could write a whole lesson on how to work with
@@ -443,8 +442,7 @@ your analysis, and its reproducibility.</p>
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-keep-your-raw-data-separate" class="callout-inner">
-<h3 class="callout-title">Tip: Keep your raw data separate<a class="anchor" aria-label="anchor" href="#tip-keep-your-raw-data-separate"></a>
-</h3>
+<h3 class="callout-title">Tip: Keep your raw data separate</h3>
 <div class="callout-content">
 <p>When you work with data in R, you are not changing the original file
 you loaded that data from. This is different than (for example) working
@@ -456,8 +454,7 @@ data into a new file. More on this later in the lesson.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="importing-tabular-data-into-r">Importing tabular data into R<a class="anchor" aria-label="anchor" href="#importing-tabular-data-into-r"></a>
-<a class="anchor" aria-label="anchor" href="#importing-tabular-data-into-r"></a></h2>
+</section><section><h2 class="section-heading" id="importing-tabular-data-into-r">Importing tabular data into R<a class="anchor" aria-label="anchor" href="#importing-tabular-data-into-r"></a></h2>
 <hr class="half-width"><p>There are several ways to import data into R. For our purpose here,
 we will focus on using the tools every R installation comes with (so
 called “base” R) to import a comma-delimited file containing the results
@@ -469,8 +466,7 @@ function called <code>read.csv()</code>.</p>
 </div>
 <div id="exercise-review-the-arguments-of-the-read.csv-function" class="callout-inner">
 <h3 class="callout-title">Exercise: Review the arguments of the
-<code>read.csv()</code> function<a class="anchor" aria-label="anchor" href="#exercise-review-the-arguments-of-the-read.csv-function"></a>
-</h3>
+<code>read.csv()</code> function</h3>
 <div class="callout-content">
 <p><strong>Before using the <code>read.csv()</code> function, use R’s
 help feature to answer the following questions</strong>.</p>
@@ -495,7 +491,7 @@ numbers used commas for decimal separation (i.e. 1,00)?</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: upper-alpha"><li><p>The <code>read.csv()</code> function has the argument ‘header’
 set to TRUE by default, this means the function always assumes the first
@@ -522,8 +518,7 @@ use frequently, you may be surprised at what you find they can do.</p>
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-why-does-read.csv-open-the-documentations-to-read.table" class="callout-inner">
-<h3 class="callout-title">Tip: Why does ?read.csv open the documentations to read.table?<a class="anchor" aria-label="anchor" href="#tip-why-does-read.csv-open-the-documentations-to-read.table"></a>
-</h3>
+<h3 class="callout-title">Tip: Why does ?read.csv open the documentations to read.table?</h3>
 <div class="callout-content">
 <p>The reason for this is because <code>read.csv</code> is actually a
 short cut for <code>read.table("file.csv", sep = ",")</code>. You can
@@ -563,8 +558,7 @@ window, you have the <code>variants</code> object, listed as 801 obs.
 name of the object will open a view of the data in a new tab.</p>
 <figure><img src="%22fig/rstudio_dataframeview.png%22" alt="RStudio data frame view" class="figure mx-auto d-block"><div class="figcaption">RStudio data frame view</div>
 </figure></section><section><h2 class="section-heading" id="summarizing-subsetting-and-determining-the-structure-of-a-data-frame-">Summarizing, subsetting, and determining the structure of a data
-frame.<a class="anchor" aria-label="anchor" href="#summarizing-subsetting-and-determining-the-structure-of-a-data-frame."></a>
-<a class="anchor" aria-label="anchor" href="#summarizing-subsetting-and-determining-the-structure-of-a-data-frame-"></a></h2>
+frame.<a class="anchor" aria-label="anchor" href="#summarizing-subsetting-and-determining-the-structure-of-a-data-frame-"></a></h2>
 <hr class="half-width"><p>A <strong>data frame is the standard way in R to store tabular
 data</strong>. A data fame could also be thought of as a collection of
 vectors, all of which have the same length. Using only two functions, we
@@ -690,8 +684,7 @@ important later.</p>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Exercise: Revisiting modes and classess<a class="anchor" aria-label="anchor" href="#challenge2"></a>
-</h3>
+<h3 class="callout-title">Exercise: Revisiting modes and classess</h3>
 <div class="callout-content">
 <p>Remeber when we said mode and class are sometimes different? If you
 do, here is a chance to check. What happens when you try the
@@ -706,7 +699,7 @@ following?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -742,8 +735,7 @@ programmers) to know.</p>
 </div>
 </div>
 </li>
-</ul></section><section><h2 class="section-heading" id="introducing-factors">Introducing Factors<a class="anchor" aria-label="anchor" href="#introducing-factors"></a>
-<a class="anchor" aria-label="anchor" href="#introducing-factors"></a></h2>
+</ul></section><section><h2 class="section-heading" id="introducing-factors">Introducing Factors<a class="anchor" aria-label="anchor" href="#introducing-factors"></a></h2>
 <hr class="half-width"><p>Factors are the final major data structure we will introduce in our R
 genomics lessons. Factors can be thought of as vectors which are
 specialized for categorical data. Given R’s specialization for
@@ -875,8 +867,7 @@ a tally.</p>
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-treating-objects-as-categories-without-changing-their-mode" class="callout-inner">
-<h3 class="callout-title">Tip: treating objects as categories without changing their mode<a class="anchor" aria-label="anchor" href="#tip-treating-objects-as-categories-without-changing-their-mode"></a>
-</h3>
+<h3 class="callout-title">Tip: treating objects as categories without changing their mode</h3>
 <div class="callout-content">
 <p>You don’t have to make an object a factor to get the benefits of
 treating an object as a factor. See what happens when you use the
@@ -887,8 +878,7 @@ function; though sometimes you may need to combine both (i.e.
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="plotting-and-ordering-factors">Plotting and ordering factors<a class="anchor" aria-label="anchor" href="#plotting-and-ordering-factors"></a>
-<a class="anchor" aria-label="anchor" href="#plotting-and-ordering-factors"></a></h2>
+</section><section><h2 class="section-heading" id="plotting-and-ordering-factors">Plotting and ordering factors<a class="anchor" aria-label="anchor" href="#plotting-and-ordering-factors"></a></h2>
 <hr class="half-width"><p>One of the most common uses for factors will be when you plot
 categorical values. For example, suppose we want to know how many of our
 variants had each possible SNP we could generate a plot:</p>
@@ -943,8 +933,7 @@ you to understand how to manipulate factors.</p>
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-packages-in-r-what-are-they-and-why-do-we-use-them" class="callout-inner">
-<h3 class="callout-title">Tip: Packages in R – what are they and why do we use them?<a class="anchor" aria-label="anchor" href="#tip-packages-in-r-what-are-they-and-why-do-we-use-them"></a>
-</h3>
+<h3 class="callout-title">Tip: Packages in R – what are they and why do we use them?</h3>
 <div class="callout-content">
 <p>Packages are simply collections of functions and/or data that can be
 used to extend the capabilities of R beyond the core functionality that
@@ -978,8 +967,7 @@ Successfully installed 1 package in 6.7 milliseconds.</code></pre>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="subsetting-data-frames">Subsetting data frames<a class="anchor" aria-label="anchor" href="#subsetting-data-frames"></a>
-<a class="anchor" aria-label="anchor" href="#subsetting-data-frames"></a></h2>
+</section><section><h2 class="section-heading" id="subsetting-data-frames">Subsetting data frames<a class="anchor" aria-label="anchor" href="#subsetting-data-frames"></a></h2>
 <hr class="half-width"><p>Next, we are going to talk about how you can get specific values from
 data frames, and where necessary, change the mode of a column of
 values.</p>
@@ -993,8 +981,7 @@ range).</p>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-subsetting-a-data-frame" class="callout-inner">
-<h3 class="callout-title">Exercise: Subsetting a data frame<a class="anchor" aria-label="anchor" href="#exercise-subsetting-a-data-frame"></a>
-</h3>
+<h3 class="callout-title">Exercise: Subsetting a data frame</h3>
 <div class="callout-content">
 <p><strong>Try the following indices and functions and try to figure out
 what they return</strong></p>
@@ -1018,7 +1005,7 @@ what they return</strong></p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ol style="list-style-type: lower-alpha"><li>
 </li></ol><div class="codewrapper sourceCode" id="cb30">
@@ -1413,15 +1400,13 @@ to a new object name:</p>
                                        Max.   :1
                                                                      </code></pre>
 </div>
-</section><section><h2 class="section-heading" id="coercing-values-in-data-frames">Coercing values in data frames<a class="anchor" aria-label="anchor" href="#coercing-values-in-data-frames"></a>
-<a class="anchor" aria-label="anchor" href="#coercing-values-in-data-frames"></a></h2>
+</section><section><h2 class="section-heading" id="coercing-values-in-data-frames">Coercing values in data frames<a class="anchor" aria-label="anchor" href="#coercing-values-in-data-frames"></a></h2>
 <hr class="half-width"><div id="tip-coercion-isnt-limited-to-data-frames" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-coercion-isnt-limited-to-data-frames" class="callout-inner">
-<h3 class="callout-title">Tip: coercion isn’t limited to data frames<a class="anchor" aria-label="anchor" href="#tip-coercion-isnt-limited-to-data-frames"></a>
-</h3>
+<h3 class="callout-title">Tip: coercion isn’t limited to data frames</h3>
 <div class="callout-content">
 <p>While we are going to address coercion in the context of data frames
 most of these methods apply to other data structures, such as
@@ -1615,8 +1600,7 @@ expression like this one:</p>
 </h3>
 <pre class="output" tabindex="0"><code>[1] "character"</code></pre>
 </div>
-</section><section><h2 class="section-heading" id="stringsasfactors">StringsAsFactors = ?<a class="anchor" aria-label="anchor" href="#stringsasfactors"></a>
-<a class="anchor" aria-label="anchor" href="#stringsasfactors"></a></h2>
+</section><section><h2 class="section-heading" id="stringsasfactors">StringsAsFactors = ?<a class="anchor" aria-label="anchor" href="#stringsasfactors"></a></h2>
 <hr class="half-width"><p>Lets summarize this section on coercion with a few take home
 messages.</p>
 <ul><li>When you explicitly coerce one data type into another (this is known
@@ -1634,8 +1618,7 @@ working with them!</li>
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip-coercion-isnt-limited-to-data-frames-1" class="callout-inner">
-<h3 class="callout-title">Tip: coercion isn’t limited to data frames<a class="anchor" aria-label="anchor" href="#tip-coercion-isnt-limited-to-data-frames-1"></a>
-</h3>
+<h3 class="callout-title">Tip: coercion isn’t limited to data frames</h3>
 <div class="callout-content">
 <p>Prior to R 4.0 when importing a data frame using any one of the
 <code>read.table()</code> functions such as <code>read.csv()</code> ,
@@ -1649,8 +1632,7 @@ guess a data type.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="data-frame-bonus-material-math-sorting-renaming">Data frame bonus material: math, sorting, renaming<a class="anchor" aria-label="anchor" href="#data-frame-bonus-material-math-sorting-renaming"></a>
-<a class="anchor" aria-label="anchor" href="#data-frame-bonus-material-math-sorting-renaming"></a></h2>
+</section><section><h2 class="section-heading" id="data-frame-bonus-material-math-sorting-renaming">Data frame bonus material: math, sorting, renaming<a class="anchor" aria-label="anchor" href="#data-frame-bonus-material-math-sorting-renaming"></a></h2>
 <hr class="half-width"><p>Here are a few operations that don’t need much explanation, but which
 are good to know.</p>
 <p>There are lots of arithmetic functions you may want to apply to your
@@ -1694,8 +1676,7 @@ function:</p>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise"></a>
-</h3>
+<h3 class="callout-title">Exercise</h3>
 <div class="callout-content">
 <p>The <code>order()</code> function lists values in increasing order by
 default. Look at the documentation for this function and change
@@ -1709,7 +1690,7 @@ filtered depth (“DP”).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb84">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1749,8 +1730,7 @@ filtered depth (“DP”).</p>
 [25] "MQ"            "Indiv"         "gt_PL"         "gt_GT"
 [29] "gt_GT_alleles"</code></pre>
 </div>
-</section><section><h2 class="section-heading" id="saving-your-data-frame-to-a-file">Saving your data frame to a file<a class="anchor" aria-label="anchor" href="#saving-your-data-frame-to-a-file"></a>
-<a class="anchor" aria-label="anchor" href="#saving-your-data-frame-to-a-file"></a></h2>
+</section><section><h2 class="section-heading" id="saving-your-data-frame-to-a-file">Saving your data frame to a file<a class="anchor" aria-label="anchor" href="#saving-your-data-frame-to-a-file"></a></h2>
 <hr class="half-width"><p>We can save data to a file. We will save our
 <code>SRR2584863_variants</code> object to a .csv file using the
 <code>write.csv()</code> function:</p>
@@ -1765,8 +1745,7 @@ listed in the help, but at a minimum you need to tell it what data frame
 to write to file, and give a path to a file name in quotes (if you only
 provide a file name, the file will be written in the current working
 directory).</p>
-</section><section><h2 class="section-heading" id="importing-data-from-excel">Importing data from Excel<a class="anchor" aria-label="anchor" href="#importing-data-from-excel"></a>
-<a class="anchor" aria-label="anchor" href="#importing-data-from-excel"></a></h2>
+</section><section><h2 class="section-heading" id="importing-data-from-excel">Importing data from Excel<a class="anchor" aria-label="anchor" href="#importing-data-from-excel"></a></h2>
 <hr class="half-width"><p>Excel is one of the most common formats, so we need to discuss how to
 make these files play nicely with R. The simplest way to import data
 from Excel is to <strong>save your Excel file in .csv format</strong>*.
@@ -1829,8 +1808,7 @@ frame you could coerce with <code>as.data.frame()</code>.</p>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise-putting-it-all-together---data-frames" class="callout-inner">
-<h3 class="callout-title">Exercise: Putting it all together - data frames<a class="anchor" aria-label="anchor" href="#exercise-putting-it-all-together---data-frames"></a>
-</h3>
+<h3 class="callout-title">Exercise: Putting it all together - data frames</h3>
 <div class="callout-content">
 <p><strong>Using the <code>Ecoli_metadata</code> data frame created
 above, answer the following questions</strong></p>
@@ -1858,7 +1836,7 @@ genome_size multiplied by 1,000,000</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb91">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1937,8 +1915,7 @@ genome_size multiplied by 1,000,000</p></li>
 <i class="callout-icon" data-feather="key"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
-</h3>
+<h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
 <ul><li>It is easy to import data into R from tabular formats including
 Excel. However, you still need to check that R has imported and
@@ -1987,7 +1964,7 @@ by the community</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.5" class="external-link">sandpaper (0.16.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.3" class="external-link">varnish (1.0.3)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.6" class="external-link">sandpaper (0.16.6)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.4" class="external-link">varnish (1.0.4)</a></p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -2010,7 +1987,7 @@ by the community</li>
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/03-basics-factors-dataframes.html",
   "dateCreated": "2018-03-12",
   "dateModified": "2024-07-02",
-  "datePublished": "2024-08-20"
+  "datePublished": "2024-08-27"
 }
 
   </script><script>
