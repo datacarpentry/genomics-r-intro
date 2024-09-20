@@ -111,7 +111,7 @@ assign '1' to the object 'first_value' as shown. Remember to leave a comment in 
 above (using the '#') to explain what you are doing:
 
 
-```r
+``` r
 # this line creates the object 'first_value' and assigns it the value '1'
 
 first_value <- 1
@@ -166,7 +166,7 @@ Create the following objects; give each object an appropriate name
 Here as some possible answers to the challenge:
 
 
-```r
+``` r
 human_chr_number <- 23
 gene_name <- 'pten'
 ensemble_url <- 'ftp://ftp.ensemblgenomes.org/pub/bacteria/release-39/fasta/bacteria_5_collection/escherichia_coli_b_str_rel606/'
@@ -232,7 +232,7 @@ may or may not be a good thing
 depending on how you look at it.
 
 
-```r
+``` r
 # gene_name has the value 'pten' or whatever value you used in the challenge.
 # We will now assign the new value 'tp53'
 gene_name <- 'tp53'
@@ -242,7 +242,7 @@ You can also remove an object from R's memory entirely. The `rm()` function
 will delete the object.
 
 
-```r
+``` r
 # delete the object 'gene_name'
 rm(gene_name)
 ```
@@ -334,44 +334,44 @@ their modes. Try to guess what the mode will be before you look at the solution
 
 
 
-```r
+``` r
 mode(chromosome_name)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
-```r
+``` r
 mode(od_600_value)
 ```
 
-```output
+``` output
 [1] "numeric"
 ```
 
-```r
+``` r
 mode(chr_position)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
-```r
+``` r
 mode(spock)
 ```
 
-```output
+``` output
 [1] "logical"
 ```
 
 
-```r
+``` r
 mode(pilot)
 ```
 
-```error
+``` error
 Error in eval(expr, envir, enclos): object 'pilot' not found
 ```
 
@@ -395,44 +395,44 @@ to check their classes.
 
 
 
-```r
+``` r
 class(chromosome_name)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
-```r
+``` r
 class(od_600_value)
 ```
 
-```output
+``` output
 [1] "numeric"
 ```
 
-```r
+``` r
 class(chr_position)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
-```r
+``` r
 class(spock)
 ```
 
-```output
+``` output
 [1] "logical"
 ```
 
 
-```r
+``` r
 class(pilot)
 ```
 
-```error
+``` error
 Error in eval(expr, envir, enclos): object 'pilot' not found
 ```
 
@@ -453,22 +453,22 @@ called `pilot` that was the **name** "Earhart", we need to enclose
 `Earhart` in quotation marks.
 
 
-```r
+``` r
 pilot <- "Earhart"
 mode(pilot)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
 
-```r
+``` r
 pilot <- "Earhart"
 typeof(pilot)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
@@ -492,11 +492,11 @@ can be added, multiplied, divided, etc. R provides several mathematical
 These can be used with literal numbers:
 
 
-```r
+``` r
 (1 + (5 ** 0.5))/2
 ```
 
-```output
+``` output
 [1] 1.618034
 ```
 
@@ -506,13 +506,13 @@ by R) a numeric object:
 
 
 
-```r
+``` r
 # multiply the object 'human_chr_number' by 2
 
 human_chr_number * 2
 ```
 
-```output
+``` output
 [1] 46
 ```
 
@@ -530,11 +530,11 @@ functions. Hint: remember the `round()` function can take 2 arguments.
 ## Solution
 
 
-```r
+``` r
 round((1 + sqrt(5))/2, digits = 3)
 ```
 
-```output
+``` output
 [1] 1.618
 ```
 
@@ -557,7 +557,7 @@ ways to create a vector is to use the `c()` function - the "concatenate" or
 multiple values, separate each value with a comma:
 
 
-```r
+``` r
 # Create the SNP gene name vector
 
 snp_genes <- c("OXTR", "ACTN3", "AR", "OPRM1")
@@ -569,28 +569,28 @@ Another useful function that gives both of these pieces of information is the
 `str()` (structure) function.
 
 
-```r
+``` r
 # Check the mode, length, and structure of 'snp_genes'
 mode(snp_genes)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
-```r
+``` r
 length(snp_genes)
 ```
 
-```output
+``` output
 [1] 4
 ```
 
-```r
+``` r
 str(snp_genes)
 ```
 
-```output
+``` output
  chr [1:4] "OXTR" "ACTN3" "AR" "OPRM1"
 ```
 
@@ -604,7 +604,7 @@ when we start working with data frames.
 Let's create a few more vectors to play around with:
 
 
-```r
+``` r
 # Some interesting human SNPs
 # while accuracy is important, typos in the data won't hurt you here
 
@@ -619,12 +619,12 @@ the name of the vector followed by square brackets. In those square brackets
 we place the index (e.g. a number) in that bracket as follows:
 
 
-```r
+``` r
 # get the 3rd value in the snp vector
 snps[3]
 ```
 
-```output
+``` output
 [1] "rs6152"
 ```
 
@@ -633,13 +633,13 @@ through to the final number of items in your vector. You can also retrieve a
 range of numbers:
 
 
-```r
+``` r
 # get the 1st through 3rd value in the snp vector
 
 snps[1:3]
 ```
 
-```output
+``` output
 [1] "rs53576"   "rs1815739" "rs6152"   
 ```
 
@@ -648,13 +648,13 @@ a vector, you pass a **vector of indices**; a vector that has the numbered
 positions you wish to retrieve.
 
 
-```r
+``` r
 # get the 1st, 3rd, and 4th value in the snp vector
 
 snps[c(1, 3, 4)]
 ```
 
-```output
+``` output
 [1] "rs53576"   "rs6152"    "rs1799971"
 ```
 
@@ -664,13 +664,13 @@ examples](https://thomasleeper.com/Rcourse/Tutorials/vectorindexing.html)).
 Also, several of these subsetting expressions can be combined:
 
 
-```r
+``` r
 # get the 1st through the 3rd value, and 4th value in the snp vector
 # yes, this is a little silly in a vector of only 4 values.
 snps[c(1:3,4)]
 ```
 
-```output
+``` output
 [1] "rs53576"   "rs1815739" "rs6152"    "rs1799971"
 ```
 
@@ -680,7 +680,7 @@ Once you have an existing vector, you may want to add a new item to it. To do
 so, you can use the `c()` function again to add your new value:
 
 
-```r
+``` r
 # add the gene "CYP1A1" and "APOA5" to our list of snp genes
 # this overwrites our existing vector
 snp_genes <- c(snp_genes, "CYP1A1", "APOA5")
@@ -689,11 +689,11 @@ snp_genes <- c(snp_genes, "CYP1A1", "APOA5")
 We can verify that "snp\_genes" contains the new gene entry
 
 
-```r
+``` r
 snp_genes
 ```
 
-```output
+``` output
 [1] "OXTR"   "ACTN3"  "AR"     "OPRM1"  "CYP1A1" "APOA5" 
 ```
 
@@ -701,35 +701,35 @@ Using a negative index will return a version of a vector with that index's
 value removed:
 
 
-```r
+``` r
 snp_genes[-6]
 ```
 
-```output
+``` output
 [1] "OXTR"   "ACTN3"  "AR"     "OPRM1"  "CYP1A1"
 ```
 
 We can remove that value from our vector by overwriting it with this expression:
 
 
-```r
+``` r
 snp_genes <- snp_genes[-6]
 snp_genes
 ```
 
-```output
+``` output
 [1] "OXTR"   "ACTN3"  "AR"     "OPRM1"  "CYP1A1"
 ```
 
 We can also explicitly rename or add a value to our index using double bracket notation:
 
 
-```r
+``` r
 snp_genes[6]<- "APOA5"
 snp_genes
 ```
 
-```output
+``` output
 [1] "OXTR"   "ACTN3"  "AR"     "OPRM1"  "CYP1A1" "APOA5" 
 ```
 
@@ -770,11 +770,11 @@ F) True
 There is one last set of cool subsetting capabilities we want to introduce. It is possible within R to retrieve items in a vector based on a logical evaluation or numerical comparison. For example, let's say we wanted get all of the SNPs in our vector of SNP positions that were greater than 100,000,000. We could index using the '>' (greater than) logical operator:
 
 
-```r
+``` r
 snp_positions[snp_positions > 100000000]
 ```
 
-```output
+``` output
 [1] 154039662
 ```
 
@@ -801,11 +801,11 @@ can be better understood if you examine what the expression "snp\_positions > 10
 evaluates to:
 
 
-```r
+``` r
 snp_positions > 100000000
 ```
 
-```output
+``` output
 [1] FALSE FALSE FALSE  TRUE
 ```
 
@@ -813,11 +813,11 @@ The output above is a logical vector, the 4th element of which is TRUE. When
 you pass a logical vector as an index, R will return the true values:
 
 
-```r
+``` r
 snp_positions[c(FALSE, FALSE, FALSE, TRUE)]
 ```
 
-```output
+``` output
 [1] 154039662
 ```
 
@@ -836,11 +836,11 @@ We can use the `which()` function to return the indices of any item that
 evaluates as TRUE in our comparison:
 
 
-```r
+``` r
 which(snp_positions > 100000000)
 ```
 
-```output
+``` output
 [1] 4
 ```
 
@@ -852,12 +852,12 @@ pre-determined value (e.g 100000000) we can use an object that can take on
 whatever value we need. So for example:
 
 
-```r
+``` r
 snp_marker_cutoff <- 100000000
 snp_positions[snp_positions > snp_marker_cutoff]
 ```
 
-```output
+``` output
 [1] 154039662
 ```
 
@@ -876,14 +876,14 @@ but the `is.NA()` function will return a logical vector, with TRUE for any NA
 value:
 
 
-```r
+``` r
 # current value of 'snp_genes':
 # chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
 
 is.na(snp_genes)
 ```
 
-```output
+``` output
 [1] FALSE FALSE FALSE FALSE FALSE FALSE
 ```
 
@@ -893,7 +893,7 @@ will return TRUE for any value in your collection that is in
 the vector you are searching:
 
 
-```r
+``` r
 # current value of 'snp_genes':
 # chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
 
@@ -903,7 +903,7 @@ the vector you are searching:
 c("ACTN3","APOA5") %in% snp_genes
 ```
 
-```output
+``` output
 [1] TRUE TRUE
 ```
 
@@ -938,27 +938,27 @@ c. `snp_positions`
 ## Solution
 
 
-```r
+``` r
 mode(snps)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
-```r
+``` r
 mode(snp_chromosomes)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
-```r
+``` r
 mode(snp_positions)
 ```
 
-```output
+``` output
 [1] "numeric"
 ```
 
@@ -980,30 +980,30 @@ c. To the `snp_positions` vector add: 	116792991
 ## Solution
 
 
-```r
+``` r
 snps <- c(snps, "rs662799")
 snps
 ```
 
-```output
+``` output
 [1] "rs53576"   "rs1815739" "rs6152"    "rs1799971" "rs662799" 
 ```
 
-```r
+``` r
 snp_chromosomes <- c(snp_chromosomes, "11") # did you use quotes?
 snp_chromosomes
 ```
 
-```output
+``` output
 [1] "3"  "11" "X"  "6"  "11"
 ```
 
-```r
+``` r
 snp_positions <- c(snp_positions, 116792991)
 snp_positions
 ```
 
-```output
+``` output
 [1]   8762685  66560624  67545785 154039662 116792991
 ```
 
@@ -1030,13 +1030,13 @@ b. Add 2 NA values to the end of `snp_genes`
 ## Solution
 
 
-```r
+``` r
 snp_genes <- snp_genes[-5]
 snp_genes <- c(snp_genes, NA, NA)
 snp_genes
 ```
 
-```output
+``` output
 [1] "OXTR"  "ACTN3" "AR"    "OPRM1" "APOA5" NA      NA     
 ```
 
@@ -1060,12 +1060,12 @@ Using indexing, create a new vector named `combined` that contains:
 ## Solution
 
 
-```r
+``` r
 combined <- c(snp_genes[1], snps[1], snp_chromosomes[1], snp_positions[1])
 combined
 ```
 
-```output
+``` output
 [1] "OXTR"    "rs53576" "3"       "8762685"
 ```
 
@@ -1084,11 +1084,11 @@ What type of data is `combined`?
 ## Solution
 
 
-```r
+``` r
 typeof(combined)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
@@ -1109,7 +1109,7 @@ tutorial](https://r4ds.had.co.nz/vectors.html#lists). In this one example, we wi
 a named list and show you how to retrieve items from the list.
 
 
-```r
+``` r
 # Create a named list using the 'list' function and our SNP examples
 # Note, for easy reading we have placed each item in the list on a separate line
 # Nothing special about this, you can do this for any multiline commands
@@ -1125,7 +1125,7 @@ snp_data <- list(genes = snp_genes,
 str(snp_data)
 ```
 
-```output
+``` output
 List of 4
  $ genes         : chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" ...
  $ refference_snp: chr [1:5] "rs53576" "rs1815739" "rs6152" "rs1799971" ...
@@ -1136,26 +1136,26 @@ List of 4
 To get all the values for the `position` object in the list, we use the `$` notation:
 
 
-```r
+``` r
 # return all the values of position object
 
 snp_data$position
 ```
 
-```output
+``` output
 [1]   8762685  66560624  67545785 154039662 116792991
 ```
 
 To get the first value in the `position` object, use the `[]` notation to index:
 
 
-```r
+``` r
 # return first value of the position object
 
 snp_data$position[1]
 ```
 
-```output
+``` output
 [1] 8762685
 ```
 :::::::::::::::::::::::::::::::::::::::::

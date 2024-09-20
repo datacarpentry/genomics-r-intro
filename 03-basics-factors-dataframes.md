@@ -168,7 +168,7 @@ use tab autocompletion. **If you use tab autocompletion you avoid typos and
 errors in file paths.** Use it!
 
 
-```r
+``` r
 ## read in a CSV file and save it as 'variants'
 
 variants <- read.csv("/home/dcuser/r_data/combined_tidy_vcf.csv")
@@ -192,13 +192,13 @@ including some summary statistics as well as well as the "structure" of the data
 frame. Let's examine what each of these functions can tell us:
 
 
-```r
+``` r
 ## get summary statistics on a data frame
 
 summary(variants)
 ```
 
-```output
+``` output
   sample_id            CHROM                POS             ID         
  Length:801         Length:801         Min.   :   1521   Mode:logical  
  Class :character   Class :character   1st Qu.:1115970   NA's:801      
@@ -268,7 +268,7 @@ There is a lot to work with, so we will subset the first three columns into a
 new data frame using the `data.frame()` function.
 
 
-```r
+``` r
 ## put the first three columns of variants into a new data frame called subset
 
 subset <- data.frame(variants[, c(1:3, 6)])
@@ -278,13 +278,13 @@ Now, let's use the `str()` (structure) function to look a little more closely
 at how data frames work:
 
 
-```r
+``` r
 ## get the structure of a data frame
 
 str(subset)
 ```
 
-```output
+``` output
 'data.frame':	801 obs. of  4 variables:
  $ sample_id: chr  "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863" ...
  $ CHROM    : chr  "CP000819.1" "CP000819.1" "CP000819.1" "CP000819.1" ...
@@ -319,22 +319,22 @@ Ok, thats a lot up unpack! Some things to notice.
 
 
   
-  ```r
+  ``` r
   mode(variants)
   ```
   
-  ```output
+  ``` output
   [1] "list"
   ```
 
 
 
   
-  ```r
+  ``` r
   class(variants)
   ```
   
-  ```output
+  ``` output
   [1] "data.frame"
   ```
 
@@ -361,7 +361,7 @@ factors. To do this we'll take a look at just the alternate alleles. We can use 
 to access or extract a column by its name in data frames (or to extract objects within named lists).
 
 
-```r
+``` r
 ## extract the "ALT" column to a new object
 
 alt_alleles <- subset$ALT
@@ -370,11 +370,11 @@ alt_alleles <- subset$ALT
 Let's look at the first few items in our factor using `head()`:
 
 
-```r
+``` r
 head(alt_alleles)
 ```
 
-```output
+``` output
 [1] "G"         "T"         "T"         "CTTTTTTTT" "CCGCGC"    "T"        
 ```
 
@@ -383,7 +383,7 @@ single-nucleotide alleles (SNPs). We can use some of the vector indexing skills
 from the last episode.
 
 
-```r
+``` r
 snps <- c(alt_alleles[alt_alleles == "A"],
   alt_alleles[alt_alleles=="T"],
   alt_alleles[alt_alleles=="G"],
@@ -397,23 +397,23 @@ example, we can try to generate a plot of this character vector as it is right
 now:
 
 
-```r
+``` r
 plot(snps)
 ```
 
-```warning
+``` warning
 Warning in xy.coords(x, y, xlabel, ylabel, log): NAs introduced by coercion
 ```
 
-```warning
+``` warning
 Warning in min(x): no non-missing arguments to min; returning Inf
 ```
 
-```warning
+``` warning
 Warning in max(x): no non-missing arguments to max; returning -Inf
 ```
 
-```error
+``` error
 Error in plot.window(...): need finite 'ylim' values
 ```
 
@@ -423,18 +423,18 @@ as categories (i.e. a factor vector); we will create a new object to avoid
 confusion using the `factor()` function:
 
 
-```r
+``` r
 factor_snps <- factor(snps)
 ```
 
 Let's learn a little more about this new type of vector:
 
 
-```r
+``` r
 str(factor_snps)
 ```
 
-```output
+``` output
  Factor w/ 4 levels "A","C","G","T": 1 1 1 1 1 1 1 1 1 1 ...
 ```
 
@@ -454,11 +454,11 @@ the first few items in our factor are all "A"s.
 We can see how many items in our vector fall into each category:
 
 
-```r
+``` r
 summary(factor_snps)
 ```
 
-```output
+``` output
   A   C   G   T 
 211 139 154 203 
 ```
@@ -485,7 +485,7 @@ values. For example, suppose we want to know how many of our variants had each
 possible SNP we could generate a plot:
 
 
-```r
+``` r
 plot(factor_snps)
 ```
 
@@ -501,7 +501,7 @@ What if we wanted to order our plot according to the numerical value (i.e.,
 in descending order of SNP frequency)? We can enforce an order on our factors:
 
 
-```r
+``` r
 ordered_factor_snps <- factor(factor_snps, levels = names(sort(table(factor_snps))))
 ```
 
@@ -522,7 +522,7 @@ to see why this works):
 Now we see our plot has be reordered:
 
 
-```r
+``` r
 plot(ordered_factor_snps)
 ```
 
@@ -547,19 +547,19 @@ it will look for a CRAN repository to install from. So, for example, to install
 (which you'll do in the next few lessons), you would use the following command:
 
 
-```r
+``` r
 # install a package from CRAN
 install.packages("ggplot2")
 ```
 
-```output
+``` output
 The following package(s) will be installed:
 - ggplot2 [3.5.1]
 These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 6.7 milliseconds.
+Successfully installed 1 package in 35 milliseconds.
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -610,44 +610,44 @@ l. `variants[variants$REF == "A",]`
 a.
 
 
-```r
+``` r
 variants[1, 1]
 ```
 
-```output
+``` output
 [1] "SRR2584863"
 ```
 
 b.
 
 
-```r
+``` r
 variants[2, 4]
 ```
 
-```output
+``` output
 [1] NA
 ```
 
 c.
 
 
-```r
+``` r
 variants[801, 29]
 ```
 
-```output
+``` output
 [1] "T"
 ```
 
 d.
 
 
-```r
+``` r
 variants[2, ]
 ```
 
-```output
+``` output
    sample_id      CHROM    POS ID REF ALT QUAL FILTER INDEL IDV IMF DP      VDB
 2 SRR2584863 CP000819.1 263235 NA   G   T   85     NA FALSE  NA  NA  6 0.096133
   RPB MQB BQB MQSB       SGB     MQ0F ICB HOB AC AN     DP4 MQ
@@ -661,12 +661,12 @@ variants[2, ]
 e.
 
 
-```r
+``` r
 variants[-1, ]
 ```
 
 
-```output
+``` output
    sample_id      CHROM     POS ID      REF       ALT QUAL FILTER INDEL IDV IMF
 2 SRR2584863 CP000819.1  263235 NA        G         T   85     NA FALSE  NA  NA
 3 SRR2584863 CP000819.1  281923 NA        G         T  217     NA FALSE  NA  NA
@@ -700,22 +700,22 @@ variants[-1, ]
 f.
 
 
-```r
+``` r
 variants[1:4, 1]
 ```
 
-```output
+``` output
 [1] "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863"
 ```
 
 g.
 
 
-```r
+``` r
 variants[1:10, c("REF", "ALT")]
 ```
 
-```output
+``` output
                                 REF
 1                                 T
 2                                 G
@@ -743,12 +743,12 @@ variants[1:10, c("REF", "ALT")]
 h.
 
 
-```r
+``` r
 variants[, c("sample_id")]
 ```
 
 
-```output
+``` output
 [1] "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863"
 [6] "SRR2584863"
 ```
@@ -756,11 +756,11 @@ variants[, c("sample_id")]
 i.
 
 
-```r
+``` r
 head(variants)
 ```
 
-```output
+``` output
    sample_id      CHROM    POS ID      REF       ALT QUAL FILTER INDEL IDV IMF
 1 SRR2584863 CP000819.1   9972 NA        T         G   91     NA FALSE  NA  NA
 2 SRR2584863 CP000819.1 263235 NA        G         T   85     NA FALSE  NA  NA
@@ -794,11 +794,11 @@ head(variants)
 j.
 
 
-```r
+``` r
 tail(variants)
 ```
 
-```output
+``` output
      sample_id      CHROM     POS ID REF ALT QUAL FILTER INDEL IDV IMF DP
 796 SRR2589044 CP000819.1 3444175 NA   G   T  184     NA FALSE  NA  NA  9
 797 SRR2589044 CP000819.1 3481820 NA   A   G  225     NA FALSE  NA  NA 12
@@ -832,12 +832,12 @@ tail(variants)
 k.
 
 
-```r
+``` r
 variants$sample_id
 ```
 
 
-```output
+``` output
 [1] "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863"
 [6] "SRR2584863"
 ```
@@ -845,12 +845,12 @@ variants$sample_id
 l.
 
 
-```r
+``` r
 variants[variants$REF == "A", ]
 ```
 
 
-```output
+``` output
     sample_id      CHROM     POS ID REF ALT QUAL FILTER INDEL IDV IMF DP
 11 SRR2584863 CP000819.1 2407766 NA   A   C  104     NA FALSE  NA  NA  9
 12 SRR2584863 CP000819.1 2446984 NA   A   C  225     NA FALSE  NA  NA 20
@@ -906,7 +906,7 @@ the screen. You can create a new data frame object by assigning
 them to a new object name:
 
 
-```r
+``` r
 # create a new data frame containing only observations from SRR2584863
 
 SRR2584863_variants <- variants[variants$sample_id == "SRR2584863", ]
@@ -916,17 +916,17 @@ SRR2584863_variants <- variants[variants$sample_id == "SRR2584863", ]
 dim(SRR2584863_variants)
 ```
 
-```output
+``` output
 [1] 25 29
 ```
 
-```r
+``` r
 # get a summary of the data frame
 
 summary(SRR2584863_variants)
 ```
 
-```output
+``` output
   sample_id            CHROM                POS             ID         
  Length:25          Length:25          Min.   :   9972   Mode:logical  
  Class :character   Class :character   1st Qu.:1331794   NA's:25       
@@ -1012,12 +1012,12 @@ This can be a good thing when R gets it right, or a bad thing when the result
 is not what you expect. Consider:
 
 
-```r
+``` r
 snp_chromosomes <- c('3', '11', 'X', '6')
 typeof(snp_chromosomes)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
@@ -1026,20 +1026,20 @@ we have explicitly told R to consider them as characters. However, even if we re
 the quotes from the numbers, R would coerce everything into a character:
 
 
-```r
+``` r
 snp_chromosomes_2 <- c(3, 11, 'X', 6)
 typeof(snp_chromosomes_2)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
-```r
+``` r
 snp_chromosomes_2[1]
 ```
 
-```output
+``` output
 [1] "3"
 ```
 
@@ -1048,40 +1048,40 @@ another. Consider the following vector of characters, which all happen to be
 valid numbers:
 
 
-```r
+``` r
 snp_positions_2 <- c("8762685", "66560624", "67545785", "154039662")
 typeof(snp_positions_2)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
-```r
+``` r
 snp_positions_2[1]
 ```
 
-```output
+``` output
 [1] "8762685"
 ```
 
 Now we can coerce `snp_positions_2` into a numeric type using `as.numeric()`:
 
 
-```r
+``` r
 snp_positions_2 <- as.numeric(snp_positions_2)
 typeof(snp_positions_2)
 ```
 
-```output
+``` output
 [1] "double"
 ```
 
-```r
+``` r
 snp_positions_2[1]
 ```
 
-```output
+``` output
 [1] 8762685
 ```
 
@@ -1089,11 +1089,11 @@ Sometimes coercion is straight forward, but what would happen if we tried
 using `as.numeric()` on `snp_chromosomes_2`
 
 
-```r
+``` r
 snp_chromosomes_2 <- as.numeric(snp_chromosomes_2)
 ```
 
-```warning
+``` warning
 Warning: NAs introduced by coercion
 ```
 
@@ -1101,11 +1101,11 @@ If we check, we will see that an `NA` value (R's default value for missing
 data) has been introduced.
 
 
-```r
+``` r
 snp_chromosomes_2
 ```
 
-```output
+``` output
 [1]  3 11 NA  6
 ```
 
@@ -1114,11 +1114,11 @@ try to coerce the `factor_snps` vector into a numeric mode
 look at the result:
 
 
-```r
+``` r
 as.numeric(factor_snps)
 ```
 
-```output
+``` output
   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
  [38] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
  [75] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
@@ -1151,7 +1151,7 @@ If you need to coerce an entire column you can overwrite it using an expression
 like this one:
 
 
-```r
+``` r
 # make the 'REF' column a character type column
 
 variants$REF <- as.character(variants$REF)
@@ -1160,7 +1160,7 @@ variants$REF <- as.character(variants$REF)
 typeof(variants$REF)
 ```
 
-```output
+``` output
 [1] "character"
 ```
 
@@ -1209,23 +1209,23 @@ individual column. Let's look at the "DP" or filtered depth. This value shows th
 reads that support each of the reported variants.
 
 
-```r
+``` r
 max(variants$DP)
 ```
 
-```output
+``` output
 [1] 79
 ```
 
 You can sort a data frame using the `order()` function:
 
 
-```r
+``` r
 sorted_by_DP <- variants[order(variants$DP), ]
 head(sorted_by_DP$DP)
 ```
 
-```output
+``` output
 [1] 2 2 2 2 2 2
 ```
 
@@ -1242,12 +1242,12 @@ variants with the greatest filtered depth ("DP").
 ## Solution
 
 
-```r
+``` r
    sorted_by_DP <- variants[order(variants$DP, decreasing = TRUE), ]
    head(sorted_by_DP$DP)
 ```
 
-```output
+``` output
 [1] 79 46 41 29 29 27
 ```
 
@@ -1258,14 +1258,14 @@ variants with the greatest filtered depth ("DP").
 You can rename columns:
 
 
-```r
+``` r
 colnames(variants)[colnames(variants) == "sample_id"] <- "strain"
 
 # check the column name (hint names are returned as a vector)
 colnames(variants)
 ```
 
-```output
+``` output
  [1] "strain"        "CHROM"         "POS"           "ID"           
  [5] "REF"           "ALT"           "QUAL"          "FILTER"       
  [9] "INDEL"         "IDV"           "IMF"           "DP"           
@@ -1282,7 +1282,7 @@ We can save data to a file. We will save our `SRR2584863_variants` object
 to a .csv file using the `write.csv()` function:
 
 
-```r
+``` r
 write.csv(SRR2584863_variants, file = "data/SRR2584863_variants.csv")
 ```
 
@@ -1335,11 +1335,11 @@ frame:
 
 
 
-```r
+``` r
 head(Ecoli_metadata)
 ```
 
-```output
+``` output
 # A tibble: 6 × 7
   sample   generation clade   strain cit     run       genome_size
   <chr>         <dbl> <chr>   <chr>  <chr>   <chr>           <dbl>
@@ -1382,52 +1382,52 @@ H) Save the edited Ecoli\_metadata data frame as "exercise\_solution.csv" in you
 ## Solution
 
 
-```r
+``` r
 dim(Ecoli_metadata)
 ```
 
-```output
+``` output
 [1] 30  7
 ```
 
-```r
+``` r
 levels(as.factor(Ecoli_metadata$cit))
 ```
 
-```output
+``` output
 [1] "minus"   "plus"    "unknown"
 ```
 
-```r
+``` r
 table(as.factor(Ecoli_metadata$cit))
 ```
 
-```output
+``` output
 
   minus    plus unknown 
       9       9      12 
 ```
 
-```r
+``` r
 Ecoli_metadata[7, 7]
 ```
 
-```output
+``` output
 # A tibble: 1 × 1
   genome_size
         <dbl>
 1        4.62
 ```
 
-```r
+``` r
 median(Ecoli_metadata$genome_size)
 ```
 
-```output
+``` output
 [1] 4.625
 ```
 
-```r
+``` r
 colnames(Ecoli_metadata)[colnames(Ecoli_metadata) == "sample"] <- "sample_id"
 Ecoli_metadata$genome_size_bp <- Ecoli_metadata$genome_size * 1000000
 write.csv(Ecoli_metadata, file = "exercise_solution.csv")

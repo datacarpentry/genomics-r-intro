@@ -37,7 +37,7 @@ Since access to the [Bioconductor](https://bioconductor.org/) repository is not 
 The first step is to install a package that *is* on CRAN, `BiocManager`. This package will allow us to use it to install packages from Bioconductor. You can think of Bioconductor kind of like an alternative app store for your phone, except instead of apps you are installing packages, and instead of your phone it's your local R package library.
 
 
-```r
+``` r
 # install the BiocManager from CRAN using the base R install.packages() function
 install.packages("BiocManager")
 ```
@@ -45,7 +45,7 @@ install.packages("BiocManager")
 To check if this worked (and also so you can make a note of the version for reproducibility purposes), you can run `BiocManager::version()` and it should give you the version number.
 
 
-```r
+``` r
 # to make sure it worked, check the version
 BiocManager::version()
 ```
@@ -61,7 +61,7 @@ Just be aware that installing packages that have many dependencies can take a wh
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-```r
+``` r
 # install the vcfR package from bioconductor using BiocManager::install()
 BiocManager::install("vcfR")
 ```

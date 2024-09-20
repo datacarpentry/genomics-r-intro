@@ -275,7 +275,7 @@ First, lets see what directory we are in. To do so, type the following command
 into the script:
 
 
-```r
+``` r
 getwd()
 ```
 
@@ -299,7 +299,7 @@ not try to interpret as code. Edit your script to include a comment on the
 purpose of commands you are learning, e.g.:
 
 
-```r
+``` r
 # this command shows the current working directory
 getwd()
 ```
@@ -330,7 +330,7 @@ What if you weren't? You can set your home directory using the `setwd()`
 command. Enter this command in your script, but *don't run* this yet.
 
 
-```r
+``` r
 # This sets the working directory
 setwd()
 ```
@@ -343,7 +343,7 @@ advantage of RStudio's Tab-autocompletion method, to select `home`, `dcuser`,
 and `dc_genomics_r` directory. The path in your script should look like this:
 
 
-```r
+``` r
 # This sets the working directory
 setwd("/home/dcuser/dc_genomics_r")
 ```
@@ -423,12 +423,12 @@ function's behavior. For example the function `round()` will round a number
 with a decimal:
 
 
-```r
+``` r
 # This will round a number to the nearest integer
 round(3.14)
 ```
 
-```output
+``` output
 [1] 3
 ```
 
@@ -440,7 +440,7 @@ do this, but you may first need to read the help to find out how. To see the hel
 name:
 
 
-```r
+``` r
 ?round()
 ```
 
@@ -451,11 +451,11 @@ also see what arguments we can pass to this function to modify its behavior.
 You can also see a function's argument using the `args()` function:
 
 
-```r
+``` r
 args(round)
 ```
 
-```output
+``` output
 function (x, digits = 0, ...) 
 NULL
 ```
@@ -469,11 +469,11 @@ a different value. We can explicitly set the digits parameter when we call the
 function:
 
 
-```r
+``` r
 round(3.14159, digits = 2)
 ```
 
-```output
+``` output
 [1] 3.14
 ```
 
@@ -483,18 +483,18 @@ when we used `args()`. In the case below that means that `x` is 3.14159 and
 digits is 2.
 
 
-```r
+``` r
 round(3.14159, 2)
 ```
 
-```output
+``` output
 [1] 3.14
 ```
 
 Finally, what if you are using `?` to get help for a function in a package not installed on your system, such as when you are running a script which has dependencies.
 
 
-```r
+``` r
 ?geom_point()
 ```
 

@@ -51,37 +51,37 @@ The idea of **mapping** is crucial in **ggplot**. One familiar example is to *ma
 First, we need to install the `ggplot2` package.
 
 
-```r
+``` r
 install.packages("ggplot2")
 ```
 
 Now, let's load the `ggplot2` package:
 
 
-```r
+``` r
 library(ggplot2)
 ```
 
 We will also use some of the other tidyverse packages we used in the last episode, so we need to load them as well.
 
 
-```r
+``` r
 library(readr)
 library(dplyr)
 ```
 
-```output
+``` output
 
 Attaching package: 'dplyr'
 ```
 
-```output
+``` output
 The following objects are masked from 'package:stats':
 
     filter, lag
 ```
 
-```output
+``` output
 The following objects are masked from 'package:base':
 
     intersect, setdiff, setequal, union
@@ -92,18 +92,18 @@ As we can see from above output **`ggplot2`** has been already loaded along with
 ## Loading the dataset
 
 
-```r
+``` r
 variants <- read.csv("https://raw.githubusercontent.com/datacarpentry/genomics-r-intro/main/episodes/data/combined_tidy_vcf.csv")
 ```
 
 Explore the *structure* (types of columns and number of rows) of the dataset using [dplyr](https://dplyr.tidyverse.org/index.html)'s [`glimpse()`](https://dplyr.tidyverse.org/reference/glimpse.html) (for more info, see the [Data Wrangling and Analyses with Tidyverse](https://datacarpentry.org/genomics-r-intro/05-dplyr/) episode)
 
 
-```r
+``` r
 glimpse(variants) # Show a snapshot of the rows and columns
 ```
 
-```output
+``` output
 Rows: 801
 Columns: 29
 $ sample_id     <chr> "SRR2584863", "SRR2584863", "SRR2584863", "SRR2584863", â€¦
@@ -140,7 +140,7 @@ $ gt_GT_alleles <chr> "G", "T", "T", "CTTTTTTTT", "CCGCGC", "T", "A", "A", "ACâ€
 Alternatively, we can display the first a few rows (vertically) of the table using [`head()`](https://www.geeksforgeeks.org/get-the-first-parts-of-a-data-set-in-r-programming-head-function/):
 
 
-```r
+``` r
 head(variants)
 ```
 
@@ -162,7 +162,7 @@ head(variants)
 To build a ggplot, we will use the following basic template that can be used for different types of plots:
 
 
-```r
+``` r
 ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) +  <GEOM_FUNCTION>()
 ```
 
@@ -170,14 +170,14 @@ ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) +  <GEOM_FUNCTION>()
   `data` argument
 
 
-```r
+``` r
 ggplot(data = variants)
 ```
 
 - define a mapping (using the aesthetic (`aes`) function), by selecting the variables to be plotted and specifying how to present them in the graph, e.g. as x and y positions or characteristics such as size, shape, color, etc.
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = POS, y = DP))
 ```
 
@@ -191,7 +191,7 @@ ggplot(data = variants, aes(x = POS, y = DP))
 To add a geom to the plot use the `+` operator. Because we have two continuous variables, let's use [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) (i.e., a scatter plot) first:
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point()
 ```
@@ -201,7 +201,7 @@ ggplot(data = variants, aes(x = POS, y = DP)) +
 The `+` in the **`ggplot2`** package is particularly useful because it allows you to modify existing `ggplot` objects. This means you can easily set up plot templates and conveniently explore different types of plots, so the above plot can also be generated with code like this:
 
 
-```r
+``` r
 # Assign plot to a variable
 coverage_plot <- ggplot(data = variants, aes(x = POS, y = DP))
 
@@ -217,7 +217,7 @@ coverage_plot +
 - The `+` sign used to add new layers must be placed at the end of the line containing the *previous* layer. If, instead, the `+` sign is added at the beginning of the line containing the new layer, **`ggplot2`** will not add the new layer and will return an error message.
 
 
-```r
+``` r
 # This is the correct syntax for adding layers
 coverage_plot +
   geom_point()
@@ -232,7 +232,7 @@ coverage_plot
 Building plots with **`ggplot2`** is typically an iterative process. We start by defining the dataset we'll use, lay out the axes, and choose a geom:
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point()
 ```
@@ -242,7 +242,7 @@ ggplot(data = variants, aes(x = POS, y = DP)) +
 Then, we start modifying this plot to extract more information from it. For instance, we can add transparency (`alpha`) to avoid over-plotting:
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point(alpha = 0.5)
 ```
@@ -252,7 +252,7 @@ ggplot(data = variants, aes(x = POS, y = DP)) +
 We can also add colors for all the points:
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point(alpha = 0.5, color = "blue")
 ```
@@ -262,7 +262,7 @@ ggplot(data = variants, aes(x = POS, y = DP)) +
 Or to color each species in the plot differently, you could use a vector as an input to the argument **color**. **`ggplot2`** will provide a different color corresponding to different values in the vector. Here is an example where we color with **`sample_id`**:
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_point(alpha = 0.5)
 ```
@@ -272,7 +272,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 Notice that we can change the geom layer and colors will be still determined by **`sample_id`**
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_line(alpha = 0.5)
 ```
@@ -282,7 +282,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 To make our plot more readable, we can add axis labels:
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_point(alpha = 0.5) +
   labs(x = "Base Pair Position",
@@ -294,7 +294,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 To add a *main* title to the plot, we use [the title argument for the `labs()` function](https://ggplot2.tidyverse.org/reference/labs.html):
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_point(alpha = 0.5) +
   labs(x = "Base Pair Position",
@@ -307,7 +307,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 Now the figure is complete and ready to be exported and saved to a file. This can be achieved easily using [`ggsave()`](https://ggplot2.tidyverse.org/reference/ggsave.html), which can write, by default, the most recent generated figure into different formats (e.g., `jpeg`, `png`, `pdf`) according to the file extension. So, for example, to create a pdf version of the above figure with a dimension of $6\times4$ inches:
 
 
-```r
+``` r
 ggsave ("depth.pdf", width = 6, height = 4)
 ```
 
@@ -326,7 +326,7 @@ relevant axis labels.
 ## Solution
 
 
-```r
+``` r
  ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
   geom_point() +
   labs(x = "Base Pair Position",
@@ -342,7 +342,7 @@ relevant axis labels.
 To further customize the plot, we can change the default font format:
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_point(alpha = 0.5) +
   labs(x = "Base Pair Position",
@@ -358,7 +358,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 **`ggplot2`** has a special technique called *faceting* that allows the user to split one plot into multiple plots (panels) based on a factor (variable) included in the dataset. We will use it to split our mapping quality plot into three panels, one for each sample.
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
  geom_point() +
  labs(x = "Base Pair Position",
@@ -371,7 +371,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
 This looks okay, but it would be easier to read if the plot facets were stacked vertically rather than horizontally. The `facet_grid` geometry allows you to explicitly specify how you want your plots to be arranged via formula notation (`rows ~ columns`; the dot (`.`) indicates every other variable in the data i.e., no faceting on that side of the formula).
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
  geom_point() +
  labs(x = "Base Pair Position",
@@ -384,7 +384,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
 Usually plots with white background look more readable when printed.  We can set the background to white using the function [`theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html). Additionally, you can remove the grid:
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
   geom_point() +
   labs(x = "Base Pair Position",
@@ -409,7 +409,7 @@ relevant axis labels.
 ## Solution
 
 
-```r
+``` r
  ggplot(data = variants, aes(x = POS, y = QUAL, color = sample_id)) +
   geom_point() +
   labs(x = "Base Pair Position",
@@ -428,7 +428,7 @@ relevant axis labels.
 We can create barplots using the [`geom_bar`](https://ggplot2.tidyverse.org/reference/geom_bar.html) geom. Let's make a barplot showing the number of variants for each sample that are indels.
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = INDEL, fill = sample_id)) +
   geom_bar() +
   facet_grid(sample_id ~ .)
@@ -449,7 +449,7 @@ remove the legend from the plot.
 ## Solution
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = INDEL, color = sample_id)) +
    geom_bar(show.legend = F) +
    facet_grid(sample_id ~ .)
@@ -466,7 +466,7 @@ ggplot(data = variants, aes(x = INDEL, color = sample_id)) +
 We can create density plots using the [`geom_density`](https://ggplot2.tidyverse.org/reference/geom_density.html) geom that shows the distribution of of a variable in the dataset. Let's plot the distribution of `DP`
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = DP)) +
   geom_density()
 ```
@@ -486,7 +486,7 @@ Use [`geom_density`](https://ggplot2.tidyverse.org/reference/geom_density.html) 
 ## Solution
 
 
-```r
+``` r
 ggplot(data = variants, aes(x = DP, fill = sample_id)) +
    geom_density(alpha = 0.5) +
    theme_bw()
