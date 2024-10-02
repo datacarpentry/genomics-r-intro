@@ -298,10 +298,19 @@ head(alt_alleles)
 ```
 
 There are 801 alleles (one for each row). To simplify, lets look at just the
-single-nucleotide alleles (SNPs). We can use some of the vector indexing skills
-from the last episode.
+single-nucleotide alleles (SNPs). 
+
+Let's review some of the vector indexing skills from the last episode that can help:
 
 ```{r, purl=FALSE}
+# This will find all matching alleles with the single nucleotide "A" and provide a TRUE/FASE vector
+alt_alleles == "A"
+
+# Then, we wrap them into an index to pull all the positions that match this. 
+alt_alleles[alt_alleles == "A"]
+
+# If we repeat this for each nucleotide A, T, G, and C, and connect them using `c()`,
+# we can index all the single nucleotide changes.
 snps <- c(alt_alleles[alt_alleles == "A"],
   alt_alleles[alt_alleles=="T"],
   alt_alleles[alt_alleles=="G"],
