@@ -537,13 +537,9 @@ to understand how to manipulate factors.
 ## Tip: Packages in R -- what are they and why do we use them?
 
 Packages are simply collections of functions and/or data that can be used to extend the
-capabilities of R beyond the core functionality that comes with it by default. There are
-useful R packages available that span all types of statistical analysis, data visualization,
-and more. The main place that R packages are installed from is a website called
-[CRAN](https://cran.r-project.org/) (the Comprehensive R Archive Network). Many thousands
-of R packages are available there, and when you use the built-in R function `install.packages()`,
-it will look for a CRAN repository to install from. So, for example, to install
-[tidyverse](https://www.tidyverse.org) packages such as `dplyr` and `ggplot2`
+capabilities of R beyond the core functionality that comes with it by default. The default set of functions and packages that come 'in the box' when you install R for the first time on a given computer are called 'base R'. However, one of the major benefits of using an open source programming language is that there are thousands of useful R packages freely available that span all types of statistical analysis, data visualization,
+and more. The main place that these additional R packages are made available is from a website called the Comprehensive R Archive Network ([CRAN](https://cran.r-project.org/)).  When you use the built-in R function `install.packages()`,
+it will look on CRAN for the package and install it on your computer. So, for example, to install packages such as `dplyr` and `ggplot2`
 (which you'll do in the next few lessons), you would use the following command:
 
 
@@ -559,8 +555,24 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 6.5 milliseconds.
+Successfully installed 1 package in 7.2 milliseconds.
 ```
+
+``` r
+install.packages("dplyr")
+```
+
+``` output
+The following package(s) will be installed:
+- dplyr [1.1.4]
+These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu".
+
+# Installing packages --------------------------------------------------------
+- Installing dplyr ...                          OK [linked from cache]
+Successfully installed 1 package in 6.4 milliseconds.
+```
+
+These two packages are among the most popular add on packages used in R, and they are part of a large set of very useful packages called the [tidyverse](https://www.tidyverse.org). Packages in the tidyverse are designed to work well together and are made to work with tidy data (which we described earlier in this lesson).
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
