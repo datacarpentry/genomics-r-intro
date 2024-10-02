@@ -328,7 +328,13 @@ plot(snps)
 ```
 
 Whoops! Though the `plot()` function will do its best to give us a quick plot,
-it is unable to do so here. One way to fix this it to tell R to treat the SNPs
+it is unable to do so here. Let's use `str()` to see why this might be:
+
+```{r, purl=FALSE}
+str(snps)
+```
+
+R may not know how to plot a character vector! One way to fix this it to tell R to treat the SNPs
 as categories (i.e. a factor vector); we will create a new object to avoid
 confusion using the `factor()` function:
 
@@ -359,9 +365,12 @@ We can see how many items in our vector fall into each category:
 
 ```{r, purl=FALSE}
 summary(factor_snps)
+
+# Compare the character vector 
+summary(snps)
 ```
 
-As you can imagine, this is already useful when you want to generate a tally.
+As you can imagine, factors are already useful when you want to generate a tally.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
