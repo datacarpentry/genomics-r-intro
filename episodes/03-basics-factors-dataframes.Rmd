@@ -228,12 +228,13 @@ str(subset)
 
 Ok, thats a lot up unpack! Some things to notice.
 
-- the object type `data.frame` is displayed in the first row along with its
+- The object type `data.frame` is displayed in the first row along with its
   dimensions, in this case 801 observations (rows) and 4 variables (columns)
-- Each variable (column) has a name (e.g. `sample_id`). This is followed
-  by the object mode (e.g. chr, int, etc.). Notice that before each
+- Each variable (column) has a name (e.g. `sample_id`). Notice that before each
   variable name there is a `$` - this will be important later.
-
+- Each variable name is followed by the data type it contains (e.g. chr, int, etc.). 
+  The `int` type shows an integer, which is a type of numerical data, where it can only 
+  store whole numbers (i.e. no decimal points ).
 
 
   :::::::::::::::::::::::::::::::::::::::  challenge
