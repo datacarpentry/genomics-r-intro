@@ -23,8 +23,6 @@ source: Rmd
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-
-
 ## "The fantastic world of R awaits you" OR "Nobody wants to learn how to use R"
 
 Before we begin this lesson, we want you to be clear on the goal of the workshop
@@ -220,7 +218,7 @@ but R is "not sure"
 about how to assign the name to "human\_ chr\_number" when the object name we
 want is "human\_chr\_number".
 
-<img src="fig/rstudio_script_warning.png" alt="rstudio script warning" style="width: 600px;"/>
+![RStudio script warning]("fig/rstudio_script_warning.png")
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -493,7 +491,7 @@ These can be used with literal numbers:
 
 
 ``` r
-(1 + (5 ** 0.5))/2
+(1 + (5 ** 0.5)) / 2
 ```
 
 ``` output
@@ -531,7 +529,7 @@ functions. Hint: remember the `round()` function can take 2 arguments.
 
 
 ``` r
-round((1 + sqrt(5))/2, digits = 3)
+round((1 + sqrt(5)) / 2, digits = 3)
 ```
 
 ``` output
@@ -667,7 +665,7 @@ Also, several of these subsetting expressions can be combined:
 ``` r
 # get the 1st through the 3rd value, and 4th value in the snp vector
 # yes, this is a little silly in a vector of only 4 values.
-snps[c(1:3,4)]
+snps[c(1:3, 4)]
 ```
 
 ``` output
@@ -725,7 +723,7 @@ We can also explicitly rename or add a value to our index using double bracket n
 
 
 ``` r
-snp_genes[6]<- "APOA5"
+snp_genes[6] <- "APOA5"
 snp_genes
 ```
 
