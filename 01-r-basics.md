@@ -372,7 +372,7 @@ mode(pilot)
 ```
 
 ``` error
-Error in eval(expr, envir, enclos): object 'pilot' not found
+Error: object 'pilot' not found
 ```
 
 :::::::::::::::::::::::::
@@ -433,7 +433,7 @@ class(pilot)
 ```
 
 ``` error
-Error in eval(expr, envir, enclos): object 'pilot' not found
+Error: object 'pilot' not found
 ```
 
 :::::::::::::::::::::::::
