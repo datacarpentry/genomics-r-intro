@@ -355,7 +355,7 @@ frame.</a></li>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>R Basics continued - factors and data frames</h1>
-        <p>Last updated on 2024-10-02 |
+        <p>Last updated on 2024-10-03 |
 
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/03-basics-factors-dataframes.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -556,8 +556,24 @@ and errors in file paths.</strong> Use it!</p>
 window, you have the <code>variants</code> object, listed as 801 obs.
 (observations/rows) of 29 variables (columns). Double-clicking on the
 name of the object will open a view of the data in a new tab.</p>
-<figure><img src="%22fig/rstudio_dataframeview.png%22" alt="RStudio data frame view" class="figure mx-auto d-block"><div class="figcaption">RStudio data frame view</div>
-</figure></section><section><h2 class="section-heading" id="summarizing-subsetting-and-determining-the-structure-of-a-data-frame-">Summarizing, subsetting, and determining the structure of a data
+<figure><img src="%22epidoes/fig/rstudio_dataframeview.png%22" alt="RStudio data frame view" class="figure mx-auto d-block"><div class="figcaption">RStudio data frame view</div>
+</figure><p>We can also quickly query the dimensions of the variable using
+<code>dim()</code>. You’ll see that the first number <code>801</code>
+shows the number of rows, then <code>29</code> the number of columns</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## get summary statistics on a data frame</span></span>
+<span></span>
+<span><span class="fu">dim</span><span class="op">(</span><span class="va">variants</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[1] 801  29</code></pre>
+</div>
+</section><section><h2 class="section-heading" id="summarizing-subsetting-and-determining-the-structure-of-a-data-frame-">Summarizing, subsetting, and determining the structure of a data
 frame.<a class="anchor" aria-label="anchor" href="#summarizing-subsetting-and-determining-the-structure-of-a-data-frame-"></a></h2>
 <hr class="half-width"><p>A <strong>data frame is the standard way in R to store tabular
 data</strong>. A data fame could also be thought of as a collection of
@@ -565,7 +581,7 @@ vectors, all of which have the same length. Using only two functions, we
 can learn a lot about out data frame including some summary statistics
 as well as well as the “structure” of the data frame. Let’s examine what
 each of these functions can tell us:</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -640,20 +656,25 @@ statistics on the min and max values for these columns, as well as mean,
 median, and interquartile ranges. Many of the other variables
 (e.g. <code>sample_id</code>) are treated as characters data (more on
 this in a bit).</p>
-<p>There is a lot to work with, so we will subset the first three
-columns into a new data frame using the <code>data.frame()</code>
-function.</p>
-<div class="codewrapper sourceCode" id="cb4">
+<p>There is a lot to work with, so we will subset the columns into a new
+data frame using the <code>data.frame()</code> function. To subset/index
+a two dimensional variable, we need to define them on the appropriate
+side of the brackets. The left hand side of the comma indicates the rows
+you want to subset, and the right is the column position (e.g. [“row
+index”, “column index”]).</p>
+<p>Let’s put the columns 1, 2, 3, and 6 into a new data frame called
+subset:</p>
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## put the first three columns of variants into a new data frame called subset</span></span>
-<span></span>
+<code class="sourceCode R"><span><span class="co">## Notice that we are wrapping the numbers in a c() function, to indicate a vector</span></span>
+<span><span class="co">## in the right hand side of the comma. </span></span>
 <span><span class="va">subset</span> <span class="op">&lt;-</span> <span class="fu">data.frame</span><span class="op">(</span><span class="va">variants</span><span class="op">[</span>, <span class="fu">c</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">6</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre>
 </div>
 <p>Now, let’s use the <code>str()</code> (structure) function to look a
 little more closely at how data frames work:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -671,14 +692,17 @@ little more closely at how data frames work:</p>
  $ ALT      : chr  "G" "T" "T" "CTTTTTTTT" ...</code></pre>
 </div>
 <p>Ok, thats a lot up unpack! Some things to notice.</p>
-<ul><li><p>the object type <code>data.frame</code> is displayed in the first
+<ul><li><p>The object type <code>data.frame</code> is displayed in the first
 row along with its dimensions, in this case 801 observations (rows) and
 4 variables (columns)</p></li>
+<li><p>Each variable (column) has a name (e.g. <code>sample_id</code>).
+Notice that before each variable name there is a <code>$</code> - this
+will be important later.</p></li>
 <li>
-<p>Each variable (column) has a name (e.g. <code>sample_id</code>).
-This is followed by the object mode (e.g. chr, int, etc.). Notice that
-before each variable name there is a <code>$</code> - this will be
-important later.</p>
+<p>Each variable name is followed by the data type it contains
+(e.g. chr, int, etc.). The <code>int</code> type shows an integer, which
+is a type of numerical data, where it can only store whole numbers
+(i.e. no decimal points ).</p>
 <div id="challenge2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -701,7 +725,7 @@ following?</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -712,7 +736,7 @@ following?</p>
 </h3>
 <pre class="output" tabindex="0"><code>[1] "list"</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -747,7 +771,7 @@ in nature as factors. To do this we’ll take a look at just the alternate
 alleles. We can use the <code>$</code> operator to access or extract a
 column by its name in data frames (or to extract objects within named
 lists).</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -757,7 +781,7 @@ lists).</p>
 </div>
 <p>Let’s look at the first few items in our factor using
 <code>head()</code>:</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -769,13 +793,117 @@ lists).</p>
 <pre class="output" tabindex="0"><code>[1] "G"         "T"         "T"         "CTTTTTTTT" "CCGCGC"    "T"        </code></pre>
 </div>
 <p>There are 801 alleles (one for each row). To simplify, lets look at
-just the single-nucleotide alleles (SNPs). We can use some of the vector
-indexing skills from the last episode.</p>
-<div class="codewrapper sourceCode" id="cb14">
+just the single-nucleotide alleles (SNPs).</p>
+<p>Let’s review some of the vector indexing skills from the last episode
+that can help:</p>
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">snps</span> <span class="op">&lt;-</span> <span class="fu">c</span><span class="op">(</span><span class="va">alt_alleles</span><span class="op">[</span><span class="va">alt_alleles</span> <span class="op">==</span> <span class="st">"A"</span><span class="op">]</span>,</span>
+<code class="sourceCode R"><span><span class="co"># This will find all matching alleles with the single nucleotide "A" and provide a TRUE/FASE vector</span></span>
+<span><span class="va">alt_alleles</span> <span class="op">==</span> <span class="st">"A"</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>  [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE
+ [13] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [25] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+ [37]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
+ [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
+ [73] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [85] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [97] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[109] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[121] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[133] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[145] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[157] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+[169] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[181] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+[193]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[205] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+[217] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+[229] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+[241] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[253] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE
+[265] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[277]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
+[289] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE
+[301] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+[313] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE
+[325] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE
+[337] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[349] FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE
+[361] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE
+[373] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+[385] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE
+[397]  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE
+[409] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE
+[421] FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE
+[433]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
+[445]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE
+[457]  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+[469]  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE
+[481] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[493]  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE
+[505]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE
+[517] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+[529] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE
+[541]  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE
+[553] FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE
+[565] FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE
+[577] FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[589] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
+[601] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+[613] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE
+[625]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
+[637] FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE
+[649]  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+[661] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE
+[673]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[685] FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE
+[697]  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[709] FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[721] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+[733]  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE
+[745] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
+[757] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+[769] FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE
+[781] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[793]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Then, we wrap them into an index to pull all the positions that match this. </span></span>
+<span><span class="va">alt_alleles</span><span class="op">[</span><span class="va">alt_alleles</span> <span class="op">==</span> <span class="st">"A"</span><span class="op">]</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>  [1] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+ [19] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+ [37] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+ [55] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+ [73] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+ [91] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+[109] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+[127] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+[145] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+[163] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+[181] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+[199] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># If we repeat this for each nucleotide A, T, G, and C, and connect them using `c()`,</span></span>
+<span><span class="co"># we can index all the single nucleotide changes.</span></span>
+<span><span class="va">snps</span> <span class="op">&lt;-</span> <span class="fu">c</span><span class="op">(</span><span class="va">alt_alleles</span><span class="op">[</span><span class="va">alt_alleles</span> <span class="op">==</span> <span class="st">"A"</span><span class="op">]</span>,</span>
 <span>  <span class="va">alt_alleles</span><span class="op">[</span><span class="va">alt_alleles</span><span class="op">==</span><span class="st">"T"</span><span class="op">]</span>,</span>
 <span>  <span class="va">alt_alleles</span><span class="op">[</span><span class="va">alt_alleles</span><span class="op">==</span><span class="st">"G"</span><span class="op">]</span>,</span>
 <span>  <span class="va">alt_alleles</span><span class="op">[</span><span class="va">alt_alleles</span><span class="op">==</span><span class="st">"C"</span><span class="op">]</span><span class="op">)</span></span></code></pre>
@@ -785,7 +913,7 @@ were single nucleotides. Right now, they are being treated a characters,
 but we could treat them as categories of SNP. Doing this will enable
 some nice features. For example, we can try to generate a plot of this
 character vector as it is right now:</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -812,18 +940,31 @@ character vector as it is right now:</p>
 <pre class="error" tabindex="0"><code>Error in plot.window(...): need finite 'ylim' values</code></pre>
 </div>
 <p>Whoops! Though the <code>plot()</code> function will do its best to
-give us a quick plot, it is unable to do so here. One way to fix this it
+give us a quick plot, it is unable to do so here. Let’s use
+<code>str()</code> to see why this might be:</p>
+<div class="codewrapper sourceCode" id="cb26">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">str</span><span class="op">(</span><span class="va">snps</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code> chr [1:707] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" ...</code></pre>
+</div>
+<p>R may not know how to plot a character vector! One way to fix this it
 to tell R to treat the SNPs as categories (i.e. a factor vector); we
 will create a new object to avoid confusion using the
 <code>factor()</code> function:</p>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">factor_snps</span> <span class="op">&lt;-</span> <span class="fu">factor</span><span class="op">(</span><span class="va">snps</span><span class="op">)</span></span></code></pre>
 </div>
 <p>Let’s learn a little more about this new type of vector:</p>
-<div class="codewrapper sourceCode" id="cb21">
+<div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -848,7 +989,7 @@ explains the sequence of “1”s (“Factor w/ 4 levels”A”,“C”,“G”,
 1 1 1 1 1 1 1 …“), since”A” is the first level, and the first few items
 in our factor are all “A”s.</p>
 <p>We can see how many items in our vector fall into each category:</p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -860,8 +1001,21 @@ in our factor are all “A”s.</p>
 <pre class="output" tabindex="0"><code>  A   C   G   T
 211 139 154 203 </code></pre>
 </div>
-<p>As you can imagine, this is already useful when you want to generate
-a tally.</p>
+<div class="codewrapper sourceCode" id="cb33">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Compare the character vector </span></span>
+<span><span class="fu">summary</span><span class="op">(</span><span class="va">snps</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>   Length     Class      Mode
+      707 character character </code></pre>
+</div>
+<p>As you can imagine, factors are already useful when you want to
+generate a tally.</p>
 <div id="tip-treating-objects-as-categories-without-changing-their-mode" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -882,13 +1036,13 @@ function; though sometimes you may need to combine both (i.e.
 <hr class="half-width"><p>One of the most common uses for factors will be when you plot
 categorical values. For example, suppose we want to know how many of our
 variants had each possible SNP we could generate a plot:</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot</span><span class="op">(</span><span class="va">factor_snps</span><span class="op">)</span></span></code></pre>
 </div>
-<figure><img src="fig/03-basics-factors-dataframes-rendered-unnamed-chunk-16-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>This isn’t a particularly pretty example of a plot but it works.
+<figure><img src="fig/03-basics-factors-dataframes-rendered-unnamed-chunk-18-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>This isn’t a particularly pretty example of a plot but it works.
 We’ll be learning much more about creating nice, publication-quality
 graphics later in this lesson.</p>
 <p>If you recall, factors are ordered alphabetically. That might make
@@ -896,7 +1050,7 @@ sense, but categories (e.g., “red”, “blue”, “green”) often do not ha
 an intrinsic order. What if we wanted to order our plot according to the
 numerical value (i.e., in descending order of SNP frequency)? We can
 enforce an order on our factors:</p>
-<div class="codewrapper sourceCode" id="cb26">
+<div class="codewrapper sourceCode" id="cb36">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -919,13 +1073,13 @@ factor. We give it the <code>factor_snps</code> object as input, and use
 the <code>levels=</code> parameter to enforce the ordering of the
 levels.</li>
 </ol><p>Now we see our plot has be reordered:</p>
-<div class="codewrapper sourceCode" id="cb27">
+<div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot</span><span class="op">(</span><span class="va">ordered_factor_snps</span><span class="op">)</span></span></code></pre>
 </div>
-<figure><img src="fig/03-basics-factors-dataframes-rendered-unnamed-chunk-18-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>Factors come in handy in many places when using R. Even using more
+<figure><img src="fig/03-basics-factors-dataframes-rendered-unnamed-chunk-20-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>Factors come in handy in many places when using R. Even using more
 sophisticated plotting packages such as ggplot2 will sometimes require
 you to understand how to manipulate factors.</p>
 <div id="tip-packages-in-r-what-are-they-and-why-do-we-use-them" class="callout">
@@ -950,7 +1104,7 @@ package and install it on your computer. So, for example, to install
 packages such as <code>dplyr</code> and <code>ggplot2</code> (which
 you’ll do in the next few lessons), you would use the following
 command:</p>
-<div class="codewrapper sourceCode" id="cb28">
+<div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -966,9 +1120,9 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 7.2 milliseconds.</code></pre>
+Successfully installed 1 package in 6.7 milliseconds.</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb30">
+<div class="codewrapper sourceCode" id="cb40">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -983,7 +1137,7 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing dplyr ...                          OK [linked from cache]
-Successfully installed 1 package in 6.4 milliseconds.</code></pre>
+Successfully installed 1 package in 5.6 milliseconds.</code></pre>
 </div>
 <p>These two packages are among the most popular add on packages used in
 R, and they are part of a large set of very useful packages called the
@@ -1034,7 +1188,7 @@ what they return</strong></p>
 <div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ol style="list-style-type: lower-alpha"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb32">
+</li></ol><div class="codewrapper sourceCode" id="cb42">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1046,7 +1200,7 @@ what they return</strong></p>
 <pre class="output" tabindex="0"><code>[1] "SRR2584863"</code></pre>
 </div>
 <ol start="2" style="list-style-type: lower-alpha"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb34">
+</li></ol><div class="codewrapper sourceCode" id="cb44">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1058,7 +1212,7 @@ what they return</strong></p>
 <pre class="output" tabindex="0"><code>[1] NA</code></pre>
 </div>
 <ol start="3" style="list-style-type: lower-alpha"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb36">
+</li></ol><div class="codewrapper sourceCode" id="cb46">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1070,7 +1224,7 @@ what they return</strong></p>
 <pre class="output" tabindex="0"><code>[1] "T"</code></pre>
 </div>
 <ol start="4" style="list-style-type: lower-alpha"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb38">
+</li></ol><div class="codewrapper sourceCode" id="cb48">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1089,7 +1243,7 @@ what they return</strong></p>
 2     1             T</code></pre>
 </div>
 <ol start="5" style="list-style-type: lower-alpha"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb40">
+</li></ol><div class="codewrapper sourceCode" id="cb50">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1128,7 +1282,7 @@ what they return</strong></p>
 7     1             A</code></pre>
 </div>
 <ol start="6" style="list-style-type: lower-alpha"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb42">
+</li></ol><div class="codewrapper sourceCode" id="cb52">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1140,7 +1294,7 @@ what they return</strong></p>
 <pre class="output" tabindex="0"><code>[1] "SRR2584863" "SRR2584863" "SRR2584863" "SRR2584863"</code></pre>
 </div>
 <ol start="7" style="list-style-type: lower-alpha"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb44">
+</li></ol><div class="codewrapper sourceCode" id="cb54">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1173,7 +1327,7 @@ what they return</strong></p>
 10                                                      ATT</code></pre>
 </div>
 <ol start="8" style="list-style-type: lower-alpha"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb46">
+</li></ol><div class="codewrapper sourceCode" id="cb56">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1186,7 +1340,7 @@ what they return</strong></p>
 [6] "SRR2584863"</code></pre>
 </div>
 <ol style="list-style-type: lower-roman"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb48">
+</li></ol><div class="codewrapper sourceCode" id="cb58">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1225,7 +1379,7 @@ what they return</strong></p>
 6     1             T</code></pre>
 </div>
 <ol start="10" style="list-style-type: lower-alpha"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb50">
+</li></ol><div class="codewrapper sourceCode" id="cb60">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1264,7 +1418,7 @@ what they return</strong></p>
 801     1             T</code></pre>
 </div>
 <ol start="11" style="list-style-type: lower-alpha"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb52">
+</li></ol><div class="codewrapper sourceCode" id="cb62">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1277,7 +1431,7 @@ what they return</strong></p>
 [6] "SRR2584863"</code></pre>
 </div>
 <ol start="12" style="list-style-type: lower-alpha"><li>
-</li></ol><div class="codewrapper sourceCode" id="cb54">
+</li></ol><div class="codewrapper sourceCode" id="cb64">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1341,7 +1495,7 @@ colon between the numbers (start:stop, inclusive)</li>
 </ul><p>Finally, in all of the subsetting exercises above, we printed values
 to the screen. You can create a new data frame object by assigning them
 to a new object name:</p>
-<div class="codewrapper sourceCode" id="cb56">
+<div class="codewrapper sourceCode" id="cb66">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1358,7 +1512,7 @@ to a new object name:</p>
 </h3>
 <pre class="output" tabindex="0"><code>[1] 25 29</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb58">
+<div class="codewrapper sourceCode" id="cb68">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1452,7 +1606,7 @@ Ultimately, you should know how to change the mode of an object.</p>
 <p>First, its very important to recognize that coercion happens in R all
 the time. This can be a good thing when R gets it right, or a bad thing
 when the result is not what you expect. Consider:</p>
-<div class="codewrapper sourceCode" id="cb60">
+<div class="codewrapper sourceCode" id="cb70">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1468,7 +1622,7 @@ when the result is not what you expect. Consider:</p>
 quotes, so we have explicitly told R to consider them as characters.
 However, even if we removed the quotes from the numbers, R would coerce
 everything into a character:</p>
-<div class="codewrapper sourceCode" id="cb62">
+<div class="codewrapper sourceCode" id="cb72">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1480,7 +1634,7 @@ everything into a character:</p>
 </h3>
 <pre class="output" tabindex="0"><code>[1] "character"</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb64">
+<div class="codewrapper sourceCode" id="cb74">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1494,7 +1648,7 @@ everything into a character:</p>
 <p>We can use the <code>as.</code> functions to explicitly coerce values
 from one form into another. Consider the following vector of characters,
 which all happen to be valid numbers:</p>
-<div class="codewrapper sourceCode" id="cb66">
+<div class="codewrapper sourceCode" id="cb76">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1506,7 +1660,7 @@ which all happen to be valid numbers:</p>
 </h3>
 <pre class="output" tabindex="0"><code>[1] "character"</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb68">
+<div class="codewrapper sourceCode" id="cb78">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1519,7 +1673,7 @@ which all happen to be valid numbers:</p>
 </div>
 <p>Now we can coerce <code>snp_positions_2</code> into a numeric type
 using <code>as.numeric()</code>:</p>
-<div class="codewrapper sourceCode" id="cb70">
+<div class="codewrapper sourceCode" id="cb80">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1531,7 +1685,7 @@ using <code>as.numeric()</code>:</p>
 </h3>
 <pre class="output" tabindex="0"><code>[1] "double"</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb72">
+<div class="codewrapper sourceCode" id="cb82">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1545,7 +1699,7 @@ using <code>as.numeric()</code>:</p>
 <p>Sometimes coercion is straight forward, but what would happen if we
 tried using <code>as.numeric()</code> on
 <code>snp_chromosomes_2</code></p>
-<div class="codewrapper sourceCode" id="cb74">
+<div class="codewrapper sourceCode" id="cb84">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1558,7 +1712,7 @@ tried using <code>as.numeric()</code> on
 </div>
 <p>If we check, we will see that an <code>NA</code> value (R’s default
 value for missing data) has been introduced.</p>
-<div class="codewrapper sourceCode" id="cb76">
+<div class="codewrapper sourceCode" id="cb86">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1572,7 +1726,7 @@ value for missing data) has been introduced.</p>
 <p>Trouble can really start when we try to coerce a factor. For example,
 when we try to coerce the <code>factor_snps</code> vector into a numeric
 mode look at the result:</p>
-<div class="codewrapper sourceCode" id="cb78">
+<div class="codewrapper sourceCode" id="cb88">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1610,7 +1764,7 @@ we get numbers from a coercion. If we don’t look carefully, we may not
 notice a problem.</p>
 <p>If you need to coerce an entire column you can overwrite it using an
 expression like this one:</p>
-<div class="codewrapper sourceCode" id="cb80">
+<div class="codewrapper sourceCode" id="cb90">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1672,7 +1826,7 @@ cleaning and visualization.</p>
 <code>max()</code> on an individual column. Let’s look at the “DP” or
 filtered depth. This value shows the number of filtered reads that
 support each of the reported variants.</p>
-<div class="codewrapper sourceCode" id="cb82">
+<div class="codewrapper sourceCode" id="cb92">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1685,7 +1839,7 @@ support each of the reported variants.</p>
 </div>
 <p>You can sort a data frame using the <code>order()</code>
 function:</p>
-<div class="codewrapper sourceCode" id="cb84">
+<div class="codewrapper sourceCode" id="cb94">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1718,7 +1872,7 @@ filtered depth (“DP”).</p>
 </button>
 <div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb86">
+<div class="codewrapper sourceCode" id="cb96">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1735,7 +1889,7 @@ filtered depth (“DP”).</p>
 </div>
 </div>
 <p>You can rename columns:</p>
-<div class="codewrapper sourceCode" id="cb88">
+<div class="codewrapper sourceCode" id="cb98">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1760,7 +1914,7 @@ filtered depth (“DP”).</p>
 <hr class="half-width"><p>We can save data to a file. We will save our
 <code>SRR2584863_variants</code> object to a .csv file using the
 <code>write.csv()</code> function:</p>
-<div class="codewrapper sourceCode" id="cb90">
+<div class="codewrapper sourceCode" id="cb100">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1807,7 +1961,7 @@ function, but now you can choose your preference.</p>
 to adjust. Click the <kbd>Import</kbd> button to import the data.</p>
 <p>Finally, let’s check the first few lines of the
 <code>Ecoli_metadata</code> data frame:</p>
-<div class="codewrapper sourceCode" id="cb91">
+<div class="codewrapper sourceCode" id="cb101">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1864,7 +2018,7 @@ genome_size multiplied by 1,000,000</p></li>
 </button>
 <div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb93">
+<div class="codewrapper sourceCode" id="cb103">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1875,7 +2029,7 @@ genome_size multiplied by 1,000,000</p></li>
 </h3>
 <pre class="output" tabindex="0"><code>[1] 30  7</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb95">
+<div class="codewrapper sourceCode" id="cb105">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1886,7 +2040,7 @@ genome_size multiplied by 1,000,000</p></li>
 </h3>
 <pre class="output" tabindex="0"><code>[1] "minus"   "plus"    "unknown"</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb97">
+<div class="codewrapper sourceCode" id="cb107">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1899,7 +2053,7 @@ genome_size multiplied by 1,000,000</p></li>
   minus    plus unknown
       9       9      12 </code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb99">
+<div class="codewrapper sourceCode" id="cb109">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1913,7 +2067,7 @@ genome_size multiplied by 1,000,000</p></li>
         &lt;dbl&gt;
 1        4.62</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb101">
+<div class="codewrapper sourceCode" id="cb111">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1924,7 +2078,7 @@ genome_size multiplied by 1,000,000</p></li>
 </h3>
 <pre class="output" tabindex="0"><code>[1] 4.625</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb103">
+<div class="codewrapper sourceCode" id="cb113">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -2012,8 +2166,8 @@ by the community</li>
   "url": "https://datacarpentry.github.io/genomics-r-intro/03-basics-factors-dataframes.html",
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/03-basics-factors-dataframes.html",
   "dateCreated": "2018-03-12",
-  "dateModified": "2024-10-02",
-  "datePublished": "2024-10-02"
+  "dateModified": "2024-10-03",
+  "datePublished": "2024-10-03"
 }
 
   </script><script>
