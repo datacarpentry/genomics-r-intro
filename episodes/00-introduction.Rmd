@@ -116,7 +116,7 @@ http://ec2.12.2.45.678.compute-1.amazonaws.com:8787
 
 ## Warning: Browser and VPN usage
 
-The AWS link may not work for some browsers (e.g. Microsoft Edge). For those browsers, you may need to copy link and paste into browser instead of clicking link in spreadsheet. Also, if you are using a VPN, you may need to disconnect in order to reach the server.
+The AWS link may not work for some browsers (e.g. Microsoft Edge). For those browsers, you may need to copy the link and paste it into your browser instead of clicking the link in the spreadsheet. Also, if you are using a VPN, you may need to disconnect in order to reach the server.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
