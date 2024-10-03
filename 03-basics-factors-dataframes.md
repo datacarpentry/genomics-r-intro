@@ -181,7 +181,20 @@ you have the `variants` object, listed as 801 obs. (observations/rows)
 of 29 variables (columns). Double-clicking on the name of the object will open
 a view of the data in a new tab.
 
-![RStudio data frame view]("fig/rstudio_dataframeview.png")
+![RStudio data frame view]("epidoes/fig/rstudio_dataframeview.png")
+
+We can also quickly query the dimensions of the variable using `dim()`. You'll see that the first number `801` shows the number of rows, then `29` the number of columns
+
+
+``` r
+## get summary statistics on a data frame
+
+dim(variants)
+```
+
+``` output
+[1] 801  29
+```
 
 ## Summarizing, subsetting, and determining the structure of a data frame.
 
@@ -264,13 +277,18 @@ these columns, as well as mean, median, and interquartile ranges. Many of the
 other variables (e.g. `sample_id`) are treated as characters data (more on this
 in a bit).
 
-There is a lot to work with, so we will subset the first three columns into a
-new data frame using the `data.frame()` function.
+There is a lot to work with, so we will subset the columns into a new data frame using
+the `data.frame()` function. To subset/index a two dimensional variable, we need to
+define them on the appropriate side of the brackets. The left hand side of the comma
+indicates the rows you want to subset, and the right is the column position 
+(e.g. ["row index", "column index"]).
+
+Let's put the columns 1, 2, 3, and 6 into a new data frame called subset:
 
 
 ``` r
-## put the first three columns of variants into a new data frame called subset
-
+## Notice that we are wrapping the numbers in a c() function, to indicate a vector
+## in the right hand side of the comma. 
 subset <- data.frame(variants[, c(1:3, 6)])
 ```
 
@@ -294,12 +312,13 @@ str(subset)
 
 Ok, thats a lot up unpack! Some things to notice.
 
-- the object type `data.frame` is displayed in the first row along with its
+- The object type `data.frame` is displayed in the first row along with its
   dimensions, in this case 801 observations (rows) and 4 variables (columns)
-- Each variable (column) has a name (e.g. `sample_id`). This is followed
-  by the object mode (e.g. chr, int, etc.). Notice that before each
+- Each variable (column) has a name (e.g. `sample_id`). Notice that before each
   variable name there is a `$` - this will be important later.
-
+- Each variable name is followed by the data type it contains (e.g. chr, int, etc.). 
+  The `int` type shows an integer, which is a type of numerical data, where it can only 
+  store whole numbers (i.e. no decimal points ).
 
 
   :::::::::::::::::::::::::::::::::::::::  challenge
@@ -379,11 +398,109 @@ head(alt_alleles)
 ```
 
 There are 801 alleles (one for each row). To simplify, lets look at just the
-single-nucleotide alleles (SNPs). We can use some of the vector indexing skills
-from the last episode.
+single-nucleotide alleles (SNPs). 
+
+Let's review some of the vector indexing skills from the last episode that can help:
 
 
 ``` r
+# This will find all matching alleles with the single nucleotide "A" and provide a TRUE/FASE vector
+alt_alleles == "A"
+```
+
+``` output
+  [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE
+ [13] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [25] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+ [37]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
+ [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
+ [73] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [85] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+ [97] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[109] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[121] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[133] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[145] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[157] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+[169] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[181] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+[193]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[205] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+[217] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+[229] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+[241] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[253] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE
+[265] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[277]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
+[289] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE
+[301] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+[313] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE
+[325] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE
+[337] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[349] FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE
+[361] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE
+[373] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+[385] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE
+[397]  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE
+[409] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE
+[421] FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE
+[433]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
+[445]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE
+[457]  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+[469]  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE
+[481] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[493]  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE
+[505]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE
+[517] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+[529] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE
+[541]  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE
+[553] FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE
+[565] FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE
+[577] FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[589] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE
+[601] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+[613] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE
+[625]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
+[637] FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE
+[649]  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+[661] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE
+[673]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[685] FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE
+[697]  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[709] FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[721] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+[733]  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE
+[745] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
+[757] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+[769] FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE
+[781] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE
+[793]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+```
+
+``` r
+# Then, we wrap them into an index to pull all the positions that match this. 
+alt_alleles[alt_alleles == "A"]
+```
+
+``` output
+  [1] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+ [19] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+ [37] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+ [55] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+ [73] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+ [91] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+[109] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+[127] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+[145] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+[163] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+[181] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+[199] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A"
+```
+
+``` r
+# If we repeat this for each nucleotide A, T, G, and C, and connect them using `c()`,
+# we can index all the single nucleotide changes.
 snps <- c(alt_alleles[alt_alleles == "A"],
   alt_alleles[alt_alleles=="T"],
   alt_alleles[alt_alleles=="G"],
@@ -418,7 +535,18 @@ Error in plot.window(...): need finite 'ylim' values
 ```
 
 Whoops! Though the `plot()` function will do its best to give us a quick plot,
-it is unable to do so here. One way to fix this it to tell R to treat the SNPs
+it is unable to do so here. Let's use `str()` to see why this might be:
+
+
+``` r
+str(snps)
+```
+
+``` output
+ chr [1:707] "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" "A" ...
+```
+
+R may not know how to plot a character vector! One way to fix this it to tell R to treat the SNPs
 as categories (i.e. a factor vector); we will create a new object to avoid
 confusion using the `factor()` function:
 
@@ -463,7 +591,17 @@ summary(factor_snps)
 211 139 154 203 
 ```
 
-As you can imagine, this is already useful when you want to generate a tally.
+``` r
+# Compare the character vector 
+summary(snps)
+```
+
+``` output
+   Length     Class      Mode 
+      707 character character 
+```
+
+As you can imagine, factors are already useful when you want to generate a tally.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
@@ -489,7 +627,7 @@ possible SNP we could generate a plot:
 plot(factor_snps)
 ```
 
-<img src="fig/03-basics-factors-dataframes-rendered-unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
+<img src="fig/03-basics-factors-dataframes-rendered-unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
 
 This isn't a particularly pretty example of a plot but it works. We'll be
 learning much more about creating nice, publication-quality graphics later in
@@ -526,7 +664,7 @@ Now we see our plot has be reordered:
 plot(ordered_factor_snps)
 ```
 
-<img src="fig/03-basics-factors-dataframes-rendered-unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
+<img src="fig/03-basics-factors-dataframes-rendered-unnamed-chunk-20-1.png" style="display: block; margin: auto;" />
 
 Factors come in handy in many places when using R. Even using more
 sophisticated plotting packages such as ggplot2 will sometimes require you
@@ -555,7 +693,7 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 7.2 milliseconds.
+Successfully installed 1 package in 6.7 milliseconds.
 ```
 
 ``` r
@@ -569,7 +707,7 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing dplyr ...                          OK [linked from cache]
-Successfully installed 1 package in 6.4 milliseconds.
+Successfully installed 1 package in 5.6 milliseconds.
 ```
 
 These two packages are among the most popular add on packages used in R, and they are part of a large set of very useful packages called the [tidyverse](https://www.tidyverse.org). Packages in the tidyverse are designed to work well together and are made to work with tidy data (which we described earlier in this lesson).
