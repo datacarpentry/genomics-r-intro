@@ -181,7 +181,7 @@ you have the `variants` object, listed as 801 obs. (observations/rows)
 of 29 variables (columns). Double-clicking on the name of the object will open
 a view of the data in a new tab.
 
-![RStudio data frame view]("epidoes/fig/rstudio_dataframeview.png")
+![RStudio data frame view](fig/rstudio_dataframeview.png)
 
 We can also quickly query the dimensions of the variable using `dim()`. You'll see that the first number `801` shows the number of rows, then `29` the number of columns
 
@@ -693,7 +693,7 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 6.7 milliseconds.
+Successfully installed 1 package in 6.5 milliseconds.
 ```
 
 ``` r
@@ -707,7 +707,7 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing dplyr ...                          OK [linked from cache]
-Successfully installed 1 package in 5.6 milliseconds.
+Successfully installed 1 package in 5.7 milliseconds.
 ```
 
 These two packages are among the most popular add on packages used in R, and they are part of a large set of very useful packages called the [tidyverse](https://www.tidyverse.org). Packages in the tidyverse are designed to work well together and are made to work with tidy data (which we described earlier in this lesson).
@@ -1460,12 +1460,12 @@ First, in the RStudio menu go to **File**, select **Import Dataset**, and
 choose **From Excel...** (notice there are several other options you can
 explore).
 
-![RStudio import menu]("fig/rstudio_import_menu.png")
+![RStudio import menu](fig/rstudio_import_menu.png)
 
 Next, under **File/Url:** click the <KBD>Browse</KBD> button and navigate to the **Ecoli\_metadata.xlsx** file located at `/home/dcuser/dc_sample_data/R`.
 You should now see a preview of the data to be imported:
 
-![RStudio import screen]("fig/rstudio_import_screen.png")
+![RStudio import screen](fig/rstudio_import_screen.png)
 
 Notice that you have the option to change the data type of each variable by
 clicking arrow (drop-down menu) next to each column title. Under **Import
