@@ -216,7 +216,7 @@ but R is "not sure"
 about how to assign the name to "human\_ chr\_number" when the object name we
 want is "human\_chr\_number".
 
-![RStudio script warning]("fig/rstudio_script_warning.png")
+![RStudio script warning](fig/rstudio_script_warning.png)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
