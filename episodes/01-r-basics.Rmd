@@ -511,6 +511,7 @@ Let's create a few more vectors to play around with:
 ```{r, purl=FALSE}
 # Some interesting human SNPs
 # while accuracy is important, typos in the data won't hurt you here
+# feel free to copy and paste
 
 snps <- c("rs53576", "rs1815739", "rs6152", "rs1799971")
 snp_chromosomes <- c("3", "11", "X", "6")
