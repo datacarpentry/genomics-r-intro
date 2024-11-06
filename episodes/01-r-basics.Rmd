@@ -143,6 +143,25 @@ In the 'Environment' window you will also get a table:
 The 'Environment' window allows you to keep track of the objects you have
 created in R.
 
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Tip: Use of white space for readability
+
+The white space surrounding the assignment operator `<-` in the example 
+above (`first_value <- 1`) is unnecessary. However, it does make your code 
+easier to read. There are several style guides you can follow, and choosing 
+one is up to you, but consistency is key!
+
+A style guide we recommend is the Tidyverse [style guide](https://style.tidyverse.org/). As they say:
+
+"Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread."
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Exercise: Create some objects in R
