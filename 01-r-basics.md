@@ -518,10 +518,13 @@ human_chr_number * 2
 
 ## Exercise: Compute the golden ratio
 
+The [golden ratio](https://en.wikipedia.org/wiki/Golden_ratio) is a famous
+mathematical constant associated with beauty, architecture, and [art](https://www.mos.org/leonardo/activities/golden-ratio.html).
+
 One approximation of the golden ratio (φ) can be found by taking the sum of 1
-and the square root of 5, and dividing by 2 as in the example above. Compute
+and the square root of 5, and dividing that sum by 2, as in the example above. Compute
 the golden ratio to 3 digits of precision using the `sqrt()` and `round()`
-functions. Hint: remember the `round()` function can take 2 arguments.
+functions. Hint: the `round()` function can take 2 arguments.
 
 :::::::::::::::  solution
 
@@ -536,7 +539,8 @@ round((1 + sqrt(5)) / 2, digits = 3)
 [1] 1.618
 ```
 
-Notice that you can place one function inside of another.
+Notice that you can place one function inside of another, and that you can use
+the 'digits' argument to return the desired precision.
 
 
 
@@ -605,6 +609,7 @@ Let's create a few more vectors to play around with:
 ``` r
 # Some interesting human SNPs
 # while accuracy is important, typos in the data won't hurt you here
+# feel free to copy and paste
 
 snps <- c("rs53576", "rs1815739", "rs6152", "rs1799971")
 snp_chromosomes <- c("3", "11", "X", "6")
@@ -910,8 +915,8 @@ c("ACTN3","APOA5") %in% snp_genes
 ## Tip: What's the difference between the `%in% and the `==` operators?
 
 The `%in%` operator is used to test if the elements of a vector are
-present in another vector. In the example above, if both "ACTN3" and "APOA5" are in 
-the vector `snp_genes`, then R will return `TRUE TRUE` since they are both present. 
+present in another vector. In the example above, if both "ACTN3" and "APOA5" are in
+the vector `snp_genes`, then R will return `TRUE TRUE` since they are both present.
 If "ACTN3" is but "APOA5" is not in `snp_genes`, then R will return `TRUE FALSE`. The `==` operator
 is used to test if two vectors are exactly equal. For example, if you wanted to know if the vector `c(1, 2, 3)`
 was equal to the vector `c(1, 2, 3)`, you could use the `==` operator. One trick people sometimes
