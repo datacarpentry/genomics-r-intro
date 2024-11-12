@@ -211,8 +211,9 @@ Here are some important details about naming objects in R.
   a colored highlight or RStudio gives you a suggested autocompletion you have
   chosen a name that has a reserved meaning.
 - **Use the recommended assignment operator**: In R, we use '\<- ' as the
-  preferred assignment operator. '=' works too, but is most commonly used in
-  passing arguments to functions (more on functions later). There is a shortcut
+  preferred assignment operator, which is recommended by the Tidyverse 
+  [style guide](https://style.tidyverse.org/) discussed above. '=' works too, but is most 
+  commonly used in passing arguments to functions (more on functions later). There is a shortcut
   for the R assignment operator:
   - Windows execution shortcut: <KBD>Alt</KBD>\+<KBD>\-</KBD>
   - Mac execution shortcut: <KBD>Option</KBD>\+<KBD>\-</KBD>
