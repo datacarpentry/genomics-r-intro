@@ -42,7 +42,7 @@ instances provided to you at a genomics workshop. Much of this work could be
 done on your laptop, but we use instances to simplify workshop setup
 requirements, and to get you familiar with using the cloud (a common
 requirement for working with big data).
-Visit the [Genomics Workshop setup page](https://www.datacarpentry.org/genomics-workshop/setup.html)
+Visit the [Genomics Workshop setup page](https://datacarpentry.org/genomics-workshop/index.html#setup)
 for details on getting this instance running on your own, or for the info you
 need to do this on your own computer.
 
@@ -111,6 +111,14 @@ Open a web browser and enter the URL you used to log in at the terminal
 ```
 http://ec2.12.2.45.678.compute-1.amazonaws.com:8787
 ```
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Warning: Browser and VPN usage
+
+The AWS link may not work for some browsers (e.g. Microsoft Edge). For those browsers, you may need to copy the link and paste it into your browser instead of clicking the link in the spreadsheet. Also, if you are using a VPN, you may need to disconnect in order to reach the server.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
