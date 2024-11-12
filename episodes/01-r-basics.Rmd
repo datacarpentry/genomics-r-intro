@@ -751,11 +751,14 @@ the vector you are searching:
 # current value of 'snp_genes':
 # chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
 
-# test to see if "ACTN3" or "APO5A" is in the snp_genes vector
+# test to see if "ACTN3", "APO5A", or "actn3" is in the snp_genes vector
 # if you are looking for more than one value, you must pass this as a vector
 
-c("ACTN3","APOA5") %in% snp_genes
+c("ACTN3","APOA5", "actn3") %in% snp_genes
 ```
+
+Notice that the gene "actn3" is FALSE? This is because character vectors are case sensitive, so
+keep this in mind when subsetting and selecting values from a character vector. 
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
