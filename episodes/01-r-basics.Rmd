@@ -143,6 +143,27 @@ In the 'Environment' window you will also get a table:
 The 'Environment' window allows you to keep track of the objects you have
 created in R.
 
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Tip: Use of white space for readability
+
+The white spaces surrounding the assignment operator `<-` in the example 
+above (`first_value <- 1`) are unnecessary. However, including them does make your code 
+easier to read. There are several style guides you can follow, and choosing 
+one is up to you, but consistency is key!
+
+A style guide we recommend is the Tidyverse [style guide](https://style.tidyverse.org/). 
+
+As they say:
+
+"Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread."
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Exercise: Create some objects in R
@@ -191,8 +212,9 @@ Here are some important details about naming objects in R.
   a colored highlight or RStudio gives you a suggested autocompletion you have
   chosen a name that has a reserved meaning.
 - **Use the recommended assignment operator**: In R, we use '\<- ' as the
-  preferred assignment operator. '=' works too, but is most commonly used in
-  passing arguments to functions (more on functions later). There is a shortcut
+  preferred assignment operator, which is recommended by the Tidyverse 
+  [style guide](https://style.tidyverse.org/) discussed above. '=' works too, but is most 
+  commonly used in passing arguments to functions (more on functions later). There is a shortcut
   for the R assignment operator:
   - Windows execution shortcut: <KBD>Alt</KBD>\+<KBD>\-</KBD>
   - Mac execution shortcut: <KBD>Option</KBD>\+<KBD>\-</KBD>
@@ -730,11 +752,14 @@ the vector you are searching:
 # current value of 'snp_genes':
 # chr [1:7] "OXTR" "ACTN3" "AR" "OPRM1" "CYP1A1" NA "APOA5"
 
-# test to see if "ACTN3" or "APO5A" is in the snp_genes vector
+# test to see if "ACTN3", "APO5A", or "actn3" is in the snp_genes vector
 # if you are looking for more than one value, you must pass this as a vector
 
-c("ACTN3","APOA5") %in% snp_genes
+c("ACTN3","APOA5", "actn3") %in% snp_genes
 ```
+
+Notice that the gene "actn3" is FALSE? This is because character vectors are case sensitive, so
+keep this in mind when subsetting and selecting values from a character vector. 
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
