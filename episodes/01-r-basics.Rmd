@@ -149,11 +149,12 @@ created in R.
 ## Tip: Use of white space for readability
 
 The white spaces surrounding the assignment operator `<-` in the example 
-above (`first_value <- 1`) is unnecessary. However, it does make your code 
+above (`first_value <- 1`) are unnecessary. However, including them does make your code 
 easier to read. There are several style guides you can follow, and choosing 
 one is up to you, but consistency is key!
 
 A style guide we recommend is the Tidyverse [style guide](https://style.tidyverse.org/). 
+
 As they say:
 
 "Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread."
