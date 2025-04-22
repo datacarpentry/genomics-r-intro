@@ -355,7 +355,7 @@ frame.</a></li>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>R Basics continued - factors and data frames</h1>
-        <p>Last updated on 2025-04-01 |
+        <p>Last updated on 2025-04-22 |
 
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/03-basics-factors-dataframes.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -491,7 +491,7 @@ numbers used commas for decimal separation (i.e. 1,00)?</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: upper-alpha"><li><p>The <code>read.csv()</code> function has the argument ‘header’
 set to TRUE by default, this means the function always assumes the first
@@ -610,7 +610,7 @@ each of these functions can tell us:</p>
 
    INDEL              IDV              IMF               DP
  Mode :logical   Min.   : 2.000   Min.   :0.5714   Min.   : 2.00
- FALSE:700       1st Qu.: 7.000   1st Qu.:0.8824   1st Qu.: 7.00
+ FALSE:700       1st Qu.: 7.000   1st Qu.:0.8823   1st Qu.: 7.00
  TRUE :101       Median : 9.000   Median :1.0000   Median :10.00
                  Mean   : 9.396   Mean   :0.9219   Mean   :10.57
                  3rd Qu.:11.000   3rd Qu.:1.0000   3rd Qu.:13.00
@@ -723,7 +723,7 @@ following?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1115,12 +1115,12 @@ command:</p>
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>The following package(s) will be installed:
-- ggplot2 [3.5.1]
-These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu".
+- ggplot2 [3.5.2]
+These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.5/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 6.9 milliseconds.</code></pre>
+Successfully installed 1 package in 5.9 milliseconds.</code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb40">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1133,11 +1133,11 @@ Successfully installed 1 package in 6.9 milliseconds.</code></pre>
 </h3>
 <pre class="output" tabindex="0"><code>The following package(s) will be installed:
 - dplyr [1.1.4]
-These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu".
+These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.5/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
 - Installing dplyr ...                          OK [linked from cache]
-Successfully installed 1 package in 15 milliseconds.</code></pre>
+Successfully installed 1 package in 4.3 milliseconds.</code></pre>
 </div>
 <p>These two packages are among the most popular add on packages used in
 R, and they are part of a large set of very useful packages called the
@@ -1185,7 +1185,7 @@ what they return</strong></p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ol style="list-style-type: lower-alpha"><li>
 </li></ol><div class="codewrapper sourceCode" id="cb42">
@@ -1870,7 +1870,7 @@ filtered depth (“DP”).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb96">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2016,7 +2016,7 @@ genome_size multiplied by 1,000,000</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb103">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2166,8 +2166,8 @@ by the community</li>
   "url": "https://datacarpentry.github.io/genomics-r-intro/03-basics-factors-dataframes.html",
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/03-basics-factors-dataframes.html",
   "dateCreated": "2018-03-12",
-  "dateModified": "2025-04-01",
-  "datePublished": "2025-04-15"
+  "dateModified": "2025-04-22",
+  "datePublished": "2025-04-22"
 }
 
   </script><script>
