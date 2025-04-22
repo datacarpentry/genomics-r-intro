@@ -230,7 +230,7 @@ summary(variants)
                                                                        
    INDEL              IDV              IMF               DP       
  Mode :logical   Min.   : 2.000   Min.   :0.5714   Min.   : 2.00  
- FALSE:700       1st Qu.: 7.000   1st Qu.:0.8824   1st Qu.: 7.00  
+ FALSE:700       1st Qu.: 7.000   1st Qu.:0.8823   1st Qu.: 7.00  
  TRUE :101       Median : 9.000   Median :1.0000   Median :10.00  
                  Mean   : 9.396   Mean   :0.9219   Mean   :10.57  
                  3rd Qu.:11.000   3rd Qu.:1.0000   3rd Qu.:13.00  
@@ -688,12 +688,12 @@ install.packages("ggplot2")
 
 ``` output
 The following package(s) will be installed:
-- ggplot2 [3.5.1]
-These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu".
+- ggplot2 [3.5.2]
+These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.5/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 6.9 milliseconds.
+Successfully installed 1 package in 5.9 milliseconds.
 ```
 
 ``` r
@@ -703,11 +703,11 @@ install.packages("dplyr")
 ``` output
 The following package(s) will be installed:
 - dplyr [1.1.4]
-These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu".
+These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.5/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
 - Installing dplyr ...                          OK [linked from cache]
-Successfully installed 1 package in 15 milliseconds.
+Successfully installed 1 package in 4.3 milliseconds.
 ```
 
 These two packages are among the most popular add on packages used in R, and they are part of a large set of very useful packages called the [tidyverse](https://www.tidyverse.org). Packages in the tidyverse are designed to work well together and are made to work with tidy data (which we described earlier in this lesson).
