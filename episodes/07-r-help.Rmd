@@ -94,10 +94,10 @@ loaded via a namespace (and not attached):
 Many times, there may be some issues with your data and the way it is formatted.
 In that case, you may want to share that data with someone else. However, you
 may not need to share the whole dataset; looking at a subset of your 50,000 row,
-10,000 column dataframe may be TMI (too much information)! You can take an
-object you have in memory such as dataframe (if you don't know what this means
+10,000 column data frame may be TMI (too much information)! You can take an
+object you have in memory such as data frame (if you don't know what this means
 yet, we will get to it!) and save it to a file. In our example we will use the
-`dput()` function on the `iris` dataframe which is an example dataset that is
+`dput()` function on the `iris` data frame which is an example dataset that is
 installed in R:
 
 ```
