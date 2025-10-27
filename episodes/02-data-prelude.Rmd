@@ -52,7 +52,8 @@ We want to be able to look at differences in mutation rates between hypermutable
 
 ## How VCF files are generated
 
-Publicly accessible sequencing files in FASTQ formats can be downloaded from NCBI SRA. However, at FASTQ files contain unaligned sequences of varying quality, and requires clean up and alignment steps for variants to be called from the reference genome.
+Publicly accessible sequencing files in FASTQ formats can be downloaded from NCBI SRA.
+However, FASTQ files contain unaligned sequences of varying quality, and requires clean up and alignment steps for variants to be called from the reference genome.
 
 Five steps are taken to transform FASTQ files to variant calls contained in VCF files and at each step, specialized non-R based bioinformatics tools that are used:
 

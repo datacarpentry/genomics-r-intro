@@ -217,7 +217,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 Now the figure is complete and ready to be exported and saved to a file. This can be achieved easily using [`ggsave()`](https://ggplot2.tidyverse.org/reference/ggsave.html), which can write, by default, the most recent generated figure into different formats (e.g., `jpeg`, `png`, `pdf`) according to the file extension. So, for example, to create a pdf version of the above figure with a dimension of $6\times4$ inches:
 
 ```{r save-to-file, purl=FALSE}
-ggsave ("depth.pdf", width = 6, height = 4)
+ggsave("depth.pdf", width = 6, height = 4)
 ```
 
 If we check the *current working directory*, there should be a newly created file called `depth.pdf` with the above plot.
