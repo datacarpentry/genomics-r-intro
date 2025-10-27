@@ -2681,9 +2681,9 @@ list, we use the <code>$</code> notation:</p>
 <div class="callout-inner">
 <div class="callout-content">
 <ul>
-<li>Effectively using R is a journey of months or years. Still you don’t
-have to be an expert to use R and you can start using and analyzing your
-data with with about a day’s worth of training</li>
+<li>Effectively using R is a journey of months or years. Still, you
+don’t have to be an expert to use R and you can start using and
+analyzing your data with about a day’s worth of training.</li>
 <li>It is important to understand how data are organized by R in a given
 object type and how the mode of that type (e.g. numeric, character,
 logical, etc.) will determine how R will operate on that data.</li>
@@ -2835,7 +2835,7 @@ strains?</li>
 </h2>
 <hr class="half-width">
 <p>Publicly accessible sequencing files in FASTQ formats can be
-downloaded from NCBI SRA. However, at FASTQ files contain unaligned
+downloaded from NCBI SRA. However, FASTQ files contain unaligned
 sequences of varying quality, and requires clean up and alignment steps
 for variants to be called from the reference genome.</p>
 <p>Five steps are taken to transform FASTQ files to variant calls
@@ -3269,7 +3269,7 @@ frame.<a class="anchor" aria-label="anchor" href="#summarizing-subsetting-and-de
 </h2>
 <hr class="half-width">
 <p>A <strong>data frame is the standard way in R to store tabular
-data</strong>. A data fame could also be thought of as a collection of
+data</strong>. A data frame could also be thought of as a collection of
 vectors, all of which have the same length. Using only two functions, we
 can learn a lot about out data frame including some summary statistics
 as well as well as the “structure” of the data frame. Let’s examine what
@@ -3384,7 +3384,7 @@ little more closely at how data frames work:</p>
  $ POS      : int  9972 263235 281923 433359 473901 648692 1331794 1733343 2103887 2333538 ...
  $ ALT      : chr  "G" "T" "T" "CTTTTTTTT" ...</code></pre>
 </div>
-<p>Ok, thats a lot up unpack! Some things to notice.</p>
+<p>Ok, that’s a lot up unpack! Some things to notice.</p>
 <ul>
 <li><p>The object type <code>data.frame</code> is displayed in the first
 row along with its dimensions, in this case 801 observations (rows) and
@@ -3397,15 +3397,15 @@ will be important later.</p></li>
 (e.g. chr, int, etc.). The <code>int</code> type shows an integer, which
 is a type of numerical data, where it can only store whole numbers
 (i.e. no decimal points ).</p>
-<div id="exercise-revisiting-modes-and-classess" class="callout challenge">
+<div id="exercise-revisiting-modes-and-classes" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
 <div class="callout-inner">
-<h3 class="callout-title">Exercise: Revisiting modes and classess</h3>
+<h3 class="callout-title">Exercise: Revisiting modes and classes</h3>
 <div class="callout-content">
-<p>Remeber when we said mode and class are sometimes different? If you
+<p>Remember when we said mode and class are sometimes different? If you
 do, here is a chance to check. What happens when you try the
 following?</p>
 <ol style="list-style-type: decimal">
@@ -3447,7 +3447,7 @@ following?</p>
 <p>This result makes sense because <code>mode()</code> (which deals with
 how an object is stored) tells us that <code>variants</code> is treated
 as a <strong>list</strong> in R. A data frame is in some sense a “fancy”
-list. However, data fames do have some specific properties beyond that
+list. However, data frames do have some specific properties beyond that
 of a basic list, so they have their own class
 (<strong>data.frame</strong>), which is important for functions (and
 programmers) to know.</p>
@@ -3844,7 +3844,7 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing dplyr ...                          OK [linked from cache]
-Successfully installed 1 package in 8.9 milliseconds.</code></pre>
+Successfully installed 1 package in 4.3 milliseconds.</code></pre>
 </div>
 <p>These two packages are among the most popular add on packages used in
 R, and they are part of a large set of very useful packages called the
@@ -5197,8 +5197,8 @@ it contains many useful collection of packages for this lesson and
 beyond. However, when teaching or following this lesson, we advise that
 participants install <code>dplyr</code>, <code>readr</code>,
 <code>ggplot2</code>, and <code>tidyr</code> individually as shown
-above. Otherwise, a substaial amount of the lesson will be spend waiting
-for the installation to complete.</p>
+above. Otherwise, a substantial amount of the lesson will be spend
+waiting for the installation to complete.</p>
 </div>
 </div>
 </div>
@@ -5233,9 +5233,9 @@ analysis in R.</p>
 way of loading .csv files in to R using <code>read_csv()</code>, which
 is similar to <code>read.csv()</code>. <code>read_csv()</code> allows
 users to load in their data faster, doesn’t create row names, and allows
-you to access non-standard variable names (ie. variables that start with
-numbers of contain spaces), and outputs your data on the R console in a
-tidier way. In short, it’s a much friendlier way of loading in
+you to access non-standard variable names (i.e. variables that start
+with numbers of contain spaces), and outputs your data on the R console
+in a tidier way. In short, it’s a much friendlier way of loading in
 potentially messy data.</p>
 <p>Now let’s load our vcf .csv file using <code>read_csv()</code>:</p>
 </div>
@@ -5386,7 +5386,7 @@ wanted to select columns that end with the letter “B”:</p>
 column “POS”, without columns “Indiv” and “FILTER”. Hint: look at for a
 function called <code>contains()</code>, which can be found in the help
 documentation for ends with we just covered (<code>?ends_with</code>).
-Note that contains() is not case sensistive.</p>
+Note that contains() is not case sensitive.</p>
 </div>
 </div>
 </div>
@@ -5709,7 +5709,7 @@ you can specify it explicitly:</p>
 <p>Select all the mutations that occurred between the positions 1e6 (one
 million) and 2e6 (inclusive) that have a QUAL greater than 200, and
 exclude INDEL mutations. Hint: to flip logical values such as TRUE to a
-FALSE, we can use to negation symbol “!”. (eg. !TRUE == FALSE).</p>
+FALSE, we can use to negation symbol “!”. (e.g. !TRUE == FALSE).</p>
 </div>
 </div>
 </div>
@@ -6947,7 +6947,7 @@ create a pdf version of the above figure with a dimension of <span class="math i
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">ggsave</span> <span class="op">(</span><span class="st">"depth.pdf"</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"depth.pdf"</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre>
 </div>
 <p>If we check the <em>current working directory</em>, there should be a
 newly created file called <code>depth.pdf</code> with the above
@@ -7389,12 +7389,12 @@ loaded via a namespace (and not attached):
 <p>Many times, there may be some issues with your data and the way it is
 formatted. In that case, you may want to share that data with someone
 else. However, you may not need to share the whole dataset; looking at a
-subset of your 50,000 row, 10,000 column dataframe may be TMI (too much
-information)! You can take an object you have in memory such as
-dataframe (if you don’t know what this means yet, we will get to it!)
-and save it to a file. In our example we will use the
-<code>dput()</code> function on the <code>iris</code> dataframe which is
-an example dataset that is installed in R:</p>
+subset of your 50,000 row, 10,000 column data frame may be TMI (too much
+information)! You can take an object you have in memory such as data
+frame (if you don’t know what this means yet, we will get to it!) and
+save it to a file. In our example we will use the <code>dput()</code>
+function on the <code>iris</code> data frame which is an example dataset
+that is installed in R:</p>
 <pre><code><span><span class="fu">dput</span><span class="op">(</span><span class="fu">head</span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span> <span class="co"># iris is an example data.frame that comes with R</span></span>
 <span>                 <span class="co"># the `head()` function just takes the first 6 lines of the iris dataset</span></span></code></pre>
 <p>This generates some output (below) which you will be better able to

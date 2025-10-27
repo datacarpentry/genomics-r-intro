@@ -455,12 +455,12 @@ loaded via a namespace (and not attached):
 <p>Many times, there may be some issues with your data and the way it is
 formatted. In that case, you may want to share that data with someone
 else. However, you may not need to share the whole dataset; looking at a
-subset of your 50,000 row, 10,000 column dataframe may be TMI (too much
-information)! You can take an object you have in memory such as
-dataframe (if you don’t know what this means yet, we will get to it!)
-and save it to a file. In our example we will use the
-<code>dput()</code> function on the <code>iris</code> dataframe which is
-an example dataset that is installed in R:</p>
+subset of your 50,000 row, 10,000 column data frame may be TMI (too much
+information)! You can take an object you have in memory such as data
+frame (if you don’t know what this means yet, we will get to it!) and
+save it to a file. In our example we will use the <code>dput()</code>
+function on the <code>iris</code> data frame which is an example dataset
+that is installed in R:</p>
 <pre><code><span><span class="fu">dput</span><span class="op">(</span><span class="fu">head</span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span> <span class="co"># iris is an example data.frame that comes with R</span></span>
 <span>                 <span class="co"># the `head()` function just takes the first 6 lines of the iris dataset</span></span></code></pre>
 <p>This generates some output (below) which you will be better able to
