@@ -294,7 +294,7 @@ line of your script in the header of the Source pane.
 In the console, we expect to see the following output\*:
 
 ```output
-[1] "/home/dcuser/dc_genomics_r"
+[1] "/home/dcuser/dc_workshop"
 ```
 
 \* Notice, at the Console, you will also see the instruction you executed
@@ -346,11 +346,11 @@ what directory you want to set as your working directory. To do so, inside of
 the parentheses, open a set of quotes. Inside the quotes enter a `/` which is
 the root directory for Linux. Next, use the <KBD>Tab</KBD> key, to take
 advantage of RStudio's Tab-autocompletion method, to select `home`, `dcuser`,
-and `dc_genomics_r` directory. The path in your script should look like this:
+and `dc_workshop` directory. The path in your script should look like this:
 
 ```{r, eval=FALSE, purl=FALSE}
 # This sets the working directory
-setwd("/home/dcuser/dc_genomics_r")
+setwd("/home/dcuser/dc_workshop")
 ```
 
 When you run this command, the console repeats the command, but gives you no
