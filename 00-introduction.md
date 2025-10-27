@@ -164,12 +164,18 @@ the `.Rproj` file).
 
 <img src="fig/new_project_window.png" alt="rstudio default session" style="width: 600px;"/>
 
-2. In the window that opens select **New Directory**, then **New Project**. For
-  "Directory name:" enter **dc\_genomics\_r**. For "Create project as subdirectory of", click <kbd>Browse...</kbd> and then click <kbd>Choose</kbd> which will select your home directory "~".
+2. If you already have created the **dc\_workshop** directory in
+  a previous lesson, you should select **Existing Directory** and navigate to
+  and select that directory. If you have not created this directory yet, select
+  **New Directory** and continue with the steps below.
 
-3. Finally click <kbd>Create Project</kbd>. In the "Files" tab of your output
+3. In the window that opens select **New Directory**, then **New Project**. For
+  "Directory name:" enter **dc\_workshop**. For "Create project as subdirectory of",
+  click <kbd>Browse...</kbd> and then click <kbd>Choose</kbd> which will select your home directory "~".
+
+4. Finally click <kbd>Create Project</kbd>. In the "Files" tab of your output
   pane (more about the RStudio layout in a moment), you should see an RStudio
-  project file, **dc\_genomics\_r.Rproj**. All RStudio projects end with the
+  project file, **dc\_workshop.Rproj**. All RStudio projects end with the
   "**.Rproj**" file extension.
 
 :::::::::::::::::::::::::::::::::::::::::  callout
