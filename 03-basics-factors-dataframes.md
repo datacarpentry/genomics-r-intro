@@ -198,7 +198,7 @@ dim(variants)
 
 ## Summarizing, subsetting, and determining the structure of a data frame.
 
-A **data frame is the standard way in R to store tabular data**. A data fame
+A **data frame is the standard way in R to store tabular data**. A data frame
 could also be thought of as a collection of vectors, all of which have the same
 length. Using only two functions, we can learn a lot about out data frame
 including some summary statistics as well as well as the "structure" of the data
@@ -310,7 +310,7 @@ str(subset)
  $ ALT      : chr  "G" "T" "T" "CTTTTTTTT" ...
 ```
 
-Ok, thats a lot up unpack! Some things to notice.
+Ok, that's a lot up unpack! Some things to notice.
 
 - The object type `data.frame` is displayed in the first row along with its
   dimensions, in this case 801 observations (rows) and 4 variables (columns)
@@ -323,9 +323,9 @@ Ok, thats a lot up unpack! Some things to notice.
 
   :::::::::::::::::::::::::::::::::::::::  challenge
 
-  ## Exercise: Revisiting modes and classess
+  ## Exercise: Revisiting modes and classes
 
-  Remeber when we said mode and class are sometimes different? If you do, here
+  Remember when we said mode and class are sometimes different? If you do, here
   is a chance to check. What happens when you try the following?
 
   1. `mode(variants)`
@@ -359,7 +359,7 @@ Ok, thats a lot up unpack! Some things to notice.
 
   This result makes sense because `mode()` (which deals with how an object is stored)
   tells us that `variants` is treated as a **list** in R. A data frame is in some sense a "fancy" list.
-  However, data fames do have some specific properties beyond that of a basic list, so they have their own
+  However, data frames do have some specific properties beyond that of a basic list, so they have their own
   class (**data.frame**), which is important for functions (and programmers) to know.
   :::::::::::::::::::::::::
 
@@ -693,7 +693,7 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing ggplot2 ...                        OK [linked from cache]
-Successfully installed 1 package in 5.3 milliseconds.
+Successfully installed 1 package in 6.1 milliseconds.
 ```
 
 ``` r
@@ -707,7 +707,7 @@ These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/
 
 # Installing packages --------------------------------------------------------
 - Installing dplyr ...                          OK [linked from cache]
-Successfully installed 1 package in 8.9 milliseconds.
+Successfully installed 1 package in 5 milliseconds.
 ```
 
 These two packages are among the most popular add on packages used in R, and they are part of a large set of very useful packages called the [tidyverse](https://www.tidyverse.org). Packages in the tidyverse are designed to work well together and are made to work with tidy data (which we described earlier in this lesson).

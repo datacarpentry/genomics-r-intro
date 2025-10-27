@@ -77,7 +77,7 @@ It may be temping to install the `tidyverse` package, as it contains many
 useful collection of packages for this lesson and beyond. However, when
 teaching or following this lesson, we advise that participants install
 `dplyr`, `readr`, `ggplot2`, and `tidyr` individually as shown above.
-Otherwise, a substaial amount of the lesson will be spend waiting for the
+Otherwise, a substantial amount of the lesson will be spend waiting for the
 installation to complete.
 
 
@@ -103,7 +103,7 @@ back just what you need for analysis in R.
 
 ### Loading .csv files in tidy style
 
-The Tidyverse's `readr` package provides its own unique way of loading .csv files in to R using `read_csv()`, which is similar to `read.csv()`. `read_csv()` allows users to load in their data faster, doesn't create row names, and allows you to access non-standard variable names (ie. variables that start with numbers of contain spaces), and outputs your data on the R console in a tidier way. In short, it's a much friendlier way of loading in potentially messy data.
+The Tidyverse's `readr` package provides its own unique way of loading .csv files in to R using `read_csv()`, which is similar to `read.csv()`. `read_csv()` allows users to load in their data faster, doesn't create row names, and allows you to access non-standard variable names (i.e. variables that start with numbers of contain spaces), and outputs your data on the R console in a tidier way. In short, it's a much friendlier way of loading in potentially messy data.
 
 Now let's load our vcf .csv file using `read_csv()`:
 
@@ -234,7 +234,7 @@ select(variants, ends_with("B"))
 
 Create a table that contains all the columns with the letter "i" and column "POS",
 without columns "Indiv" and "FILTER".
-Hint: look at for a function called `contains()`, which can be found in the help documentation for ends with we just covered (`?ends_with`). Note that contains() is not case sensistive.
+Hint: look at for a function called `contains()`, which can be found in the help documentation for ends with we just covered (`?ends_with`). Note that contains() is not case sensitive.
 
 :::::::::::::::  solution
 
@@ -510,7 +510,7 @@ filter(variants, sample_id == "SRR2584863", (MQ >= 50 | QUAL >= 100))
 Select all the mutations that occurred between the positions 1e6 (one million)
 and 2e6 (inclusive) that have a QUAL greater than 200, and exclude INDEL mutations.
 Hint: to flip logical values such as TRUE to a FALSE, we can use to negation symbol
-"!". (eg. !TRUE == FALSE).
+"!". (e.g. !TRUE == FALSE).
 
 :::::::::::::::  solution
 
@@ -842,7 +842,8 @@ variants %>%
 
 ## Challenge
 
-- How many mutations are INDELs?
+- Count how many mutations are INDELS vs substitutions (aka not indels). 
+- Hint: INDELS is TRUE/FALSE column in the data.
 
 :::::::::::::::  solution
 

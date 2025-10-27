@@ -308,7 +308,7 @@ Now the figure is complete and ready to be exported and saved to a file. This ca
 
 
 ``` r
-ggsave ("depth.pdf", width = 6, height = 4)
+ggsave("depth.pdf", width = 6, height = 4)
 ```
 
 If we check the *current working directory*, there should be a newly created file called `depth.pdf` with the above plot.
