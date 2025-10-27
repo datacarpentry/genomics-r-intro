@@ -9,7 +9,7 @@ Please see the [Genomics Data Carpentry Instructor Notes](https://datacarpentry.
 
 ## Tip: Assigning instances to learners
 
-###
+
 
 We recommend using an online spreadsheet such as Google Sheets to assign learners their cloud
 instances, preferably by having a list of available IP addresses, and allowing users to 'claim'
