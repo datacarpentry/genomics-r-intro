@@ -388,7 +388,8 @@ variants %>%
 
 ## Challenge
 
-- How many mutations are INDELs?
+- Count how many mutations are INDELS vs substitutions (aka not indels). 
+- Hint: INDELS is TRUE/FALSE column in the data.
 
 :::::::::::::::  solution
 
