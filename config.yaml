@@ -11,7 +11,7 @@
 carpentry: 'dc'
 
 # Overall title for pages.
-title: 'Intro to R and RStudio for Genomics'
+title: 'Data Analysis and Visualization with R for Genomics'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: '2018-03-12'
