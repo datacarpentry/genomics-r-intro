@@ -187,6 +187,13 @@ a view of the data in a new tab.
 
 ![RStudio data frame view](fig/rstudio_dataframeview.png)
 
+The majority of the columns in the data frame correspond to standard fields found in a 
+*Variant Call Format (VCF)* file, while others were added during our data processing. The VCF 
+format is a standard format for storing variant calls (also known as Single Nucleotide Polymorphisms or SNPs),
+and you can read more about it, including a description of the fields we have here 
+in [the VCF specification](https://samtools.github.io/hts-specs/VCFv4.2.pdf) 
+or [on wikipedia](https://en.wikipedia.org/wiki/Variant_Call_Format).
+
 We can also quickly query the dimensions of the variable using `dim()`. You'll see that the first number `801` shows the number of rows, then `29` the number of columns
 
 ```{r, purl=FALSE}
