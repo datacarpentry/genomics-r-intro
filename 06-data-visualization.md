@@ -196,7 +196,7 @@ ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point()
 ```
 
-<img src="fig/06-data-visualization-rendered-first-ggplot-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-first-ggplot-1.png" alt="" style="display: block; margin: auto;" />
 
 The `+` in the **`ggplot2`** package is particularly useful because it allows you to modify existing `ggplot` objects. This means you can easily set up plot templates and conveniently explore different types of plots, so the above plot can also be generated with code like this:
 
@@ -237,7 +237,7 @@ ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point()
 ```
 
-<img src="fig/06-data-visualization-rendered-create-ggplot-object-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-create-ggplot-object-1.png" alt="" style="display: block; margin: auto;" />
 
 Then, we start modifying this plot to extract more information from it. For instance, we can add transparency (`alpha`) to avoid over-plotting:
 
@@ -247,7 +247,7 @@ ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point(alpha = 0.5)
 ```
 
-<img src="fig/06-data-visualization-rendered-adding-transparency-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-adding-transparency-1.png" alt="" style="display: block; margin: auto;" />
 
 We can also add colors for all the points:
 
@@ -257,7 +257,7 @@ ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point(alpha = 0.5, color = "blue")
 ```
 
-<img src="fig/06-data-visualization-rendered-adding-colors-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-adding-colors-1.png" alt="" style="display: block; margin: auto;" />
 
 Or to color each species in the plot differently, you could use a vector as an input to the argument **color**. **`ggplot2`** will provide a different color corresponding to different values in the vector. Here is an example where we color with **`sample_id`**:
 
@@ -267,7 +267,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_point(alpha = 0.5)
 ```
 
-<img src="fig/06-data-visualization-rendered-color-by-sample-1-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-color-by-sample-1-1.png" alt="" style="display: block; margin: auto;" />
 
 Notice that we can change the geom layer and colors will be still determined by **`sample_id`**
 
@@ -277,7 +277,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_line(alpha = 0.5)
 ```
 
-<img src="fig/06-data-visualization-rendered-color-by-sample-2-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-color-by-sample-2-1.png" alt="" style="display: block; margin: auto;" />
 
 To make our plot more readable, we can add axis labels:
 
@@ -289,7 +289,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
        y = "Read Depth (DP)")
 ```
 
-<img src="fig/06-data-visualization-rendered-add-axis-labels-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-add-axis-labels-1.png" alt="" style="display: block; margin: auto;" />
 
 To add a *main* title to the plot, we use [the title argument for the `labs()` function](https://ggplot2.tidyverse.org/reference/labs.html):
 
@@ -302,7 +302,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
        title = "Read Depth vs. Position")
 ```
 
-<img src="fig/06-data-visualization-rendered-add-main-title-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-add-main-title-1.png" alt="" style="display: block; margin: auto;" />
 
 Now the figure is complete and ready to be exported and saved to a file. This can be achieved easily using [`ggsave()`](https://ggplot2.tidyverse.org/reference/ggsave.html), which can write, by default, the most recent generated figure into different formats (e.g., `jpeg`, `png`, `pdf`) according to the file extension. So, for example, to create a pdf version of the above figure with a dimension of $6\times4$ inches:
 
@@ -333,7 +333,7 @@ relevant axis labels.
        y = "Mapping Quality (MQ)")
 ```
 
-<img src="fig/06-data-visualization-rendered-scatter-challenge-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-scatter-challenge-1.png" alt="" style="display: block; margin: auto;" />
 
 :::::::::::::::::::::::::
 
@@ -351,7 +351,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   theme(text = element_text(family = "Bookman"))
 ```
 
-<img src="fig/06-data-visualization-rendered-change-font-family-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-change-font-family-1.png" alt="" style="display: block; margin: auto;" />
 
 ## Faceting
 
@@ -366,7 +366,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
  facet_grid(~ sample_id)
 ```
 
-<img src="fig/06-data-visualization-rendered-first-facet-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-first-facet-1.png" alt="" style="display: block; margin: auto;" />
 
 This looks okay, but it would be easier to read if the plot facets were stacked vertically rather than horizontally. The `facet_grid` geometry allows you to explicitly specify how you want your plots to be arranged via formula notation (`rows ~ columns`; the dot (`.`) indicates every other variable in the data i.e., no faceting on that side of the formula).
 
@@ -379,7 +379,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
  facet_grid(sample_id ~ .)
 ```
 
-<img src="fig/06-data-visualization-rendered-second-facet-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-second-facet-1.png" alt="" style="display: block; margin: auto;" />
 
 Usually plots with white background look more readable when printed.  We can set the background to white using the function [`theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html). Additionally, you can remove the grid:
 
@@ -394,7 +394,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
   theme(panel.grid = element_blank())
 ```
 
-<img src="fig/06-data-visualization-rendered-facet-plot-white-bg-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-facet-plot-white-bg-1.png" alt="" style="display: block; margin: auto;" />
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -417,7 +417,7 @@ relevant axis labels.
   facet_grid(sample_id ~ .)
 ```
 
-<img src="fig/06-data-visualization-rendered-scatter-challenge-2-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-scatter-challenge-2-1.png" alt="" style="display: block; margin: auto;" />
 
 :::::::::::::::::::::::::
 
@@ -434,7 +434,7 @@ ggplot(data = variants, aes(x = INDEL, fill = sample_id)) +
   facet_grid(sample_id ~ .)
 ```
 
-<img src="fig/06-data-visualization-rendered-barplot-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-barplot-1.png" alt="" style="display: block; margin: auto;" />
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -455,7 +455,7 @@ ggplot(data = variants, aes(x = INDEL, color = sample_id)) +
    facet_grid(sample_id ~ .)
 ```
 
-<img src="fig/06-data-visualization-rendered-barplot-challenge-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-barplot-challenge-1.png" alt="" style="display: block; margin: auto;" />
 
 :::::::::::::::::::::::::
 
@@ -471,7 +471,7 @@ ggplot(data = variants, aes(x = DP)) +
   geom_density()
 ```
 
-<img src="fig/06-data-visualization-rendered-density-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-density-1.png" alt="" style="display: block; margin: auto;" />
 
 This plot tells us that the most of frequent `DP` (read depth) for the variants is about 10 reads.
 
@@ -492,7 +492,7 @@ ggplot(data = variants, aes(x = DP, fill = sample_id)) +
    theme_bw()
 ```
 
-<img src="fig/06-data-visualization-rendered-density-challenge-1.png" style="display: block; margin: auto;" />
+<img src="fig/06-data-visualization-rendered-density-challenge-1.png" alt="" style="display: block; margin: auto;" />
 
 :::::::::::::::::::::::::
 

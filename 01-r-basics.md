@@ -392,7 +392,8 @@ mode(pilot)
 ```
 
 ``` error
-Error: object 'pilot' not found
+Error:
+! object 'pilot' not found
 ```
 
 :::::::::::::::::::::::::
@@ -453,7 +454,8 @@ class(pilot)
 ```
 
 ``` error
-Error: object 'pilot' not found
+Error:
+! object 'pilot' not found
 ```
 
 :::::::::::::::::::::::::
