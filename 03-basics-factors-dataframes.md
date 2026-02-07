@@ -695,17 +695,13 @@ install.packages("ggplot2")
 ```
 
 ``` output
-# Downloading packages -------------------------------------------------------
-- Downloading ggplot2 4.0.2 from CRAN ...       OK [8.1 Mb in 0.17s]
-Successfully downloaded 1 package in 1.3 seconds.
-
 The following package(s) will be installed:
 - ggplot2 [4.0.2]
-These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.5/x86_64-pc-linux-gnu".
+These packages will be installed into "/__w/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
-- Installing ggplot2 4.0.2 ...                  OK [installed binary and cached in 1.2s]
-Successfully installed 1 package in 1.3 seconds.
+- Installing ggplot2 4.0.2 ...                  OK [linked from cache]
+Successfully installed 1 package in 6.6 milliseconds.
 ```
 
 ``` r
@@ -713,17 +709,13 @@ install.packages("dplyr")
 ```
 
 ``` output
-# Downloading packages -------------------------------------------------------
-- Downloading dplyr 1.2.0 from CRAN ...         OK [1.5 Mb in 0.13s]
-Successfully downloaded 1 package in 0.42 seconds.
-
 The following package(s) will be installed:
 - dplyr [1.2.0]
-These packages will be installed into "~/work/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.5/x86_64-pc-linux-gnu".
+These packages will be installed into "/__w/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
-- Installing dplyr 1.2.0 ...                    OK [installed binary and cached in 0.58s]
-Successfully installed 1 package in 0.62 seconds.
+- Installing dplyr 1.2.0 ...                    OK [linked from cache]
+Successfully installed 1 package in 5.4 milliseconds.
 ```
 
 These two packages are among the most popular add on packages used in R, and they are part of a large set of very useful packages called the [tidyverse](https://www.tidyverse.org). Packages in the tidyverse are designed to work well together and are made to work with tidy data (which we described earlier in this lesson).
