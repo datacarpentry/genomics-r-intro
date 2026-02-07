@@ -425,28 +425,28 @@ including ones that were both Cit+ and Cit- and hypermutable in later
 generations.</p>
 <p>For the purposes of this workshop we’re going to be working with 3 of
 the sequence reads from this experiment.</p>
-<table class="table"><colgroup><col width="3%"><col width="82%"><col width="2%"><col width="1%"><col width="3%"><col width="2%"><col width="4%"></colgroup><thead><tr class="header"><th>SRA Run Number</th>
+<table class="table"><colgroup><col width="3%"><col width="82%"><col width="2%"><col width="1%"><col width="3%"><col width="2%"><col width="4%"></colgroup><thead><tr><th>SRA Run Number</th>
 <th>Clone</th>
 <th>Generation</th>
 <th>Cit</th>
 <th>Hypermutable</th>
 <th>Read Length</th>
 <th>Sequencing Depth</th>
-</tr></thead><tbody><tr class="odd"><td>SRR2589044</td>
+</tr></thead><tbody><tr><td>SRR2589044</td>
 <td>REL2181A</td>
 <td>5,000</td>
 <td>Unknown</td>
 <td>None</td>
 <td>150</td>
 <td>60.2</td>
-</tr><tr class="even"><td>SRR2584863</td>
+</tr><tr><td>SRR2584863</td>
 <td>REL7179B</td>
 <td>15,000</td>
 <td>Unknown</td>
 <td>None</td>
 <td>150</td>
 <td>88</td>
-</tr><tr class="odd"><td>SRR2584866</td>
+</tr><tr><td>SRR2584866</td>
 <td>REL11365</td>
 <td>50,000</td>
 <td>Cit+</td>
@@ -522,22 +522,22 @@ CP000819.1      62118   .       A       G       225     .       DP=19;VDB=0.4149
 CP000819.1      64042   .       G       A       225     .       DP=18;VDB=0.451328;SGB=-0.689466;MQSB=1;MQ0F=0;AC=1;AN=1;DP4=0,0,7,9;MQ=60      GT:PL</code></pre>
 <p>The first few columns represent the information we have about a
 predicted variation.</p>
-<table class="table"><colgroup><col width="4%"><col width="95%"></colgroup><thead><tr class="header"><th>column</th>
+<table class="table"><colgroup><col width="4%"><col width="95%"></colgroup><thead><tr><th>column</th>
 <th>info</th>
-</tr></thead><tbody><tr class="odd"><td>CHROM</td>
+</tr></thead><tbody><tr><td>CHROM</td>
 <td>contig location where the variation occurs</td>
-</tr><tr class="even"><td>POS</td>
+</tr><tr><td>POS</td>
 <td>position within the contig where the variation occurs</td>
-</tr><tr class="odd"><td>ID</td>
+</tr><tr><td>ID</td>
 <td>a <code>.</code> until we add annotation information</td>
-</tr><tr class="even"><td>REF</td>
+</tr><tr><td>REF</td>
 <td>reference genotype (forward strand)</td>
-</tr><tr class="odd"><td>ALT</td>
+</tr><tr><td>ALT</td>
 <td>sample genotype (forward strand)</td>
-</tr><tr class="even"><td>QUAL</td>
+</tr><tr><td>QUAL</td>
 <td>Phred-scaled probability that the observed variant exists at this
 site (higher is better)</td>
-</tr><tr class="odd"><td>FILTER</td>
+</tr><tr><td>FILTER</td>
 <td>a <code>.</code> if no quality filters have been applied, PASS if a
 filter is passed, or the name of the filters this variant failed</td>
 </tr></tbody></table><p>In an ideal world, the information in the <code>QUAL</code> column
@@ -545,26 +545,26 @@ would be all we needed to filter out bad variant calls. However, in
 reality we need to filter on multiple other metrics.</p>
 <p>The last two columns contain the genotypes and can be tricky to
 decode.</p>
-<table class="table"><colgroup><col width="4%"><col width="95%"></colgroup><thead><tr class="header"><th>column</th>
+<table class="table"><colgroup><col width="4%"><col width="95%"></colgroup><thead><tr><th>column</th>
 <th>info</th>
-</tr></thead><tbody><tr class="odd"><td>FORMAT</td>
+</tr></thead><tbody><tr><td>FORMAT</td>
 <td>lists in order the metrics presented in the final column</td>
-</tr><tr class="even"><td>results</td>
+</tr><tr><td>results</td>
 <td>lists the values associated with those metrics in order</td>
 </tr></tbody></table><p>For our file, the metrics presented are GT:PL:GQ.</p>
-<table class="table"><colgroup><col width="4%"><col width="95%"></colgroup><thead><tr class="header"><th>metric</th>
+<table class="table"><colgroup><col width="4%"><col width="95%"></colgroup><thead><tr><th>metric</th>
 <th>definition</th>
-</tr></thead><tbody><tr class="odd"><td>AD, DP</td>
+</tr></thead><tbody><tr><td>AD, DP</td>
 <td>the depth per allele by sample and coverage</td>
-</tr><tr class="even"><td>GT</td>
+</tr><tr><td>GT</td>
 <td>the genotype for the sample at this loci. For a diploid organism,
 the GT field indicates the two alleles carried by the sample, encoded by
 a 0 for the REF allele, 1 for the first ALT allele, 2 for the second ALT
 allele, etc. A 0/0 means homozygous reference, 0/1 is heterozygous, and
 1/1 is homozygous for the alternate allele.</td>
-</tr><tr class="odd"><td>PL</td>
+</tr><tr><td>PL</td>
 <td>the likelihoods of the given genotypes</td>
-</tr><tr class="even"><td>GQ</td>
+</tr><tr><td>GQ</td>
 <td>the Phred-scaled confidence for the genotype</td>
 </tr></tbody></table><p>For more information on VCF files visit The Broad Institute’s <a href="https://gatk.broadinstitute.org/hc/en-us/articles/360035531692-VCF-Variant-Call-Format" class="external-link">VCF
 guide</a>.</p>
@@ -634,7 +634,7 @@ from FASTQ files.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.9" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.18.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.0.9)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
