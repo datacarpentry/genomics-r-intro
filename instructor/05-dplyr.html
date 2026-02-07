@@ -345,7 +345,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Data Wrangling and Analyses with Tidyverse</h1>
-        <p>Last updated on 2026-01-16 |
+        <p>Last updated on 2026-02-07 |
 
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/05-dplyr.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -1468,8 +1468,12 @@ column name that will become the cells in the wide data.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>`summarise()` has grouped output by 'sample_id'. You can override using the
-`.groups` argument.</code></pre>
+<pre class="output" tabindex="0"><code>`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by sample_id and CHROM.
+ℹ Output is grouped by sample_id.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(sample_id, CHROM))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.</code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb55">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1601,8 +1605,8 @@ Reproducible Scientific Analysis</a><a href="#fnref1" class="footnote-back">↩�
   "url": "https://datacarpentry.github.io/genomics-r-intro/instructor/05-dplyr.html",
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/instructor/05-dplyr.html",
   "dateCreated": "2018-03-12",
-  "dateModified": "2026-01-16",
-  "datePublished": "2026-02-03"
+  "dateModified": "2026-02-07",
+  "datePublished": "2026-02-07"
 }
 
   </script><script>
