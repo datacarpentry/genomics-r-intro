@@ -937,8 +937,12 @@ variants_wide <- variants %>%
 ```
 
 ``` output
-`summarise()` has grouped output by 'sample_id'. You can override using the
-`.groups` argument.
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by sample_id and CHROM.
+ℹ Output is grouped by sample_id.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(sample_id, CHROM))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
 ```
 
 ``` r
