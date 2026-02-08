@@ -357,7 +357,7 @@ to use R”</a></li>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>R Basics</h1>
-        <p>Last updated on 2026-02-07 |
+        <p>Last updated on 2026-02-08 |
 
         <a href="https://github.com/datacarpentry/genomics-r-intro/edit/main/episodes/01-r-basics.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -526,9 +526,9 @@ listed above.</p>
 <p>The ‘Console’ will display lines of code run from a script and any
 outputs or status/warning/error messages (usually in red).</p>
 <p>In the ‘Environment’ window you will also get a table:</p>
-<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr><th>Values</th>
+<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr class="header"><th>Values</th>
 <th></th>
-</tr></thead><tbody><tr><td>first_value</td>
+</tr></thead><tbody><tr class="odd"><td>first_value</td>
 <td>1</td>
 </tr></tbody></table><p>The ‘Environment’ window allows you to keep track of the objects you
 have created in R.</p>
@@ -725,16 +725,16 @@ a difference.</p>
 </div>
 </div>
 <p>The most common modes you will encounter in R are:</p>
-<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr><th>Mode (abbreviation)</th>
+<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr class="header"><th>Mode (abbreviation)</th>
 <th>Type of data</th>
-</tr></thead><tbody><tr><td>Numeric (num)</td>
+</tr></thead><tbody><tr class="odd"><td>Numeric (num)</td>
 <td>Numbers such floating point/decimals (1.0, 0.5, 3.14), there are
 also more specific numeric types (dbl - Double, int - Integer). These
 differences are not relevant for most beginners and pertain to how these
 values are stored in memory</td>
-</tr><tr><td>Character (chr)</td>
+</tr><tr class="even"><td>Character (chr)</td>
 <td>A sequence of letters/numbers in single ’’ or double ” ” quotes</td>
-</tr><tr><td>Logical</td>
+</tr><tr class="odd"><td>Logical</td>
 <td>Boolean values - TRUE or FALSE</td>
 </tr></tbody></table><p>There are a few other modes (i.e. “complex”, “raw” etc.) but these
 are the three we will work with in this lesson.</p>
@@ -959,21 +959,21 @@ that was the <strong>name</strong> “Earhart”, we need to enclose
 R can appropriately manipulate that object. For example, objects of the
 numeric modes can be added, multiplied, divided, etc. R provides several
 mathematical (arithmetic) operators including:</p>
-<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr><th>Operator</th>
+<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr class="header"><th>Operator</th>
 <th>Description</th>
-</tr></thead><tbody><tr><td>+</td>
+</tr></thead><tbody><tr class="odd"><td>+</td>
 <td>addition</td>
-</tr><tr><td>-</td>
+</tr><tr class="even"><td>-</td>
 <td>subtraction</td>
-</tr><tr><td>*</td>
+</tr><tr class="odd"><td>*</td>
 <td>multiplication</td>
-</tr><tr><td>/</td>
+</tr><tr class="even"><td>/</td>
 <td>division</td>
-</tr><tr><td>^ or **</td>
+</tr><tr class="odd"><td>^ or **</td>
 <td>exponentiation</td>
-</tr><tr><td>a%/%b</td>
+</tr><tr class="even"><td>a%/%b</td>
 <td>integer division (division where the remainder is discarded)</td>
-</tr><tr><td>a%%b</td>
+</tr><tr class="odd"><td>a%%b</td>
 <td>modulus (returns the remainder after division)</td>
 </tr></tbody></table><p>These can be used with literal numbers:</p>
 <div class="codewrapper sourceCode" id="cb31">
@@ -1311,25 +1311,25 @@ logical operator:</p>
 <p>In the square brackets you place the name of the vector followed by
 the comparison operator and (in this case) a numeric value. Some of the
 most common logical operators you will use in R are:</p>
-<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr><th>Operator</th>
+<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr class="header"><th>Operator</th>
 <th>Description</th>
-</tr></thead><tbody><tr><td>&lt;</td>
+</tr></thead><tbody><tr class="odd"><td>&lt;</td>
 <td>less than</td>
-</tr><tr><td>&lt;=</td>
+</tr><tr class="even"><td>&lt;=</td>
 <td>less than or equal to</td>
-</tr><tr><td>&gt;</td>
+</tr><tr class="odd"><td>&gt;</td>
 <td>greater than</td>
-</tr><tr><td>&gt;=</td>
+</tr><tr class="even"><td>&gt;=</td>
 <td>greater than or equal to</td>
-</tr><tr><td>==</td>
+</tr><tr class="odd"><td>==</td>
 <td>exactly equal to</td>
-</tr><tr><td>!=</td>
+</tr><tr class="even"><td>!=</td>
 <td>not equal to</td>
-</tr><tr><td>!x</td>
+</tr><tr class="odd"><td>!x</td>
 <td>not x</td>
-</tr><tr><td>a | b</td>
+</tr><tr class="even"><td>a | b</td>
 <td>a or b</td>
-</tr><tr><td>a &amp; b</td>
+</tr><tr class="odd"><td>a &amp; b</td>
 <td>a and b</td>
 </tr></tbody></table><div id="the-magic-of-programming" class="callout">
 <div class="callout-square">
@@ -1862,7 +1862,7 @@ data are organized in R.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.18.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.9" class="external-link">varnish (1.0.9)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1884,8 +1884,8 @@ data are organized in R.</li>
   "url": "https://datacarpentry.github.io/genomics-r-intro/instructor/01-r-basics.html",
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/instructor/01-r-basics.html",
   "dateCreated": "2018-03-12",
-  "dateModified": "2026-02-07",
-  "datePublished": "2026-02-07"
+  "dateModified": "2026-02-08",
+  "datePublished": "2026-02-08"
 }
 
   </script><script>
