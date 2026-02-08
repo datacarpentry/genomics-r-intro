@@ -524,9 +524,9 @@ listed above.</p>
 <p>The ‘Console’ will display lines of code run from a script and any
 outputs or status/warning/error messages (usually in red).</p>
 <p>In the ‘Environment’ window you will also get a table:</p>
-<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr class="header"><th>Values</th>
+<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr><th>Values</th>
 <th></th>
-</tr></thead><tbody><tr class="odd"><td>first_value</td>
+</tr></thead><tbody><tr><td>first_value</td>
 <td>1</td>
 </tr></tbody></table><p>The ‘Environment’ window allows you to keep track of the objects you
 have created in R.</p>
@@ -575,7 +575,7 @@ a diploid human cell</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Here as some possible answers to the challenge:</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -723,16 +723,16 @@ a difference.</p>
 </div>
 </div>
 <p>The most common modes you will encounter in R are:</p>
-<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr class="header"><th>Mode (abbreviation)</th>
+<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr><th>Mode (abbreviation)</th>
 <th>Type of data</th>
-</tr></thead><tbody><tr class="odd"><td>Numeric (num)</td>
+</tr></thead><tbody><tr><td>Numeric (num)</td>
 <td>Numbers such floating point/decimals (1.0, 0.5, 3.14), there are
 also more specific numeric types (dbl - Double, int - Integer). These
 differences are not relevant for most beginners and pertain to how these
 values are stored in memory</td>
-</tr><tr class="even"><td>Character (chr)</td>
+</tr><tr><td>Character (chr)</td>
 <td>A sequence of letters/numbers in single ’’ or double ” ” quotes</td>
-</tr><tr class="odd"><td>Logical</td>
+</tr><tr><td>Logical</td>
 <td>Boolean values - TRUE or FALSE</td>
 </tr></tbody></table><p>There are a few other modes (i.e. “complex”, “raw” etc.) but these
 are the three we will work with in this lesson.</p>
@@ -772,7 +772,7 @@ before you look at the solution</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -853,7 +853,7 @@ using “class”</h3>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -957,21 +957,21 @@ that was the <strong>name</strong> “Earhart”, we need to enclose
 R can appropriately manipulate that object. For example, objects of the
 numeric modes can be added, multiplied, divided, etc. R provides several
 mathematical (arithmetic) operators including:</p>
-<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr class="header"><th>Operator</th>
+<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr><th>Operator</th>
 <th>Description</th>
-</tr></thead><tbody><tr class="odd"><td>+</td>
+</tr></thead><tbody><tr><td>+</td>
 <td>addition</td>
-</tr><tr class="even"><td>-</td>
+</tr><tr><td>-</td>
 <td>subtraction</td>
-</tr><tr class="odd"><td>*</td>
+</tr><tr><td>*</td>
 <td>multiplication</td>
-</tr><tr class="even"><td>/</td>
+</tr><tr><td>/</td>
 <td>division</td>
-</tr><tr class="odd"><td>^ or **</td>
+</tr><tr><td>^ or **</td>
 <td>exponentiation</td>
-</tr><tr class="even"><td>a%/%b</td>
+</tr><tr><td>a%/%b</td>
 <td>integer division (division where the remainder is discarded)</td>
-</tr><tr class="odd"><td>a%%b</td>
+</tr><tr><td>a%%b</td>
 <td>modulus (returns the remainder after division)</td>
 </tr></tbody></table><p>These can be used with literal numbers:</p>
 <div class="codewrapper sourceCode" id="cb31">
@@ -1024,7 +1024,7 @@ the <code>sqrt()</code> and <code>round()</code> functions. Hint: the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1274,7 +1274,7 @@ vector</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <ol style="list-style-type: upper-alpha"><li>False - Vectors have both of these properties<br></li>
 <li>True<br></li>
@@ -1309,25 +1309,25 @@ logical operator:</p>
 <p>In the square brackets you place the name of the vector followed by
 the comparison operator and (in this case) a numeric value. Some of the
 most common logical operators you will use in R are:</p>
-<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr class="header"><th>Operator</th>
+<table class="table"><colgroup><col width="7%"><col width="92%"></colgroup><thead><tr><th>Operator</th>
 <th>Description</th>
-</tr></thead><tbody><tr class="odd"><td>&lt;</td>
+</tr></thead><tbody><tr><td>&lt;</td>
 <td>less than</td>
-</tr><tr class="even"><td>&lt;=</td>
+</tr><tr><td>&lt;=</td>
 <td>less than or equal to</td>
-</tr><tr class="odd"><td>&gt;</td>
+</tr><tr><td>&gt;</td>
 <td>greater than</td>
-</tr><tr class="even"><td>&gt;=</td>
+</tr><tr><td>&gt;=</td>
 <td>greater than or equal to</td>
-</tr><tr class="odd"><td>==</td>
+</tr><tr><td>==</td>
 <td>exactly equal to</td>
-</tr><tr class="even"><td>!=</td>
+</tr><tr><td>!=</td>
 <td>not equal to</td>
-</tr><tr class="odd"><td>!x</td>
+</tr><tr><td>!x</td>
 <td>not x</td>
-</tr><tr class="even"><td>a | b</td>
+</tr><tr><td>a | b</td>
 <td>a or b</td>
-</tr><tr class="odd"><td>a &amp; b</td>
+</tr><tr><td>a &amp; b</td>
 <td>a and b</td>
 </tr></tbody></table><div id="the-magic-of-programming" class="callout">
 <div class="callout-square">
@@ -1505,7 +1505,7 @@ c. <code>snp_positions</code></p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb76">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1564,7 +1564,7 @@ c. To the <code>snp_positions</code> vector add: 116792991</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb82">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1631,7 +1631,7 @@ CYP1A1 and then<br></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb88">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1676,7 +1676,7 @@ contains:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
   <h4 class="accordion-header" id="headingSolution9"> Show me the solution </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb90">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1711,7 +1711,7 @@ contains:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution10" aria-expanded="false" aria-controls="collapseSolution10">
   <h4 class="accordion-header" id="headingSolution10"> Show me the solution </h4>
 </button>
-<div id="collapseSolution10" class="accordion-collapse collapse" aria-labelledby="headingSolution10" data-bs-parent="#accordionSolution10">
+<div id="collapseSolution10" class="accordion-collapse collapse" data-bs-parent="#accordionSolution10" aria-labelledby="headingSolution10">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb92">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1860,7 +1860,7 @@ data are organized in R.</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.9" class="external-link">varnish (1.0.9)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.18.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.0.9)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
