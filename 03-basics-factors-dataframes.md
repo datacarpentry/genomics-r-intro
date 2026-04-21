@@ -700,8 +700,8 @@ The following package(s) will be installed:
 These packages will be installed into "/__w/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
-- Installing ggplot2 4.0.2 ...                  OK [linked from cache]
-Successfully installed 1 package in 12 milliseconds.
+[32m✔[0m ggplot2 4.0.2                            [linked from cache]
+Successfully installed 1 package in 2.7 milliseconds.
 ```
 
 ``` r
@@ -710,12 +710,12 @@ install.packages("dplyr")
 
 ``` output
 The following package(s) will be installed:
-- dplyr [1.2.0]
+- dplyr [1.2.1]
 These packages will be installed into "/__w/genomics-r-intro/genomics-r-intro/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-noble/R-4.5/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
-- Installing dplyr 1.2.0 ...                    OK [linked from cache]
-Successfully installed 1 package in 5.4 milliseconds.
+[32m✔[0m dplyr 1.2.1                              [linked from cache]
+Successfully installed 1 package in 2.2 milliseconds.
 ```
 
 These two packages are among the most popular add on packages used in R, and they are part of a large set of very useful packages called the [tidyverse](https://www.tidyverse.org). Packages in the tidyverse are designed to work well together and are made to work with tidy data (which we described earlier in this lesson).
