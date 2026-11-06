@@ -125,7 +125,7 @@ ggplot(data = variants, aes(x = POS, y = DP))
 
 To add a geom to the plot use the `+` operator. Because we have two continuous variables, let's use [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) (i.e., a scatter plot) first:
 
-```{r first-ggplot, purl=FALSE}
+```{r first-ggplot, purl=FALSE, fig.alt="Scatter plot of read depth (DP) on the y-axis against base pair position (POS) on the x-axis, with one black point per variant."}
 ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point()
 ```
@@ -161,21 +161,21 @@ coverage_plot
 
 Building plots with **`ggplot2`** is typically an iterative process. We start by defining the dataset we'll use, lay out the axes, and choose a geom:
 
-```{r create-ggplot-object, purl=FALSE}
+```{r create-ggplot-object, purl=FALSE, fig.alt="Scatter plot of read depth (DP) against base pair position (POS), with opaque black points that overlap in dense regions."}
 ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point()
 ```
 
 Then, we start modifying this plot to extract more information from it. For instance, we can add transparency (`alpha`) to avoid over-plotting:
 
-```{r adding-transparency, purl=FALSE}
+```{r adding-transparency, purl=FALSE, fig.alt="Scatter plot of read depth (DP) against base pair position (POS), now with semi-transparent points so overlapping points show up darker."}
 ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point(alpha = 0.5)
 ```
 
 We can also add colors for all the points:
 
-```{r adding-colors, purl=FALSE}
+```{r adding-colors, purl=FALSE, fig.alt="Scatter plot of read depth (DP) against base pair position (POS), with all points semi-transparent and colored blue."}
 
 ggplot(data = variants, aes(x = POS, y = DP)) +
   geom_point(alpha = 0.5, color = "blue")
@@ -183,21 +183,21 @@ ggplot(data = variants, aes(x = POS, y = DP)) +
 
 Or to color each species in the plot differently, you could use a vector as an input to the argument **color**. **`ggplot2`** will provide a different color corresponding to different values in the vector. Here is an example where we color with **`sample_id`**:
 
-```{r color-by-sample-1, purl=FALSE}
+```{r color-by-sample-1, purl=FALSE, fig.alt="Scatter plot of read depth (DP) against base pair position (POS), with points colored by sample_id and a legend showing the three samples."}
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_point(alpha = 0.5)
 ```
 
 Notice that we can change the geom layer and colors will be still determined by **`sample_id`**
 
-```{r color-by-sample-2, purl=FALSE}
+```{r color-by-sample-2, purl=FALSE, fig.alt="Line plot of read depth (DP) against base pair position (POS), with one semi-transparent line per sample colored by sample_id."}
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_line(alpha = 0.5)
 ```
 
 To make our plot more readable, we can add axis labels:
 
-```{r add-axis-labels, purl=FALSE}
+```{r add-axis-labels, purl=FALSE, fig.alt="Scatter plot of read depth against base pair position, with points colored by sample_id and axes labelled Base Pair Position and Read Depth (DP)."}
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_point(alpha = 0.5) +
   labs(x = "Base Pair Position",
@@ -206,7 +206,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 
 To add a *main* title to the plot, we use [the title argument for the `labs()` function](https://ggplot2.tidyverse.org/reference/labs.html):
 
-```{r add-main-title, purl=FALSE}
+```{r add-main-title, purl=FALSE, fig.alt="Scatter plot of read depth against base pair position, with points colored by sample_id, labelled axes and the title Read Depth vs. Position."}
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_point(alpha = 0.5) +
   labs(x = "Base Pair Position",
@@ -234,7 +234,7 @@ relevant axis labels.
 
 ## Solution
 
-```{r scatter-challenge, purl=FALSE}
+```{r scatter-challenge, purl=FALSE, fig.alt="Scatter plot of mapping quality (MQ) against base pair position, with points colored by sample_id and axes labelled Base Pair Position and Mapping Quality (MQ)."}
  ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
   geom_point() +
   labs(x = "Base Pair Position",
@@ -247,7 +247,7 @@ relevant axis labels.
 
 To further customize the plot, we can change the default font format:
 
-```{r change-font-family, purl=FALSE}
+```{r change-font-family, purl=FALSE, fig.alt="Scatter plot of read depth against base pair position, colored by sample_id, with title Read Depth vs. Position and all text in the Bookman font."}
 ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
   geom_point(alpha = 0.5) +
   labs(x = "Base Pair Position",
@@ -260,7 +260,7 @@ ggplot(data = variants, aes(x = POS, y = DP, color = sample_id)) +
 
 **`ggplot2`** has a special technique called *faceting* that allows the user to split one plot into multiple plots (panels) based on a factor (variable) included in the dataset. We will use it to split our mapping quality plot into three panels, one for each sample.
 
-```{r first-facet, purl=FALSE}
+```{r first-facet, purl=FALSE, fig.alt="Scatter plot of mapping quality (MQ) against base pair position, split into three side-by-side panels, one per sample, with points colored by sample_id."}
 ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
  geom_point() +
  labs(x = "Base Pair Position",
@@ -270,7 +270,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
 
 This looks okay, but it would be easier to read if the plot facets were stacked vertically rather than horizontally. The `facet_grid` geometry allows you to explicitly specify how you want your plots to be arranged via formula notation (`rows ~ columns`; the dot (`.`) indicates every other variable in the data i.e., no faceting on that side of the formula).
 
-```{r second-facet, purl=FALSE}
+```{r second-facet, purl=FALSE, fig.alt="Scatter plot of mapping quality (MQ) against base pair position, split into three panels stacked vertically, one per sample, with points colored by sample_id."}
 ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
  geom_point() +
  labs(x = "Base Pair Position",
@@ -280,7 +280,7 @@ ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
 
 Usually plots with white background look more readable when printed.  We can set the background to white using the function [`theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html). Additionally, you can remove the grid:
 
-```{r facet-plot-white-bg, purl=FALSE}
+```{r facet-plot-white-bg, purl=FALSE, fig.alt="Scatter plot of mapping quality (MQ) against base pair position in three vertically stacked panels, one per sample, on a white background with no grid lines."}
 ggplot(data = variants, aes(x = POS, y = MQ, color = sample_id)) +
   geom_point() +
   labs(x = "Base Pair Position",
@@ -302,7 +302,7 @@ relevant axis labels.
 
 ## Solution
 
-```{r scatter-challenge-2, purl=FALSE}
+```{r scatter-challenge-2, purl=FALSE, fig.alt="Scatter plot of PHRED-scaled quality (QUAL) against base pair position in three vertically stacked panels, one per sample, with points colored by sample_id."}
  ggplot(data = variants, aes(x = POS, y = QUAL, color = sample_id)) +
   geom_point() +
   labs(x = "Base Pair Position",
@@ -318,7 +318,7 @@ relevant axis labels.
 
 We can create barplots using the [`geom_bar`](https://ggplot2.tidyverse.org/reference/geom_bar.html) geom. Let's make a barplot showing the number of variants for each sample that are indels.
 
-```{r barplot, purl=FALSE}
+```{r barplot, purl=FALSE, fig.alt="Bar plot of the number of variants that are indels (TRUE) or not (FALSE), in three vertically stacked panels, one per sample, with bars filled by sample_id and a legend."}
 ggplot(data = variants, aes(x = INDEL, fill = sample_id)) +
   geom_bar() +
   facet_grid(sample_id ~ .)
@@ -336,7 +336,7 @@ remove the legend from the plot.
 
 ## Solution
 
-```{r barplot-challenge, purl=FALSE}
+```{r barplot-challenge, purl=FALSE, fig.alt="Bar plot of the number of variants that are indels (TRUE) or not (FALSE), in three vertically stacked panels, one per sample, with bar outlines colored by sample and no legend."}
 ggplot(data = variants, aes(x = INDEL, color = sample_id)) +
    geom_bar(show.legend = F) +
    facet_grid(sample_id ~ .)
@@ -350,7 +350,7 @@ ggplot(data = variants, aes(x = INDEL, color = sample_id)) +
 
 We can create density plots using the [`geom_density`](https://ggplot2.tidyverse.org/reference/geom_density.html) geom that shows the distribution of of a variable in the dataset. Let's plot the distribution of `DP`
 
-```{r density, purl=FALSE}
+```{r density, purl=FALSE, fig.alt="Density plot of read depth (DP), showing a single curve whose peak lies at about 10 reads."}
 ggplot(data = variants, aes(x = DP)) +
   geom_density()
 ```
@@ -367,7 +367,7 @@ Use [`geom_density`](https://ggplot2.tidyverse.org/reference/geom_density.html) 
 
 ## Solution
 
-```{r density-challenge, purl=FALSE}
+```{r density-challenge, purl=FALSE, fig.alt="Density plot of read depth (DP) with one semi-transparent filled curve per sample, overlapping on a white background."}
 ggplot(data = variants, aes(x = DP, fill = sample_id)) +
    geom_density(alpha = 0.5) +
    theme_bw()
