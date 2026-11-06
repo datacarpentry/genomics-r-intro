@@ -240,7 +240,7 @@ but R is "not sure"
 about how to assign the name to "human\_ chr\_number" when the object name we
 want is "human\_chr\_number".
 
-![RStudio script warning](fig/rstudio_script_warning.png)
+![RStudio script warning](fig/rstudio_script_warning.png){alt='RStudio script editor where line 5, human_ chr_number <- 23, is marked with a red error icon and a tooltip reading unexpected token chr_number and no symbol named human_ in scope.'}
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
