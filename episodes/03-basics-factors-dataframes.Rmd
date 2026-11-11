@@ -185,7 +185,7 @@ you have the `variants` object, listed as 801 obs. (observations/rows)
 of 29 variables (columns). Double-clicking on the name of the object will open
 a view of the data in a new tab.
 
-![RStudio data frame view](fig/rstudio_dataframeview.png)
+![RStudio data frame view](fig/rstudio_dataframeview.png){alt='RStudio with the variants data frame open in a spreadsheet-style viewer tab showing columns such as sample_id, CHROM, POS, ID, REF and ALT, and the Environment pane listing variants as 801 obs. of 29 variables.'}
 
 The majority of the columns in the data frame correspond to standard fields found in a 
 *Variant Call Format (VCF)* file, while others were added during our data processing. The VCF 
@@ -411,7 +411,7 @@ One of the most common uses for factors will be when you plot categorical
 values. For example, suppose we want to know how many of our variants had each
 possible SNP we could generate a plot:
 
-```{r, purl=FALSE}
+```{r, purl=FALSE, fig.alt="Bar plot of the number of SNPs for each alternative nucleotide, with bars for A, C, G and T in alphabetical order."}
 plot(factor_snps)
 ```
 
@@ -444,7 +444,7 @@ to see why this works):
 
 Now we see our plot has be reordered:
 
-```{r, purl=FALSE}
+```{r, purl=FALSE, fig.alt="Bar plot of the number of SNPs for each alternative nucleotide, with the bars reordered from the least to the most frequent nucleotide."}
 plot(ordered_factor_snps)
 ```
 
@@ -851,12 +851,12 @@ First, in the RStudio menu go to **File**, select **Import Dataset**, and
 choose **From Excel...** (notice there are several other options you can
 explore).
 
-![RStudio import menu](fig/rstudio_import_menu.png)
+![RStudio import menu](fig/rstudio_import_menu.png){alt='RStudio File menu opened with Import Dataset highlighted and its submenu showing From Excel... selected among options such as From Text (base), From Text (readr), From SPSS, From SAS and From Stata.'}
 
 Next, under **File/Url:** click the <KBD>Browse</KBD> button and navigate to the **Ecoli\_metadata.xlsx** file located at `/home/dcuser/dc_sample_data/R`.
 You should now see a preview of the data to be imported:
 
-![RStudio import screen](fig/rstudio_import_screen.png)
+![RStudio import screen](fig/rstudio_import_screen.png){alt='RStudio Import Excel Data dialog with the path to Ecoli_metadata.xlsx in the File/Url box, a data preview table with columns sample, generation, clade, strain, cit, run and genome_size, import options such as Name and Sheet, and a code preview using read_excel().'}
 
 Notice that you have the option to change the data type of each variable by
 clicking arrow (drop-down menu) next to each column title. Under **Import
