@@ -40,7 +40,10 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-8">
       <div class="large-logo">
-        <img id="dc-logo" alt="Data Carpentry" src="../assets/images/data-logo.svg"><span class="badge text-bg-info">
+        <a href="index.html">
+        <img id="dc-logo" alt="Data Carpentry" src="../assets/images/data-logo.svg"></a>
+
+        <span class="badge text-bg-info">
           <abbr title="This lesson is in the beta phase, which means that it is ready for teaching by instructors outside of the original author team.">
             <a href="https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html" class="external-link alert-link">
               <i aria-hidden="true" class="icon" data-feather="alert-circle" style="border-radius: 5px"></i>
@@ -90,14 +93,15 @@
 </div>
     </div>
   </div>
-  <hr></header><nav class="navbar navbar-expand-xl bottom-nav data" aria-label="Main Navigation"><div class="container-fluid nav-container">
+</header><nav class="navbar navbar-expand-xl bottom-nav data" aria-label="Main Navigation"><div class="container-fluid nav-container">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
       <span class="navbar-toggler-icon"></span>
       <span class="menu-title">Menu</span>
     </button>
     <div class="nav-logo">
-      <img class="small-logo" alt="Data Carpentry" src="../assets/images/data-logo-sm.svg">
-</div>
+      <a href="index.html">
+      <img class="small-logo" alt="Data Carpentry" src="../assets/images/data-logo-sm.svg"></a>
+    </div>
     <div class="lesson-title-md">
       Data Analysis and Visualization with R for Genomics
     </div>
@@ -144,7 +148,7 @@
       </fieldset>
     </form>
     -->
-    <a id="search-button" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
+    <a id="search-button-nav" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
   </div>
 <!--/div.container-fluid -->
 </nav><div class="container">
@@ -156,6 +160,9 @@
           <i class="search-icon" data-feather="x" role="img"></i>
         </button>
         <div class="sidebar-inner">
+          <div class="row mobile-row" id="theme-row-mobile">
+            <a id="search-button-sidebar" class="btn btn-primary" href="../instructor/aio.html" role="button" aria-label="Search the All In One page">Search the All In One page</a>
+          </div>
           <div class="row mobile-row" id="theme-row-mobile">
             <menu class="col theme-selector" id="theme-selector-sidebar">
 <li class="nav-item dropdown theme-button-list" id="theme-button-list-sidebar">
@@ -204,13 +211,13 @@
 <!--/div.accordion-item-->
                 </div>
 <!--/div.accordion-flush-->
+
               </div>
 <!--div.sidenav-view-selector -->
             </div>
 <!--/div.col -->
 
-            <hr>
-</div>
+          </div>
 <!--/div.mobile-row -->
 
           <div class="accordion accordion-flush" id="accordion-chapters-toggle">
@@ -337,6 +344,34 @@
             </div>
 
             <hr class="half-width">
+<div class="accordion accordion-flush" id="accordion-links-toggle">
+                <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-heading-links-toggle">
+                  <button class="accordion-button collapsed" id="links" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-links-toggle" aria-expanded="false" aria-controls="flush-collapse-links-toggle">
+                    LINKS
+                  </button>
+                </h2>
+                <div id="flush-collapse-links-toggle" class="accordion-collapse show collapse" data-bs-parent="#accordion-links-toggle">
+                    <div class="accordion-body">
+                        <ul>
+<li>
+                            <a href="../instructor/key-points.html">Key Points</a>
+                            </li>
+                            <li>
+                            <a href="../instructor/instructor-notes.html">Instructor Notes</a>
+                            </li>
+                            <li>
+                            <a href="../instructor/images.html">Extract All Images</a>
+                            </li>
+                        </ul>
+</div>
+                </div>
+                </div>
+<!--/div.accordion-item-->
+            </div>
+<!--/div.accordion-flush-->
+
+            <hr class="half-width">
 <div class="accordion accordion-flush lesson-resources" id="accordion-resources-toggle">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-heading-resources-toggle">
@@ -347,16 +382,7 @@
                 <div id="flush-collapse-resources-toggle" class="accordion-collapse collapse" data-bs-parent="#accordion-resources-toggle">
                   <div class="accordion-body">
                     <ul>
-<li>
-                        <a href="../instructor/key-points.html">Key Points</a>
-                      </li>
-                      <li>
-                        <a href="../instructor/instructor-notes.html">Instructor Notes</a>
-                      </li>
-                      <li>
-                        <a href="../instructor/images.html">Extract All Images</a>
-                      </li>
-                      <hr>
+<hr>
 <li><a class="dropdown-item" href="discuss.html">Discussion</a></li>
 <li><a class="dropdown-item" href="reference.html">Glossary</a></li>
                     </ul>
@@ -410,8 +436,8 @@
 <figure><img src="../fig/studio_contexthelp2.png" alt="rstudio default session" style="width: 600px;" class="figure mx-auto d-block"></figure><hr></section><section id="01-r-basics"><h2 class="section-heading"><a href="01-r-basics.html">R Basics</a></h2>
 <hr class="half-width">
 <h3 id="01-r-basics-figure-1">Figure 1</h3>
-<p aria-hidden="true">Image 1 of 1: ‘RStudio script warning’</p>
-<figure><img src="../fig/rstudio_script_warning.png" alt="RStudio script warning" class="figure mx-auto d-block"><div class="figcaption">RStudio script warning</div>
+<p aria-hidden="true">Image 1 of 1: ‘RStudio script editor where line 5, human_ chr_number &lt;- 23, is marked with a red error icon and a tooltip reading unexpected token chr_number and no symbol named human_ in scope.’</p>
+<figure><img src="../fig/rstudio_script_warning.png" alt="RStudio script editor where line 5, human_ chr_number &lt;- 23, is marked with a red error icon and a tooltip reading unexpected token chr_number and no symbol named human_ in scope." class="figure mx-auto d-block"><div class="figcaption">RStudio script warning</div>
 </figure><hr></section><section id="02-data-prelude"><h2 class="section-heading"><a href="02-data-prelude.html">Introduction to the example dataset and file type</a></h2>
 <hr class="half-width">
 <h3 id="02-data-prelude-figure-1">Figure 1</h3>
@@ -422,22 +448,22 @@
 <hr></section><section id="03-basics-factors-dataframes"><h2 class="section-heading"><a href="03-basics-factors-dataframes.html">R Basics continued - factors and data frames</a></h2>
 <hr class="half-width">
 <h3 id="03-basics-factors-dataframes-figure-1">Figure 1</h3>
-<p aria-hidden="true">Image 1 of 1: ‘RStudio data frame view’</p>
-<figure><img src="../fig/rstudio_dataframeview.png" alt="RStudio data frame view" class="figure mx-auto d-block"><div class="figcaption">RStudio data frame view</div>
+<p aria-hidden="true">Image 1 of 1: ‘RStudio with the variants data frame open in a spreadsheet-style viewer tab showing columns such as sample_id, CHROM, POS, ID, REF and ALT, and the Environment pane listing variants as 801 obs. of 29 variables.’</p>
+<figure><img src="../fig/rstudio_dataframeview.png" alt="RStudio with the variants data frame open in a spreadsheet-style viewer tab showing columns such as sample_id, CHROM, POS, ID, REF and ALT, and the Environment pane listing variants as 801 obs. of 29 variables." class="figure mx-auto d-block"><div class="figcaption">RStudio data frame view</div>
 </figure><hr>
 <h3 id="03-basics-factors-dataframes-figure-2">Figure 2</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/03-basics-factors-dataframes-rendered-unnamed-chunk-18-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Bar plot of the number of SNPs for each alternative nucleotide, with bars for A, C, G and T in alphabetical order.’</p>
+<figure><img src="../fig/03-basics-factors-dataframes-rendered-unnamed-chunk-18-1.png" alt="Bar plot of the number of SNPs for each alternative nucleotide, with bars for A, C, G and T in alphabetical order." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="03-basics-factors-dataframes-figure-3">Figure 3</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/03-basics-factors-dataframes-rendered-unnamed-chunk-20-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Bar plot of the number of SNPs for each alternative nucleotide, with the bars reordered from the least to the most frequent nucleotide.’</p>
+<figure><img src="../fig/03-basics-factors-dataframes-rendered-unnamed-chunk-20-1.png" alt="Bar plot of the number of SNPs for each alternative nucleotide, with the bars reordered from the least to the most frequent nucleotide." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="03-basics-factors-dataframes-figure-4">Figure 4</h3>
-<p aria-hidden="true">Image 1 of 1: ‘RStudio import menu’</p>
-<figure><img src="../fig/rstudio_import_menu.png" alt="RStudio import menu" class="figure mx-auto d-block"><div class="figcaption">RStudio import menu</div>
+<p aria-hidden="true">Image 1 of 1: ‘RStudio File menu opened with Import Dataset highlighted and its submenu showing From Excel... selected among options such as From Text (base), From Text (readr), From SPSS, From SAS and From Stata.’</p>
+<figure><img src="../fig/rstudio_import_menu.png" alt="RStudio File menu opened with Import Dataset highlighted and its submenu showing From Excel... selected among options such as From Text (base), From Text (readr), From SPSS, From SAS and From Stata." class="figure mx-auto d-block"><div class="figcaption">RStudio import menu</div>
 </figure><hr>
 <h3 id="03-basics-factors-dataframes-figure-5">Figure 5</h3>
-<p aria-hidden="true">Image 1 of 1: ‘RStudio import screen’</p>
-<figure><img src="../fig/rstudio_import_screen.png" alt="RStudio import screen" class="figure mx-auto d-block"><div class="figcaption">RStudio import screen</div>
+<p aria-hidden="true">Image 1 of 1: ‘RStudio Import Excel Data dialog with the path to Ecoli_metadata.xlsx in the File/Url box, a data preview table with columns sample, generation, clade, strain, cit, run and genome_size, import options such as Name and Sheet, and a code preview using read_excel().’</p>
+<figure><img src="../fig/rstudio_import_screen.png" alt="RStudio Import Excel Data dialog with the path to Ecoli_metadata.xlsx in the File/Url box, a data preview table with columns sample, generation, clade, strain, cit, run and genome_size, import options such as Name and Sheet, and a code preview using read_excel()." class="figure mx-auto d-block"><div class="figcaption">RStudio import screen</div>
 </figure><hr></section><section id="04-bioconductor-vcfr"><h2 class="section-heading"><a href="04-bioconductor-vcfr.html">Using packages from Bioconductor</a></h2>
 <hr class="half-width">
 <h3 id="04-bioconductor-vcfr-figure-1">Figure 1</h3>
@@ -458,59 +484,59 @@
 <p aria-hidden="true">Image 1 of 1: ‘Line plot enclosed in hexagon shape with ggplot2 typed beneath and www.rstudio.com at the bottom.’</p>
 <figure><img src="https://ggplot2.tidyverse.org/logo.png" align="right" alt="Line plot enclosed in hexagon shape with ggplot2 typed beneath and www.rstudio.com at the bottom." class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-2">Figure 2</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-first-ggplot-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of read depth (DP) on the y-axis against base pair position (POS) on the x-axis, with one black point per variant.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-first-ggplot-1.png" alt="Scatter plot of read depth (DP) on the y-axis against base pair position (POS) on the x-axis, with one black point per variant." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-3">Figure 3</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-create-ggplot-object-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of read depth (DP) against base pair position (POS), with opaque black points that overlap in dense regions.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-create-ggplot-object-1.png" alt="Scatter plot of read depth (DP) against base pair position (POS), with opaque black points that overlap in dense regions." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-4">Figure 4</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-adding-transparency-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of read depth (DP) against base pair position (POS), now with semi-transparent points so overlapping points show up darker.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-adding-transparency-1.png" alt="Scatter plot of read depth (DP) against base pair position (POS), now with semi-transparent points so overlapping points show up darker." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-5">Figure 5</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-adding-colors-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of read depth (DP) against base pair position (POS), with all points semi-transparent and colored blue.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-adding-colors-1.png" alt="Scatter plot of read depth (DP) against base pair position (POS), with all points semi-transparent and colored blue." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-6">Figure 6</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-color-by-sample-1-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of read depth (DP) against base pair position (POS), with points colored by sample_id and a legend showing the three samples.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-color-by-sample-1-1.png" alt="Scatter plot of read depth (DP) against base pair position (POS), with points colored by sample_id and a legend showing the three samples." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-7">Figure 7</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-color-by-sample-2-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Line plot of read depth (DP) against base pair position (POS), with one semi-transparent line per sample colored by sample_id.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-color-by-sample-2-1.png" alt="Line plot of read depth (DP) against base pair position (POS), with one semi-transparent line per sample colored by sample_id." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-8">Figure 8</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-add-axis-labels-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of read depth against base pair position, with points colored by sample_id and axes labelled Base Pair Position and Read Depth (DP).’</p>
+<figure><img src="../fig/06-data-visualization-rendered-add-axis-labels-1.png" alt="Scatter plot of read depth against base pair position, with points colored by sample_id and axes labelled Base Pair Position and Read Depth (DP)." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-9">Figure 9</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-add-main-title-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of read depth against base pair position, with points colored by sample_id, labelled axes and the title Read Depth vs. Position.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-add-main-title-1.png" alt="Scatter plot of read depth against base pair position, with points colored by sample_id, labelled axes and the title Read Depth vs. Position." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-10">Figure 10</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-scatter-challenge-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of mapping quality (MQ) against base pair position, with points colored by sample_id and axes labelled Base Pair Position and Mapping Quality (MQ).’</p>
+<figure><img src="../fig/06-data-visualization-rendered-scatter-challenge-1.png" alt="Scatter plot of mapping quality (MQ) against base pair position, with points colored by sample_id and axes labelled Base Pair Position and Mapping Quality (MQ)." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-11">Figure 11</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-change-font-family-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of read depth against base pair position, colored by sample_id, with title Read Depth vs. Position and all text in the Bookman font.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-change-font-family-1.png" alt="Scatter plot of read depth against base pair position, colored by sample_id, with title Read Depth vs. Position and all text in the Bookman font." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-12">Figure 12</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-first-facet-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of mapping quality (MQ) against base pair position, split into three side-by-side panels, one per sample, with points colored by sample_id.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-first-facet-1.png" alt="Scatter plot of mapping quality (MQ) against base pair position, split into three side-by-side panels, one per sample, with points colored by sample_id." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-13">Figure 13</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-second-facet-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of mapping quality (MQ) against base pair position, split into three panels stacked vertically, one per sample, with points colored by sample_id.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-second-facet-1.png" alt="Scatter plot of mapping quality (MQ) against base pair position, split into three panels stacked vertically, one per sample, with points colored by sample_id." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-14">Figure 14</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-facet-plot-white-bg-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of mapping quality (MQ) against base pair position in three vertically stacked panels, one per sample, on a white background with no grid lines.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-facet-plot-white-bg-1.png" alt="Scatter plot of mapping quality (MQ) against base pair position in three vertically stacked panels, one per sample, on a white background with no grid lines." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-15">Figure 15</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-scatter-challenge-2-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Scatter plot of PHRED-scaled quality (QUAL) against base pair position in three vertically stacked panels, one per sample, with points colored by sample_id.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-scatter-challenge-2-1.png" alt="Scatter plot of PHRED-scaled quality (QUAL) against base pair position in three vertically stacked panels, one per sample, with points colored by sample_id." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-16">Figure 16</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-barplot-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Bar plot of the number of variants that are indels (TRUE) or not (FALSE), in three vertically stacked panels, one per sample, with bars filled by sample_id and a legend.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-barplot-1.png" alt="Bar plot of the number of variants that are indels (TRUE) or not (FALSE), in three vertically stacked panels, one per sample, with bars filled by sample_id and a legend." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-17">Figure 17</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-barplot-challenge-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Bar plot of the number of variants that are indels (TRUE) or not (FALSE), in three vertically stacked panels, one per sample, with bar outlines colored by sample and no legend.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-barplot-challenge-1.png" alt="Bar plot of the number of variants that are indels (TRUE) or not (FALSE), in three vertically stacked panels, one per sample, with bar outlines colored by sample and no legend." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-18">Figure 18</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-density-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
+<p aria-hidden="true">Image 1 of 1: ‘Density plot of read depth (DP), showing a single curve whose peak lies at about 10 reads.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-density-1.png" alt="Density plot of read depth (DP), showing a single curve whose peak lies at about 10 reads." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr>
 <h3 id="06-data-visualization-figure-19">Figure 19</h3>
-<p aria-hidden="true">Image 1 of 1: ‘[decorative]’</p>
-<figure><img src="../fig/06-data-visualization-rendered-density-challenge-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr></section><section id="07-r-help"><h2 class="section-heading"><a href="07-r-help.html">Getting help with R</a></h2>
+<p aria-hidden="true">Image 1 of 1: ‘Density plot of read depth (DP) with one semi-transparent filled curve per sample, overlapping on a white background.’</p>
+<figure><img src="../fig/06-data-visualization-rendered-density-challenge-1.png" alt="Density plot of read depth (DP) with one semi-transparent filled curve per sample, overlapping on a white background." style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><hr></section><section id="07-r-help"><h2 class="section-heading"><a href="07-r-help.html">Getting help with R</a></h2>
 <hr class="half-width">
 <h3 id="07-r-help-figure-1">Figure 1</h3>
 <p aria-hidden="true">Image 1 of 1: ‘rstudio default session’</p>
@@ -541,7 +567,7 @@
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.20.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.0)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/" class="external-link">sandpaper (0.21.1)</a>, <a href="https://github.com/carpentries/pegboard/tree/" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/carpentries/varnish/tree/" class="external-link">varnish (1.1.3)</a></p>
 		</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -564,8 +590,8 @@
   "url": "https://datacarpentry.github.io/genomics-r-intro/instructor/images.html",
   "identifier": "https://datacarpentry.github.io/genomics-r-intro/instructor/images.html",
   "dateCreated": "2018-03-12",
-  "dateModified": "2026-05-19",
-  "datePublished": "2026-05-19"
+  "dateModified": "2026-11-11",
+  "datePublished": "2026-11-11"
 }
 
   </script><script>
@@ -574,7 +600,7 @@
           var _paq = window._paq = window._paq || [];
           /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
           _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-          _paq.push(["setDomains", ["*.lessons.carpentries.org","*.datacarpentry.github.io","*.datacarpentry.org","*.librarycarpentry.github.io","*.librarycarpentry.org","*.swcarpentry.github.io", "*.carpentries.github.io"]]);
+          _paq.push(["setDomains", ["*.lessons.carpentries.org","*.datacarpentry.github.io","*.datacarpentry.org","*.hpc-carpentry.github.io","*.hpc-carpentry.org","*.librarycarpentry.github.io","*.librarycarpentry.org","*.swcarpentry.github.io", "*.carpentries.github.io"]]);
           _paq.push(["setDoNotTrack", true]);
           _paq.push(["disableCookies"]);
           _paq.push(["trackPageView"]);
